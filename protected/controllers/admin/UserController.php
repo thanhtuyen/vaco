@@ -46,7 +46,7 @@ class UserController extends Controller
       *  init CSS and Javascript file
       */
   public function init(){
-    Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/css/user.css');
+    //Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/css/user.css');
 
     parent::init();
   }
@@ -83,7 +83,7 @@ class UserController extends Controller
       // echo getDatetime();die;
       $model->attributes = Clean($_POST['User']);
       $model->create_date = getDatetime();
-      $model->user_role = $model::USER;
+      $model->user_role = User::USER;
       $model->create_user = app()->user->id;
 
       if($model->save())

@@ -8,17 +8,18 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Imageslide', 'url'=>array('index')),
-	array('label'=>'Create Imageslide', 'url'=>array('create')),
+	//array('label'=>'List Imageslide', 'url'=>array('index')),
+	//array('label'=>'Create Imageslide', 'url'=>array('create')),
 	array('label'=>'Update Imageslide', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Delete Imageslide', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
+	//array('label'=>'Delete Imageslide', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
 	array('label'=>'Manage Imageslide', 'url'=>array('admin')),
 );
 ?>
 
 <h1>View Imageslide #<?php echo $model->id; ?></h1>
+<div class="view_user">
 
-<?php $this->widget('zii.widgets.CDetailView', array(
+<?php $this->widget('bootstrap.widgets.TbDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',
@@ -31,6 +32,6 @@ $this->menu=array(
 		'create_user_id',
 		'update_date',
 		'del_flg',
-		'imageslidecol',
 	),
 )); ?>
+</div>

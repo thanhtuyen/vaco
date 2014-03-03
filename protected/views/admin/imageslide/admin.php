@@ -8,7 +8,7 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Imageslide', 'url'=>array('index')),
+	//array('label'=>'List Imageslide', 'url'=>array('index')),
 	array('label'=>'Create Imageslide', 'url'=>array('create')),
 );
 
@@ -26,12 +26,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Manage Imageslides</h1>
-
-<p>
-You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
-or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
-</p>
+<h1><?php echo Constants::$listModule['image_slide']['title']?></h1>
 
 <?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>
 <div class="search-form" style="display:none">
@@ -42,8 +37,9 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'imageslide-grid',
+	'template'=>"{items}",
 	'dataProvider'=>$model->search(),
-	'filter'=>$model,
+	//'filter'=>$model,
 	'columns'=>array(
 		'id',
 		'image_path',
@@ -59,7 +55,8 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'imageslidecol',
 		*/
 		array(
-			'class'=>'CButtonColumn',
+			'class'=>'bootstrap.widgets.TbButtonColumn',
+      		'htmlOptions'=>array('style'=>'width: 50px'),
 		),
 	),
 )); ?>

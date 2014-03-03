@@ -4,87 +4,62 @@
 /* @var $form CActiveForm */
 ?>
 
-<div class="form">
-
-<?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'imageslide-form',
-	'enableAjaxValidation'=>false,
+<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
+  	'id'=>'imageslide-form',
+  	'type'=>'horizontal',
+  	'enableAjaxValidation'=>false,
+	//'htmlOptions' => array('enctype' => $model->isNewRecord ? '' : 'multipart/form-data'),
+	'htmlOptions' => array('enctype' => 'multipart/form-data'),
 )); ?>
+<p class="help-block">Fields with <span class="required">*</span> are required.</p>
+<?php echo $form->errorSummary($model); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
-
-	<?php echo $form->errorSummary($model); ?>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'id'); ?>
-		<?php echo $form->textField($model,'id'); ?>
-		<?php echo $form->error($model,'id'); ?>
+<div class="space5">  
+	<div class="control-group">		
+		<?php echo $form->textFieldRow($model,'title',array('class'=>'span3','maxlength'=>255)); ?>
+ 
+ 		<div class="image_path">
+	 		<?php echo CHtml::activeFileField($model,'image_path'); ?>
+			<?php //echo $form->fileField($model,'image_path'); ?>
+			<span class="help_inline" style="float: left; margin-left: 200px;">
+				<?php //echo $form->error($model,'image_path'); ?>
+			</span>	
+			<?php 
+				if($model->isNewRecord != '1')
+					echo CHtml::image(Yii::app()->request->baseUrl . Imageslide::image_url . $model->image_path,"imageslide",array("width"=>100));
+			?>	
+		</div>	
 	</div>
+  
+  <?php echo $form->textFieldRow($model,'caption',array('class'=>'span3','maxlength'=>255)); ?>
+  <h5>ENGLISH</h5>
+  <?php echo $form->textFieldRow($model,'title_eng',array('class'=>'span3','maxlength'=>255)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'image_path'); ?>
-		<?php echo $form->textField($model,'image_path',array('size'=>45,'maxlength'=>45)); ?>
-		<?php echo $form->error($model,'image_path'); ?>
-	</div>
+  <?php echo $form->textFieldRow($model,'caption_eng',array('class'=>'span3','maxlength'=>255)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'title'); ?>
-		<?php echo $form->textField($model,'title',array('size'=>45,'maxlength'=>45)); ?>
-		<?php echo $form->error($model,'title'); ?>
-	</div>
+  <div class="form-actions">
+    <?php $this->widget('bootstrap.widgets.TbButton', array(
+      'buttonType'=>'submit',
+      'type'=>'primary',
+		'htmlOptions'   => array('name'=> 'bCreate','id'=> 'bCreate'),
+      'label'=>$model->isNewRecord ? Constants::$listLabelButton['create'] : Constants::$listLabelButton['update'],
+    ));
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'caption'); ?>
-		<?php echo $form->textField($model,'caption',array('size'=>45,'maxlength'=>45)); ?>
-		<?php echo $form->error($model,'caption'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'title_eng'); ?>
-		<?php echo $form->textField($model,'title_eng',array('size'=>45,'maxlength'=>45)); ?>
-		<?php echo $form->error($model,'title_eng'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'caption_eng'); ?>
-		<?php echo $form->textField($model,'caption_eng',array('size'=>45,'maxlength'=>45)); ?>
-		<?php echo $form->error($model,'caption_eng'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'create_date'); ?>
-		<?php echo $form->textField($model,'create_date'); ?>
-		<?php echo $form->error($model,'create_date'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'create_user_id'); ?>
-		<?php echo $form->textField($model,'create_user_id'); ?>
-		<?php echo $form->error($model,'create_user_id'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'update_date'); ?>
-		<?php echo $form->textField($model,'update_date'); ?>
-		<?php echo $form->error($model,'update_date'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'del_flg'); ?>
-		<?php echo $form->textField($model,'del_flg'); ?>
-		<?php echo $form->error($model,'del_flg'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'imageslidecol'); ?>
-		<?php echo $form->textField($model,'imageslidecol',array('size'=>45,'maxlength'=>45)); ?>
-		<?php echo $form->error($model,'imageslidecol'); ?>
-	</div>
-
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
-	</div>
-
+    if($model->isNewRecord){
+      $this->widget('bootstrap.widgets.TbButton', array(
+        'buttonType'=>'reset',
+        'htmlOptions'=>array('style'=>'margin-left: 10px;','name'=>'bReset','id'=> 'bReset'),
+        'label'=>Constants::$listLabelButton['reset'],
+      ));
+    } else {
+      $this->widget('bootstrap.widgets.TbButton', array(
+        //'buttonType'=>'link',
+        'label'=>Constants::$listLabelButton['cancel'],
+        'htmlOptions'=>array('style'=>'margin-left: 10px;','name'=>'bCancel','id'=> 'bCancel'),
+        'url'=>'../../imageslide/admin',
+      ));
+    } 
+    ?>
+  </div>
+</div>
 <?php $this->endWidget(); ?>
-
-</div><!-- form -->

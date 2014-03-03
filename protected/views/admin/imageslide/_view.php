@@ -46,10 +46,6 @@
 	<?php echo CHtml::encode($data->del_flg); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('imageslidecol')); ?>:</b>
-	<?php echo CHtml::encode($data->imageslidecol); ?>
-	<br />
-
 	*/ ?>
 
 </div>

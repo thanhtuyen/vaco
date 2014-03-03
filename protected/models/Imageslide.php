@@ -17,6 +17,7 @@
  */
 class Imageslide extends CActiveRecord
 {
+	const image_url = '/images/imageslide/';
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -39,12 +40,17 @@ class Imageslide extends CActiveRecord
 	 * @return array validation rules for model attributes.
 	 */
 	public function rules()
-	{
+	{ 
+		//var_dump(Yii::app()->controller->action->id);
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id', 'required', 'message'=>getMessage('message', $this->getAttributeLabel('id'))),
-			array('id, create_user_id, del_flg', 'numerical', 'integerOnly'=>true),
+			array('image_path', 'required', 'message'=>getMessage('required', $this->getAttributeLabel('image_path'))),
+			array('title', 'required', 'message'=>getMessage('required', $this->getAttributeLabel('title'))),
+			//array('create_user_id, del_flg', 'numerical', 'integerOnly'=>true, 'message'=>getMessage('numerical')),
+			array('image_path', 'unsafe'),
+			//array('image_path','file','types'=>'jpg, jpeg, png, gif','maxSize'=>1024*1024*0.5, // 0.5MB
+				//'tooLarge'=>'The file was larger than 500 KB. Please upload a smaller file.'),
 			array('image_path, title, caption, title_eng, caption_eng', 'length', 'max'=>45),
 			array('create_date, update_date', 'safe'),
 			// The following rule is used by search().
