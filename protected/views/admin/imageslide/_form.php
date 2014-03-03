@@ -17,8 +17,11 @@
 <div class="space5">  
 	<div class="control-group">		
 		<?php echo $form->textFieldRow($model,'title',array('class'=>'span3','maxlength'=>255)); ?>
+	</div>	
  
- 		<div class="image_path">
+	<div class="control-group">
+		<?php echo $form->labelEx($model,'list_file_attach', array('class'=> "control-label")); ?>
+	    <div class="controls">
 	 		<?php echo CHtml::activeFileField($model,'image_path'); ?>
 			<?php //echo $form->fileField($model,'image_path'); ?>
 			<span class="help_inline" style="float: left; margin-left: 200px;">

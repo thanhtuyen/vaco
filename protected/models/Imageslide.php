@@ -49,8 +49,9 @@ class Imageslide extends CActiveRecord
 			array('title', 'required', 'message'=>getMessage('required', $this->getAttributeLabel('title'))),
 			//array('create_user_id, del_flg', 'numerical', 'integerOnly'=>true, 'message'=>getMessage('numerical')),
 			array('image_path', 'unsafe'),
-			//array('image_path','file','types'=>'jpg, jpeg, png, gif','maxSize'=>1024*1024*0.5, // 0.5MB
-				//'tooLarge'=>'The file was larger than 500 KB. Please upload a smaller file.'),
+			array('image_path','file','types'=>'jpg, jpeg, png, gif','maxSize'=>1024*1024*2, // 1MB
+				'wrongType'=>getMessage('wrongTypeImage'),
+				'tooLarge'=>getMessage('tooLarge'),),
 			array('image_path, title, caption, title_eng, caption_eng', 'length', 'max'=>45),
 			array('create_date, update_date', 'safe'),
 			// The following rule is used by search().
@@ -77,7 +78,7 @@ class Imageslide extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'image_path' => 'Đường dẫn hình',
+			'image_path' => 'Hình ảnh',
 			'title' => 'Tiêu đề',
 			'caption' => 'Chú thích',
 			'title_eng' => 'Title',

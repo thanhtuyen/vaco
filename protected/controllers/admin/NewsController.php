@@ -1,6 +1,6 @@
 <?php
 
-class ImageslideController extends Controller
+class NewsController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -61,24 +61,19 @@ class ImageslideController extends Controller
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
 	public function actionCreate()
-	{ 
-		$model=new Imageslide;
+	{
+		$model=new News; 
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Imageslide']))
-		{ 
-			$model->attributes = Clean($_POST['Imageslide']);  
-			$model->setScenario('create');	
-
-			// upload image
-			$model->image_path = CUploadedFile::getInstance($model,'image_path'); 
-			if (is_object($model->image_path)) 	
-	          	$model->image_path->saveAs(Yii::getPathOfAlias('webroot') . Imageslide::image_url . $model->image_path);
-	        
-      		$model->create_date = getDatetime();
+		if(isset($_POST['News']))
+		{
+			$model->attributes=$_POST['News'];
+			$model->create_date = getDatetime();
       		$model->create_user_id = app()->user->getState('roles');
+      		$model->is_public = 0;
+      		$model->feature_flag=0;
       		$model->del_flg = 0; 
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
@@ -101,31 +96,11 @@ class ImageslideController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		$old_image_path = $model->image_path;  
-		if(isset($_POST['Imageslide']))
-		{  
-			$model->attributes = Clean($_POST['Imageslide']); 
-			$model->image_path = CUploadedFile::getInstance($model,'image_path'); 
-			$model->update_date = getDatetime(); 
-			$model->create_user_id = app()->user->getState('roles');
-			if ($model->validate()) { 
-				//check value image exists
-		        $image_path = CUploadedFile::getInstance($model, 'image_path');
-		        if (is_object($image_path) && get_class($image_path)==='CUploadedFile')
-		        	$model->image_path = $image_path;
-		
-		        if (is_object($model->image_path)) { 
-					if($old_image_path) 
-		          		unlink(Yii::getPathOfAlias('webroot') . Imageslide::image_url . $old_image_path);
-		
-		          	$model->image_path->saveAs(Yii::getPathOfAlias('webroot') . Imageslide::image_url . $model->image_path);
-		        } else { 
-		          $model->image_path = $old_image_path;
-		        }
-				
-				if($model->save())
-					$this->redirect(array('view','id'=>$model->id));
-			}
+		if(isset($_POST['News']))
+		{
+			$model->attributes=$_POST['News'];
+			if($model->save())
+				$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('update',array(
@@ -139,18 +114,7 @@ class ImageslideController extends Controller
 	 * @param integer $id the ID of the model to be deleted
 	 */
 	public function actionDelete($id)
-	{ 
-		/*if(Yii::app()->request->isPostRequest)
-		{ 
-			$model = $this->loadModel($id); 
-			$model->del_flg = DELETE;
-			$model->save(false);
-			$this->redirect(array('admin'));
-		}
-		else
-			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');*/
-			
-			
+	{
 		$this->loadModel($id)->delete();
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
@@ -162,19 +126,11 @@ class ImageslideController extends Controller
 	 * Lists all models.
 	 */
 	public function actionIndex()
-	{ 
-		$this->pageTitle = Constants::$listModule['image_slide']['header'];
-		
-		$fileName = 'index';
-		$modelImageSlide = new Imageslide();
-		$modelImageSlideSearch = new Imageslide('adminImageSlideSearch');
-		/*$dataProvider=new CActiveDataProvider('Imageslide');
+	{
+		$dataProvider=new CActiveDataProvider('News');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
-		));*/
-		
-		$this->render($fileName, compact('modelImageSlide', 'modelImageSlideSearch'));
-		
+		));
 	}
 
 	/**
@@ -182,10 +138,10 @@ class ImageslideController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new Imageslide('search');
+		$model=new News('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Imageslide']))
-			$model->attributes=$_GET['Imageslide'];
+		if(isset($_GET['News']))
+			$model->attributes=$_GET['News'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -196,12 +152,12 @@ class ImageslideController extends Controller
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded
-	 * @return Imageslide the loaded model
+	 * @return News the loaded model
 	 * @throws CHttpException
 	 */
 	public function loadModel($id)
 	{
-		$model=Imageslide::model()->findByPk($id);
+		$model=News::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -209,23 +165,22 @@ class ImageslideController extends Controller
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param Imageslide $model the model to be validated
+	 * @param News $model the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='imageslide-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='news-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
 	}
-	
 	/*
 	*  init CSS and Javascript file
 	*/
-	public function init(){
-		//Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/css/imageslide.css');
+	public function init(){ 
+		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery.multiselect.filter.js');
+		Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/css/jquery.multiselect.filter.css');
 		parent::init();
 	}
-	
 }
