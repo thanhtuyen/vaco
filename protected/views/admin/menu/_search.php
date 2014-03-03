@@ -1,6 +1,6 @@
 <?php
-/* @var $this ImageslideController */
-/* @var $model Imageslide */
+/* @var $this MenuController */
+/* @var $model Menu */
 /* @var $form CActiveForm */
 ?>
 
@@ -17,28 +17,23 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'image_path'); ?>
-		<?php echo $form->textField($model,'image_path',array('size'=>45,'maxlength'=>45)); ?>
+		<?php echo $form->label($model,'parent_menu_id'); ?>
+		<?php echo $form->textField($model,'parent_menu_id'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'title'); ?>
-		<?php echo $form->textField($model,'title',array('size'=>45,'maxlength'=>45)); ?>
+		<?php echo $form->label($model,'menu_name'); ?>
+		<?php echo $form->textField($model,'menu_name',array('size'=>45,'maxlength'=>45)); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'caption'); ?>
-		<?php echo $form->textField($model,'caption',array('size'=>45,'maxlength'=>45)); ?>
+		<?php echo $form->label($model,'menu_name_eng'); ?>
+		<?php echo $form->textField($model,'menu_name_eng',array('size'=>45,'maxlength'=>45)); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'title_eng'); ?>
-		<?php echo $form->textField($model,'title_eng',array('size'=>45,'maxlength'=>45)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'caption_eng'); ?>
-		<?php echo $form->textField($model,'caption_eng',array('size'=>45,'maxlength'=>45)); ?>
+		<?php echo $form->label($model,'menu_type'); ?>
+		<?php echo $form->textField($model,'menu_type'); ?>
 	</div>
 
 	<div class="row">
@@ -60,11 +55,6 @@
 		<?php echo $form->label($model,'del_flg'); ?>
 		<?php echo $form->textField($model,'del_flg'); ?>
 	</div>
-
-<!--	<div class="row">-->
-<!--		--><?php //echo $form->label($model,'imageslidecol'); ?>
-<!--		--><?php //echo $form->textField($model,'imageslidecol',array('size'=>45,'maxlength'=>45)); ?>
-<!--	</div>-->
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Search'); ?>

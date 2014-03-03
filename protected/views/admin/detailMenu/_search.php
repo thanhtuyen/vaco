@@ -1,6 +1,6 @@
 <?php
-/* @var $this ImageslideController */
-/* @var $model Imageslide */
+/* @var $this DetailMenuController */
+/* @var $model detailMenu */
 /* @var $form CActiveForm */
 ?>
 
@@ -17,8 +17,8 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'image_path'); ?>
-		<?php echo $form->textField($model,'image_path',array('size'=>45,'maxlength'=>45)); ?>
+		<?php echo $form->label($model,'menu_id'); ?>
+		<?php echo $form->textField($model,'menu_id'); ?>
 	</div>
 
 	<div class="row">
@@ -28,7 +28,12 @@
 
 	<div class="row">
 		<?php echo $form->label($model,'caption'); ?>
-		<?php echo $form->textField($model,'caption',array('size'=>45,'maxlength'=>45)); ?>
+		<?php echo $form->textArea($model,'caption',array('rows'=>6, 'cols'=>50)); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'detial'); ?>
+		<?php echo $form->textArea($model,'detial',array('rows'=>6, 'cols'=>50)); ?>
 	</div>
 
 	<div class="row">
@@ -38,7 +43,22 @@
 
 	<div class="row">
 		<?php echo $form->label($model,'caption_eng'); ?>
-		<?php echo $form->textField($model,'caption_eng',array('size'=>45,'maxlength'=>45)); ?>
+		<?php echo $form->textArea($model,'caption_eng',array('rows'=>6, 'cols'=>50)); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'detail_eng'); ?>
+		<?php echo $form->textArea($model,'detail_eng',array('rows'=>6, 'cols'=>50)); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'image_path'); ?>
+		<?php echo $form->textField($model,'image_path',array('size'=>45,'maxlength'=>45)); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'list_file_attach'); ?>
+		<?php echo $form->textField($model,'list_file_attach',array('size'=>45,'maxlength'=>45)); ?>
 	</div>
 
 	<div class="row">
@@ -47,8 +67,8 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'create_user_id'); ?>
-		<?php echo $form->textField($model,'create_user_id'); ?>
+		<?php echo $form->label($model,'create_user'); ?>
+		<?php echo $form->textField($model,'create_user'); ?>
 	</div>
 
 	<div class="row">
@@ -60,11 +80,6 @@
 		<?php echo $form->label($model,'del_flg'); ?>
 		<?php echo $form->textField($model,'del_flg'); ?>
 	</div>
-
-<!--	<div class="row">-->
-<!--		--><?php //echo $form->label($model,'imageslidecol'); ?>
-<!--		--><?php //echo $form->textField($model,'imageslidecol',array('size'=>45,'maxlength'=>45)); ?>
-<!--	</div>-->
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Search'); ?>
