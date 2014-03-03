@@ -21,6 +21,7 @@
  */
 class detailMenu extends CActiveRecord
 {
+  const S_THUMBNAIL = '/images/detailmenu/';
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -47,15 +48,16 @@ class detailMenu extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id', 'required'),
+			array('menu_id', 'required'),
 			array('id, menu_id, create_user, del_flg', 'numerical', 'integerOnly'=>true),
 			array('title, title_eng, image_path, list_file_attach', 'length', 'max'=>45),
       array('image_path', 'file',
-        'types' => 'gif, jpg, png',
-        'maxSize' => 1024 * 1024 * 2,
-        'wrongType'=>'Please upload only images in the format jpg, gif, png',
-        'tooLarge' => 'The file was larger than 2MB. Please upload a smaller file.',
-        'allowEmpty' => true ),
+            'types' => 'gif, jpg, png',
+            'maxSize' => 1024 * 1024 * 2,
+            'wrongType'=>'Please upload only images in the format jpg, gif, png',
+            'tooLarge' => 'The file was larger than 2MB. Please upload a smaller file.',
+            'allowEmpty' => true, 'on' => 'create, update' ),
+
       array('list_file_attach', 'file',
         'types'=>'doc, pdf, docx',
         'maxSize'=>1024*1024*2,
@@ -78,7 +80,7 @@ class detailMenu extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-      'Menu' => array(self::HAS_ONE, 'Menu', 'menu_id'),
+     // 'Menu' => array(self::HAS_ONE, 'Menu', 'menu_id'),
 		);
 	}
 
@@ -135,4 +137,37 @@ class detailMenu extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+  public function getListMenuIdInDetail()
+  {
+    $detailmenus = self::model()->findAll();
+    $arrDetailMenu = array();
+    foreach ($detailmenus as $detailmenu)
+    {
+      $arrDetailMenu[] = $detailmenu->menu_id;
+    }
+
+    return $arrDetailMenu;
+  }
+
+    public function getListMenu()
+  {
+    $menu_type = Menu::NOT_LIST;
+    $listMenuId = detailMenu::getListMenuIdInDetail();
+    $listMenu = Yii::app()->db->createCommand()
+      ->select('*')
+      ->from('menu')
+      ->where('menu_type=:type', array(':type'=>$menu_type))
+      ->andWhere('parent_menu_id=0')
+      ->andwhere(array('not in', 'id', $listMenuId))
+      ->queryAll();
+
+      $arrayListMenu = array();
+      foreach($listMenu as $menu) {
+        $arrayListMenu[$menu['id']] =  $menu['menu_name'];
+      }
+
+    return $arrayListMenu;
+  }
+
 }

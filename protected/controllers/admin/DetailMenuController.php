@@ -72,14 +72,38 @@ class DetailMenuController extends Controller
 		$model=new detailMenu;
 
 		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		$this->performAjaxValidation($model);
 
 		if(isset($_POST['detailMenu']))
 		{
-			$model->attributes=$_POST['detailMenu'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
-		}
+      $model->attributes=Clean($_POST['detailMenu']);
+//      $model->setAttributes(array('content_article'=>$_FILES['detailMenu']['name']['image_path'],
+//       ));
+      $model->setScenario('create');
+      if ($model->validate()) {
+
+        //save image_path
+        $image_path = CUploadedFile::getInstance($model, 'image_path');
+        if (is_object($image_path) && get_class($image_path)==='CUploadedFile')
+        {
+          $model->image_path = $image_path;
+        }
+
+        if (is_object($model->image_path)) {
+          $model->image_path->saveAs(Yii::getPathOfAlias('webroot'). detailMenu::S_THUMBNAIL.$model->image_path->name);
+        }
+
+        //save list file attach
+//        if(isset($_FILES[$modelClass]))        {
+//          $this->keyImages = array_keys($_FILES[$modelClass]['name']);
+//          foreach($this->keyImages as $k)            {
+//            echo $k;die;                $model->$k = CUploadedFile::getInstances($model,$k);            }        }
+//
+        if($model->save())
+          $this->redirect(array('view','id'=>$model->id));
+      }
+
+    }
 
 		$this->render('create',array(
 			'model'=>$model,

@@ -32,8 +32,8 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'detial'); ?>
-		<?php echo $form->textArea($model,'detial',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->label($model,'detail'); ?>
+		<?php echo $form->textArea($model,'detail',array('rows'=>6, 'cols'=>50)); ?>
 	</div>
 
 	<div class="row">
