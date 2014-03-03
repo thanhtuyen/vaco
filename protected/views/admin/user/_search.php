@@ -61,10 +61,6 @@
 		<?php echo $form->textField($model,'update_date'); ?>
 	</div>
 
-	<div class="row">
-		<?php echo $form->label($model,'usercol'); ?>
-		<?php echo $form->textField($model,'usercol',array('size'=>45,'maxlength'=>45)); ?>
-	</div>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Search'); ?>

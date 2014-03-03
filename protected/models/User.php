@@ -14,7 +14,6 @@
  * @property string $create_date
  * @property integer $create_user
  * @property string $update_date
- * @property string $usercol
  */
 class User extends CActiveRecord
 {
@@ -53,11 +52,11 @@ class User extends CActiveRecord
 			array('username, user_fullname', 'required'),
 			array('userpass', 'required', 'on' => 'create'),
 			array('user_role, create_user', 'numerical', 'integerOnly'=>true),
-			array('username, userpass, user_fullname, user_mobile, user_address, usercol', 'length', 'max'=>45),
+			array('username, userpass, user_fullname, user_mobile, user_address', 'length', 'max'=>45),
 			array('create_date, update_date', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('userid, username, userpass, user_fullname, user_mobile, user_address, user_role, create_date, create_user, update_date, usercol', 'safe', 'on'=>'search'),
+			array('userid, username, userpass, user_fullname, user_mobile, user_address, user_role, create_date, create_user, update_date', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -88,7 +87,6 @@ class User extends CActiveRecord
 			'create_date' => 'Create Date',
 			'create_user' => 'Create User',
 			'update_date' => 'Update Date',
-			'usercol' => 'Usercol',
 		);
 	}
 
@@ -113,7 +111,6 @@ class User extends CActiveRecord
 		$criteria->compare('create_date',$this->create_date,true);
 		$criteria->compare('create_user',$this->create_user);
 		$criteria->compare('update_date',$this->update_date,true);
-		$criteria->compare('usercol',$this->usercol,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
