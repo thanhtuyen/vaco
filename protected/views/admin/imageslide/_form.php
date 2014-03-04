@@ -11,8 +11,9 @@
 	//'htmlOptions' => array('enctype' => $model->isNewRecord ? '' : 'multipart/form-data'),
 	'htmlOptions' => array('enctype' => 'multipart/form-data'),
 )); ?>
-<p class="help-block">Fields with <span class="required">*</span> are required.</p>
-<?php echo $form->errorSummary($model); ?>
+
+	<p class="help-block"><?php echo Constants::$text_required; ?></p>
+	<?php echo $form->errorSummary($model); ?>
 
 <div class="space5">  
 	<div class="control-group">		
@@ -20,18 +21,21 @@
 	</div>	
  
 	<div class="control-group">
-		<?php echo $form->labelEx($model,'list_file_attach', array('class'=> "control-label")); ?>
+		<?php echo $form->labelEx($model,'image_path', array('class'=> "control-label")); ?>
 	    <div class="controls">
 	 		<?php echo CHtml::activeFileField($model,'image_path'); ?>
 			<?php //echo $form->fileField($model,'image_path'); ?>
 			<span class="help_inline" style="float: left; margin-left: 200px;">
 				<?php //echo $form->error($model,'image_path'); ?>
-			</span>	
+			</span>		
+		</div>	
+		<br>
+		<div class="controls">
 			<?php 
 				if($model->isNewRecord != '1')
-					echo CHtml::image(Yii::app()->request->baseUrl . Imageslide::image_url . $model->image_path,"imageslide",array("width"=>100));
-			?>	
-		</div>	
+					echo CHtml::image(Yii::app()->request->baseUrl . Imageslide::image_url . $model->image_path,"imageslide",array("width"=>100, "height"=>40));
+			?>
+		</div>
 	</div>
   
   <?php echo $form->textFieldRow($model,'caption',array('class'=>'span3','maxlength'=>255)); ?>

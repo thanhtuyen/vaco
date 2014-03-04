@@ -51,6 +51,8 @@ class ImageslideController extends Controller
 	 */
 	public function actionView($id)
 	{
+		$this->pageTitle = Constants::$listModule['image_slide']['header'];
+		
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
@@ -62,6 +64,8 @@ class ImageslideController extends Controller
 	 */
 	public function actionCreate()
 	{ 
+		$this->pageTitle = Constants::$listModule['image_slide']['header'];
+		
 		$model=new Imageslide;
 
 		// Uncomment the following line if AJAX validation is needed
@@ -78,7 +82,7 @@ class ImageslideController extends Controller
 	          	$model->image_path->saveAs(Yii::getPathOfAlias('webroot') . Imageslide::image_url . $model->image_path);
 	        
       		$model->create_date = getDatetime();
-      		$model->create_user_id = app()->user->getState('roles');
+      		$model->create_user_id = app()->user->getState('roles') == 'admin' ? User::ADMIN : User::USER;
       		$model->del_flg = 0; 
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
@@ -96,6 +100,8 @@ class ImageslideController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
+		$this->pageTitle = Constants::$listModule['image_slide']['header'];
+		
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
@@ -107,7 +113,7 @@ class ImageslideController extends Controller
 			$model->attributes = Clean($_POST['Imageslide']); 
 			$model->image_path = CUploadedFile::getInstance($model,'image_path'); 
 			$model->update_date = getDatetime(); 
-			$model->create_user_id = app()->user->getState('roles');
+			//$model->create_user_id = app()->user->getState('roles') == 'admin' ? User::ADMIN : User::USER;
 			if ($model->validate()) { 
 				//check value image exists
 		        $image_path = CUploadedFile::getInstance($model, 'image_path');
@@ -115,7 +121,8 @@ class ImageslideController extends Controller
 		        	$model->image_path = $image_path;
 		
 		        if (is_object($model->image_path)) { 
-					if($old_image_path) 
+		        	$image_path = Yii::getPathOfAlias('webroot') . Imageslide::image_url . $old_image_path;
+					if($old_image_path && file_exists($image_path)) 
 		          		unlink(Yii::getPathOfAlias('webroot') . Imageslide::image_url . $old_image_path);
 		
 		          	$model->image_path->saveAs(Yii::getPathOfAlias('webroot') . Imageslide::image_url . $model->image_path);
@@ -182,6 +189,8 @@ class ImageslideController extends Controller
 	 */
 	public function actionAdmin()
 	{
+		$this->pageTitle = Constants::$listModule['image_slide']['header'];
+		
 		$model=new Imageslide('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Imageslide']))

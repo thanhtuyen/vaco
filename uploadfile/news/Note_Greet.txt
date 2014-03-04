@@ -1,0 +1,12 @@
+///////////---- Hoan tat social comment (slide5) ------////////
+夜露死苦Pt／現在の夜露死苦Pt (Social Pt/Social Pt hiện tại)
+　・取得した夜露死苦Ptと、現時点の夜露死苦Ptを表示する。
+Hễ tap vào [夜露死苦Pt] (Social Pt) đã get, sẽ hiển thị Social Pt của thời điểm hiện tại
+===> co phai link ko? Neu la link thi link den dau?
+
+///////////---- friend search ------////////
+search theo nickname:
+	slide 12, spec dang sai ve hien thi form search
+	khong noi ro co paging hay ko?
+	spec yeu cau show button inviteAll, nhung ko gioi han so record trong 1 page
+	

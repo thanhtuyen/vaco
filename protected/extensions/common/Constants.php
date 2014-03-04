@@ -7,10 +7,21 @@ class Constants {
 	 */	 
 	public static $listModule = array(
 		'image_slide' 		=> array(	'title' => 'Quản lý ImageSlide', 
-										'url' => array('/imageslide/index'), 
+										'url' => array('/imageslide/admin'), 
 										'header' => 'IMAGESLIDE'),
-		
+		'news' 				=> array(	'title' => 'Quản lý Tin Tức', 
+										'url' => array('/news/admin'), 
+										'header' => 'TIN TỨC'),
 
+	);
+	
+	/*
+	 * List module menu
+	 */	 
+	public static $listTitleForm = array(
+		'form_create' 	=> 'Tạo mới ###TITLE###', 		
+		'form_update' 	=> 'Chỉnh sửa ###TITLE###', 
+		'form_view' 	=> 'Chi tiết ###TITLE###', 		
 	);
 
 	/*
@@ -22,8 +33,8 @@ class Constants {
 		'required'			=> '###TITLE### không được rỗng',
 		'numerical'			=> 'Nhập ký tự số',
 		'wrongTypeImage'	=> 'Tải hình ảnh với định dạng jpg, gif, png',
-		'wrongTypeFile'		=> 'Tải hình ảnh với định dạng jpg, gif, png',
-		'tooLarge'			=> 'Tải tập tin không quá 2 MB',
+		'wrongTypeFile'		=> 'Tải tập tin với định dạng doc, pdf, docx',
+		'tooLarge'			=> 'Tải tập tin không quá ###NUMBER###MB',
 	);
 	
 	/*
@@ -37,6 +48,11 @@ class Constants {
 		'cancel'			=> 'Thoát',
 		'choose_option'		=> 'Chọn loại menu!',
 	);
+	
+	/*
+	 * Define text required for form admin
+	 */	
+	public static $text_required = 'Trường có dấu <span class="required">*</span> là bắt buộc.';
 
 }
 ?>

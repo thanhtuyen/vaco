@@ -3,7 +3,7 @@
 /* @var $model Imageslide */
 
 $this->breadcrumbs=array(
-	'Imageslides'=>array('index'),
+	'Imageslides'=>array('admin'),
 	$model->title,
 );
 
@@ -16,7 +16,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>View Imageslide #<?php echo $model->id; ?></h1>
+<h1><?php echo str_replace("###TITLE###", 'Imageslide', Constants::$listTitleForm['form_view']) .' ' . $model->id; ?></h1>
 <div class="view_user">
 
 <?php $this->widget('bootstrap.widgets.TbDetailView', array(

@@ -23,6 +23,8 @@
  */
 class News extends CActiveRecord
 {
+	const image_url = '/images/news/';
+	const file_url = '/uploadfile/news/';
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -52,24 +54,24 @@ class News extends CActiveRecord
 			array('menu_id','required','message'=>getMessage('required', $this->getAttributeLabel('menu_id'))),
 			array('title','required','message'=>getMessage('required', $this->getAttributeLabel('title'))),
 			array('title_eng','required','message'=>getMessage('required', $this->getAttributeLabel('title_eng'))),
-			array('menu_id, create_user_id, feature_flag, is_public, del_flg', 'numerical', 'integerOnly'=>true),
-			array('title, title_eng, thumb_image_path, listfile_attach', 'length', 'max'=>45),
+			array('create_user_id, feature_flag, is_public, del_flg', 'numerical', 'integerOnly'=>true),
+			array('title, title_eng, thumb_image_path', 'length', 'max'=>45),
 			array('caption, detail, caption_eng, detail_eng, create_date, update_date', 'safe'),
 			
-			array('image_path', 'unsafe'),
+			array('thumb_image_path', 'unsafe'),
 			array('thumb_image_path', 'file',
-            	'types' => 'gif, jpg, png',
+            	'types' => 'jpg, jpeg, png, gif',
             	'maxSize' => 1024 * 1024 * 2,
             	'wrongType'=> getMessage('wrongTypeImage'), 
-            	'tooLarge' => getMessage('tooLarge'),
+            	'tooLarge' => getMessage('tooLarge','',array('number'=>2)),
             	'allowEmpty' => true, 'on' => 'create, update'),
 
 			array('listfile_attach', 'file',
         		'types'=>'doc, pdf, docx',
-        		'maxSize'=>1024*1024*2,
+        		'maxSize'=>1024 * 1024 * 10,
         		'wrongType'=>getMessage('wrongTypeFile'),
-        		'tooLarge'=>getMessage('tooLarge'),
-        		'allowEmpty'=>true),
+        		'tooLarge'=>getMessage('tooLarge','',array('number'=>10)),
+        		'allowEmpty'=>true, 'on' => 'create, update'),
       
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.

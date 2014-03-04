@@ -51,6 +51,8 @@ class NewsController extends Controller
 	 */
 	public function actionView($id)
 	{
+		$this->pageTitle = Constants::$listModule['news']['header'];
+		
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
@@ -62,21 +64,45 @@ class NewsController extends Controller
 	 */
 	public function actionCreate()
 	{
+		$this->pageTitle = Constants::$listModule['news']['header'];
+		
 		$model=new News; 
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
 		if(isset($_POST['News']))
-		{
-			$model->attributes=$_POST['News'];
-			$model->create_date = getDatetime();
-      		$model->create_user_id = app()->user->getState('roles');
-      		$model->is_public = 0;
-      		$model->feature_flag=0;
-      		$model->del_flg = 0; 
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+		{ 
+			$model->attributes = $_POST['News'];
+			$post_value = $_POST['News'];
+			$flag = false;
+			
+      		if ($model->validate()) {
+				$list_menu_id = Clean($_POST['News']['menu_id']); 
+				foreach ($list_menu_id as $l_menu_id=>$menu_id){
+					$model=new News;
+	      			$model->attributes=$post_value;				
+					$model->menu_id = $menu_id;	 
+	      			$model->create_date = getDatetime();
+		      		$model->create_user_id = app()->user->getState('roles') == 'admin' ? User::ADMIN : User::USER;
+		      		$model->is_public = 0;
+		      		$model->feature_flag=0;
+		      		$model->del_flg = 0;
+	
+		      		// upload image
+					$model->thumb_image_path = CUploadedFile::getInstance($model,'thumb_image_path'); 
+					if (is_object($model->thumb_image_path)) 	
+			          	$model->thumb_image_path->saveAs(Yii::getPathOfAlias('webroot') . News::image_url . $model->thumb_image_path);
+			          	
+			        // upload file
+					if($files = uploadMultifile($model,'listfile_attach', News::file_url))
+						$model->listfile_attach = implode(",", $files);
+					
+					$model->setIsNewRecord(true);	
+					$model->save();  
+				}
+	      		$this->redirect(array('view','id'=>$model->id));
+      		}
 		}
 
 		$this->render('create',array(
@@ -91,16 +117,54 @@ class NewsController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
+		$this->pageTitle = Constants::$listModule['news']['header'];
+		
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
+		$old_image_path = $model->thumb_image_path;
+		$array_file = explode(',',$model->listfile_attach);  
 		if(isset($_POST['News']))
-		{
-			$model->attributes=$_POST['News'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+		{  
+			$model->attributes = $_POST['News'];
+			$model->thumb_image_path = CUploadedFile::getInstance($model,'thumb_image_path'); 
+			$model->listfile_attach = CUploadedFile::getInstances($model,'listfile_attach'); 
+			$model->update_date = getDatetime(); 
+			//$model->create_user_id = app()->user->getState('roles') == 'admin' ? User::ADMIN : User::USER;
+			if ($model->validate()) { 
+				// upload image
+		        $image_path = CUploadedFile::getInstance($model, 'thumb_image_path');
+		        if (is_object($image_path) && get_class($image_path)==='CUploadedFile')
+		        	$model->thumb_image_path = $image_path;
+		
+		        if (is_object($model->thumb_image_path)) { 
+		        	$image_path = Yii::getPathOfAlias('webroot') . News::image_url . $old_image_path;
+					if($old_image_path && file_exists($image_path)) 
+		          		unlink(Yii::getPathOfAlias('webroot') . News::image_url . $old_image_path);
+		
+		          	$model->thumb_image_path->saveAs(Yii::getPathOfAlias('webroot') . News::image_url . $model->thumb_image_path);
+		        } else { 
+					$model->thumb_image_path = $old_image_path;
+		        }
+		        
+		        // upload files		       
+		        if($model->listfile_attach != array()){ 
+					foreach ($array_file as $k){ 
+						if($k!=""){
+				        	$file_path = Yii::getPathOfAlias('webroot') . News::file_url . $k;
+							if(file_exists($file_path)) 
+				          		unlink(Yii::getPathOfAlias('webroot') . News::file_url . $k);
+						}
+					}
+					if($files = uploadMultifile($model,'listfile_attach', News::file_url))
+						$model->listfile_attach = implode(",", $files);				
+		        }
+				
+				if($model->save())
+					$this->redirect(array('view','id'=>$model->id));
+			}
 		}
 
 		$this->render('update',array(
@@ -138,6 +202,8 @@ class NewsController extends Controller
 	 */
 	public function actionAdmin()
 	{
+		$this->pageTitle = Constants::$listModule['news']['header'];
+		
 		$model=new News('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['News']))

@@ -3,7 +3,7 @@
 /* @var $model Imageslide */
 
 $this->breadcrumbs=array(
-	'Imageslides'=>array('index'),
+	'Imageslides'=>array('admin'),
 	$model->title=>array('view','id'=>$model->id),
 	'Update',
 );
@@ -16,6 +16,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Update Imageslide <?php echo $model->id; ?></h1>
+<h1><?php echo str_replace("###TITLE###", 'Imageslide', Constants::$listTitleForm['form_update']) .' ' . $model->id; ?></h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
