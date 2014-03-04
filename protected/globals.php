@@ -137,6 +137,26 @@ function getDatetime(){
   return date('Y-m-d H:i:s');
 }
 /*
+ *
+ * upload multi file
+ */
+ function uploadMultifile ($model,$attr,$path)
+{
+  /*
+   * path when uploads folder is on site root.
+   * $path='/uploads/doc/'
+   */
+  if($sfile=CUploadedFile::getInstances($model, $attr)){
+    foreach ($sfile as $i=>$file){
+      $formatName=$file;
+      $file->saveAs(Yii::app()->basePath .DIRECTORY_SEPARATOR.'..'. $path.$formatName);
+      $ffile[$i]=$formatName;
+    }
+    return ($ffile);
+  }
+}
+
+/*
  * This function tries to return a string with all NUL bytes, HTML and PHP tags stripped from a given string
  */
 function Clean($arr){
@@ -145,5 +165,3 @@ function Clean($arr){
   }
   return $arr;
 }
-
-

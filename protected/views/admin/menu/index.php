@@ -14,7 +14,21 @@ $this->menu=array(
 
 <h1>Menus</h1>
 
-<?php $this->widget('zii.widgets.CListView', array(
-	'dataProvider'=>$dataProvider,
-	'itemView'=>'_view',
-)); ?>
+<?php //$this->widget('zii.widgets.CListView', array(
+//	'dataProvider'=>$dataProvider,
+//	'itemView'=>'_view',
+//)); ?>
+<div class="span_space_5">
+
+<?php
+$this->widget('CTreeView',array(
+  'data'=>$dataProvider,
+  'prerendered' => 'true',
+  'animated'=>'fast', //quick animation
+  'collapsed'=>'false',//remember must giving quote for boolean value in here
+  'htmlOptions'=>array(
+    'class'=>'filetree',//there are some classes that ready to use
+  ),
+));
+?>
+</div>

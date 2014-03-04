@@ -50,7 +50,7 @@ class detailMenu extends CActiveRecord
 		return array(
 			array('menu_id', 'required'),
 			array('id, menu_id, create_user, del_flg', 'numerical', 'integerOnly'=>true),
-			array('title, title_eng, image_path, list_file_attach', 'length', 'max'=>45),
+			array('title, title_eng', 'length', 'max'=>45),
       array('image_path', 'file',
             'types' => 'gif, jpg, png',
             'maxSize' => 1024 * 1024 * 2,
@@ -60,10 +60,10 @@ class detailMenu extends CActiveRecord
 
       array('list_file_attach', 'file',
         'types'=>'doc, pdf, docx',
-        'maxSize'=>1024*1024*2,
+        'maxSize'=>1024*1024*10,
         'wrongType'=>'Please upload only cv in the format doc, pdf, docx',
-        'tooLarge'=>'The file was larger than 2MB. Please upload a smaller file.',
-        'allowEmpty'=>true),
+        'tooLarge'=>'The file was larger than 10MB. Please upload a smaller file.','maxFiles' => 5,
+        'allowEmpty'=>true ),
 
 			array('caption, detail, caption_eng, detail_eng, create_date, update_date', 'safe'),
 			// The following rule is used by search().
@@ -80,7 +80,7 @@ class detailMenu extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-     // 'Menu' => array(self::HAS_ONE, 'Menu', 'menu_id'),
+      'Menu' => array(self::HAS_ONE, 'Menu', 'id'),
 		);
 	}
 
@@ -92,13 +92,13 @@ class detailMenu extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'menu_id' => 'Menu',
-			'title' => 'Title',
-			'caption' => 'Caption',
-			'detail' => 'detail',
+			'title' => 'Tiêu đề',
+			'caption' => 'Chú thích',
+			'detail' => 'Chi tiết',
 			'title_eng' => 'Title Eng',
 			'caption_eng' => 'Caption Eng',
 			'detail_eng' => 'Detail Eng',
-			'image_path' => 'Image Path',
+			'image_path' => 'Image',
 			'list_file_attach' => 'List File Attach',
 			'create_date' => 'Create Date',
 			'create_user' => 'Create User',

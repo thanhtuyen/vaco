@@ -94,11 +94,14 @@ class DetailMenuController extends Controller
         }
 
         //save list file attach
-//        if(isset($_FILES[$modelClass]))        {
-//          $this->keyImages = array_keys($_FILES[$modelClass]['name']);
-//          foreach($this->keyImages as $k)            {
-//            echo $k;die;                $model->$k = CUploadedFile::getInstances($model,$k);            }        }
-//
+
+        if($filez=uploadMultifile($model,'list_file_attach',detailMenu::S_THUMBNAIL))
+        {
+          $model->list_file_attach=implode(",", $filez);
+        }
+        $model->create_date = getDatetime();
+        $model->create_user = app()->user->id;
+
         if($model->save())
           $this->redirect(array('view','id'=>$model->id));
       }

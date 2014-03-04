@@ -17,23 +17,23 @@ $this->menu=array(
 ?>
 
 <h1>View detailMenu #<?php echo $model->id; ?></h1>
-
-<?php $this->widget('zii.widgets.CDetailView', array(
+<div class="view_user">
+<?php $this->widget('bootstrap.widgets.TbDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
-		'id',
-		'menu_id',
-		'title',
-		'caption',
-		'detial',
-		'title_eng',
-		'caption_eng',
-		'detail_eng',
+    array('name' => 'menu_id',
+      'value' => $model->Menu->menu_name),
+    'title','title_eng',
+		'caption','caption_eng',
+		'detail','detail_eng',
 		'image_path',
 		'list_file_attach',
-		'create_date',
-		'create_user',
-		'update_date',
-		'del_flg',
-	),
+    array('name' => 'create_date',
+      'value' => $model->create_date? $model->create_date:""),
+
+    array('name' => 'update_date',
+      'value' => $model->update_date? $model->update_date:''),
+
+  ),
 )); ?>
+</div>

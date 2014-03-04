@@ -17,13 +17,16 @@ $this->menu=array(
 ?>
 
 <h1>View Menu #<?php echo $model->id; ?></h1>
-
-<?php $this->widget('zii.widgets.CDetailView', array(
+<div class="view_user">
+<?php $this->widget('bootstrap.widgets.TbDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
-		'id',
-		'parent_menu_id',
-		'menu_name',
+		//'id',
+    array('name' => 'parent_menu_id',
+      'type'  => 'raw',
+      'value' => ($model->parent_menu_id == 0) ? $model->getParentName() : CHtml::link($model->getParentName(),
+        array('view', 'id'=>$model->parent_menu_id))),
+    'menu_name',
 		'menu_name_eng',
 		'menu_type',
 		'create_date',
@@ -32,3 +35,4 @@ $this->menu=array(
 		'del_flg',
 	),
 )); ?>
+</div>

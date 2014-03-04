@@ -48,9 +48,9 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'id',
 		'menu_id',
 		'title',
+    'title_eng',
 		'caption',
 		'detail',
-		'title_eng',
 		/*
 		'caption_eng',
 		'detail_eng',
@@ -61,8 +61,9 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'update_date',
 		'del_flg',
 		*/
-		array(
-			'class'=>'CButtonColumn',
-		),
+    array(
+      'class'=>'bootstrap.widgets.TbButtonColumn',
+      'htmlOptions'=>array('style'=>'width: 50px'),
+    ),
 	),
 )); ?>

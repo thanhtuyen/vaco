@@ -63,6 +63,7 @@ class Menu extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
       		'detailMenu' => array(self::HAS_ONE, 'detaiMenu', 'menu_id'),
+      'parent' => array(self::BELONGS_TO, 'Menu', 'parent_menu_id'),
 			'news' => array(self::BELONGS_TO, 'news', 'menu_id'),
 		);
 	}
@@ -110,12 +111,12 @@ class Menu extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
-  public static function findSonCategory($parent_id = 0){
+  public static function findMenu($parent_id = 0){
     $categories = self::model()->findAllByAttributes(array('parent_menu_id' => $parent_id));
     return $categories;
   }
   public static function listCategory($id = 0){
-    $categories = self::findSonCategory($id);
+    $categories = self::findMenu($id);
     if ($categories == null){
       // $cate = self::model()->findByPk($id);
       // return array($cate->id => '--'.$cate->name);
@@ -139,5 +140,27 @@ class Menu extends CActiveRecord
       self::LIST_MENU => 'List menu',
       self::NOT_LIST => 'Single menu',
     );
+  }
+
+  public static function findTreeMenu($id = 0){
+    $categories = self::findMenu($id);
+    if ($categories == null)
+      return;
+    $tree = array();
+    foreach ($categories as $category)
+      $tree[] = array(
+        'text' => CHtml::link(CHtml::encode($category['menu_name'].'  ('.$category['menu_name_eng'].')'), array('view', 'id'=>$category['id'])),
+        'children' => self::findTreeMenu($category->attributes['id'])
+      );
+    return $tree;
+  }
+
+  public function getParentName(){
+    if ($this->parent_menu_id == 0)
+      return "Root";
+    $model = Menu::model()->findByPk($this->parent_menu_id);
+    if($model===null)
+      throw new CHttpException(404,'The requested page does not exist.');
+    return $model->getAttribute('menu_name');
   }
 }

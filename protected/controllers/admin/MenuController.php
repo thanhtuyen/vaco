@@ -130,10 +130,21 @@ class MenuController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Menu');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
+//		$dataProvider=new CActiveDataProvider('Menu');
+//		$this->render('index',array(
+//			'dataProvider'=>$dataProvider,
+//		));
+
+   // $categories = Menu::findTreeCategory();
+    $dataProvider = array(
+      array(
+        'text' => 'Root',
+        'children' => Menu::findTreeMenu(),
+      ),
+    );
+    $this->render('index',array(
+      'dataProvider'=>$dataProvider,
+    ));
 	}
 
 	/**
