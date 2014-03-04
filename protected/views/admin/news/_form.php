@@ -16,42 +16,24 @@
 	<?php echo $form->errorSummary($model); ?>
 	
 	<div class="space5">  
-		
+		<div class="control-group">
 		<?php 
 			if($model->isNewRecord != '1')
 				echo $form->dropDownListRow($model,'menu_id', CHtml::listData(Menu::model()->findAll(array('condition'=>'del_flg=0 AND menu_type=1 AND parent_menu_id!=0')),'id','menu_name'), array('prompt'=>'Select one item...')); 
 			else {
-		?>
-			<div class="control-group">
-				<?php echo $form->labelEx($model,'menu_id', array('class'=> "control-label")); ?>
-			    <div class="controls">	
-					<?php 
-						$data= CHtml::listData(Menu::model()->findAll(array('condition'=>'del_flg=0 AND menu_type=1 AND parent_menu_id!=0')), 'id', 'menu_name');
-						$this->widget('ext.EchMultiSelect.EchMultiSelect', array(
-						    'model' => $model,
-						    'dropDownAttribute' => 'menu_id',     
-						    'data' => $data,
-						    'dropDownHtmlOptions'=> array(
-								'class'=>'span-10',
-						    	'style'=>'width:150px;',
-						    ),
-						    'options' => array( 
-						        'header'=> Yii::t('EchMultiSelect.EchMultiSelect',Constants::$listLabelButton['choose_option']),
-						        'minWidth'=>200,
-						        //'position'=>array('my'=>'left bottom', 'at'=>'left top'),
-						        'filter'=>true,
-						    	'selectedList'=>false,
-						    	'autoOpen'=>false,
-						    	'placeholder'=>Yii::t('EchMultiSelect.EchMultiSelect','Nhập từ khóa'),
-								'autoReset'=>false,
-						    ),
-						    'filterOptions'=> array(
-						        'width'=>150,
-						    ),
-						));?>
-				</div>
-			</div>
-		<?php } ?>
+				echo $form->labelEx($model,'menu_id',array('class'=>'control-label'));?>
+				<div class="controls">
+					<?php $list_menu = Menu::model()->findAll(array('condition'=>'del_flg=0 AND menu_type=1 AND parent_menu_id!=0'));
+					$data = array();
+					foreach ($list_menu as $lm){ 
+						$data[$lm['id']] = $lm['menu_name'];
+					}		
+					$htmlOptions = array('size' => '5', 'style'=>'width:270px;', 'prompt'=>'Giữ phím CTRL để chọn nhiều menu.', 'multiple' => 'multiple', 'options' => ''); 
+	
+			        echo $form->ListBox($model,'menu_id', $data, $htmlOptions); ?>
+		    	</div>
+		    <?php } ?>
+		</div>
 	
 		<?php echo $form->textFieldRow($model,'title',array('class'=>'span3','maxlength'=>255)); ?>
 	

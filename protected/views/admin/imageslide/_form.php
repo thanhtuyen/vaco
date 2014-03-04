@@ -44,7 +44,7 @@
 
   <?php echo $form->textFieldRow($model,'caption_eng',array('class'=>'span3','maxlength'=>255)); ?>
 
-  <div class="form-actions">
+	<div class="form-actions">
     <?php $this->widget('bootstrap.widgets.TbButton', array(
       'buttonType'=>'submit',
       'type'=>'primary',
@@ -67,6 +67,6 @@
       ));
     } 
     ?>
-  </div>
+	</div>
 </div>
 <?php $this->endWidget(); ?>
