@@ -33,7 +33,7 @@
 		<div class="controls">
 			<?php 
 				if($model->isNewRecord != '1')
-					echo CHtml::image(Yii::app()->request->baseUrl . Imageslide::image_url . $model->image_path,"imageslide",array("width"=>100, "height"=>40));
+					echo CHtml::image(Yii::app()->request->baseUrl . Imageslide::image_url . $model->image_path,"",array("width"=>100, "height"=>40));
 			?>
 		</div>
 	</div>

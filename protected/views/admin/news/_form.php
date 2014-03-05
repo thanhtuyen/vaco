@@ -19,21 +19,20 @@
 		<div class="control-group">
 		<?php 
 			if($model->isNewRecord != '1')
-				echo $form->dropDownListRow($model,'menu_id', CHtml::listData(Menu::model()->findAll(array('condition'=>'del_flg=0 AND menu_type=1 AND parent_menu_id!=0')),'id','menu_name'), array('prompt'=>'Select one item...')); 
+				echo $form->dropDownListRow($model,'menu_id', Menu::listCategory(), array('prompt'=>'Chọn menu ...')); 
 			else {
 				echo $form->labelEx($model,'menu_id',array('class'=>'control-label'));?>
 				<div class="controls">
-					<?php $list_menu = Menu::model()->findAll(array('condition'=>'del_flg=0 AND menu_type=1 AND parent_menu_id!=0'));
-					$data = array();
-					foreach ($list_menu as $lm){ 
-						$data[$lm['id']] = $lm['menu_name'];
-					}		
+					<?php 
+					$list_menu = Menu::listCategory();		
 					$htmlOptions = array('size' => '5', 'style'=>'width:270px;', 'prompt'=>'Giữ phím CTRL để chọn nhiều menu.', 'multiple' => 'multiple', 'options' => ''); 
 	
-			        echo $form->ListBox($model,'menu_id', $data, $htmlOptions); ?>
+			        echo $form->ListBox($model,'menu_id', $list_menu, $htmlOptions); ?>
 		    	</div>
-		    <?php } ?>
+			<?php } ?>
 		</div>
+		
+		   
 	
 		<?php echo $form->textFieldRow($model,'title',array('class'=>'span3','maxlength'=>255)); ?>
 	
@@ -59,7 +58,7 @@
 			<div class="controls">
 				<?php 
 					if($model->isNewRecord != '1')
-						echo CHtml::image(Yii::app()->request->baseUrl . News::image_url . $model->thumb_image_path,"thumb_image_path",array("width"=>100));
+						echo CHtml::image(Yii::app()->request->baseUrl . News::image_url . $model->thumb_image_path,"",array("width"=>100));
 				?>	
 			</div>	
 		</div>	
