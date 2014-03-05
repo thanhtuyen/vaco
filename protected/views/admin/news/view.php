@@ -37,7 +37,13 @@ $this->menu=array(
 		'feature_flag',
 		'update_date',
 		'is_public',
-		'del_flg',
+	),
+)); ?>
+<?php $this->widget('bootstrap.widgets.TbDetailView', array(
+	'data'=>$modelKeyword,
+	'attributes'=>array(
+		'keyword',
+		'keyword_eng',
 	),
 )); ?>
 </div>

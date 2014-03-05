@@ -52,9 +52,10 @@ class NewsController extends Controller
 	public function actionView($id)
 	{
 		$this->pageTitle = Constants::$listModule['news']['header'];
-		
+		$modelKeyword = Keyword::model()->findByPk($id);
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
+			'modelKeyword'=>$modelKeyword,
 		));
 	}
 
@@ -66,17 +67,19 @@ class NewsController extends Controller
 	{
 		$this->pageTitle = Constants::$listModule['news']['header'];
 		
-		$model=new News; 
-
+		// init model
+		$modelKeyword = new Keyword();		
+		$model= new News; 
+		$model->is_public = 0; // set default radio
+		
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
-
+		
 		if(isset($_POST['News']))
-		{ 
+		{  //var_dump($_POST);exit;
 			$model->attributes = $_POST['News'];
 			$post_value = $_POST['News'];
-			$flag = false;
-			
+
       		if ($model->validate()) {
 				$list_menu_id = Clean($_POST['News']['menu_id']); 
 				foreach ($list_menu_id as $l_menu_id=>$menu_id){
@@ -85,7 +88,6 @@ class NewsController extends Controller
 					$model->menu_id = $menu_id;	 
 	      			$model->create_date = getDatetime();
 		      		$model->create_user_id = app()->user->getState('roles') == 'admin' ? User::ADMIN : User::USER;
-		      		$model->is_public = 0;
 		      		$model->feature_flag=0;
 		      		$model->del_flg = 0;
 	
@@ -99,7 +101,16 @@ class NewsController extends Controller
 						$model->listfile_attach = implode(",", $files);
 					
 					$model->setIsNewRecord(true);	
-					$model->save();  
+					$model->save();
+
+					// Insert keyword
+					if(isset($_POST['Keyword'])){
+						$modelKeyword->attributes = Clean($_POST['Keyword']);
+						$modelKeyword->id = $model->id;
+						$modelKeyword->create_date = getDatetime();
+						$modelKeyword->setIsNewRecord(true);	
+						$modelKeyword->save();
+					}
 				}
 	      		$this->redirect(array('view','id'=>$model->id));
       		}
@@ -107,6 +118,7 @@ class NewsController extends Controller
 
 		$this->render('create',array(
 			'model'=>$model,
+			'modelKeyword'=>$modelKeyword,
 		));
 	}
 
@@ -119,7 +131,9 @@ class NewsController extends Controller
 	{
 		$this->pageTitle = Constants::$listModule['news']['header'];
 		
-		$model=$this->loadModel($id);
+		// init model
+		$modelKeyword = Keyword::model()->findByPk($id);
+		$model = $this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -162,13 +176,21 @@ class NewsController extends Controller
 						$model->listfile_attach = implode(",", $files);				
 		        }
 				
-				if($model->save())
+				if($model->save()){
+					// Update keyword
+					if(isset($_POST['Keyword'])){
+						$modelKeyword->attributes = Clean($_POST['Keyword']);	
+						$modelKeyword->save();
+					}
+					
 					$this->redirect(array('view','id'=>$model->id));
+				}
 			}
 		}
 
 		$this->render('update',array(
 			'model'=>$model,
+			'modelKeyword'=>$modelKeyword
 		));
 	}
 

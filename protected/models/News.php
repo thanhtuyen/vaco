@@ -111,7 +111,7 @@ class News extends CActiveRecord
 			'create_date' => 'Create Date',
 			'feature_flag' => 'Feature Flag',
 			'update_date' => 'Update Date',
-			'is_public' => 'Is Public',
+			'is_public' => 'Công khai',
 			'del_flg' => 'Del Flg',
 		);
 	}

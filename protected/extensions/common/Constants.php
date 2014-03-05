@@ -1,7 +1,10 @@
 <?php
 define('ROOT_PATH', str_replace('/protected', '', Yii::app()->basePath));
 
+
 class Constants {
+	public static $arrayIsPublic = array('0'=>'Công khai',
+								'1'=>'Không công khai');
 	/*
 	 * List module menu
 	 */	 

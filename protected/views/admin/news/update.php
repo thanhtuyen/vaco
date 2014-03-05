@@ -18,5 +18,5 @@ $this->menu=array(
 
 <h1><?php echo str_replace("###TITLE###", 'Imageslide', Constants::$listTitleForm['form_update']) .' ' . $model->id; ?></h1>
 <div class="create_user">
-<?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php echo $this->renderPartial('_form', array('model'=>$model, 'modelKeyword'=>$modelKeyword)); ?>
 </div>

@@ -15,5 +15,5 @@ $this->menu=array(
 
 <h1><?php echo str_replace("###TITLE###", 'Tin Tức', Constants::$listTitleForm['form_create']); ?></h1>
 <div class="create_user">
-	<?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
+	<?php echo $this->renderPartial('_form', array('model'=>$model, 'modelKeyword'=>$modelKeyword)); ?>
 </div>

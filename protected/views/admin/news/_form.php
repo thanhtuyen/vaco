@@ -32,20 +32,22 @@
 			<?php } ?>
 		</div>
 		
-		   <?php echo $form->ckEditorRow($model, 'detail', array('class'=>'span3', 'type' => 'raw'));?>
+		<?php //echo $form->ckEditorRow($model, 'detail', array('class'=>'span3', 'type' => 'raw'));?>
 	
 		<?php echo $form->textFieldRow($model,'title',array('class'=>'span3','maxlength'=>255)); ?>
 	
 		<?php echo $form->textAreaRow($model,'caption',array('rows'=>1, 'cols'=>50, 'class'=>'span4')); ?>
 	
 		<?php echo $form->textAreaRow($model,'detail',array('rows'=>10, 'cols'=>50, 'class'=>'span4')); ?>
-		<h5>ENGLISH</h5>
+<h5>ENGLISH</h5>
 		<?php echo $form->textFieldRow($model,'title_eng',array('size'=>45,'maxlength'=>45)); ?>
 	
 		<?php echo $form->textAreaRow($model,'caption_eng',array('rows'=>1, 'cols'=>50, 'class'=>'span4')); ?>
 	
 		<?php echo $form->textAreaRow($model,'detail_eng',array('rows'=>10, 'cols'=>50, 'class'=>'span4')); ?>
-	
+		
+		<?php echo $form->radioButtonListRow($model,'is_public',Constants::$arrayIsPublic,array('class'=>'span1')); ?>
+			
 		<div class="control-group">
 		    <?php echo $form->labelEx($model,'thumb_image_path', array('class'=> "control-label")); ?>
 		    <div class="controls">
@@ -62,7 +64,6 @@
 				?>	
 			</div>	
 		</div>	
-
 	
 		<?php echo $form->labelEx($model,'listfile_attach', array('class'=> "control-label")); ?>
 	    <div class="controls">
@@ -84,6 +85,9 @@
 			?>
 	    </div>
 
+<h5>TỪ KHÓA</h5> 
+		<?php echo $form->textAreaRow($modelKeyword,'keyword',array('rows'=>1, 'cols'=>50, 'class'=>'span4')); ?>
+		<?php echo $form->textAreaRow($modelKeyword,'keyword_eng',array('rows'=>1, 'cols'=>50, 'class'=>'span4')); ?>
 	
 		<div class="form-actions">
 		    <?php $this->widget('bootstrap.widgets.TbButton', array(
