@@ -32,7 +32,7 @@
 			<?php } ?>
 		</div>
 		
-		   
+		   <?php echo $form->ckEditorRow($model, 'detail', array('class'=>'span3', 'type' => 'raw'));?>
 	
 		<?php echo $form->textFieldRow($model,'title',array('class'=>'span3','maxlength'=>255)); ?>
 	
