@@ -2,6 +2,7 @@
 /* @var $this DetailMenuController */
 /* @var $model detailMenu */
 /* @var $form CActiveForm */
+Yii::import('ext.ckeditor.CKEditor');
 ?>
 
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
@@ -32,7 +33,7 @@
   <?php echo $form->textFieldRow($model,'caption',array('class'=>'span3','maxlength'=>255)); ?>
   <?php echo $form->textFieldRow($model,'caption_eng',array('class'=>'span3','maxlength'=>255)); ?>
 
-  <?php echo $form->textFieldRow($model,'detail',array('class'=>'span3','maxlength'=>255)); ?>
+<!--  --><?php //echo $form->textFieldRow($model,'detail',array('class'=>'span3','maxlength'=>255)); ?>
   <?php echo $form->textFieldRow($model,'detail_eng',array('class'=>'span3','maxlength'=>255)); ?>
   <?php echo $form->fileFieldRow($model, 'image_path'); ?>
 
@@ -57,7 +58,19 @@
       ?>
     </div>
     </div>
+  <script src="<?php echo Yii::app()->baseUrl.'/ckeditor/ckeditor.js'; ?>"></script>
 
+  <div class="control-group">
+    <?php echo $form->labelEx($model,'detail', array('class'=> "control-label")); ?>
+    <div class="controls">
+      <?php echo $form->textArea($model, 'detail', array('id'=>'editor1')); ?>
+      <?php echo $form->error($model,'detail'); ?>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    CKEDITOR.replace( 'editor1' );
+  </script>
   <div class="form-actions">
     <?php $this->widget('bootstrap.widgets.TbButton', array(
       'buttonType'=>'submit',

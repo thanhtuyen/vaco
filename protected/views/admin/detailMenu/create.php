@@ -14,6 +14,6 @@ $this->menu=array(
 ?>
 
 <h1>Create detailMenu</h1>
-<div class="create_user">
+<div >
   <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
 </div>

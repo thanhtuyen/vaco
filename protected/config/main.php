@@ -8,13 +8,14 @@
 // Define a path alias for the Bootstrap extension as it's used internally.
 // In this example we assume that you unzipped the extension under protected/extensions.
 Yii::setPathOfAlias('bootstrap', dirname(__FILE__).'/../extensions/bootstrap');
+Yii::setPathOfAlias('ckeditor', dirname(__FILE__).'/../extensions/ckeditor');
 
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'My Web Application',
 
 	// preloading 'log' component
-	'preload'=>array('log, bootstrap'),
+	'preload'=>array('log, bootstrap, ckeditor'),
 //  Aplly Theme
   'theme'=>'bootstrap',
 
@@ -26,6 +27,7 @@ return array(
 	    'ext.bootstrap.*',
 		'ext.common.*',
 		'ext.EchMultiSelect.*',
+		'ext.ckeditor.*',
 	),
 
 	'modules'=>array(
