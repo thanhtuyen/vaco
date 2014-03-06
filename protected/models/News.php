@@ -55,23 +55,24 @@ class News extends CActiveRecord
 			array('title','required','message'=>getMessage('required', $this->getAttributeLabel('title'))),
 			array('title_eng','required','message'=>getMessage('required', $this->getAttributeLabel('title_eng'))),
 			array('create_user_id, feature_flag, is_public, del_flg', 'numerical', 'integerOnly'=>true),
-			array('title, title_eng, thumb_image_path', 'length', 'max'=>45),
+			array('title, title_eng', 'length', 'max'=>45),
 			array('caption, detail, caption_eng, detail_eng, create_date, update_date', 'safe'),
 			
-			array('thumb_image_path', 'unsafe'),
+			//array('thumb_image_path', 'unsafe'),
 			array('thumb_image_path', 'file',
             	'types' => 'jpg, jpeg, png, gif',
             	'maxSize' => 1024 * 1024 * 2,
             	'wrongType'=> getMessage('wrongTypeImage'), 
             	'tooLarge' => getMessage('tooLarge','',array('number'=>2)),
-            	'allowEmpty' => true, 'on' => 'create, update'),
+            	'allowEmpty' => true),
 
 			array('listfile_attach', 'file',
         		'types'=>'doc, pdf, docx',
         		'maxSize'=>1024 * 1024 * 10,
         		'wrongType'=>getMessage('wrongTypeFile'),
         		'tooLarge'=>getMessage('tooLarge','',array('number'=>10)),
-        		'allowEmpty'=>true, 'on' => 'create, update'),
+				'maxFiles' => 5,
+        		'allowEmpty'=>true),
       
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.

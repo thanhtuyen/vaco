@@ -48,13 +48,13 @@ class Imageslide extends CActiveRecord
 			array('image_path', 'required', 'message'=>getMessage('required', $this->getAttributeLabel('image_path'))),
 			array('title', 'required', 'message'=>getMessage('required', $this->getAttributeLabel('title'))),
 			//array('create_user_id, del_flg', 'numerical', 'integerOnly'=>true, 'message'=>getMessage('numerical')),
-			array('image_path', 'unsafe'),
+			//array('image_path', 'unsafe'),
 			array('image_path','file',
 				'types'=>'jpg, jpeg, png, gif',
 				'maxSize'=>1024*1024*2, // 2MB
 				'wrongType'=>getMessage('wrongTypeImage'),
 				'tooLarge'=>getMessage('tooLarge','',array('number'=>2))),
-			array('image_path, title, caption, title_eng, caption_eng', 'length', 'max'=>45),
+			array('title, caption, title_eng, caption_eng', 'length', 'max'=>45),
 			array('create_date, update_date', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.

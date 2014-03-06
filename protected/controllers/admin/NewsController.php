@@ -132,7 +132,7 @@ class NewsController extends Controller
 		$this->pageTitle = Constants::$listModule['news']['header'];
 		
 		// init model
-		$modelKeyword = Keyword::model()->findByPk($id);
+		$modelKeyword = Keyword::model()->findByPk($id); 
 		$model = $this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
@@ -178,7 +178,7 @@ class NewsController extends Controller
 				
 				if($model->save()){
 					// Update keyword
-					if(isset($_POST['Keyword'])){
+					if(isset($_POST['Keyword']) && isset($modelKeyword->id)){
 						$modelKeyword->attributes = Clean($_POST['Keyword']);	
 						$modelKeyword->save();
 					}
@@ -200,7 +200,7 @@ class NewsController extends Controller
 	 * @param integer $id the ID of the model to be deleted
 	 */
 	public function actionDelete($id)
-	{
+	{ 
 		$this->loadModel($id)->delete();
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
@@ -223,7 +223,7 @@ class NewsController extends Controller
 	 * Manages all models.
 	 */
 	public function actionAdmin()
-	{
+	{ 
 		$this->pageTitle = Constants::$listModule['news']['header'];
 		
 		$model=new News('search');

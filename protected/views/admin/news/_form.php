@@ -31,20 +31,36 @@
 		    	</div>
 			<?php } ?>
 		</div>
-		
-		<?php //echo $form->ckEditorRow($model, 'detail', array('class'=>'span3', 'type' => 'raw'));?>
 	
 		<?php echo $form->textFieldRow($model,'title',array('class'=>'span3','maxlength'=>255)); ?>
 	
 		<?php echo $form->textAreaRow($model,'caption',array('rows'=>1, 'cols'=>50, 'class'=>'span4')); ?>
 	
-		<?php echo $form->textAreaRow($model,'detail',array('rows'=>10, 'cols'=>50, 'class'=>'span4')); ?>
+		<?php //echo $form->textAreaRow($model,'detail',array('rows'=>10, 'cols'=>50, 'class'=>'span4')); ?>		
+		<script src="<?php echo Yii::app()->baseUrl.'/ckeditor/ckeditor.js'; ?>"></script>
+		<div class="control-group">
+			<?php echo $form->labelEx($model,'detail', array('class'=> "control-label")); ?>
+			<div class="controls">
+				<?php echo $form->textArea($model, 'detail', array('id'=>'editor1')); ?>
+				<?php echo $form->error($model,'detail'); ?>
+			</div>
+		</div>				
+		<script type="text/javascript">CKEDITOR.replace('editor1');</script>
+		
 <h5>ENGLISH</h5>
 		<?php echo $form->textFieldRow($model,'title_eng',array('size'=>45,'maxlength'=>45)); ?>
 	
 		<?php echo $form->textAreaRow($model,'caption_eng',array('rows'=>1, 'cols'=>50, 'class'=>'span4')); ?>
 	
-		<?php echo $form->textAreaRow($model,'detail_eng',array('rows'=>10, 'cols'=>50, 'class'=>'span4')); ?>
+		<?php //echo $form->textAreaRow($model,'detail_eng',array('rows'=>10, 'cols'=>50, 'class'=>'span4')); ?>		
+		<div class="control-group">
+			<?php echo $form->labelEx($model,'detail_eng', array('class'=> "control-label")); ?>
+			<div class="controls">
+				<?php echo $form->textArea($model, 'detail_eng', array('id'=>'editor2')); ?>
+				<?php echo $form->error($model,'detail_eng'); ?>
+			</div>
+		</div>
+		<script type="text/javascript">CKEDITOR.replace('editor2');</script>
 		
 		<?php echo $form->radioButtonListRow($model,'is_public',Constants::$arrayIsPublic,array('class'=>'span1')); ?>
 			
@@ -57,7 +73,7 @@
 					<?php //echo $form->error($model,'thumb_image_path'); ?>
 				</span>	
 			</div>
-			<div class="controls">
+			<div class="controls"><br>
 				<?php 
 					if($model->isNewRecord != '1')
 						echo CHtml::image(Yii::app()->request->baseUrl . News::image_url . $model->thumb_image_path,"",array("width"=>100));
@@ -74,12 +90,12 @@
 	                         // 'accept'=>'doc|pdf|docx',
 	                          'max'=> 6,
 	                          'options'=>array(
-	                              //'onFileSelect'=>'function(e, v, m){ alert(""onFileSelect - ""+v) }',
-	      //                        'afterFileSelect'=>'function(e, v, m){ alert(""afterFileSelect - ""+v) }',
-	      //                        'onFileAppend'=>'function(e, v, m){ alert(""onFileAppend - ""+v) }',
-	      //                        'afterFileAppend'=>'function(e, v, m){ alert(""afterFileAppend - ""+v) }',
-	      //                        'onFileRemove'=>'function(e, v, m){ alert(""onFileRemove - ""+v) }',
-	      //                        'afterFileRemove'=>'function(e, v, m){ alert(""afterFileRemove - ""+v) }',
+	                             'onFileSelect'=>'function(e, v, m){ alert(""onFileSelect - ""+v) }',
+	                             'afterFileSelect'=>'function(e, v, m){ alert(""afterFileSelect - ""+v) }',
+	                              'onFileAppend'=>'function(e, v, m){ alert(""onFileAppend - ""+v) }',
+	                              'afterFileAppend'=>'function(e, v, m){ alert(""afterFileAppend - ""+v) }',
+	                             'onFileRemove'=>'function(e, v, m){ alert(""onFileRemove - ""+v) }',
+	                              'afterFileRemove'=>'function(e, v, m){ alert(""afterFileRemove - ""+v) }',
 	                          ),
 			));
 			?>
@@ -88,7 +104,7 @@
 <h5>TỪ KHÓA</h5> 
 		<?php echo $form->textAreaRow($modelKeyword,'keyword',array('rows'=>1, 'cols'=>50, 'class'=>'span4')); ?>
 		<?php echo $form->textAreaRow($modelKeyword,'keyword_eng',array('rows'=>1, 'cols'=>50, 'class'=>'span4')); ?>
-	
+		
 		<div class="form-actions">
 		    <?php $this->widget('bootstrap.widgets.TbButton', array(
 		      	'buttonType'=>'submit',
@@ -116,3 +132,6 @@
 	</div>
 
 <?php $this->endWidget(); ?>
+
+
+
