@@ -144,6 +144,7 @@ class News extends CActiveRecord
 		$criteria->compare('update_date',$this->update_date,true);
 		$criteria->compare('is_public',$this->is_public);
 		$criteria->compare('del_flg',$this->del_flg);
+		$criteria->addCondition("del_flg = 0");
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

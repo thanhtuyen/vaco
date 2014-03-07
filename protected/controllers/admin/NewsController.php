@@ -101,7 +101,7 @@ class NewsController extends Controller
 						$model->listfile_attach = implode(",", $files);
 					
 					$model->setIsNewRecord(true);	
-					$model->save();
+					$model->save(true,array('thumb_image_path','listfile_attach'));
 
 					// Insert keyword
 					if(isset($_POST['Keyword'])){
@@ -213,9 +213,15 @@ class NewsController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('News');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
+		$this->pageTitle = Constants::$listModule['news']['header'];
+		
+		$model=new News('search');
+		$model->unsetAttributes();  // clear any default values
+		if(isset($_GET['News']))
+			$model->attributes=$_GET['News'];
+
+		$this->render('admin',array(
+			'model'=>$model,
 		));
 	}
 

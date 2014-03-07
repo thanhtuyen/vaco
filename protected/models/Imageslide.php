@@ -113,6 +113,7 @@ class Imageslide extends CActiveRecord
 		$criteria->compare('create_user_id',$this->create_user_id);
 		$criteria->compare('update_date',$this->update_date,true);
 		$criteria->compare('del_flg',$this->del_flg);
+		$criteria->addCondition("del_flg = 0");
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

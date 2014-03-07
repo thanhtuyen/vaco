@@ -124,7 +124,7 @@
 		        //'buttonType'=>'link',
 		        'label'=>Constants::$listLabelButton['cancel'],
 		        'htmlOptions'=>array('style'=>'margin-left: 10px;','name'=>'bCancel','id'=> 'bCancel'),
-		        'url'=>'../../news/admin',
+		        'url'=>'../../news/index',
 		      ));
 		    } 
 		    ?>

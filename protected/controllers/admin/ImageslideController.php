@@ -84,7 +84,7 @@ class ImageslideController extends Controller
       		$model->create_date = getDatetime();
       		$model->create_user_id = app()->user->getState('roles') == 'admin' ? User::ADMIN : User::USER;
       		$model->del_flg = 0; 
-			if($model->save())
+			if($model->save(true,array('image_path')))
 				$this->redirect(array('view','id'=>$model->id));
 		}
 
@@ -170,17 +170,24 @@ class ImageslideController extends Controller
 	 */
 	public function actionIndex()
 	{ 
-		$this->pageTitle = Constants::$listModule['image_slide']['header'];
+		/*$this->pageTitle = Constants::$listModule['image_slide']['header'];
 		
 		$fileName = 'index';
 		$modelImageSlide = new Imageslide();
 		$modelImageSlideSearch = new Imageslide('adminImageSlideSearch');
-		/*$dataProvider=new CActiveDataProvider('Imageslide');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));*/
+				
+		$this->render($fileName, compact('modelImageSlide', 'modelImageSlideSearch'));*/
 		
-		$this->render($fileName, compact('modelImageSlide', 'modelImageSlideSearch'));
+		$this->pageTitle = Constants::$listModule['image_slide']['header'];
+		
+		$model=new Imageslide('search');
+		$model->unsetAttributes();  // clear any default values
+		if(isset($_GET['Imageslide']))
+			$model->attributes=$_GET['Imageslide'];
+
+		$this->render('admin',array(
+			'model'=>$model,
+		));
 		
 	}
 
