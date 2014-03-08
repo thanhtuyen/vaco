@@ -5,6 +5,8 @@ define('ROOT_PATH', str_replace('/protected', '', Yii::app()->basePath));
 class Constants {
 	public static $arrayIsPublic = array('0'=>'Công khai',
 								'1'=>'Không công khai');
+	public static $arrayFeature_flag = array('1'=>'Bên phải',
+								'2'=>'Bên trái',);
 	/*
 	 * List module menu
 	 */	 
@@ -56,6 +58,11 @@ class Constants {
 	 * Define text required for form admin
 	 */	
 	public static $text_required = 'Trường có dấu <span class="required">*</span> là bắt buộc.';
+	
+	/*
+	 * 
+	 */
+	public static $text_require_image = 'Kích thước hình ảnh không vượt quá 800px.';
 
 }
 ?>

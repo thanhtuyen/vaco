@@ -1,4 +1,4 @@
-h5 {
+h1, h5 {
     color: blue !important;
 }
 .create_user {
@@ -19,6 +19,7 @@ h5 {
 .form-horizontal .control-label {
   margin-right:30px;
   width:80px;
+  color: #0066FF;
 }
 .view_user table {
   margin-bottom:0 !important;
@@ -68,5 +69,11 @@ h5 {
 }
 .span_space_5{
   padding-left: 100px;
-;
+}
+.text_require_image {
+    color: green;
+}
+.help-block{
+    color: #0066FF !important;
+    font-weight: bolder;
 }

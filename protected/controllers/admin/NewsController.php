@@ -70,13 +70,14 @@ class NewsController extends Controller
 		// init model
 		$modelKeyword = new Keyword();		
 		$model= new News; 
-		$model->is_public = 0; // set default radio
+		$model->is_public = 0; // set default is_public
+		$model->feature_flag = 1; // set default feature_flag
 		
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 		
 		if(isset($_POST['News']))
-		{  //var_dump($_POST);exit;
+		{ 
 			$model->attributes = $_POST['News'];
 			$post_value = $_POST['News'];
 
@@ -88,7 +89,6 @@ class NewsController extends Controller
 					$model->menu_id = $menu_id;	 
 	      			$model->create_date = getDatetime();
 		      		$model->create_user_id = app()->user->getState('roles') == 'admin' ? User::ADMIN : User::USER;
-		      		$model->feature_flag=0;
 		      		$model->del_flg = 0;
 	
 		      		// upload image

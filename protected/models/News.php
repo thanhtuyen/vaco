@@ -110,7 +110,7 @@ class News extends CActiveRecord
 			'listfile_attach' => 'Tập tin',
 			'create_user_id' => 'Create User',
 			'create_date' => 'Create Date',
-			'feature_flag' => 'Feature Flag',
+			'feature_flag' => 'Vị trí hiển thị',
 			'update_date' => 'Update Date',
 			'is_public' => 'Công khai',
 			'del_flg' => 'Del Flg',

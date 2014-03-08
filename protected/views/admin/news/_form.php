@@ -63,10 +63,12 @@
 		<script type="text/javascript">CKEDITOR.replace('editor2');</script>
 		
 		<?php echo $form->radioButtonListRow($model,'is_public',Constants::$arrayIsPublic,array('class'=>'span1')); ?>
+		<?php echo $form->radioButtonListRow($model,'feature_flag',Constants::$arrayFeature_flag,array('class'=>'span1')); ?>
 			
 		<div class="control-group">
 		    <?php echo $form->labelEx($model,'thumb_image_path', array('class'=> "control-label")); ?>
 		    <div class="controls">
+		    	<span class="text_require_image"><?php echo Constants::$text_require_image;?></span>
 		 		<?php echo CHtml::activeFileField($model,'thumb_image_path'); ?>
 				<?php //echo $form->fileField($model,'thumb_image_path'); ?>
 				<span class="help_inline" style="float: left; margin-left: 200px;">
