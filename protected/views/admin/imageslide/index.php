@@ -7,8 +7,8 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Create Imageslide', 'url'=>array('create')),
-	array('label'=>'Manage Imageslide', 'url'=>array('admin')),
+	//array('label'=>'Create Imageslide', 'url'=>array('create')),
+	//array('label'=>'Manage Imageslide', 'url'=>array('admin')),
 );
 ?>
 

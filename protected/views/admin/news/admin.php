@@ -9,7 +9,7 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	//array('label'=>'List News', 'url'=>array('index')),
-	array('label'=>'Create News', 'url'=>array('create')),
+	//array('label'=>'Create News', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -35,32 +35,35 @@ $('.search-form form').submit(function(){
 )); ?>
 </div><!-- search-form -->
 
-<?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'news-grid',
-	'dataProvider'=>$model->search(),
-	'template'=>"{items}",
-	//'filter'=>$model,
-	'columns'=>array(
-		'id',
-		'menu_id',
-		'title',
-		'caption',
-		'detail',
-		/*'title_eng',		
-		'caption_eng',
-		'detail_eng',
-		'thumb_image_path',
-		'listfile_attach',
-		'create_user_id',
-		'create_date',
-		'feature_flag',
-		'update_date',
-		'is_public',
-		'del_flg',
-		*/
-		array(
-			'class'=>'bootstrap.widgets.TbButtonColumn',
-      		'htmlOptions'=>array('style'=>'width: 50px'),
+<div class="view_admin" >
+	<div style="text-align:right"><?php echo CHtml::link(CHtml::image(Yii::app()->request->baseUrl.'/images/thumbnails/bplus.png',"bCreate",array("class"=>"icon_plus")), Yii::app()->createUrl('/news/create')) ;?></div>
+	<?php $this->widget('zii.widgets.grid.CGridView', array(
+		'id'=>'news-grid',
+		'dataProvider'=>$model->search(),
+		'template'=>"{items}",
+		//'filter'=>$model,
+		'columns'=>array(
+			'id',
+			'menu_id',
+			'title',
+			'caption',
+			'detail',
+			/*'title_eng',		
+			'caption_eng',
+			'detail_eng',
+			'thumb_image_path',
+			'listfile_attach',
+			'create_user_id',
+			'create_date',
+			'feature_flag',
+			'update_date',
+			'is_public',
+			'del_flg',
+			*/
+			array(
+				'class'=>'bootstrap.widgets.TbButtonColumn',
+	      		'htmlOptions'=>array('style'=>'width: 50px'),
+			),
 		),
-	),
-)); ?>
+	)); ?>
+</div>

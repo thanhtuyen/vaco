@@ -46,6 +46,7 @@ class Imageslide extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('title', 'required', 'message'=>getMessage('required', $this->getAttributeLabel('title'))),
+			array('title_eng', 'required', 'message'=>getMessage('required', $this->getAttributeLabel('title_eng'))),
 			//array('create_user_id, del_flg', 'numerical', 'integerOnly'=>true, 'message'=>getMessage('numerical')),
 			//array('image_path', 'unsafe'),
 			array('image_path','file',

@@ -9,7 +9,7 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	//array('label'=>'List Imageslide', 'url'=>array('index')),
-	array('label'=>'Manage Imageslide', 'url'=>array('admin')),
+	//array('label'=>'Manage Imageslide', 'url'=>array('admin')),
 );
 ?>
 

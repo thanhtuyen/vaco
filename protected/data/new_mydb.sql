@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS `detailmenu` (
 --
 
 CREATE TABLE IF NOT EXISTS `imageslide` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `image_path` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `title` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `caption` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `imageslide` (
   `update_date` datetime DEFAULT NULL,
   `del_flg` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `imageslide`
@@ -180,6 +180,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `create_date` datetime DEFAULT NULL,
   `create_user` int(11) DEFAULT NULL,
   `update_date` datetime DEFAULT NULL,
+  `del_flg` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`userid`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
@@ -193,3 +194,21 @@ INSERT INTO `user` (`userid`, `username`, `userpass`, `user_fullname`, `user_mob
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+--
+-- Table structure for table `news`
+--
+
+CREATE TABLE IF NOT EXISTS `detailmenuimage` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `menu_id` int(11) DEFAULT NULL,
+  `caption` varchar(45) COLLATE utf8_unicode_ci,
+  `caption_eng` varchar(45) COLLATE utf8_unicode_ci,
+  `create_date` datetime DEFAULT NULL,
+  `create_user` int(11) DEFAULT NULL,
+  `update_date` datetime DEFAULT NULL,
+  `del_flg` tinyint(4) DEFAULT NULL,
+  `public_flg` tinyint(4) DEFAULT NULL,
+  `feature_flg` tinyint(4) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;

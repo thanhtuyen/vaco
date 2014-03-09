@@ -1,6 +1,10 @@
 h1, h5 {
     color: blue !important;
 }
+.icon_plus {
+    width:40px;
+    height:40px;
+}
 .create_user {
   width: 70%;
   margin-left: 150px !important;

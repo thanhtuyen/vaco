@@ -9,10 +9,10 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Imageslide', 'url'=>array('index')),
-	array('label'=>'Create Imageslide', 'url'=>array('create')),
-	array('label'=>'View Imageslide', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage Imageslide', 'url'=>array('admin')),
+	//array('label'=>'List Imageslide', 'url'=>array('index')),
+	//array('label'=>'Create Imageslide', 'url'=>array('create')),
+	//array('label'=>'View Imageslide', 'url'=>array('view', 'id'=>$model->id)),
+	//array('label'=>'Manage Imageslide', 'url'=>array('admin')),
 );
 ?>
 

@@ -78,7 +78,7 @@
 			<div class="controls"><br>
 				<?php 
 					if($model->isNewRecord != '1')
-						echo CHtml::image(Yii::app()->request->baseUrl . News::image_url . $model->thumb_image_path,"",array("width"=>100));
+						echo CHtml::image(Yii::app()->request->baseUrl . News::image_url . $model->thumb_image_path,"",array("width"=>800));
 				?>	
 			</div>	
 		</div>	
