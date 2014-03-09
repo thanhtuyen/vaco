@@ -85,6 +85,7 @@ class UserController extends Controller
       $model->create_date = getDatetime();
       $model->user_role = User::USER;
       $model->create_user = app()->user->id;
+      $model->del_flg = 0;
 
       if($model->save())
         $this->redirect(array('view','id'=>$model->userid));
@@ -128,14 +129,14 @@ class UserController extends Controller
    */
   public function actionDelete($id)
   {
-    $this->loadModel($id)->delete();
+    $model=$this->loadModel($id);
+    deleteRow($model);
 
     // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
     if(!isset($_GET['ajax']))
       $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
   }
-
-  /**
+    /**
    * Lists all models.
    */
 //	public function actionIndex()

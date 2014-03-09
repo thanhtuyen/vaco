@@ -7,10 +7,10 @@ $this->breadcrumbs=array(
 	'Manage',
 );
 
-$this->menu=array(
-	//array('label'=>'List User', 'url'=>array('index')),
-	array('label'=>'Create User', 'url'=>array('create')),
-);
+//$this->menu=array(
+//	array('label'=>'List User', 'url'=>array('index')),
+//	array('label'=>'Create User', 'url'=>array('create')),
+//);
 
 Yii::app()->clientScript->registerScript('search', "
 $('.search-button').click(function(){
@@ -35,30 +35,31 @@ $('.search-form form').submit(function(){
 )); ?>
 </div><!-- search-form -->
 
-
-<?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'user-grid',
-  //'type'=>'Striped',
-  'template'=>"{items}",
-	'dataProvider'=>$model->search(),
-	//'filter'=>$model,
-	'columns'=>array(
-		'userid',
-		'username',
-		'user_fullname',
-		'user_mobile',
-		'user_address',
-		/*
-		'user_role',
-		'create_date',
-		'create_user',
-		'update_date',
-		'usercol',
-		*/
-    array(
-      'class'=>'bootstrap.widgets.TbButtonColumn',
-      'htmlOptions'=>array('style'=>'width: 50px'),
+<div class="view_admin" >
+  <?php $this->widget('zii.widgets.grid.CGridView', array(
+    'id'=>'user-grid',
+    //'type'=>'Striped',
+    'template'=>"{items}",
+    'dataProvider'=>$model->search(),
+    //'filter'=>$model,
+    'columns'=>array(
+      'userid',
+      'username',
+      'user_fullname',
+      'user_mobile',
+      'user_address',
+      /*
+      'user_role',
+      'create_date',
+      'create_user',
+      'update_date',
+      'usercol',
+      */
+      array(
+        'class'=>'bootstrap.widgets.TbButtonColumn',
+        'htmlOptions'=>array('style'=>'width: 50px'),
+      ),
     ),
-	),
-));
-?>
+  ));
+  ?>
+</div>

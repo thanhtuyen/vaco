@@ -86,3 +86,9 @@
   border: 1px solid #CCCCCC;
   width: 100%;
 }
+.span9 {
+  margin-left:-20px;
+}
+.view_admin{
+  width: 1150px;
+}

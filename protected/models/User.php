@@ -111,6 +111,7 @@ class User extends CActiveRecord
 		$criteria->compare('create_date',$this->create_date,true);
 		$criteria->compare('create_user',$this->create_user);
 		$criteria->compare('update_date',$this->update_date,true);
+    $criteria->addCondition("del_flg = 0");
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

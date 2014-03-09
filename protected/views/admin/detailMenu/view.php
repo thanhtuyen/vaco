@@ -36,4 +36,5 @@ $this->menu=array(
 
   ),
 )); ?>
+  <?php echo CHtml::decode($model->detail);?>
 </div>

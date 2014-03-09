@@ -165,3 +165,8 @@ function Clean($arr){
   }
   return $arr;
 }
+ function deleteRow($model)
+{
+  $model->del_flg = 1;
+  $model->save();
+}

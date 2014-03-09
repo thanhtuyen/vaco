@@ -58,6 +58,8 @@ class DetailMenuController extends Controller
 	 */
 	public function actionView($id)
 	{
+    $model = $this->loadModel($id);
+    //$model->setAttribute('detail', CHtml::decode($model->detail));
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
@@ -79,6 +81,7 @@ class DetailMenuController extends Controller
       $model->attributes=Clean($_POST['detailMenu']);
 //      $model->setAttributes(array('content_article'=>$_FILES['detailMenu']['name']['image_path'],
 //       ));
+      $model->detail = CHtml::encode($_POST['detailMenu']['detail']);
       $model->setScenario('create');
       if ($model->validate()) {
 
@@ -128,7 +131,11 @@ class DetailMenuController extends Controller
 		if(isset($_POST['detailMenu']))
 		{
 			$model->attributes=$_POST['detailMenu'];
+      //print_r($_POST['detailMenu']);echo "</br>";
+      $model->detail = CHtml::encode($_POST['detailMenu']['detail']);
+     //print_r($model->detail);
 			if($model->save())
+       // print_r($model->detail);die;
 				$this->redirect(array('view','id'=>$model->id));
 		}
 
