@@ -18,9 +18,9 @@
 	<div class="space5">  
 		<div class="control-group">
 		<?php 
-			if($model->isNewRecord != '1')
+			//if($model->isNewRecord != '1')
 				echo $form->dropDownListRow($model,'menu_id', Menu::listCategory(), array('prompt'=>'Chọn menu ...')); 
-			else {
+			/*else {
 				echo $form->labelEx($model,'menu_id',array('class'=>'control-label'));?>
 				<div class="controls">
 					<?php 
@@ -29,7 +29,7 @@
 	
 			        echo $form->ListBox($model,'menu_id', $list_menu, $htmlOptions); ?>
 		    	</div>
-			<?php } ?>
+			<?php }*/ ?>
 		</div>
 	
 		<?php echo $form->textFieldRow($model,'title',array('class'=>'span3','maxlength'=>255)); ?>
@@ -92,12 +92,12 @@
 	                         // 'accept'=>'doc|pdf|docx',
 	                          'max'=> 6,
 	                          'options'=>array(
-	                             'onFileSelect'=>'function(e, v, m){ alert(""onFileSelect - ""+v) }',
-	                             'afterFileSelect'=>'function(e, v, m){ alert(""afterFileSelect - ""+v) }',
-	                              'onFileAppend'=>'function(e, v, m){ alert(""onFileAppend - ""+v) }',
-	                              'afterFileAppend'=>'function(e, v, m){ alert(""afterFileAppend - ""+v) }',
-	                             'onFileRemove'=>'function(e, v, m){ alert(""onFileRemove - ""+v) }',
-	                              'afterFileRemove'=>'function(e, v, m){ alert(""afterFileRemove - ""+v) }',
+	                            // 'onFileSelect'=>'function(e, v, m){ alert(""onFileSelect - ""+v) }',
+	                             //'afterFileSelect'=>'function(e, v, m){ alert(""afterFileSelect - ""+v) }',
+	                             // 'onFileAppend'=>'function(e, v, m){ alert(""onFileAppend - ""+v) }',
+	                             // 'afterFileAppend'=>'function(e, v, m){ alert(""afterFileAppend - ""+v) }',
+	                             //'onFileRemove'=>'function(e, v, m){ alert(""onFileRemove - ""+v) }',
+	                             // 'afterFileRemove'=>'function(e, v, m){ alert(""afterFileRemove - ""+v) }',
 	                          ),
 			));
 			?>

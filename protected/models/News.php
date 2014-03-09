@@ -61,18 +61,23 @@ class News extends CActiveRecord
 			//array('thumb_image_path', 'unsafe'),
 			array('thumb_image_path', 'file',
             	'types' => 'jpg, jpeg, png, gif',
+				//'mimeTypes'=>array('image/gif, image/jpeg, image/jpg, image/png'),
+				//'wrongMimeType'=>'errrorr',
             	'maxSize' => 1024 * 1024 * 2,
             	'wrongType'=> getMessage('wrongTypeImage'), 
             	'tooLarge' => getMessage('tooLarge','',array('number'=>2)),
-            	'allowEmpty' => true),
+            	'allowEmpty' => true,
+				'on' => 'create, update'),
 
 			array('listfile_attach', 'file',
-        		'types'=>'doc, pdf, docx',
+        		'types'=>'doc, pdf, docx, xls',
+				//'mimeTypes'=>array('application/pdf, application/msword, text/plain, application/vnd.ms-excel, application/vnd.oasis.opendocument.text, application/vnd.oasis.opendocument.spreadsheet'),
         		'maxSize'=>1024 * 1024 * 10,
         		'wrongType'=>getMessage('wrongTypeFile'),
         		'tooLarge'=>getMessage('tooLarge','',array('number'=>10)),
 				'maxFiles' => 5,
-        		'allowEmpty'=>true),
+        		'allowEmpty'=>true,
+				'on' => 'create, update'),
       
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
@@ -88,7 +93,7 @@ class News extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'menu' => array(self::HAS_MANY, 'menu', 'menu_id'),
+			'menu' => array(self::BELONGS_TO, 'menu', 'menu_id'),
 		);
 	}
 

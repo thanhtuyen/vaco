@@ -45,15 +45,19 @@ class Imageslide extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('image_path', 'required', 'message'=>getMessage('required', $this->getAttributeLabel('image_path'))),
 			array('title', 'required', 'message'=>getMessage('required', $this->getAttributeLabel('title'))),
 			//array('create_user_id, del_flg', 'numerical', 'integerOnly'=>true, 'message'=>getMessage('numerical')),
 			//array('image_path', 'unsafe'),
 			array('image_path','file',
 				'types'=>'jpg, jpeg, png, gif',
+				//'mimeTypes'=>array('image/gif, image/jpeg, image/jpg, image/png'),
 				'maxSize'=>1024*1024*2, // 2MB
 				'wrongType'=>getMessage('wrongTypeImage'),
-				'tooLarge'=>getMessage('tooLarge','',array('number'=>2))),
+				'tooLarge'=>getMessage('tooLarge','',array('number'=>2)),
+				'allowEmpty' => true,
+				'on'=> 'update',
+				'message'=>getMessage('required', $this->getAttributeLabel('image_path')),
+			),
 			array('title, caption, title_eng, caption_eng', 'length', 'max'=>45),
 			array('create_date, update_date', 'safe'),
 			// The following rule is used by search().

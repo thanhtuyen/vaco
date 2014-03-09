@@ -47,10 +47,10 @@
 
 	<div class="form-actions">
     <?php $this->widget('bootstrap.widgets.TbButton', array(
-      'buttonType'=>'submit',
-      'type'=>'primary',
+     	'buttonType'=>'submit',
+      	'type'=>'primary',
 		'htmlOptions'   => array('name'=> 'bCreate','id'=> 'bCreate'),
-      'label'=>$model->isNewRecord ? Constants::$listLabelButton['create'] : Constants::$listLabelButton['update'],
+      	'label'=>$model->isNewRecord ? Constants::$listLabelButton['create'] : Constants::$listLabelButton['update'],
     ));
 
     if($model->isNewRecord){

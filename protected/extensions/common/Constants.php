@@ -35,7 +35,7 @@ class Constants {
 	public static $listMessage = array(
 		'no_data' 			=> '###TITLE### không có dữ liệu',
 		'max_length' 		=> '###TITLE### cho phép nhập tối đa ###NUMBER### ký tự',
-		'required'			=> '###TITLE### không được rỗng',
+		'required'			=> '###TITLE### không được phép rỗng',
 		'numerical'			=> 'Nhập ký tự số',
 		'wrongTypeImage'	=> 'Tải hình ảnh với định dạng jpg, gif, png',
 		'wrongTypeFile'		=> 'Tải tập tin với định dạng doc, pdf, docx',
