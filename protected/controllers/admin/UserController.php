@@ -88,6 +88,7 @@ class UserController extends Controller
       $model->del_flg = 0;
 
       if($model->save())
+        app()->user->setFlash('success', 'Tạo mới user thành công !');
         $this->redirect(array('view','id'=>$model->userid));
     }
 
@@ -114,6 +115,7 @@ class UserController extends Controller
       $model->setScenario('update');
       $model->update_date = getDatetime();
       if($model->save())
+        app()->user->setFlash('success', 'Update thông tin user thành công !');
         $this->redirect(array('view','id'=>$model->userid));
     }
 

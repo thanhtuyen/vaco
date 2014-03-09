@@ -36,6 +36,9 @@ $('.search-form form').submit(function(){
 </div><!-- search-form -->
 
 <div class="view_admin" >
+  <?php  if(app()->user->getState('roles') =="admin"):?>
+  <div style="text-align:  right"><?php echo CHtml::link(CHtml::image(Yii::app()->request->baseUrl.'/images/thumbnails/ql-users.gif'), Yii::app()->createUrl('/user/create')) ;?></div>
+  <?php endif;?>
   <?php $this->widget('zii.widgets.grid.CGridView', array(
     'id'=>'user-grid',
     //'type'=>'Striped',
