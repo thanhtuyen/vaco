@@ -79,14 +79,16 @@ class NewsController extends Controller
 		if(isset($_POST['News']))
 		{ 
 			$model->attributes = $_POST['News'];
-			$post_value = $_POST['News'];
+			//$post_value = $_POST['News'];
 
       		if ($model->validate()) {
-				$list_menu_id = Clean($_POST['News']['menu_id']); 
-				foreach ($list_menu_id as $l_menu_id=>$menu_id){
-					$model=new News;
-	      			$model->attributes=$post_value;				
-					$model->menu_id = $menu_id;	 
+				//$list_menu_id = Clean($_POST['News']['menu_id']); 
+				//foreach ($list_menu_id as $l_menu_id=>$menu_id){
+					//$model=new News;
+	      			//$model->attributes=$post_value;				
+					//$model->menu_id = $menu_id;	 
+					$model->detail = CHtml::encode($_POST['News']['detail']);
+					$model->detail_eng = CHtml::encode($_POST['News']['detail_eng']);
 	      			$model->create_date = getDatetime();
 		      		$model->create_user_id = app()->user->getState('roles') == 'admin' ? User::ADMIN : User::USER;
 		      		$model->del_flg = 0;
@@ -101,7 +103,7 @@ class NewsController extends Controller
 						$model->listfile_attach = implode(",", $files);
 					
 					$model->setIsNewRecord(true);	
-					$model->save(true,array('thumb_image_path','listfile_attach'));
+					$model->save(true,array('thumb_image_path','listfile_attach','menu_id','title','caption','detail','title_eng','caption_eng','detail_eng','create_user_id','create_date','feature_flag','is_public','del_flg'));
 
 					// Insert keyword
 					if(isset($_POST['Keyword'])){
@@ -111,7 +113,7 @@ class NewsController extends Controller
 						$modelKeyword->setIsNewRecord(true);	
 						$modelKeyword->save();
 					}
-				}
+				//}
 	      		$this->redirect(array('view','id'=>$model->id));
       		}
 		}
@@ -143,8 +145,12 @@ class NewsController extends Controller
 		if(isset($_POST['News']))
 		{  
 			$model->attributes = $_POST['News'];
-			$model->thumb_image_path = CUploadedFile::getInstance($model,'thumb_image_path'); 
+			$model->detail = CHtml::encode($_POST['News']['detail']);
+			$model->detail_eng = CHtml::encode($_POST['News']['detail_eng']);
+			$model->thumb_image_path = CUploadedFile::getInstance($model,'thumb_image_path');
+			
 			$model->listfile_attach = CUploadedFile::getInstances($model,'listfile_attach'); 
+
 			$model->update_date = getDatetime(); 
 			//$model->create_user_id = app()->user->getState('roles') == 'admin' ? User::ADMIN : User::USER;
 			if ($model->validate()) { 
@@ -162,7 +168,7 @@ class NewsController extends Controller
 		        } else { 
 					$model->thumb_image_path = $old_image_path;
 		        }
-		        
+
 		        // upload files		       
 		        if($model->listfile_attach != array()){ 
 					foreach ($array_file as $k){ 
@@ -176,7 +182,7 @@ class NewsController extends Controller
 						$model->listfile_attach = implode(",", $files);				
 		        }
 				
-				if($model->save()){
+				if($model->save()){ 
 					// Update keyword
 					if(isset($_POST['Keyword']) && isset($modelKeyword->id)){
 						$modelKeyword->attributes = Clean($_POST['Keyword']);	
@@ -201,7 +207,9 @@ class NewsController extends Controller
 	 */
 	public function actionDelete($id)
 	{ 
-		$this->loadModel($id)->delete();
+		//$this->loadModel($id)->delete();
+		$model = $this->loadModel($id);
+		deleteRow($model);
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))

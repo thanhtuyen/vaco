@@ -22,16 +22,23 @@ $this->menu=array(
 <?php $this->widget('bootstrap.widgets.TbDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
-		'id',
 		'image_path',
-		'title',
-		'caption',
-		'title_eng',
-		'caption_eng',
+		array('name' => 'title',
+      		'value' => CHtml::decode($model->title)
+		),
+		array('name' => 'caption',
+      		'value' => CHtml::decode($model->caption)
+		),
+		array('name' => 'title_eng',
+      		'value' => CHtml::decode($model->title_eng)
+		),
+		array('name' => 'caption_eng',
+      		'value' => CHtml::decode($model->caption_eng)
+		),
 		'create_date',
 		'create_user_id',
 		'update_date',
-		'del_flg',
+		/*'del_flg',*/
 	),
 )); ?>
 </div>

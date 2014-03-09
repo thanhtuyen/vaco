@@ -17,19 +17,32 @@ $this->menu=array(
 ?>
 
 <h1><?php echo str_replace("###TITLE###", 'Tin Tức', Constants::$listTitleForm['form_view']) .' ' . $model->id; ?></h1>
-
+<?php //var_dump($model->menu);exit; ?>
 <div class="view_user">
 <?php $this->widget('bootstrap.widgets.TbDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
-		'id',
-		'menu_id',
-		'title',
-		'caption',
-		'detail',
-		'title_eng',
-		'caption_eng',
-		'detail_eng',
+		array('name' => 'menu_id',
+      		'value' => CHtml::decode($model->menu->menu_name)
+		),
+		array('name' => 'title',
+      		'value' => CHtml::decode($model->title)
+		),
+		array('name' => 'caption',
+      		'value' => CHtml::decode($model->caption)
+		),
+		array('name' => 'detail',
+      		'value' => CHtml::decode($model->detail)
+		),
+		array('name' => 'title_eng',
+      		'value' => CHtml::decode($model->title_eng)
+		),
+		array('name' => 'caption_eng',
+      		'value' => CHtml::decode($model->caption_eng)
+		),
+		array('name' => 'detail_eng',
+      		'value' => CHtml::decode($model->detail_eng)
+		),
 		'thumb_image_path',
 		'listfile_attach',
 		'create_user_id',

@@ -72,20 +72,24 @@ class ImageslideController extends Controller
 		// $this->performAjaxValidation($model);
 
 		if(isset($_POST['Imageslide']))
-		{ 
-			$model->attributes = Clean($_POST['Imageslide']);  
-			$model->setScenario('create');	
-
+		{ 	
+			$model->attributes = $_POST['Imageslide'];  
 			// upload image
 			$model->image_path = CUploadedFile::getInstance($model,'image_path'); 
 			if (is_object($model->image_path)) 	
 	          	$model->image_path->saveAs(Yii::getPathOfAlias('webroot') . Imageslide::image_url . $model->image_path);
-	        
-      		$model->create_date = getDatetime();
-      		$model->create_user_id = app()->user->getState('roles') == 'admin' ? User::ADMIN : User::USER;
-      		$model->del_flg = 0; 
-			if($model->save(true,array('image_path')))
+
+			if ($model->validate()) { 
+				//$model->setScenario('create');
+		        
+	      		$model->create_date = getDatetime();
+	      		$model->create_user_id = app()->user->getState('roles') == 'admin' ? User::ADMIN : User::USER;
+	      		$model->del_flg = 0; 
+	      		
+	      		$model->setIsNewRecord(true);	
+				$model->save(true,array('image_path','title','title_eng','caption','caption_eng','create_date','create_user_id','del_flg'));
 				$this->redirect(array('view','id'=>$model->id));
+			}
 		}
 
 		$this->render('create',array(
@@ -146,19 +150,10 @@ class ImageslideController extends Controller
 	 * @param integer $id the ID of the model to be deleted
 	 */
 	public function actionDelete($id)
-	{ 
-		/*if(Yii::app()->request->isPostRequest)
-		{ 
-			$model = $this->loadModel($id); 
-			$model->del_flg = DELETE;
-			$model->save(false);
-			$this->redirect(array('admin'));
-		}
-		else
-			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');*/
-			
-			
-		$this->loadModel($id)->delete();
+	{ 			
+		//$this->loadModel($id)->delete();
+		$model = $this->loadModel($id);
+		deleteRow($model);
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
