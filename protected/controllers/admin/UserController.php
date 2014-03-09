@@ -136,6 +136,7 @@ class UserController extends Controller
 
     // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
     if(!isset($_GET['ajax']))
+      app()->user->setFlash('success', 'xóa thông tin  thành công !');
       $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
   }
     /**

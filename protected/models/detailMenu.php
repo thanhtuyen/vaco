@@ -131,7 +131,7 @@ class detailMenu extends CActiveRecord
 		$criteria->compare('create_date',$this->create_date,true);
 		$criteria->compare('create_user',$this->create_user);
 		$criteria->compare('update_date',$this->update_date,true);
-		$criteria->compare('del_flg',$this->del_flg);
+    $criteria->addCondition("del_flg = 0");
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -159,6 +159,7 @@ class detailMenu extends CActiveRecord
       ->from('menu')
       ->where('menu_type=:type', array(':type'=>$menu_type))
       ->andWhere('parent_menu_id=0')
+      ->andWhere('del_flg = 0')
       ->andwhere(array('not in', 'id', $listMenuId))
       ->queryAll();
 

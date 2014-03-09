@@ -105,7 +105,7 @@ class Menu extends CActiveRecord
 		$criteria->compare('create_date',$this->create_date,true);
 		$criteria->compare('create_user_id',$this->create_user_id);
 		$criteria->compare('update_date',$this->update_date,true);
-		$criteria->compare('del_flg',$this->del_flg);
+		$criteria->addCondition("del_flg = 0");
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -155,12 +155,12 @@ class Menu extends CActiveRecord
     return $tree;
   }
 
-  public function getParentName(){
-    if ($this->parent_menu_id == 0)
+  public function getParentName($parent_menu_id){
+    if ($parent_menu_id == 0)
       return "Root";
-    $model = Menu::model()->findByPk($this->parent_menu_id);
+    $model = Menu::model()->findByPk($parent_menu_id);
     if($model===null)
       throw new CHttpException(404,'The requested page does not exist.');
-    return $model->getAttribute('menu_name');
+    return $model->menu_name;
   }
 }

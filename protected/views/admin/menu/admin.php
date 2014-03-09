@@ -7,10 +7,10 @@ $this->breadcrumbs=array(
 	'Manage',
 );
 
-$this->menu=array(
-	array('label'=>'List Menu', 'url'=>array('index')),
-	array('label'=>'Create Menu', 'url'=>array('create')),
-);
+//$this->menu=array(
+//	array('label'=>'List Menu', 'url'=>array('index')),
+//	array('label'=>'Create Menu', 'url'=>array('create')),
+//);
 
 Yii::app()->clientScript->registerScript('search', "
 $('.search-button').click(function(){
@@ -25,13 +25,20 @@ $('.search-form form').submit(function(){
 });
 ");
 ?>
+<?php
 
+if(app()->user->hasFlash('error')){
+  echo app()->user->getFlash('error');
+} elseif(app()->user->hasFlash('warning')){
+  echo app()->user->getFlash('warning');
+} elseif(app()->user->hasFlash('info')){
+  echo app()->user->getFlash('info');
+} elseif(app()->user->hasFlash('success')){
+  echo '<div class="alert alert-success">'.app()->user->getFlash('success').'</div>';
+}
+
+?>
 <h1>Manage Menus</h1>
-
-<p>
-You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
-or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
-</p>
 
 <?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>
 <div class="search-form" style="display:none">
@@ -39,14 +46,18 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'model'=>$model,
 )); ?>
 </div><!-- search-form -->
-
+<div class="view_admin">
+  <div style="text-align:  right"><?php echo CHtml::link('Thêm menu', Yii::app()->createUrl('/menu/create')) ;?></div>
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'menu-grid',
 	'dataProvider'=>$model->search(),
-	'filter'=>$model,
+	//'filter'=>$model,
 	'columns'=>array(
 		'id',
-		'parent_menu_id',
+    array(
+      'name'=> 'parent_menu_id',
+      'value'=>  '$data->getParentName($data->parent_menu_id)',
+    ),
 		'menu_name',
 		'menu_name_eng',
 		'menu_type',
@@ -56,8 +67,10 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'update_date',
 		'del_flg',
 		*/
-		array(
-			'class'=>'CButtonColumn',
-		),
+    array(
+      'class'=>'bootstrap.widgets.TbButtonColumn',
+      'htmlOptions'=>array('style'=>'width: 50px'),
+    ),
 	),
 )); ?>
+</div>

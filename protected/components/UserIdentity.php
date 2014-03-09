@@ -8,6 +8,7 @@
 class UserIdentity extends CUserIdentity
 {
   private $_id;
+  const ERROR_STATUS_NOTACTIV=3;
 	/**
 	 * Authenticates a user.
 	 * The example implementation makes sure if the username and password
@@ -24,8 +25,9 @@ class UserIdentity extends CUserIdentity
       $this->errorCode=self::ERROR_USERNAME_INVALID;
     } elseif( $users->userpass !== md5($this->password)) {
       $this->errorCode=self::ERROR_PASSWORD_INVALID;
-    }
-    else {
+    }elseif($users->del_flg == 1){
+      $this->errorCode=self::ERROR_STATUS_NOTACTIV;
+    }else {
       $this->_id = $users->userid;
       $this->setState('roles', $users->getUserRole($users->userid));
 			$this->errorCode=self::ERROR_NONE;

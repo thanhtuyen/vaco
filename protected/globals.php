@@ -169,4 +169,5 @@ function Clean($arr){
 {
   $model->del_flg = 1;
   $model->save();
+
 }

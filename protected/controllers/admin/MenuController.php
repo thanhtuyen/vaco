@@ -78,6 +78,7 @@ class MenuController extends Controller
 			$model->attributes=Clean($_POST['Menu']);
       $model->create_date = getDatetime();
       $model->create_user_id = app()->user->id;
+      $model->del_flg = 0;
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -118,7 +119,8 @@ class MenuController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		$this->loadModel($id)->delete();
+    $model=$this->loadModel($id);
+    deleteRow($model);
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))

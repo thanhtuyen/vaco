@@ -59,7 +59,7 @@ class DetailMenuController extends Controller
 	public function actionView($id)
 	{
     $model = $this->loadModel($id);
-    //$model->setAttribute('detail', CHtml::decode($model->detail));
+   // $model->setAttribute('detail', CHtml::decode($model->detail));
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
@@ -104,7 +104,7 @@ class DetailMenuController extends Controller
         }
         $model->create_date = getDatetime();
         $model->create_user = app()->user->id;
-
+        $model->del_flg = 0;
         if($model->save())
           $this->redirect(array('view','id'=>$model->id));
       }
@@ -127,7 +127,6 @@ class DetailMenuController extends Controller
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
-
 		if(isset($_POST['detailMenu']))
 		{
 			$model->attributes=$_POST['detailMenu'];
@@ -151,7 +150,8 @@ class DetailMenuController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		$this->loadModel($id)->delete();
+		$model = $this->loadModel($id);
+    deleteRow($model);
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))

@@ -22,7 +22,7 @@
             'class'=>'bootstrap.widgets.TbMenu',
             'items'=>array(
                 array('label'=>'Admin', 'url'=>array('/user/admin') ),
-                array('label'=>'Menu', 'url'=>array('/menu/admin', 'view'=>'about')),
+                array('label'=>'Menu', 'url'=>array('/menu/admin')),
                 array('label'=>'ImageSlide', 'url'=>array('/ImageSlide/admin')),
                 array('label'=>'Detail Menu', 'url'=>array('/DetailMenu/admin')),
                 array('label'=>'News', 'url'=>array('/news/admin')),

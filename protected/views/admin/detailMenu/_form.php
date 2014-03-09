@@ -17,12 +17,25 @@ Yii::import('ext.ckeditor.CKEditor');
 
   <div class="control-group">
     <?php echo $form->labelEx($model,'menu_id', array('class'=> "control-label")); ?>
-    <?php $parent = detailMenu::getListMenu();?>
+    <?php
+//    if($model->isNewRecord){
+//      $parents = detailMenu::getListMenu();
+//    } else{
+//      $parent = detailMenu::getListMenu();
+//      $arrmenu = array( );
+//      $arrmenu[$model->menu_id] = $model->Menu->menu_name;
+////      print_r($arrmenu);
+////      print_r($parent);
+////      die;
+//      $parents = array_push($arrmenu, $parent);
+//    }
+    $parents = detailMenu::getListMenu();
+    ?>
     <?php // = array_merge(array(0 => 'Root'), $parent);
     //$list_cate = array(0 => 'Root') + $parent;
     ?>
     <div class="controls">
-      <?php echo $form->dropDownList($model,'menu_id',$parent ,array('class'=>'span3','maxlength'=>255)); ?>
+      <?php echo $form->dropDownList($model,'menu_id',$parents ,array('class'=>'span3','maxlength'=>255)); ?>
     </div>
 
   </div>
@@ -63,7 +76,9 @@ Yii::import('ext.ckeditor.CKEditor');
   <div class="control-group">
     <?php echo $form->labelEx($model,'detail', array('class'=> "control-label")); ?>
     <div class="controls">
-      <?php echo $form->textArea($model, 'detail', array('id'=>'editor1')); ?>
+      <?php
+      $model->setAttribute(CHtml::decode($model->detail), 'detail');
+      echo $form->textArea($model, 'detail', array('id'=>'editor1')); ?>
       <?php echo $form->error($model,'detail'); ?>
     </div>
   </div>
