@@ -19,7 +19,7 @@
 		<div class="control-group">
 		<?php 
 			//if($model->isNewRecord != '1')
-				echo $form->dropDownListRow($model,'menu_id', Menu::listCategory(), array('prompt'=>'Chọn menu ...')); 
+				echo $form->dropDownListRow($model,'menu_id', Menu::listCategory(0, Menu::LIST_MENU), array('prompt'=>'Chọn menu ...')); 
 			/*else {
 				echo $form->labelEx($model,'menu_id',array('class'=>'control-label'));?>
 				<div class="controls">
@@ -78,7 +78,7 @@
 			<div class="controls"><br>
 				<?php 
 					if($model->isNewRecord != '1')
-						echo CHtml::image(Yii::app()->request->baseUrl . News::image_url . $model->thumb_image_path,"",array("width"=>800));
+						echo CHtml::image(Yii::app()->request->baseUrl . News::image_url . $model->thumb_image_path,"",array("maxwidth"=>800));
 				?>	
 			</div>	
 		</div>	

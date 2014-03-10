@@ -1,7 +1,7 @@
 h1, h5 {
     color: blue !important;
 }
-.icon_plus {
+.icon_plus, .icon_edit {
     width:40px;
     height:40px;
 }
