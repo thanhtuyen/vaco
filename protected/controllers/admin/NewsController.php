@@ -75,12 +75,12 @@ class NewsController extends Controller
 		
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
-		
+
 		if(isset($_POST['News']))
 		{ 
 			$model->attributes = $_POST['News'];
 			//$post_value = $_POST['News'];
-
+      $model->setScenario('create');
       		if ($model->validate()) {
 				//$list_menu_id = Clean($_POST['News']['menu_id']); 
 				//foreach ($list_menu_id as $l_menu_id=>$menu_id){
