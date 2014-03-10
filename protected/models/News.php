@@ -61,13 +61,18 @@ class News extends CActiveRecord
 			//array('thumb_image_path', 'unsafe'),
 			array('thumb_image_path', 'file',
             	'types' => 'jpg, jpeg, png, gif',
-				'mimeTypes'=>array('image/gif, image/jpeg, image/jpg, image/png'),
-				'wrongMimeType'=>'error',
-            	'maxSize' => 1024 * 1024 * 2,
-            	'wrongType'=> getMessage('wrongTypeImage'),
+				//'mimeTypes'=>array('image / gif, image / jpeg, thumb_image_path / jpg, image / png'),
+        // 'wrongMimeType' => 'error',
+              'maxSize' => 1024 * 1024 * 2,
+            	//'wrongType'=> getMessage('wrongTypeImage'),
             	'tooLarge' => getMessage('tooLarge','',array('number'=>2)),
             	'allowEmpty' => true,
-				'on' => 'create, update'),
+				      'on' => 'create, update'),
+      array(
+        'thumb_image_path', 'file'
+              ,'mimeTypes'=>array(
+              'image/jpeg','image/gif','image/png'
+      ), 'wrongMimeType'=>'Only common types allowed'),
 
 			array('listfile_attach', 'file',
         		'types'=>'doc, pdf, docx, xls',
