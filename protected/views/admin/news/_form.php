@@ -19,7 +19,7 @@
 		<div class="control-group">
 		<?php 
 			//if($model->isNewRecord != '1')
-				echo $form->dropDownListRow($model,'menu_id', Menu::listCategory(), array('prompt'=>'Chọn menu ...')); 
+				echo $form->dropDownListRow($model,'menu_id', Menu::listCategory(0, Menu::LIST_MENU), array('prompt'=>'Chọn menu ...')); 
 			/*else {
 				echo $form->labelEx($model,'menu_id',array('class'=>'control-label'));?>
 				<div class="controls">

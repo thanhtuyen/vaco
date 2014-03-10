@@ -111,12 +111,21 @@ class Menu extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
-  public static function findMenu($parent_id = 0){
-    $categories = self::model()->findAllByAttributes(array('parent_menu_id' => $parent_id));
+  public static function findMenu($parent_id = 0, $type = ""){
+  	if ($type != "")
+  		$categories = self::model()->findAllByAttributes(array('parent_menu_id' => $parent_id,
+  																'menu_type' => self::LIST_MENU,
+  																'del_flg' => 0));
+  	else
+    	$categories = self::model()->findAllByAttributes(array('parent_menu_id' => $parent_id,
+    															'del_flg' => 0));
     return $categories;
   }
-  public static function listCategory($id = 0){
-    $categories = self::findMenu($id);
+  public static function listCategory($id = 0, $type = ""){
+  	if ($type != "")
+  		$categories = self::findMenu($id, $type);
+  	else
+    	$categories = self::findMenu($id);
     if ($categories == null){
       // $cate = self::model()->findByPk($id);
       // return array($cate->id => '--'.$cate->name);
