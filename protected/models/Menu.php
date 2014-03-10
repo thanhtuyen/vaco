@@ -65,6 +65,7 @@ class Menu extends CActiveRecord
       		'detailMenu' => array(self::HAS_ONE, 'detaiMenu', 'menu_id'),
       		'parent' => array(self::BELONGS_TO, 'Menu', 'parent_menu_id'),
 			'news' => array(self::HAS_MANY, 'news', 'menu_id'),
+			'detailMenuImage' => array(self::HAS_MANY, 'detailmenuimage', 'menu_id'),
 		);
 	}
 

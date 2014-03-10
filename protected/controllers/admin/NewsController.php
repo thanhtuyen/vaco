@@ -80,7 +80,7 @@ class NewsController extends Controller
 		{ 
 			$model->attributes = $_POST['News'];
 			//$post_value = $_POST['News'];
-      $model->setScenario('create');
+      		$model->setScenario('create');
       		if ($model->validate()) {
 				//$list_menu_id = Clean($_POST['News']['menu_id']); 
 				//foreach ($list_menu_id as $l_menu_id=>$menu_id){
@@ -142,7 +142,7 @@ class NewsController extends Controller
 
 		$old_image_path = $model->thumb_image_path; 
 		$old_file = $model->listfile_attach;
-		$array_file = explode(',',$model->listfile_attach);  //var_dump($array_file);exit;
+		$array_file = explode(',',$model->listfile_attach);  
 		if(isset($_POST['News']))
 		{  
 			$model->attributes = $_POST['News'];

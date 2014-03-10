@@ -22,6 +22,7 @@
 class detailMenu extends CActiveRecord
 {
   const S_THUMBNAIL = '/images/detailmenu/';
+  const file_url = '/uploadfile/detailmenu/';
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -85,7 +86,7 @@ class detailMenu extends CActiveRecord
 	}
 
 	/**
-	 * @return array customized attribute labels (name=>label)
+	 * @return array customized title_engattribute labels (name=>label)
 	 */
 	public function attributeLabels()
 	{
@@ -104,6 +105,7 @@ class detailMenu extends CActiveRecord
 			'create_user' => 'Create User',
 			'update_date' => 'Update Date',
 			'del_flg' => 'Del Flg',
+			'feature_flg' => 'Vị trí hiển thị',
 		);
 	}
 

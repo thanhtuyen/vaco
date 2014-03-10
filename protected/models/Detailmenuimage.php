@@ -60,6 +60,7 @@ class Detailmenuimage extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'menu' => array(self::BELONGS_TO, 'menu', 'menu_id'),
 		);
 	}
 
@@ -71,14 +72,14 @@ class Detailmenuimage extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'menu_id' => 'Menu',
-			'caption' => 'Caption',
-			'caption_eng' => 'Caption Eng',
+			'caption' => 'Chú thích',
+			'caption_eng' => 'Caption',
 			'create_date' => 'Create Date',
 			'create_user' => 'Create User',
 			'update_date' => 'Update Date',
 			'del_flg' => 'Del Flg',
-			'public_flg' => 'Public Flg',
-			'feature_flg' => 'Feature Flg',
+			'public_flg' => 'Công khai',
+			'feature_flg' => 'Vị trí hiển thị',
 		);
 	}
 
@@ -103,6 +104,7 @@ class Detailmenuimage extends CActiveRecord
 		$criteria->compare('del_flg',$this->del_flg);
 		$criteria->compare('public_flg',$this->public_flg);
 		$criteria->compare('feature_flg',$this->feature_flg);
+		$criteria->addCondition("del_flg = 0");
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

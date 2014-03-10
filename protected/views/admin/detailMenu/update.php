@@ -16,6 +16,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Update detailMenu <?php echo $model->id; ?></h1>
+<h1><?php echo str_replace("###TITLE###", 'Chi Tiết Menu', Constants::$listTitleForm['form_update']) .' ' . $model->id; ?></h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

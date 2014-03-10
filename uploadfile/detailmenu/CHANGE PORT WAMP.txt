@@ -1,0 +1,17 @@
+M? t?p tin http.conf trong thu m?c /wamp/bin/apache/Apache2.2.17/conf/ b?ng m?t trình so?n th?o, notepad ch?ng h?n.
+Tìm ki?m dòng Listen 80 và thay c?ng 80 thành c?ng b?n ch?n, ? dây mình ch?n c?ng 81 làm ví d?, Listen 81.
+Luu t?p tin.
+
+Ð?n bu?c này trang b?n có th? ch?y wamp và vào trình duy?t gõ “http://localhost:81” d? vào trang qu?n lý c?a wamp.
+
+Nhung v?n d? nãy sinh là khi b?n click trái vào bi?u tu?ng ? system tray, nh?n localhost, phpMyAdmin ho?c b?t k? cái alias nào b?n t?o, thì trình duy?t cung ch? m? ra “http://localhost“, nghia là v?n m? ? port 80.
+
+B?n v?n có th? thêm vào b?ng cách gõ c?m “:81” d? ch?y bình thu?ng, nhung mình s? chia s? m?t gi?i pháp toàn c?c và hi?u qu? hon nhu sau:
+
+M? t?p tin wampmanager.ini trong thu m?c /wamp/.
+Tìm d?n t? localhost và khi b?n tìm th?y dòng l?nh nhu sau Parameters: “http://localhost/”; Glyph: , thay d?i tham s? thành http://localhost:81/. L?n lu?t tìm và s?a t?t c? các c?m “http://localhost/” m?c d?nh thành “http://localhost:81“, có th? s? d?ng ch?c nang replace, Ctrl + H, c?a trình so?n th?o d? làm nhanh vi?c này.
+Luu t?p tin.
+
+Th?c hi?n tuong t? v?i wampmanager.tpl.
+
+http://chutiephat.wordpress.com/2011/11/11/doi-port-cho-wamp-server/

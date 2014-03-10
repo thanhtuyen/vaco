@@ -8,12 +8,12 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List detailMenu', 'url'=>array('index')),
-	array('label'=>'Manage detailMenu', 'url'=>array('admin')),
+	//array('label'=>'List detailMenu', 'url'=>array('index')),
+	//array('label'=>'Manage detailMenu', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Create detailMenu</h1>
-<div >
+<h1><?php echo str_replace("###TITLE###", 'Chi Tiết Menu', Constants::$listTitleForm['form_create']); ?></h1>
+<!-- <div class="create_user"> -->
   <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
-</div>
+<!-- </div> -->

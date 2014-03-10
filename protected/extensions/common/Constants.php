@@ -17,6 +17,12 @@ class Constants {
 		'news' 				=> array(	'title' => 'Quản lý Tin Tức', 
 										'url' => array('/news/admin'), 
 										'header' => 'TIN TỨC'),
+		'detail_menu_image' => array(	'title' => 'Quản lý Chi Tiết Menu Hình Ảnh', 
+										'url' => array('/detailmenuimage/admin'), 
+										'header' => 'CHI TIẾT MENU HÌNH ẢNH'),
+		'detail_menu' 		=> array(	'title' => 'Quản lý Chi Tiết Menu', 
+										'url' => array('/detailmenu/admin'), 
+										'header' => 'CHI TIẾT MENU'),
 
 	);
 	

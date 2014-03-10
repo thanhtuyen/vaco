@@ -71,43 +71,46 @@ class DetailMenuController extends Controller
 	 */
 	public function actionCreate()
 	{
+		$this->pageTitle = Constants::$listModule['detail_menu']['header'];
+		
 		$model=new detailMenu;
+		$model->feature_flg = 1; // set default feature_flg
 
 		// Uncomment the following line if AJAX validation is needed
 		$this->performAjaxValidation($model);
 
 		if(isset($_POST['detailMenu']))
 		{
-      $model->attributes=Clean($_POST['detailMenu']);
-//      $model->setAttributes(array('content_article'=>$_FILES['detailMenu']['name']['image_path'],
-//       ));
-      $model->detail = CHtml::encode($_POST['detailMenu']['detail']);
-      $model->setScenario('create');
-      if ($model->validate()) {
-
-        //save image_path
-        $image_path = CUploadedFile::getInstance($model, 'image_path');
-        if (is_object($image_path) && get_class($image_path)==='CUploadedFile')
-        {
-          $model->image_path = $image_path;
-        }
-
-        if (is_object($model->image_path)) {
-          $model->image_path->saveAs(Yii::getPathOfAlias('webroot'). detailMenu::S_THUMBNAIL.$model->image_path->name);
-        }
-
-        //save list file attach
-
-        if($filez=uploadMultifile($model,'list_file_attach',detailMenu::S_THUMBNAIL))
-        {
-          $model->list_file_attach=implode(",", $filez);
-        }
-        $model->create_date = getDatetime();
-        $model->create_user = app()->user->id;
-        $model->del_flg = 0;
-        if($model->save())
-          $this->redirect(array('view','id'=>$model->id));
-      }
+	      $model->attributes=Clean($_POST['detailMenu']);
+	//      $model->setAttributes(array('content_article'=>$_FILES['detailMenu']['name']['image_path'],
+	//       ));
+	      $model->detail = CHtml::encode($_POST['detailMenu']['detail']);
+	      $model->setScenario('create');
+	      if ($model->validate()) {
+	
+	        //save image_path
+	        $image_path = CUploadedFile::getInstance($model, 'image_path');
+	        if (is_object($image_path) && get_class($image_path)==='CUploadedFile')
+	        {
+	          $model->image_path = $image_path;
+	        }
+	
+	        if (is_object($model->image_path)) {
+	          $model->image_path->saveAs(Yii::getPathOfAlias('webroot'). detailMenu::S_THUMBNAIL.$model->image_path->name);
+	        }
+	
+	        //save list file attach
+	
+	        if($filez=uploadMultifile($model,'list_file_attach',detailMenu::S_THUMBNAIL))
+	        {
+	          $model->list_file_attach=implode(",", $filez);
+	        }
+	        $model->create_date = getDatetime();
+	        $model->create_user = app()->user->id;
+	        $model->del_flg = 0;
+	        if($model->save(true,array('menu_id','title','caption','detail','title_eng','caption_eng','detail_eng','image_path','list_file_attach','create_date','create_user','del_flg','feature_flg')))
+	          $this->redirect(array('view','id'=>$model->id));
+	      }
 
     }
 
@@ -123,19 +126,62 @@ class DetailMenuController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
+		$this->pageTitle = Constants::$listModule['detail_menu']['header'];
+		
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
+		
+		$old_image_path = $model->image_path; 
+		$old_file = $model->list_file_attach;
+		$array_file = explode(',',$model->list_file_attach);  
 		if(isset($_POST['detailMenu']))
 		{
 			$model->attributes=$_POST['detailMenu'];
-      //print_r($_POST['detailMenu']);echo "</br>";
-      $model->detail = CHtml::encode($_POST['detailMenu']['detail']);
-     //print_r($model->detail);
-			if($model->save())
-       // print_r($model->detail);die;
-				$this->redirect(array('view','id'=>$model->id));
+
+      		$model->detail = CHtml::encode($_POST['detailMenu']['detail']);
+			$model->detail_eng = CHtml::encode($_POST['detailMenu']['detail_eng']);
+			$model->image_path = CUploadedFile::getInstance($model,'image_path');
+			
+			$model->list_file_attach = CUploadedFile::getInstances($model,'list_file_attach'); 
+
+			$model->update_date = getDatetime(); 
+			
+			if ($model->validate()) { 
+			// upload image
+		        $image_path = CUploadedFile::getInstance($model, 'image_path');
+		        if (is_object($image_path) && get_class($image_path)==='CUploadedFile')
+		        	$model->image_path = $image_path;
+		
+		        if (is_object($model->image_path)) { 
+		        	$image_path = Yii::getPathOfAlias('webroot') . detailMenu::S_THUMBNAIL . $old_image_path;
+					if($old_image_path && file_exists($image_path)) 
+		          		unlink(Yii::getPathOfAlias('webroot') . detailMenu::S_THUMBNAIL . $old_image_path);
+		
+		          	$model->image_path->saveAs(Yii::getPathOfAlias('webroot') . detailMenu::S_THUMBNAIL . $model->image_path);
+		        } else { 
+					$model->image_path = $old_image_path;
+		        }
+
+		        // upload files		       
+		        if($model->list_file_attach != array()){ 
+					foreach ($array_file as $k){ 
+						if($k!=""){ 
+				        	$file_path = Yii::getPathOfAlias('webroot') . detailMenu::file_url . $k;
+							if(file_exists($file_path)) 
+				          		unlink(Yii::getPathOfAlias('webroot') . detailMenu::file_url . $k);
+						}
+					} 
+					if($files = uploadMultifile($model,'list_file_attach', detailMenu::file_url))
+						$model->list_file_attach = implode(",", $files);				
+		        } else {
+		        	$model->list_file_attach = $old_file;
+		        }
+		        
+				if($model->save())
+					$this->redirect(array('view','id'=>$model->id));
+			}
 		}
 
 		$this->render('update',array(
@@ -151,7 +197,7 @@ class DetailMenuController extends Controller
 	public function actionDelete($id)
 	{
 		$model = $this->loadModel($id);
-    deleteRow($model);
+    	deleteRow($model);
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
