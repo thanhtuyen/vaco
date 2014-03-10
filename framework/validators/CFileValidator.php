@@ -117,7 +117,80 @@ class CFileValidator extends CValidator
 	 * fileinfo PECL extension should be installed.
 	 * @since 1.1.11
 	 */
+	//public $wrongMimeType;
 	public $wrongMimeType;
+
+	
+
+ 	/** @var integer the maximum file count the given attribute can hold.
+
+ 	 * It defaults to 1, meaning single file upload. By defining a higher number,
+
+ 	 * multiple uploads become possible.
+
+@@ -194,6 +210,31 @@ protected function validateFile($object, $attribute, $file)
+
+ 	$this->addError($object,$attribute,$message,array('{file}'=>$file->getName(), '{extensions}'=>implode(', ',$types)));
+
+ 			}
+
+ 		}
+
+
+
+		if($this->mimeTypes!==null)
+
+		{
+
+			if(function_exists('finfo_open'))
+
+			{
+
+				$mimeType=false;
+
+				if($info=finfo_open(defined('FILEINFO_MIME_TYPE') ? FILEINFO_MIME_TYPE : FILEINFO_MIME))
+
+					$mimeType=finfo_file($info,$file->getTempName());
+
+			}
+
+			else if(function_exists('mime_content_type'))
+
+				$mimeType=mime_content_type($file->getTempName());
+
+			else
+
+				throw new CException(Yii::t('yii','In order to use MIME-type validation provided by CFileValidator fileinfo PECL extension should be installed.'));
+
+
+
+			if(is_string($this->mimeTypes))
+
+				$mimeTypes=preg_split('/[\s,]+/',strtolower($this->mimeTypes),-1,PREG_SPLIT_NO_EMPTY);
+
+			else
+
+				$mimeTypes=$this->mimeTypes;
+
+
+
+			if($mimeType===false || !in_array(strtolower($mimeType),$mimeTypes))
+
+			{
+
+				$message=$this->wrongMimeType!==null?$this->wrongMimeType : Yii::t('yii','The file "{file}" cannot be uploaded. Only files of these MIME-types are allowed: {mimeTypes}.');
+
+				$this->addError($object,$attribute,$message,array('{file}'=>$file->getName(), '{mimeTypes}'=>implode(', ',$mimeTypes)));
+
+			}
+
+		}
+
+ 	}*/
+
+
+	
+	
 	/**
 	 * @var integer the maximum file count the given attribute can hold.
 	 * It defaults to 1, meaning single file upload. By defining a higher number,

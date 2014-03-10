@@ -25,7 +25,9 @@ $this->menu=array(
 	$this->widget('bootstrap.widgets.TbDetailView', array(
 		'data'=>$model,
 		'attributes'=>array(
-			'image_path',
+			array('name' => 'image_path',
+	      		'value' => $model->image_path ? $model->image_path : ''
+			),
 			array('name' => 'title',
 	      		'value' => CHtml::decode($model->title)
 			),

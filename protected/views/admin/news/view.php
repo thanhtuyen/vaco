@@ -59,9 +59,11 @@ $this->menu=array(
 	      		'value' => CHtml::decode($model->detail_eng)
 			),	
 			array('name' => 'thumb_image_path',
-	      		'value' => $model->thumb_image_path
+	      		'value' => $model->thumb_image_path ? $model->thumb_image_path : ''
 			),
-			'listfile_attach',
+			array('name' => 'listfile_attach',
+	      		'value' => $model->listfile_attach ? $model->listfile_attach : ''
+			),
 			array('name' => 'create_user_id',
 	      		'value' => $user['username']
 			),
@@ -69,9 +71,11 @@ $this->menu=array(
 	      		'value' => Constants::$arrayFeature_flag[$model->feature_flag]
 			),
 			array('name' => 'create_date',
-	        	'value' => $model->create_date? $model->create_date:''),	
+	        	'value' => $model->create_date? $model->create_date:''
+			),	
 	      	array('name' => 'update_date',
-	        	'value' => $model->update_date? $model->update_date:''),
+	        	'value' => $model->update_date? $model->update_date:''
+	      	),
 	      	array('name' => 'is_public',
 	      		'value' => Constants::$arrayIsPublic[$model->is_public]
 			),

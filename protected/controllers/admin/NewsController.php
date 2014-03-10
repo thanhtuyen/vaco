@@ -97,7 +97,7 @@ class NewsController extends Controller
 					$model->thumb_image_path = CUploadedFile::getInstance($model,'thumb_image_path'); 
 					if (is_object($model->thumb_image_path)) 	
 			          	$model->thumb_image_path->saveAs(Yii::getPathOfAlias('webroot') . News::image_url . $model->thumb_image_path);
-			          	
+					
 			        // upload file
 					if($files = uploadMultifile($model,'listfile_attach', News::file_url))
 						$model->listfile_attach = implode(",", $files);
@@ -140,8 +140,9 @@ class NewsController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		$old_image_path = $model->thumb_image_path;
-		$array_file = explode(',',$model->listfile_attach);  
+		$old_image_path = $model->thumb_image_path; 
+		$old_file = $model->listfile_attach;
+		$array_file = explode(',',$model->listfile_attach);  //var_dump($array_file);exit;
 		if(isset($_POST['News']))
 		{  
 			$model->attributes = $_POST['News'];
@@ -172,14 +173,16 @@ class NewsController extends Controller
 		        // upload files		       
 		        if($model->listfile_attach != array()){ 
 					foreach ($array_file as $k){ 
-						if($k!=""){
+						if($k!=""){ 
 				        	$file_path = Yii::getPathOfAlias('webroot') . News::file_url . $k;
 							if(file_exists($file_path)) 
 				          		unlink(Yii::getPathOfAlias('webroot') . News::file_url . $k);
 						}
-					}
+					} 
 					if($files = uploadMultifile($model,'listfile_attach', News::file_url))
 						$model->listfile_attach = implode(",", $files);				
+		        } else {
+		        	$model->listfile_attach = $old_file;
 		        }
 				
 				if($model->save()){ 
