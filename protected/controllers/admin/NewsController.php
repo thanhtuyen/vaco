@@ -144,7 +144,8 @@ class NewsController extends Controller
 		$old_file = $model->listfile_attach;
 		$array_file = explode(',',$model->listfile_attach);  
 		if(isset($_POST['News']))
-		{  
+		{
+      $model->setScenario('update');
 			$model->attributes = $_POST['News'];
 			$model->detail = CHtml::encode($_POST['News']['detail']);
 			$model->detail_eng = CHtml::encode($_POST['News']['detail_eng']);
