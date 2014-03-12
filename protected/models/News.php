@@ -60,29 +60,22 @@ class News extends CActiveRecord
 			
 			//array('thumb_image_path', 'unsafe'),
 			array('thumb_image_path', 'file',
-            	'types' => 'jpg, jpeg, png, gif',
-				//'mimeTypes'=>array('image / gif, image / jpeg, thumb_image_path / jpg, image / png'),
-        // 'wrongMimeType' => 'error',
+            	//'types' => 'jpg, jpeg, png, gif',
+              'mimeTypes'=>array('image/gif','image/jpeg', 'image/jpg', 'image/png'),
               'maxSize' => 1024 * 1024 * 2,
-            	//'wrongType'=> getMessage('wrongTypeImage'),
             	'tooLarge' => getMessage('tooLarge','',array('number'=>2)),
             	'allowEmpty' => true,
 				      'on' => 'create, update'),
-      array(
-        'thumb_image_path', 'file'
-              ,'mimeTypes'=>array(
-              'image/jpeg','image/gif','image/png'
-      ), 'wrongMimeType'=>'Only common types allowed'),
-
 			array('listfile_attach', 'file',
-        		'types'=>'doc, pdf, docx, xls',
-				//'mimeTypes'=>array('application/pdf, application/msword, text/plain, application/vnd.ms-excel, application/vnd.oasis.opendocument.text, application/vnd.oasis.opendocument.spreadsheet'),
+        		//'types'=>'doc, pdf, docx, xls',
+            'mimeTypes' => 'application/pdf, application/msword, text/plain, application/vnd.ms-excel, application/vnd.oasis.opendocument.text, application/vnd.oasis.opendocument.spreadsheet',
+//				    'mimeTypes'=>array('application/pdf','application/docx','application/xls','application/doc', 'application/msword', 'text/plain', 'application/vnd.ms-excel', 'application/vnd.oasis.opendocument.text', 'application/vnd.oasis.opendocument.spreadsheet'),
         		'maxSize'=>1024 * 1024 * 10,
-        		'wrongType'=>getMessage('wrongTypeFile'),
+//        		'wrongType'=>getMessage('wrongTypeFile'),
         		'tooLarge'=>getMessage('tooLarge','',array('number'=>10)),
-				'maxFiles' => 5,
+				    'maxFiles' => 5,
         		'allowEmpty'=>true,
-				'on' => 'create, update'),
+				    'on' => 'create, update'),
       
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
