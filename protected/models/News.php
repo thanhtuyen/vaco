@@ -60,27 +60,12 @@ class News extends CActiveRecord
 			
 			//array('thumb_image_path', 'unsafe'),
 			array('thumb_image_path', 'file',
-<<<<<<< HEAD
-            	'types' => 'jpg, jpeg, png, gif',
-				//'mimeTypes'=>array('image / gif, image / jpeg, thumb_image_path / jpg, image / png'),
-        		// 'wrongMimeType' => 'error',
-=======
             	//'types' => 'jpg, jpeg, png, gif',
               'mimeTypes'=>array('image/gif','image/jpeg', 'image/jpg', 'image/png'),
->>>>>>> f1ad5b534884aa98104077839b250ba2f1e20789
               'maxSize' => 1024 * 1024 * 2,
             	'tooLarge' => getMessage('tooLarge','',array('number'=>2)),
             	'allowEmpty' => true,
-<<<<<<< HEAD
-				'on' => 'update'),
-	      	/*array(
-	        	'thumb_image_path', 'file'
-              	,'mimeTypes'=>array('image/jpeg','image/gif','image/png'), 
-              	'wrongMimeType'=>'Only common types allowed'),*/
-
-=======
 				      'on' => 'create, update'),
->>>>>>> f1ad5b534884aa98104077839b250ba2f1e20789
 			array('listfile_attach', 'file',
         		//'types'=>'doc, pdf, docx, xls',
             'mimeTypes' => 'application/pdf, application/msword, text/plain, application/vnd.ms-excel, application/vnd.oasis.opendocument.text, application/vnd.oasis.opendocument.spreadsheet',
@@ -90,11 +75,7 @@ class News extends CActiveRecord
         		'tooLarge'=>getMessage('tooLarge','',array('number'=>10)),
 				    'maxFiles' => 5,
         		'allowEmpty'=>true,
-<<<<<<< HEAD
-				'on' => 'update'),
-=======
 				    'on' => 'create, update'),
->>>>>>> f1ad5b534884aa98104077839b250ba2f1e20789
       
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.

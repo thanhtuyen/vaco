@@ -52,21 +52,6 @@ class detailMenu extends CActiveRecord
 			array('menu_id', 'required'),
 			array('id, menu_id, create_user, del_flg', 'numerical', 'integerOnly'=>true),
 			array('title, title_eng', 'length', 'max'=>45),
-<<<<<<< HEAD
-      		array('image_path', 'file',
-            	'types' => 'gif, jpg, png',
-            	'maxSize' => 1024 * 1024 * 2,
-            	'wrongType'=>'Please upload only images in the format jpg, gif, png',
-            	'tooLarge' => 'The file was larger than 2MB. Please upload a smaller file.',
-            	'allowEmpty' => true, 'on' => 'create, update' ),
-
-			array('list_file_attach', 'file',
-        		'types'=>'doc, pdf, docx',
-        		'maxSize'=>1024*1024*10,
-        		'wrongType'=>'Please upload only cv in the format doc, pdf, docx',
-        		'tooLarge'=>'The file was larger than 10MB. Please upload a smaller file.','maxFiles' => 5,
-        		'allowEmpty'=>true ),
-=======
       array('image_path', 'file',
             //'types' => 'gif, jpg, png',
             'mimeTypes'=>array('image/gif','image/jpeg', 'image/jpg', 'image/png'),
@@ -82,7 +67,6 @@ class detailMenu extends CActiveRecord
             //'wrongType'=>'Please upload only cv in the format doc, pdf, docx',
             'tooLarge'=>'The file was larger than 10MB. Please upload a smaller file.','maxFiles' => 5,
             'allowEmpty'=>true ),
->>>>>>> f1ad5b534884aa98104077839b250ba2f1e20789
 
 			array('caption, detail, caption_eng, detail_eng, create_date, update_date', 'safe'),
 			// The following rule is used by search().
