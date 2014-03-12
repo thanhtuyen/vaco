@@ -77,7 +77,7 @@ class DetailMenuController extends Controller
 		$model->feature_flg = 1; // set default feature_flg
 
 		// Uncomment the following line if AJAX validation is needed
-		$this->performAjaxValidation($model);
+		//$this->performAjaxValidation($model);
 
 		if(isset($_POST['detailMenu']))
 		{
@@ -86,8 +86,7 @@ class DetailMenuController extends Controller
 	//       ));
 	      $model->detail = CHtml::encode($_POST['detailMenu']['detail']);
 	      $model->setScenario('create');
-	      if ($model->validate()) {
-	
+	      if ($model->validate()) {	
 	        //save image_path
 	        $image_path = CUploadedFile::getInstance($model, 'image_path');
 	        if (is_object($image_path) && get_class($image_path)==='CUploadedFile')

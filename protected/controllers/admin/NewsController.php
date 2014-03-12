@@ -136,7 +136,7 @@ class NewsController extends Controller
 		// init model
 		$modelKeyword = Keyword::model()->findByPk($id); 
 		$model = $this->loadModel($id);
-
+//var_dump($model->attributes);exit;
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 

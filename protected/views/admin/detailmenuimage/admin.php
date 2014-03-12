@@ -8,8 +8,8 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Detailmenuimage', 'url'=>array('index')),
-	array('label'=>'Create Detailmenuimage', 'url'=>array('create')),
+	//array('label'=>'List Detailmenuimage', 'url'=>array('index')),
+	//array('label'=>'Create Detailmenuimage', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -26,12 +26,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Manage Detailmenuimages</h1>
-
-<p>
-You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
-or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
-</p>
+<h1><?php echo Constants::$listModule['detail_menu_image']['title']?></h1>
 
 <?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>
 <div class="search-form" style="display:none">
@@ -40,25 +35,24 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 )); ?>
 </div><!-- search-form -->
 
-<?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'detailmenuimage-grid',
-	'dataProvider'=>$model->search(),
-	'filter'=>$model,
-	'columns'=>array(
-		'id',
-		'menu_id',
-		'caption',
-		'caption_eng',
-		'create_date',
-		'create_user',
-		/*
-		'update_date',
-		'del_flg',
-		'public_flg',
-		'feature_flg',
-		*/
-		array(
-			'class'=>'CButtonColumn',
+<div class="view_admin" >
+	<div style="text-align:right"><?php echo CHtml::link(CHtml::image(Yii::app()->request->baseUrl.'/images/thumbnails/bplus.png',"bCreate",array("class"=>"icon_plus")), Yii::app()->createUrl('/detailmenuimage/create')) ;?></div>
+	<?php $this->widget('zii.widgets.grid.CGridView', array(
+		'id'=>'detailmenuimage-grid',
+		'dataProvider'=>$model->search(),
+		'template'=>"{items}",
+		//'filter'=>$model,
+		'columns'=>array(
+			'id',
+			'menu_id',			
+			'image_path',
+			'caption',
+			'public_flg',
+			'feature_flg',
+			array(
+				'class'=>'bootstrap.widgets.TbButtonColumn',
+	      		'htmlOptions'=>array('style'=>'width: 50px'),
+			),
 		),
-	),
-)); ?>
+	)); ?>
+</div>

@@ -16,8 +16,26 @@
 
 <div class="space5"> 
 	<div class="control-group">
-		<?php echo $form->dropDownListRow($model,'menu_id', Menu::listCategory(0, Menu::LIST_MENU), array('prompt'=>'Chọn menu ...'));  ?>
+		<?php echo $form->dropDownListRow($model,'menu_id', Menu::listCategory(0, Menu::TYPE_IMAGE), array('prompt'=>'Chọn menu ...'));  ?>
 	</div>
+	
+	<div class="control-group">
+	    <?php echo $form->labelEx($model,'image_path', array('class'=> "control-label")); ?>
+	    <div class="controls">
+	    	<span class="text_require_image"><?php echo Constants::$text_require_image;?></span><br>
+	 		<?php echo CHtml::activeFileField($model,'image_path'); ?>
+			<?php //echo $form->fileField($model,'thumb_image_path'); ?>
+			<span class="help_inline" style="float: left; margin-left: 200px;">
+				<?php //echo $form->error($model,'thumb_image_path'); ?>
+			</span>	
+		</div>
+		<div class="controls"><br>
+			<?php 
+				if($model->isNewRecord != '1')
+					echo CHtml::image(Yii::app()->request->baseUrl . News::image_url . $model->image_path,"",array("maxwidth"=>800));
+			?>	
+		</div>	
+	</div>	
 
 	<?php echo $form->textAreaRow($model,'caption',array('rows'=>1, 'cols'=>50, 'class'=>'span4')); ?>
 	

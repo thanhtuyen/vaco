@@ -117,19 +117,19 @@ CREATE TABLE IF NOT EXISTS `menu` (
 --
 
 INSERT INTO `menu` (`id`, `parent_menu_id`, `menu_name`, `menu_name_eng`, `menu_type`, `create_date`, `create_user_id`, `update_date`, `del_flg`) VALUES
-(1, 0, 'Giới thiệu', 'Introduce', 2, '2014-03-03 15:01:02', 1, NULL, NULL),
-(2, 0, 'Trang chủ', 'Home', 2, '2014-03-03 15:01:32', 1, NULL, NULL),
-(3, 0, 'Tin tức', 'News', 1, '2014-03-03 15:19:54', 1, NULL, NULL),
-(4, 3, 'Tin VACO', 'VACO news', 2, '2014-03-03 15:21:25', 1, NULL, NULL),
-(5, 3, 'Tin thời sự', 'Lastest news', 2, '2014-03-03 15:22:44', 1, NULL, NULL),
-(6, 3, 'Thông cáo báo chí', 'Published Statements', 2, '2014-03-03 15:23:46', 1, NULL, NULL),
-(7, 3, 'Quy định mới', 'News Regulations', 2, '2014-03-03 15:24:12', 1, NULL, NULL),
-(8, 3, 'Tóm tắt VBPL', 'Legal newsletters', 2, '2014-03-03 15:25:21', 1, NULL, NULL),
-(9, 0, 'Dịch vụ', 'Services', 2, '2014-03-03 15:25:42', 1, NULL, NULL),
-(10, 0, 'Thông tin ngành', 'Industries Infomation', 2, '2014-03-03 15:26:38', 1, NULL, NULL),
-(11, 0, 'Mạng lưới', 'Network', 2, '2014-03-03 15:26:57', 1, NULL, NULL),
-(12, 0, 'Tuyển dụng', 'Carrers', 2, '2014-03-03 15:27:15', 1, NULL, NULL),
-(13, 0, 'Liên hệ', 'Contact us', 2, '2014-03-03 15:28:04', 1, NULL, NULL);
+(1, 0, 'Giới thiệu', 'Introduce', 2, '2014-03-03 15:01:02', 1, NULL, 0),
+(2, 0, 'Trang chủ', 'Home', 2, '2014-03-03 15:01:32', 1, NULL, 0),
+(3, 0, 'Tin tức', 'News', 1, '2014-03-03 15:19:54', 1, NULL, 0),
+(4, 3, 'Tin VACO', 'VACO news', 2, '2014-03-03 15:21:25', 1, NULL, 0),
+(5, 3, 'Tin thời sự', 'Lastest news', 2, '2014-03-03 15:22:44', 1, NULL, 0),
+(6, 3, 'Thông cáo báo chí', 'Published Statements', 2, '2014-03-03 15:23:46', 1, NULL, 0),
+(7, 3, 'Quy định mới', 'News Regulations', 2, '2014-03-03 15:24:12', 1, NULL, 0),
+(8, 3, 'Tóm tắt VBPL', 'Legal newsletters', 2, '2014-03-03 15:25:21', 1, NULL, 0),
+(9, 0, 'Dịch vụ', 'Services', 2, '2014-03-03 15:25:42', 1, NULL, 0),
+(10, 0, 'Thông tin ngành', 'Industries Infomation', 2, '2014-03-03 15:26:38', 1, NULL, 0),
+(11, 0, 'Mạng lưới', 'Network', 2, '2014-03-03 15:26:57', 1, NULL, 0),
+(12, 0, 'Tuyển dụng', 'Carrers', 2, '2014-03-03 15:27:15', 1, NULL, 0),
+(13, 0, 'Liên hệ', 'Contact us', 2, '2014-03-03 15:28:04', 1, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -204,6 +204,7 @@ CREATE TABLE IF NOT EXISTS `detailmenuimage` (
   `menu_id` int(11) DEFAULT NULL,
   `caption` varchar(45) COLLATE utf8_unicode_ci,
   `caption_eng` varchar(45) COLLATE utf8_unicode_ci,
+  `image_path` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `create_date` datetime DEFAULT NULL,
   `create_user` int(11) DEFAULT NULL,
   `update_date` datetime DEFAULT NULL,

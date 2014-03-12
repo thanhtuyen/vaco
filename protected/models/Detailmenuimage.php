@@ -17,6 +17,7 @@
  */
 class Detailmenuimage extends CActiveRecord
 {
+	const image_url = '/images/detailmenuimage/';
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -43,12 +44,24 @@ class Detailmenuimage extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
+			array('menu_id','required','message'=>getMessage('required', $this->getAttributeLabel('menu_id'))),
 			array('menu_id, create_user, del_flg, public_flg, feature_flg', 'numerical', 'integerOnly'=>true),
 			array('caption, caption_eng', 'length', 'max'=>45),
 			array('create_date, update_date', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, menu_id, caption, caption_eng, create_date, create_user, update_date, del_flg, public_flg, feature_flg', 'safe', 'on'=>'search'),
+			array('id, menu_id, caption, caption_eng, create_date, create_user, image_path, update_date, del_flg, public_flg, feature_flg', 'safe', 'on'=>'search'),
+		
+			array('image_path','file',
+				'types'=>'jpg, jpeg, png, gif',
+				//'mimeTypes'=>array('image/gif, image/jpeg, image/jpg, image/png'),
+				'maxSize'=>1024*1024*2, // 2MB
+				'wrongType'=>getMessage('wrongTypeImage'),
+				'tooLarge'=>getMessage('tooLarge','',array('number'=>2)),			
+				'message'=>getMessage('required', $this->getAttributeLabel('image_path')),
+				'allowEmpty' => true,
+				'on'=> 'update',
+			),
 		);
 	}
 
@@ -74,6 +87,7 @@ class Detailmenuimage extends CActiveRecord
 			'menu_id' => 'Menu',
 			'caption' => 'Chú thích',
 			'caption_eng' => 'Caption',
+			'image_path' => 'Hình Ảnh',
 			'create_date' => 'Create Date',
 			'create_user' => 'Create User',
 			'update_date' => 'Update Date',
@@ -96,6 +110,7 @@ class Detailmenuimage extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('menu_id',$this->menu_id);
+		$criteria->compare('image_path',$this->image_path,true);
 		$criteria->compare('caption',$this->caption,true);
 		$criteria->compare('caption_eng',$this->caption_eng,true);
 		$criteria->compare('create_date',$this->create_date,true);
