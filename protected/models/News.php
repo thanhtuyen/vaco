@@ -62,17 +62,16 @@ class News extends CActiveRecord
 			array('thumb_image_path', 'file',
             	'types' => 'jpg, jpeg, png, gif',
 				//'mimeTypes'=>array('image / gif, image / jpeg, thumb_image_path / jpg, image / png'),
-        // 'wrongMimeType' => 'error',
+        		// 'wrongMimeType' => 'error',
               'maxSize' => 1024 * 1024 * 2,
             	//'wrongType'=> getMessage('wrongTypeImage'),
             	'tooLarge' => getMessage('tooLarge','',array('number'=>2)),
             	'allowEmpty' => true,
-				      'on' => 'create, update'),
-      array(
-        'thumb_image_path', 'file'
-              ,'mimeTypes'=>array(
-              'image/jpeg','image/gif','image/png'
-      ), 'wrongMimeType'=>'Only common types allowed'),
+				'on' => 'update'),
+	      	/*array(
+	        	'thumb_image_path', 'file'
+              	,'mimeTypes'=>array('image/jpeg','image/gif','image/png'), 
+              	'wrongMimeType'=>'Only common types allowed'),*/
 
 			array('listfile_attach', 'file',
         		'types'=>'doc, pdf, docx, xls',
@@ -82,7 +81,7 @@ class News extends CActiveRecord
         		'tooLarge'=>getMessage('tooLarge','',array('number'=>10)),
 				'maxFiles' => 5,
         		'allowEmpty'=>true,
-				'on' => 'create, update'),
+				'on' => 'update'),
       
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
