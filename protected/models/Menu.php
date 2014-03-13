@@ -45,7 +45,7 @@ class Menu extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array(' menu_type', 'required'),
+			array('menu_type','required','message'=>getMessage('required', $this->getAttributeLabel('menu_type'))),
 			array('id, parent_menu_id, menu_type, create_user_id, del_flg', 'numerical', 'integerOnly'=>true),
 			array('menu_name, menu_name_eng', 'length', 'max'=>45),
 			array('create_date, update_date', 'safe'),
@@ -78,9 +78,9 @@ class Menu extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'parent_menu_id' => 'Parent Menu',
-			'menu_name' => 'Menu Name',
-			'menu_name_eng' => 'Menu Name Eng',
-			'menu_type' => 'Menu Type',
+			'menu_name' => 'Tên Menu',
+			'menu_name_eng' => 'Menu Name',
+			'menu_type' => 'Loại menu',
 			'create_date' => 'Create Date',
 			'create_user_id' => 'Create User',
 			'update_date' => 'Update Date',

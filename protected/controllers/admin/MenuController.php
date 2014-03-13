@@ -57,6 +57,8 @@ class MenuController extends Controller
 	 */
 	public function actionView($id)
 	{
+		$this->pageTitle = Constants::$listModule['menu']['header'];
+		
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
@@ -68,17 +70,18 @@ class MenuController extends Controller
 	 */
 	public function actionCreate()
 	{
+		$this->pageTitle = Constants::$listModule['menu']['header'];
 		$model=new Menu;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
-    $list_menu_type = Menu::getListMenuType();
+    	$list_menu_type = Menu::getListMenuType();
 		if(isset($_POST['Menu']))
 		{
 			$model->attributes=Clean($_POST['Menu']);
-      $model->create_date = getDatetime();
-      $model->create_user_id = app()->user->id;
-      $model->del_flg = 0;
+			$model->create_date = getDatetime();
+			$model->create_user_id = app()->user->id;
+			$model->del_flg = 0;
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -95,11 +98,13 @@ class MenuController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
+		$this->pageTitle = Constants::$listModule['menu']['header'];
+		
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
-    $list_menu_type = Menu::getListMenuType();
+    	$list_menu_type = Menu::getListMenuType();
 		if(isset($_POST['Menu']))
 		{
 			$model->attributes=$_POST['Menu'];
@@ -154,6 +159,8 @@ class MenuController extends Controller
 	 */
 	public function actionAdmin()
 	{
+		$this->pageTitle = Constants::$listModule['menu']['header'];
+		
 		$model=new Menu('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Menu']))

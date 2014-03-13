@@ -23,6 +23,12 @@ class Constants {
 		'detail_menu' 		=> array(	'title' => 'Quản lý Chi Tiết Menu', 
 										'url' => array('/detailmenu/admin'), 
 										'header' => 'CHI TIẾT MENU'),
+		'menu' 				=> array(	'title' => 'Quản lý Menu', 
+										'url' => array('/menu/admin'), 
+										'header' => 'MENU'),
+		'user' 				=> array(	'title' => 'Quản lý User', 
+										'url' => array('/user/admin'), 
+										'header' => 'USER'),
 
 	);
 	
@@ -66,7 +72,7 @@ class Constants {
 	public static $text_required = 'Trường có dấu <span class="required">*</span> là bắt buộc.';
 	
 	/*
-	 * 
+	 * Define size required for upload image
 	 */
 	public static $text_require_image = 'Kích thước hình ảnh không vượt quá 800px.';
 

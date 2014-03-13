@@ -17,6 +17,7 @@ $this->breadcrumbs=array(
 ?>
 
 <h1><?php echo str_replace("###TITLE###", 'Chi Tiết Menu', Constants::$listTitleForm['form_view']) .' ' . $model->id; ?></h1>
+
 <div class="view_user">
 	<div style="text-align:right"><?php echo CHtml::link(CHtml::image(Yii::app()->request->baseUrl.'/images/thumbnails/bedit.png',"bCreate",array("class"=>"icon_edit")), Yii::app()->createUrl('/detailmenu/update/'.$model->id)) ;?></div>
 <?php
@@ -25,17 +26,17 @@ $this->widget('bootstrap.widgets.TbDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
     array('name' => 'menu_id',
-      'value' => $model->Menu->menu_name),
+      	'value' => $model->Menu->menu_name),
     'title',
     'title_eng',
-		'caption',
+	'caption',
     'caption_eng',
     'image_path',
 //    array('name' => 'detail',
 //          'value'=> $model->detail),
 //    'detail_eng',
 
-		'list_file_attach',
+	'list_file_attach',
     array('name' => 'create_date',
       'value' => $model->create_date? $model->create_date:""),
 

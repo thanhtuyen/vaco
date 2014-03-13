@@ -34,6 +34,7 @@ $('.search-form form').submit(function(){
 	'model'=>$model,
 )); ?>
 </div><!-- search-form -->
+
 <div class="view_admin">
 	<div style="text-align:right"><?php echo CHtml::link(CHtml::image(Yii::app()->request->baseUrl.'/images/thumbnails/bplus.png',"bCreate",array("class"=>"icon_plus")), Yii::app()->createUrl('/detailmenu/create')) ;?></div>
 <?php $this->widget('zii.widgets.grid.CGridView', array(
@@ -42,12 +43,11 @@ $('.search-form form').submit(function(){
 	//'filter'=>$model,
 	'columns'=>array(
 		'id',
-    array('name' => 'menu_id',
-          'value'=> '$data->Menu->menu_name',
-    ),
-		'menu_id',
+	    array('name' => 'menu_id',
+	          'value'=> '$data->Menu->menu_name',
+	    ),
 		'title',
-    'title_eng',
+    	'title_eng',
 		'caption',
 		//'detail',
 		/*

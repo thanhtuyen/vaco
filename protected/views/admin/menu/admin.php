@@ -38,7 +38,7 @@ if(app()->user->hasFlash('error')){
 }
 
 ?>
-<h1>Manage Menus</h1>
+<h1><?php echo Constants::$listModule['menu']['title']?></h1>
 
 <?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>
 <div class="search-form" style="display:none">
@@ -46,18 +46,18 @@ if(app()->user->hasFlash('error')){
 	'model'=>$model,
 )); ?>
 </div><!-- search-form -->
+
 <div class="view_admin">
-  <div style="text-align:  right"><?php echo CHtml::link('Thêm menu', Yii::app()->createUrl('/menu/create')) ;?></div>
+  <div style="text-align:right"><?php echo CHtml::link(CHtml::image(Yii::app()->request->baseUrl.'/images/thumbnails/bplus.png',"bCreate",array("class"=>"icon_plus")), Yii::app()->createUrl('/menu/create')) ;?></div>
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'menu-grid',
 	'dataProvider'=>$model->search(),
 	//'filter'=>$model,
 	'columns'=>array(
 		'id',
-    array(
-      'name'=> 'parent_menu_id',
-      'value'=>  '$data->getParentName($data->parent_menu_id)',
-    ),
+	    array('name'=> 'parent_menu_id',
+				'value'=>  '$data->getParentName($data->parent_menu_id)',
+	    ),
 		'menu_name',
 		'menu_name_eng',
 		'menu_type',

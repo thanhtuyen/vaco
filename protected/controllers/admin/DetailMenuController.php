@@ -58,8 +58,10 @@ class DetailMenuController extends Controller
 	 */
 	public function actionView($id)
 	{
-    $model = $this->loadModel($id);
-   // $model->setAttribute('detail', CHtml::decode($model->detail));
+		$this->pageTitle = Constants::$listModule['detail_menu']['header'];
+		
+	    $model = $this->loadModel($id);
+	   // $model->setAttribute('detail', CHtml::decode($model->detail));
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));

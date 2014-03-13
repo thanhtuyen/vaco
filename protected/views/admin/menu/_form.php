@@ -9,11 +9,12 @@
   'type'=>'horizontal',
   'enableAjaxValidation'=>false,
 )); ?>
-<p class="help-block">Fields with <span class="required">*</span> are required.</p>
+
+<p class="help-block"><?php echo Constants::$text_required; ?></p>
 <?php echo $form->errorSummary($model); ?>
+
 <?php //echo $form->errorSummary($employeemodel); ?>
 <div class="space5">
-
     <div class="control-group">
       <?php echo $form->labelEx($model,'parent_menu_id', array('class'=> "control-label")); ?>
       <?php $parent = Menu::listCategory();?>
@@ -31,19 +32,19 @@
 
 <!--  --><?php //echo $form->textFieldRow($model,'menu_type',array('class'=>'span3','maxlength'=>255)); ?>
 
-  <?php echo $form->dropDownListRow($model,'menu_type', $list_menu_type,array('empty'=>"Please chose menu type", 'class'=>'span3','maxlength'=>255)) ?>
+  <?php echo $form->dropDownListRow($model,'menu_type', $list_menu_type,array('class'=>'span3','maxlength'=>255, 'prompt'=>'Chọn loại menu ...')) ?>
   <div class="form-actions">
     <?php $this->widget('bootstrap.widgets.TbButton', array(
       'buttonType'=>'submit',
       'type'=>'primary',
-      'label'=>$model->isNewRecord ? 'Create' : 'Save',
+      'label'=>$model->isNewRecord ? Constants::$listLabelButton['create'] : Constants::$listLabelButton['update'],
     ));
 
     if($model->isNewRecord){
       $this->widget('bootstrap.widgets.TbButton', array(
         'buttonType'=>'reset',
         'htmlOptions'=>array('style'=>'margin-left: 10px;'),
-        'label'=>'Reset',
+        'label'=>Constants::$listLabelButton['reset'],
       ));
     } else {
       $this->widget('bootstrap.widgets.TbButton', array(

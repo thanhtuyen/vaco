@@ -11,8 +11,8 @@
 	'htmlOptions' => array('enctype' => 'multipart/form-data'),
 )); ?>
 
-	<p class="help-block"><?php echo Constants::$text_required; ?></p>
-	<?php echo $form->errorSummary($model); ?>
+<p class="help-block"><?php echo Constants::$text_required; ?></p>
+<?php echo $form->errorSummary($model); ?>
 
 <div class="space5"> 
 	<div class="control-group">

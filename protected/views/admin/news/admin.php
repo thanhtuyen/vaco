@@ -40,11 +40,13 @@ $('.search-form form').submit(function(){
 	<?php $this->widget('zii.widgets.grid.CGridView', array(
 		'id'=>'news-grid',
 		'dataProvider'=>$model->search(),
-		'template'=>"{items}",
+		//'template'=>"{items}",
 		//'filter'=>$model,
 		'columns'=>array(
 			'id',
-			'menu_id',
+			array('name' => 'menu_id',
+		          'value'=> '$data->menu->menu_name',
+		    ),
 			'title',
 			'caption',
 			'detail',

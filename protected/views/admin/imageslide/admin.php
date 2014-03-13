@@ -39,7 +39,7 @@ $('.search-form form').submit(function(){
 	<div style="text-align:right"><?php echo CHtml::link(CHtml::image(Yii::app()->request->baseUrl.'/images/thumbnails/bplus.png',"bCreate",array("class"=>"icon_plus")), Yii::app()->createUrl('/imageslide/create')) ;?></div>
 	<?php $this->widget('zii.widgets.grid.CGridView', array(
 		'id'=>'imageslide-grid',
-		'template'=>"{items}",
+		//'template'=>"{items}",
 		'dataProvider'=>$model->search(),
 		//'filter'=>$model,
 		'columns'=>array(

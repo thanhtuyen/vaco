@@ -56,7 +56,13 @@ Yii::import('ext.ckeditor.CKEditor');
     </div>
   </div>
   
-  <?php echo $form->fileFieldRow($model, 'image_path'); ?>
+	<div class="control-group">
+		<?php echo $form->labelEx($model,'image_path', array('class'=> "control-label")); ?>
+	  	<div class="controls">
+		  <span class="text_require_image"><?php echo Constants::$text_require_image;?></span><br>
+		  <?php echo CHtml::activeFileField($model,'image_path'); ?>
+		</div>
+	</div>
   
   <div class="control-group">
     <?php echo $form->labelEx($model,'list_file_attach', array('class'=> "control-label")); ?>

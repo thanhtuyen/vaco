@@ -16,7 +16,8 @@ $this->breadcrumbs=array(
 //);
 ?>
 
-<h1>Update Menu <?php echo $model->id; ?></h1>
-<div class="create_user">
+<h1><?php echo str_replace("###TITLE###", 'Menu', Constants::$listTitleForm['form_update']) .' ' . $model->id; ?></h1>
+
+<!-- <div class="create_user"> -->
   <?php echo $this->renderPartial('_form', array('model'=>$model, 'list_menu_type' => $list_menu_type)); ?>
-</div>
+<!-- </div> -->

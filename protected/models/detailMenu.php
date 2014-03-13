@@ -50,23 +50,25 @@ class detailMenu extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('menu_id', 'required'),
+			array('menu_id','required','message'=>getMessage('required', $this->getAttributeLabel('menu_id'))),
 			array('id, menu_id, create_user, del_flg', 'numerical', 'integerOnly'=>true),
 			array('title, title_eng', 'length', 'max'=>45),
-      array('image_path', 'file',
+      		array('image_path', 'file',
             //'types' => 'gif, jpg, png',
             'mimeTypes'=>array('image/gif','image/jpeg', 'image/jpg', 'image/png'),
             'maxSize' => 1024 * 1024 * 2,
-            //'wrongType'=>'Please upload only images in the format jpg, gif, png',
-            'tooLarge' => 'The file was larger than 2MB. Please upload a smaller file.',
+            'wrongType'=>getMessage('wrongTypeImage'),
+			'tooLarge'=>getMessage('tooLarge','',array('number'=>2)),			
+			'message'=>getMessage('required', $this->getAttributeLabel('image_path')),
             'allowEmpty' => true, 'on' => 'create, update' ),
 
-      array('list_file_attach', 'file',
+			array('list_file_attach', 'file',
         //'types'=>'doc, pdf, docx',
 //            'mimeTypes'=>array('application/pdf','application/docx','application/xls','application/doc', 'application/msword', 'text/plain', 'application/vnd.ms-excel', 'application/vnd.oasis.opendocument.text', 'application/vnd.oasis.opendocument.spreadsheet'),
             'maxSize'=>1024*1024*10,
-            //'wrongType'=>'Please upload only cv in the format doc, pdf, docx',
-            'tooLarge'=>'The file was larger than 10MB. Please upload a smaller file.','maxFiles' => 5,
+            //'wrongType'=>getMessage('wrongTypeFile'),
+            'tooLarge'=>getMessage('tooLarge','',array('number'=>10)),
+            'maxFiles' => 5,
             'allowEmpty'=>true ),
 
 			array('caption, detail, caption_eng, detail_eng, create_date, update_date', 'safe'),
@@ -84,7 +86,7 @@ class detailMenu extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-      'Menu' => array(self::HAS_ONE, 'Menu', 'id'),
+      		'Menu' => array(self::HAS_ONE, 'Menu', 'id'),
 		);
 	}
 
@@ -99,11 +101,11 @@ class detailMenu extends CActiveRecord
 			'title' => 'Tiêu đề',
 			'caption' => 'Chú thích',
 			'detail' => 'Chi tiết',
-			'title_eng' => 'Title Eng',
-			'caption_eng' => 'Caption Eng',
-			'detail_eng' => 'Detail Eng',
-			'image_path' => 'Image',
-			'list_file_attach' => 'List File Attach',
+			'title_eng' => 'Title',
+			'caption_eng' => 'Caption',
+			'detail_eng' => 'Detail',
+			'image_path' => 'Hình ảnh',
+			'list_file_attach' => 'Danh sách tập tin',
 			'create_date' => 'Create Date',
 			'create_user' => 'Create User',
 			'update_date' => 'Update Date',
@@ -136,7 +138,7 @@ class detailMenu extends CActiveRecord
 		$criteria->compare('create_date',$this->create_date,true);
 		$criteria->compare('create_user',$this->create_user);
 		$criteria->compare('update_date',$this->update_date,true);
-    $criteria->addCondition("del_flg = 0");
+    	$criteria->addCondition("del_flg = 0");
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

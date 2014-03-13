@@ -26,7 +26,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Manage Users</h1>
+<h1><?php echo Constants::$listModule['user']['title']?></h1>
 
 <?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>
 <div class="search-form" style="display:none">
@@ -42,7 +42,7 @@ $('.search-form form').submit(function(){
   <?php $this->widget('zii.widgets.grid.CGridView', array(
     'id'=>'user-grid',
     //'type'=>'Striped',
-    'template'=>"{items}",
+    //'template'=>"{items}",
     'dataProvider'=>$model->search(),
     //'filter'=>$model,
     'columns'=>array(

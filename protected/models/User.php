@@ -49,8 +49,9 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('username, user_fullname', 'required'),
-			array('userpass', 'required', 'on' => 'create'),
+			array('username','required','message'=>getMessage('required', $this->getAttributeLabel('username'))),
+			array('user_fullname','required','message'=>getMessage('required', $this->getAttributeLabel('user_fullname'))),
+			array('userpass','required','on' => 'create','message'=>getMessage('required', $this->getAttributeLabel('userpass'))),
 			array('user_role, create_user', 'numerical', 'integerOnly'=>true),
 			array('username, userpass, user_fullname, user_mobile, user_address', 'length', 'max'=>45),
 			array('create_date, update_date', 'safe'),
@@ -78,12 +79,12 @@ class User extends CActiveRecord
 	{
 		return array(
 			'userid' => 'Userid',
-			'username' => 'Username',
-			'userpass' => 'Password',
-			'user_fullname' => 'Fullname',
-			'user_mobile' => 'Mobile',
-			'user_address' => 'Address',
-			'user_role' => 'Role',
+			'username' => 'Tên user',
+			'userpass' => 'Mật khẩu',
+			'user_fullname' => 'Họ và tên',
+			'user_mobile' => 'Điện thoại',
+			'user_address' => 'Địa chỉ',
+			'user_role' => 'Quyền',
 			'create_date' => 'Create Date',
 			'create_user' => 'Create User',
 			'update_date' => 'Update Date',

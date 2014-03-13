@@ -16,24 +16,32 @@ $this->breadcrumbs=array(
 //);
 ?>
 
-<h1>View Menu #<?php echo $model->id; ?></h1>
+<h1><?php echo str_replace("###TITLE###", 'Menu', Constants::$listTitleForm['form_view']) .' ' . $model->id; ?></h1>
+
 <div class="view_user">
   <div style="text-align:  right"><?php echo CHtml::link(CHtml::image(Yii::app()->request->baseUrl.'/images/thumbnails/ql-users.gif'), Yii::app()->createUrl('/menu/update/'.$model->id)) ;?></div>
-<?php $this->widget('bootstrap.widgets.TbDetailView', array(
+<?php
+	$user = User::model()->findByPk($model->create_user_id); 
+	$this->widget('bootstrap.widgets.TbDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
 		//'id',
     array('name' => 'parent_menu_id',
-      'type'  => 'raw',
-      'value' => ($model->parent_menu_id == 0) ? $model->getParentName($model->parent_menu_id) : CHtml::link($model->getParentName($model->parent_menu_id),
-        array('view', 'id'=>$model->parent_menu_id))),
-    'menu_name',
+		'type'  => 'raw',
+		'value' => ($model->parent_menu_id == 0) ? $model->getParentName($model->parent_menu_id) : CHtml::link($model->getParentName($model->parent_menu_id),
+        	array('view', 'id'=>$model->parent_menu_id))),
+    	'menu_name',
 		'menu_name_eng',
 		'menu_type',
-		'create_date',
-		'create_user_id',
-		'update_date',
-		'del_flg',
+		array('name' => 'create_user_id',
+			'value' => $user['username']
+		),
+		array('name' => 'create_date',
+        	'value' => $model->create_date? $model->create_date:''
+		),
+		array('name' => 'update_date',
+        	'value' => $model->update_date? $model->update_date:''
+      	),
 	),
 )); ?>
 </div>

@@ -73,7 +73,7 @@ class News extends CActiveRecord
         		'maxSize'=>1024 * 1024 * 10,
 //        		'wrongType'=>getMessage('wrongTypeFile'),
         		'tooLarge'=>getMessage('tooLarge','',array('number'=>10)),
-				    'maxFiles' => 5,
+				'maxFiles' => 5,
         		'allowEmpty'=>true,
 				    'on' => 'create, update'),
       

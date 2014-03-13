@@ -13,7 +13,8 @@ $this->menu=array(
 );
 ?>
 
-<h1>Create User</h1>
-<div class="create_user">
+<h1><?php echo str_replace("###TITLE###", 'User', Constants::$listTitleForm['form_create']); ?></h1>
+
+<!-- <div class="create_user"> -->
   <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
-</div>
+<!-- </div> -->

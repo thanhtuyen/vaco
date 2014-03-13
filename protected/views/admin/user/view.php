@@ -28,26 +28,32 @@ if(app()->user->hasFlash('error')){
 }
 
 ?>
-<h1>View User #<?php echo $model->userid; ?></h1>
+<h1><?php echo str_replace("###TITLE###", 'User', Constants::$listTitleForm['form_view']) .' ' . $model->userid; ?></h1>
+
 <div class="view_user">
   <?php  if(app()->user->getState('roles') =="admin"):?>
   <div style="text-align:  right"><?php echo CHtml::link(CHtml::image(Yii::app()->request->baseUrl.'/images/thumbnails/ql-users.gif'), Yii::app()->createUrl('/user/update/'.$model->userid)) ;?></div>
   <?php endif;?>
-  <?php $this->widget('bootstrap.widgets.TbDetailView',array(
+  <?php 
+  	$user = User::model()->findByPk($model->create_user);
+  	$this->widget('bootstrap.widgets.TbDetailView',array(
     'data'=>$model,
     'attributes'=>array(
-      'username',
-//      'userpass',
-      'user_fullname',
-      'user_mobile',
-      'user_address',
-      'create_user',
-
+	'username',
+//  'userpass',
+  	array('name' => 'user_fullname',
+        'value' => $model->user_fullname? $model->user_fullname : ""),
+  	array('name' => 'user_mobile',
+        'value' => $model->user_mobile? $model->user_mobile : ""),
+  	array('name' => 'user_address',
+        'value' => $model->user_address? $model->user_address : ""),
+  	array('name' => 'create_user',
+		'value' => $user['username'] ? $user['username'] : "",
+	),
       array('name' => 'create_date',
-        'value' => $model->create_date? $model->create_date:""),
-
+        'value' => $model->create_date ? $model->create_date : ""),
       array('name' => 'update_date',
-        'value' => $model->update_date? $model->update_date:''),
+        'value' => $model->update_date? $model->update_date : ""),
 
     ),
   )); ?>

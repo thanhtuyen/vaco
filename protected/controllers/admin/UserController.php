@@ -56,6 +56,8 @@ class UserController extends Controller
    */
   public function actionView($id)
   {
+  	$this->pageTitle = Constants::$listModule['user']['header'];
+  	
     $model = $this->loadModel($id);
     if(User::model()->getRole() < $model->user_role) {
       throw new CHttpException(404,'You are not authorized to view This profile info !');
@@ -73,6 +75,8 @@ class UserController extends Controller
    */
   public function actionCreate()
   {
+  	$this->pageTitle = Constants::$listModule['user']['header'];
+  	
     $model=new User;
 
     // Uncomment the following line if AJAX validation is needed
@@ -104,6 +108,8 @@ class UserController extends Controller
    */
   public function actionUpdate($id)
   {
+  	$this->pageTitle = Constants::$listModule['user']['header'];
+  	
     $model=$this->loadModel($id);
 
     // Uncomment the following line if AJAX validation is needed
@@ -155,6 +161,8 @@ class UserController extends Controller
    */
   public function actionAdmin()
   {
+  	$this->pageTitle = Constants::$listModule['user']['header'];
+  	
     $model=new User('search');
     $model->unsetAttributes();  // clear any default values
     if(isset($_GET['User']))
