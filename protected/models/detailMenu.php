@@ -18,6 +18,7 @@
  * @property integer $create_user
  * @property string $update_date
  * @property integer $del_flg
+ * @property integer $feature_flg
  */
 class detailMenu extends CActiveRecord
 {

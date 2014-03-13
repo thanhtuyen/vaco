@@ -88,18 +88,28 @@ class DetailMenuController extends Controller
 	      $model->setScenario('create');
 	      if ($model->validate()) {	
 	        //save image_path
-	        $image_path = CUploadedFile::getInstance($model, 'image_path');
-	        if (is_object($image_path) && get_class($image_path)==='CUploadedFile')
-	        {
-	          $model->image_path = $image_path;
-	        }
-	
-	        if (is_object($model->image_path)) {
-	          $model->image_path->saveAs(Yii::getPathOfAlias('webroot'). detailMenu::S_THUMBNAIL.$model->image_path->name);
-	        }
-	
+//	        $image_path = CUploadedFile::getInstance($model, 'image_path');
+//	        if (is_object($image_path) && get_class($image_path)==='CUploadedFile')
+//	        {
+//	          $model->image_path = $image_path;
+//	        }
+//
+//	        if (is_object($model->image_path)) {
+//	          $model->image_path->saveAs(Yii::getPathOfAlias('webroot'). detailMenu::S_THUMBNAIL.$model->image_path->name);
+//	        }
+//          $model->image_path = CUploadedFile::getInstanceByName('image_path');
+          $image_path = CUploadedFile::getInstance($model, 'image_path');
+         // print_r($image_path);die;
+         // $oldImage = $this->image;
+          if ($model->image_path != null)
+          {
+            $model->image_path = $image_path;
+            $filename = 'profile_image_' . $this->id . '_' . time() . '.' . $model->image_path->extensionName;
+            $model->image_path->saveAs(Yii::getPathOfAlias('webroot'). detailMenu::S_THUMBNAIL.$filename);
+          }
+
 	        //save list file attach
-	
+
 	        if($filez=uploadMultifile($model,'list_file_attach',detailMenu::S_THUMBNAIL))
 	        {
 	          $model->list_file_attach=implode(",", $filez);
@@ -117,7 +127,15 @@ class DetailMenuController extends Controller
 			'model'=>$model,
 		));
 	}
-
+  public function handleUploadImage(){
+    $this->uploadImage = CUploadedFile::getInstanceByName('uploadImage');
+    $oldImage = $this->image;
+    if ($this->uploadImage != null)
+    {
+      $filename = 'profile_image_' . $this->id . '_' . time() . '.' . $this->uploadImage->extensionName;
+      $this->uploadImage->saveAs('images/content/profile/'.$filename);
+    }
+  }
 	/**
 	 * Updates a particular model.
 	 * If update is successful, the browser will be redirected to the 'view' page.
