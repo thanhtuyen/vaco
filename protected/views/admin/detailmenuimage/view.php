@@ -25,7 +25,6 @@ $this->menu=array(
 	$this->widget('zii.widgets.CDetailView', array(
 		'data'=>$model,
 		'attributes'=>array(
-			'id',
 			array('name' => 'menu_id',
 	      		'value' => CHtml::decode($model->menu->menu_name)
 			),

@@ -112,13 +112,32 @@ class DetailmenuimageController extends Controller
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
-
+		$old_image_path = $model->image_path; 
 		if(isset($_POST['Detailmenuimage']))
 		{
 			$model->setScenario('update');
 			$model->attributes=$_POST['Detailmenuimage'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+			
+			$model->image_path = CUploadedFile::getInstance($model,'image_path');
+			$model->update_date = getDatetime();
+			if ($model->validate()) {
+				// upload image
+		        $image_path = CUploadedFile::getInstance($model, 'image_path');
+		        if (is_object($image_path) && get_class($image_path)==='CUploadedFile')
+		        	$model->image_path = $image_path;
+		
+		        if (is_object($model->image_path)) { 
+		        	$image_path = Yii::getPathOfAlias('webroot') . Detailmenuimage::image_url . $old_image_path;
+					if($old_image_path && file_exists($image_path)) 
+		          		unlink(Yii::getPathOfAlias('webroot') . Detailmenuimage::image_url . $old_image_path);
+		
+		          	$model->image_path->saveAs(Yii::getPathOfAlias('webroot') . Detailmenuimage::image_url . $model->image_path);
+		        } else { 
+					$model->image_path = $old_image_path;
+		        }
+				if($model->save())
+					$this->redirect(array('view','id'=>$model->id));
+			}
 		}
 
 		$this->render('update',array(

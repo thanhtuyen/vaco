@@ -1,0 +1,86 @@
+/* CSS Document */
+/*------------clearfix-------------*/
+
+.clearfix:after {
+	content: ".";
+	display: block;
+	clear: both;
+	height: 0;
+	visibility: hidden;
+}
+.clearfix { display: inline-block; }
+/* exlude MacIE5 \*/
+* html .clearfix { height: 1% }
+.clearfix {display:block;}
+/* end MacIE5 */
+.collefto
+{
+width:47%;
+float:left;
+
+}
+.tit_service
+{
+color:#0468d8;
+font-weight:bold;
+font-size:120%;
+margin-bottom:5px;
+margin-top:15px;
+}
+.li_ser
+{
+background:url(../images/li.png) no-repeat 0 5px;
+padding-left:10px;
+font-size:105%;
+line-height:15px;
+margin-bottom:4px;
+color:#515151;
+}
+.colleftt
+{
+width:47%;
+float:left;
+margin-left:6%;
+}
+.map
+{
+width:100%;
+float:left;
+}
+.contact_add
+{
+font-size:110%;
+}
+.form_lh
+{
+float:left;
+margin-top:5px;
+}
+.lh_label
+{
+margin-top:3px;
+margin-bottom:2px;
+}
+.lh_input input
+{
+width:200px;
+}
+.lh_textarea textarea
+{
+width:450px;
+}
+.lh_checkbox
+{
+margin-top:5px;
+}
+.lh_sent
+{
+margin-top:10px;
+}
+.lh_sent a input
+{
+background-color:#333333;
+border:none;
+color:#FFFFFF;
+padding:3px 5px;
+}

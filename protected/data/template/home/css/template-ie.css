@@ -1,0 +1,9 @@
+.portfolio .nspArt img:hover, .portfolio .nspArt:hover img.nspImage {filter:alpha(opacity=20)}
+.nspCol3 {width: expression((this.parentNode.clientWidth/3 - parseInt(this.currentStyle['paddingLeft']) - parseInt(this.currentStyle['paddingRight'])) + 'px');}
+.nspCol4 {width: expression((this.parentNode.clientWidth/4 - parseInt(this.currentStyle['paddingLeft']) - parseInt(this.currentStyle['paddingRight'])) + 'px');}
+
+#searchForm#searchFormfieldset.phrases input[type="radio"]{
+   vertical-align: middle\0/ !important;
+   margin-top: 0px\0/ !important;
+}
+

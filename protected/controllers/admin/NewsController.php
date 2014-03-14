@@ -136,7 +136,7 @@ class NewsController extends Controller
 		// init model
 		$modelKeyword = Keyword::model()->findByPk($id); 
 		$model = $this->loadModel($id);
-//var_dump($model->attributes);exit;
+
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
@@ -145,7 +145,7 @@ class NewsController extends Controller
 		$array_file = explode(',',$model->listfile_attach);  
 		if(isset($_POST['News']))
 		{
-      $model->setScenario('update');
+      		$model->setScenario('update');
 			$model->attributes = $_POST['News'];
 			$model->detail = CHtml::encode($_POST['News']['detail']);
 			$model->detail_eng = CHtml::encode($_POST['News']['detail_eng']);
