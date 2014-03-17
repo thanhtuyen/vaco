@@ -47,7 +47,7 @@ class MenuController extends Controller
      *  init CSS and Javascript file
      */
   public function init(){
-    Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/css/user.css');
+    //Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/css/user.css');
 
     parent::init();
   }

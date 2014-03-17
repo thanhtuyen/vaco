@@ -90,10 +90,12 @@ class UserController extends Controller
       $model->user_role = User::USER;
       $model->create_user = app()->user->id;
       $model->del_flg = 0;
-
+    if($model->validate()){
       if($model->save())
         app()->user->setFlash('success', 'Tạo mới user thành công !');
-        $this->redirect(array('view','id'=>$model->userid));
+      $this->redirect(array('view','id'=>$model->userid));
+    }
+
     }
 
     $this->render('create',array(
@@ -120,9 +122,12 @@ class UserController extends Controller
       $model->attributes = Clean($_POST['User']);
       $model->setScenario('update');
       $model->update_date = getDatetime();
-      if($model->save())
-        app()->user->setFlash('success', 'Update thông tin user thành công !');
+      if($model->validate()){
+        if($model->save())
+          app()->user->setFlash('success', 'Update thông tin user thành công !');
         $this->redirect(array('view','id'=>$model->userid));
+      }
+
     }
 
     $this->render('update',array(

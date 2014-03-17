@@ -48,7 +48,9 @@ $this->widget('bootstrap.widgets.TbDetailView', array(
 
     array('name' => 'update_date',
       'value' => $model->update_date? $model->update_date:''),
-
+    array('name' => 'create_user',
+      'value'=> $model->User->username,
+    ),
   ),
 )); ?>
 

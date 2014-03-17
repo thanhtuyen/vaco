@@ -50,6 +50,7 @@ class User extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('username','required','message'=>getMessage('required', $this->getAttributeLabel('username'))),
+			array('username','unique','on' => 'create','message'=>getMessage('unique', $this->getAttributeLabel('username'))),
 			array('user_fullname','required','message'=>getMessage('required', $this->getAttributeLabel('user_fullname'))),
 			array('userpass','required','on' => 'create','message'=>getMessage('required', $this->getAttributeLabel('userpass'))),
 			array('user_role, create_user', 'numerical', 'integerOnly'=>true),

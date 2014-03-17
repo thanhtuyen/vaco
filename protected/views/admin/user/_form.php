@@ -20,9 +20,14 @@
 <p class="help-block"><?php echo Constants::$text_required; ?></p>
 <?php echo $form->errorSummary($model); ?>
 
-<?php //echo $form->errorSummary($employeemodel); ?>
 <div class="space5">
-  <?php echo $form->textFieldRow($model,'username',array('class'=>'span3','maxlength'=>255)); ?>
+  <?php
+  if($model->isNewRecord){
+    echo $form->textFieldRow($model,'username',array('class'=>'span3','maxlength'=>255));
+  } else {
+    echo $form->textFieldRow($model,'username',array('class'=>'span3','maxlength'=>255, 'disabled' => 'disabled'));
+  }
+  ?>
   <?php if($model->isNewRecord):?>
     <div class="control-group">
     <?php echo $form->labelEx($model,'userpass', array('class'=> "control-label required")); ?>

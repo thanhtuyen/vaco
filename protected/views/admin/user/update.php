@@ -18,6 +18,6 @@ $this->breadcrumbs=array(
 
 <h1><?php echo str_replace("###TITLE###", 'User', Constants::$listTitleForm['form_update']) .' ' . $model->userid; ?></h1>
 
-<!-- <div class="create_user"> -->
+ <div class="create_user">
   <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
-<!-- </div> -->
+ </div>
