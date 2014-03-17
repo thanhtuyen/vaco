@@ -38,26 +38,32 @@ $this->menu=array(
 		'data'=>$model,
 		'attributes'=>array(
 			array('name' => 'menu_id',
-	      		'value' => CHtml::decode($model->menu->menu_name)
+				'type' => 'raw',
+	      		'value' => CHtml::encode($model->menu->menu_name)
 			),
 			array('name' => 'title',
-	      		'value' => CHtml::decode($model->title)
+				'type' => 'raw',
+	      		'value' => CHtml::encode($model->title)
 			),
+			'caption',
 			array('name' => 'caption',
-	      		'value' => CHtml::decode($model->caption)
+				'type' => 'raw',
+	      		'value' => CHtml::encode($model->caption)
 			),
 			array('name' => 'detail',
-            'type' => 'raw',
+            	'type' => 'raw',
 	      		'value' => CHtml::decode($model->detail)
 			),
 			array('name' => 'title_eng',
-	      		'value' => CHtml::decode($model->title_eng)
+				'type' => 'raw',
+	      		'value' => CHtml::encode($model->title_eng)
 			),
 			array('name' => 'caption_eng',
-	      		'value' => CHtml::decode($model->caption_eng)
+				'type' => 'raw',
+	      		'value' => CHtml::encode($model->caption_eng)
 			),
 			array('name' => 'detail_eng',
-            'type' => 'raw',
+            	'type' => 'raw',
 	      		'value' => CHtml::decode($model->detail_eng)
 			),	
 			array('name' => 'thumb_image_path',
@@ -86,8 +92,14 @@ $this->menu=array(
 	<?php $this->widget('bootstrap.widgets.TbDetailView', array(
 		'data'=>$modelKeyword,
 		'attributes'=>array(
-			'keyword',
-			'keyword_eng',
+			array('name' => 'keyword',
+	      		'type' => 'raw',
+	      		'value' => CHtml::encode($modelKeyword->keyword)
+			),
+			array('name' => 'keyword_eng',
+	      		'type' => 'raw',
+	      		'value' => CHtml::encode($modelKeyword->keyword_eng)
+			),
 		),
 	)); ?>
 </div>

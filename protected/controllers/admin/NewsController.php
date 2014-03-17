@@ -155,8 +155,6 @@ class NewsController extends Controller
 		{
       		$model->setScenario('update');
 			$model->attributes = $_POST['News'];
-			//$model->detail = CHtml::encode($_POST['News']['detail']);
-			$model->detail_eng = CHtml::encode($_POST['News']['detail_eng']);
 			$model->thumb_image_path = CUploadedFile::getInstance($model,'thumb_image_path');
 			
 			$model->listfile_attach = CUploadedFile::getInstances($model,'listfile_attach'); 
