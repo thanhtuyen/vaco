@@ -54,7 +54,12 @@ Yii::import('ext.ckeditor.CKEditor');
 		  <?php echo CHtml::activeFileField($model,'image_path'); ?>
 		</div>
 	</div>
-  
+  <div class="controls"><br>
+    <?php
+    if($model->isNewRecord != '1')
+      echo CHtml::image(Yii::app()->request->baseUrl . detailMenu::S_THUMBNAIL . $model->image_path,"",array("maxwidth"=>100));
+    ?>
+  </div>
   <div class="control-group">
     <?php echo $form->labelEx($model,'list_file_attach', array('class'=> "control-label")); ?>
 	    <div class="controls">

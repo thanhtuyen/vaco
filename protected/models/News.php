@@ -13,7 +13,7 @@
  * @property string $caption_eng
  * @property string $detail_eng
  * @property string $thumb_image_path
- * @property string $listfile_attach
+ * @property string $list_file_attach
  * @property integer $create_user_id
  * @property string $create_date
  * @property integer $feature_flag
@@ -66,7 +66,7 @@ class News extends CActiveRecord
             	'tooLarge' => getMessage('tooLarge','',array('number'=>2)),
             	'allowEmpty' => true,
 				'on' => 'create, update'),
-			array('listfile_attach', 'file',
+			array('list_file_attach', 'file',
         		//'types'=>'doc, pdf, docx, xls',
             	//'mimeTypes' => 'application/pdf, application/msword, text/plain, application/vnd.ms-excel, application/vnd.oasis.opendocument.text, application/vnd.oasis.opendocument.spreadsheet',
 				'mimeTypes'=>array('application/pdf', 'application/msword', 'text/plain', 'application/vnd.ms-excel', 'application/vnd.oasis.opendocument.text', 'application/vnd.oasis.opendocument.spreadsheet'),
@@ -79,7 +79,7 @@ class News extends CActiveRecord
       
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, menu_id, title, caption, detail, title_eng, caption_eng, detail_eng, thumb_image_path, listfile_attach, create_user_id, create_date, feature_flag, update_date, is_public, del_flg', 'safe', 'on'=>'search'),
+			array('id, menu_id, title, caption, detail, title_eng, caption_eng, detail_eng, thumb_image_path, list_file_attach, create_user_id, create_date, feature_flag, update_date, is_public, del_flg', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -92,6 +92,7 @@ class News extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'menu' => array(self::BELONGS_TO, 'menu', 'menu_id'),
+			'User' => array(self::BELONGS_TO, 'User', 'create_user_id'),
 		);
 	}
 
@@ -110,7 +111,7 @@ class News extends CActiveRecord
 			'caption_eng' => 'Caption',
 			'detail_eng' => 'Content',
 			'thumb_image_path' => 'Hình ảnh',
-			'listfile_attach' => 'Tập tin',
+			'list_file_attach' => 'Tập tin',
 			'create_user_id' => 'Create User',
 			'create_date' => 'Create Date',
 			'feature_flag' => 'Vị trí hiển thị',
@@ -140,7 +141,7 @@ class News extends CActiveRecord
 		$criteria->compare('caption_eng',$this->caption_eng,true);
 		$criteria->compare('detail_eng',$this->detail_eng,true);
 		$criteria->compare('thumb_image_path',$this->thumb_image_path,true);
-		$criteria->compare('listfile_attach',$this->listfile_attach,true);
+		$criteria->compare('list_file_attach',$this->list_file_attach,true);
 		$criteria->compare('create_user_id',$this->create_user_id);
 		$criteria->compare('create_date',$this->create_date,true);
 		$criteria->compare('feature_flag',$this->feature_flag);

@@ -42,8 +42,8 @@
 	<?php echo CHtml::encode($data->thumb_image_path); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('listfile_attach')); ?>:</b>
-	<?php echo CHtml::encode($data->listfile_attach); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('list_file_attach')); ?>:</b>
+	<?php echo CHtml::encode($data->list_file_attach); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('create_user_id')); ?>:</b>

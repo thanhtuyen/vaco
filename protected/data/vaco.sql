@@ -103,7 +103,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`news` (
   `caption_eng` TEXT NULL,
   `detail_eng` TEXT NULL,
   `thumb_image_path` VARCHAR(45) NULL,
-  `listfile_attach` VARCHAR(45) NULL,
+  `list_file_attach` VARCHAR(45) NULL,
   `create_user_id` INT NULL,
   `create_date` DATETIME NULL,
   `feature_flag` TINYINT NULL,

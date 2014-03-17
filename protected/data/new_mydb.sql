@@ -147,7 +147,7 @@ CREATE TABLE IF NOT EXISTS `news` (
   `caption_eng` text COLLATE utf8_unicode_ci,
   `detail_eng` text COLLATE utf8_unicode_ci,
   `thumb_image_path` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `listfile_attach` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `list_file_attach` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `create_user_id` int(11) DEFAULT NULL,
   `create_date` datetime DEFAULT NULL,
   `feature_flag` tinyint(4) DEFAULT NULL,

@@ -57,8 +57,8 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'listfile_attach'); ?>
-		<?php echo $form->textField($model,'listfile_attach',array('size'=>45,'maxlength'=>45)); ?>
+		<?php echo $form->label($model,'list_file_attach'); ?>
+		<?php echo $form->textField($model,'list_file_attach',array('size'=>45,'maxlength'=>45)); ?>
 	</div>
 
 	<div class="row">

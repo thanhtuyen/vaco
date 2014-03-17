@@ -72,6 +72,7 @@ class User extends CActiveRecord
 		return array(
       'detailMenu'=> array(self::HAS_MANY, 'detailMenu', 'create_user'),
       'Menu'=> array(self::HAS_MANY, 'Menu', 'create_user_id'),
+      'News'=> array(self::HAS_MANY, 'News', 'create_user_id'),
 		);
 	}
 

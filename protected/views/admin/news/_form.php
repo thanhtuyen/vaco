@@ -82,17 +82,17 @@
 			<div class="controls"><br>
 				<?php 
 					if($model->isNewRecord != '1')
-						echo CHtml::image(Yii::app()->request->baseUrl . News::image_url . $model->thumb_image_path,"",array("maxwidth"=>800));
+						echo CHtml::image(Yii::app()->request->baseUrl . News::image_url . $model->thumb_image_path,"",array("maxwidth"=>100));
 				?>	
 			</div>	
 		</div>	
 	
-		<?php echo $form->labelEx($model,'listfile_attach', array('class'=> "control-label")); ?>
+		<?php echo $form->labelEx($model,'list_file_attach', array('class'=> "control-label")); ?>
 	    <div class="controls">
 	        <?php
 	        $this->widget('CMultiFileUpload', array(
 	                          'model'=>$model,
-	                          'attribute'=>'listfile_attach',
+	                          'attribute'=>'list_file_attach',
 	                         // 'accept'=>'doc|pdf|docx',
 	                          'max'=> 6,
 	                          'options'=>array(

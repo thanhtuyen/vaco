@@ -64,9 +64,9 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'listfile_attach'); ?>
-		<?php echo $form->textField($model,'listfile_attach'); ?>
-		<?php echo $form->error($model,'listfile_attach'); ?>
+		<?php echo $form->labelEx($model,'list_file_attach'); ?>
+		<?php echo $form->textField($model,'list_file_attach'); ?>
+		<?php echo $form->error($model,'list_file_attach'); ?>
 	</div>
 
 	<div class="row">
