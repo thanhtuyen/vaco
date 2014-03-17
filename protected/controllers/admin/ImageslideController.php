@@ -73,6 +73,7 @@ class ImageslideController extends Controller
 
 		if(isset($_POST['Imageslide']))
 		{ 	
+			$model->setScenario('create');
 			$model->attributes = $_POST['Imageslide'];  
 			// upload image
 			$model->image_path = CUploadedFile::getInstance($model,'image_path'); 

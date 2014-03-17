@@ -115,7 +115,6 @@ class DetailmenuimageController extends Controller
 		$old_image_path = $model->image_path; 
 		if(isset($_POST['Detailmenuimage']))
 		{
-			$model->setScenario('update');
 			$model->attributes=$_POST['Detailmenuimage'];
 			
 			$model->image_path = CUploadedFile::getInstance($model,'image_path');

@@ -55,8 +55,8 @@ class Imageslide extends CActiveRecord
 				'maxSize'=>1024*1024*2, // 2MB
 				'wrongType'=>getMessage('wrongTypeImage'),
 				'tooLarge'=>getMessage('tooLarge','',array('number'=>2)),
-				'allowEmpty' => true,
-				'on'=> 'update',
+				'allowEmpty' => false,
+				'on'=> 'create',
 				'message'=>getMessage('required', $this->getAttributeLabel('image_path')),
 			),
 			array('title, caption, title_eng, caption_eng', 'length', 'max'=>45),

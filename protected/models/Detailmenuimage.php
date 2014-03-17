@@ -59,8 +59,8 @@ class Detailmenuimage extends CActiveRecord
 				'wrongType'=>getMessage('wrongTypeImage'),
 				'tooLarge'=>getMessage('tooLarge','',array('number'=>2)),			
 				'message'=>getMessage('required', $this->getAttributeLabel('image_path')),
-				'allowEmpty' => true,
-				'on'=> 'update',
+				'allowEmpty' => false,
+				'on'=> 'create',
 			),
 		);
 	}
