@@ -64,17 +64,7 @@ class NewsController extends Controller
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
 	public function actionCreate()
-	{
-		$finfo = finfo_open(FILEINFO_MIME, "/usr/share/misc/magic"); 
-		if (!$finfo) {
-		    echo "Opening fileinfo database failed";
-		    exit();
-		}
-		
-		/* get mime-type for a specific file */
-		$filename = "/usr/local/something.txt";
-		echo finfo_file($finfo, $filename);
-		
+	{		
 		$this->pageTitle = Constants::$listModule['news']['header'];
 		
 		// init model
@@ -99,9 +89,9 @@ class NewsController extends Controller
 					//$model->menu_id = $menu_id;	 
 					$model->detail = CHtml::encode($_POST['News']['detail']);
 					$model->detail_eng = CHtml::encode($_POST['News']['detail_eng']);
-          $model->create_date = getDatetime();
-          $model->create_user_id = app()->user->getState('roles') == 'admin' ? User::ADMIN : User::USER;
-          $model->del_flg = 0;
+		          $model->create_date = getDatetime();
+		          $model->create_user_id = app()->user->getState('roles') == 'admin' ? User::ADMIN : User::USER;
+		          $model->del_flg = 0;
 	
 		      		// upload image
 					$model->thumb_image_path = CUploadedFile::getInstance($model,'thumb_image_path'); 
