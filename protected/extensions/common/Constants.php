@@ -76,5 +76,14 @@ class Constants {
 	 */
 	public static $text_require_image = 'Kích thước hình ảnh không vượt quá 800px.';
 
+	/*
+	 * Define message form
+	 */
+	public static $listMessageForm = array(
+		'create'			=> 'Tạo mới ###TITLE### thành công!',
+		'update'			=> 'Chỉnh sửa thông tin ###TITLE### thành công!',
+		'delete'			=> 'Xóa thông tin ###TITLE### thành công!',
+	);
+	
 }
 ?>

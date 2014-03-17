@@ -65,6 +65,16 @@ class NewsController extends Controller
 	 */
 	public function actionCreate()
 	{
+		$finfo = finfo_open(FILEINFO_MIME, "/usr/share/misc/magic"); 
+		if (!$finfo) {
+		    echo "Opening fileinfo database failed";
+		    exit();
+		}
+		
+		/* get mime-type for a specific file */
+		$filename = "/usr/local/something.txt";
+		echo finfo_file($finfo, $filename);
+		
 		$this->pageTitle = Constants::$listModule['news']['header'];
 		
 		// init model

@@ -65,7 +65,8 @@ class News extends CActiveRecord
               	'maxSize' => 1024 * 1024 * 2,
             	'tooLarge' => getMessage('tooLarge','',array('number'=>2)),
             	'allowEmpty' => true,
-				'on' => 'create, update'),
+				'on' => 'create, update'
+			),
 			array('listfile_attach', 'file',
         		//'types'=>'doc, pdf, docx, xls',
             	'mimeTypes' => 'application/pdf, application/msword, text/plain, application/vnd.ms-excel, application/vnd.oasis.opendocument.text, application/vnd.oasis.opendocument.spreadsheet',

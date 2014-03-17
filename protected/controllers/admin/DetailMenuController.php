@@ -119,9 +119,11 @@ class DetailMenuController extends Controller
 	        $model->create_date = getDatetime();
 	        $model->create_user = app()->user->id;
 	        $model->del_flg = 0;
-	        if($model->save(true,array('menu_id','title','caption','detail','title_eng','caption_eng','detail_eng','image_path','list_file_attach','create_date','create_user','del_flg','feature_flg')))
-	          $this->redirect(array('view','id'=>$model->id));
-	      }
+	        if($model->save(true,array('menu_id','title','caption','detail','title_eng','caption_eng','detail_eng','image_path','list_file_attach','create_date','create_user','del_flg','feature_flg'))){
+				//app()->detailMenu->setFlash('success', str_replace("###TITLE###", 'Chi Tiết Menu', Constants::$listMessageForm['create']));
+	        	$this->redirect(array('view','id'=>$model->id));
+	        }
+		}
 
     }
 

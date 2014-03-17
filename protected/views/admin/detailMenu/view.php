@@ -16,6 +16,18 @@ $this->breadcrumbs=array(
 //);
 ?>
 
+<?php
+	/*if(app()->detailMenu->hasFlash('error')){
+	  echo app()->detailMenu->getFlash('error');
+	} elseif(app()->detailMenu->hasFlash('warning')){
+	  echo app()->detailMenu->getFlash('warning');
+	} elseif(app()->detailMenu->hasFlash('info')){
+	  echo app()->detailMenu->getFlash('info');
+	} elseif(app()->detailMenu->hasFlash('success')){
+	  echo '<div class="alert alert-success">'.app()->detailMenu->getFlash('success').'</div>';
+	}*/
+?>
+
 <h1><?php echo str_replace("###TITLE###", 'Chi Tiết Menu', Constants::$listTitleForm['form_view']) .' ' . $model->id; ?></h1>
 
 <div class="view_user">

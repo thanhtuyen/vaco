@@ -26,9 +26,21 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
+<?php /*
+	if(app()->user->hasFlash('error')){
+	  echo app()->user->getFlash('error');
+	} elseif(app()->user->hasFlash('warning')){
+	  echo app()->user->getFlash('warning');
+	} elseif(app()->user->hasFlash('info')){
+	  echo app()->user->getFlash('info');
+	} elseif(app()->user->hasFlash('success')){
+	  echo '<div class="alert alert-success">'.app()->user->getFlash('success').'</div>';
+	}*/
+?>
+
 <h1><?php echo Constants::$listModule['detail_menu']['title']?></h1>
 
-<?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>
+<!--<?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>
 <div class="search-form" style="display:none">
 <?php $this->renderPartial('_search',array(
 	'model'=>$model,
@@ -42,9 +54,11 @@ $('.search-form form').submit(function(){
 	'dataProvider'=>$model->search(),
 	//'filter'=>$model,
 	'columns'=>array(
-		'id',
+		array('name' => 'id',
+	          'value'=> '$data->id',
+	    ),
 	    array('name' => 'menu_id',
-	          'value'=> '$data->Menu->menu_name',
+	          'value'=> 'CHtml::encode($data->Menu->menu_name)',
 	    ),
 		'title',
     	'title_eng',

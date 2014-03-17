@@ -7,10 +7,10 @@ $this->breadcrumbs=array(
 	'Manage',
 );
 
-$this->menu=array(
+//$this->menu=array(
 	//array('label'=>'List Imageslide', 'url'=>array('index')),
 	//array('label'=>'Create Imageslide', 'url'=>array('create')),
-);
+//);
 
 Yii::app()->clientScript->registerScript('search', "
 $('.search-button').click(function(){
@@ -28,7 +28,7 @@ $('.search-form form').submit(function(){
 
 <h1><?php echo Constants::$listModule['image_slide']['title']?></h1>
 
-<?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>
+<?php //echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>
 <div class="search-form" style="display:none">
 <?php $this->renderPartial('_search',array(
 	'model'=>$model,
