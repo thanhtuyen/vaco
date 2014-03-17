@@ -86,7 +86,8 @@ class detailMenu extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-      		'Menu' => array(self::HAS_ONE, 'Menu', 'id'),
+      		'Menu' => array(self::BELONGS_TO, 'Menu', 'menu_id'),
+      		'User' => array(self::BELONGS_TO, 'User', 'create_user'),
 		);
 	}
 
@@ -138,7 +139,7 @@ class detailMenu extends CActiveRecord
 		$criteria->compare('create_date',$this->create_date,true);
 		$criteria->compare('create_user',$this->create_user);
 		$criteria->compare('update_date',$this->update_date,true);
-    	$criteria->addCondition("del_flg = 0");
+    $criteria->addCondition("del_flg = 0");
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

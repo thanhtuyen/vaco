@@ -116,10 +116,10 @@ class DetailMenuController extends Controller
           $model->image_path->saveAs(Yii::getPathOfAlias('webroot'). detailMenu::S_THUMBNAIL.$model->image_path->name);
         }
 
-        if($filez=uploadMultifile($model,'list_file_attach',detailMenu::file_url))
-        {
-          $model->list_file_attach=implode(",", $filez);
+        if($sfile){
+          uploadMultifile($model,'list_file_attach',detailMenu::file_url);
         }
+
           $this->redirect(array('view','id'=>$model->id));
 	      }
     }
@@ -128,15 +128,7 @@ class DetailMenuController extends Controller
 			'model'=>$model,
 		));
 	}
-  public function handleUploadImage(){
-    $this->uploadImage = CUploadedFile::getInstanceByName('uploadImage');
-    $oldImage = $this->image;
-    if ($this->uploadImage != null)
-    {
-      $filename = 'profile_image_' . $this->id . '_' . time() . '.' . $this->uploadImage->extensionName;
-      $this->uploadImage->saveAs('images/content/profile/'.$filename);
-    }
-  }
+
 	/**
 	 * Updates a particular model.
 	 * If update is successful, the browser will be redirected to the 'view' page.
@@ -153,52 +145,69 @@ class DetailMenuController extends Controller
 		
 		$old_image_path = $model->image_path; 
 		$old_file = $model->list_file_attach;
+    $menu_id = $model->menu_id;
 		$array_file = explode(',',$model->list_file_attach);  
 		if(isset($_POST['detailMenu']))
 		{
 			$model->attributes=$_POST['detailMenu'];
 
-      		//$model->detail = CHtml::encode($_POST['detailMenu']['detail']);
-			//$model->detail_eng = CHtml::encode($_POST['detailMenu']['detail_eng']);
-			$model->image_path = CUploadedFile::getInstance($model,'image_path');
-			
-			$model->list_file_attach = CUploadedFile::getInstances($model,'list_file_attach'); 
+      $model->detail = CHtml::encode($_POST['detailMenu']['detail']);
+			$model->detail_eng = CHtml::encode($_POST['detailMenu']['detail_eng']);
+      $image_path = CUploadedFile::getInstance($model, 'image_path');
 
+      $sfile = CUploadedFile::getInstances($model,'list_file_attach');
+      if($sfile){
+        foreach ($sfile as $i=>$file){
+          $formatName=$file;
+          $ffile[$i]=$formatName;
+        }
+        $model->list_file_attach = implode(',', $ffile);
+      }
 			$model->update_date = getDatetime(); 
 			
 			if ($model->validate()) { 
 			// upload image
-		        $image_path = CUploadedFile::getInstance($model, 'image_path');
-		        if (is_object($image_path) && get_class($image_path)==='CUploadedFile')
-		        	$model->image_path = $image_path;
-		
-		        if (is_object($model->image_path)) { 
-		        	$image_path = Yii::getPathOfAlias('webroot') . detailMenu::S_THUMBNAIL . $old_image_path;
-					if($old_image_path && file_exists($image_path)) 
-		          		unlink(Yii::getPathOfAlias('webroot') . detailMenu::S_THUMBNAIL . $old_image_path);
-		
-		          	$model->image_path->saveAs(Yii::getPathOfAlias('webroot') . detailMenu::S_THUMBNAIL . $model->image_path);
-		        } else { 
-					$model->image_path = $old_image_path;
-		        }
+        if (is_object($image_path) && get_class($image_path)==='CUploadedFile')
+        {
+          if(is_object($image_path)) {
+            unlink(Yii::getPathOfAlias('webroot') . detailMenu::S_THUMBNAIL . $old_image_path);
+            $model->image_path = $image_path;
+          } else {
+            $model->image_path = $old_image_path;
+          }
 
-		        // upload files		       
-		        if($model->list_file_attach != array()){ 
-					foreach ($array_file as $k){ 
-						if($k!=""){ 
-				        	$file_path = Yii::getPathOfAlias('webroot') . detailMenu::file_url . $k;
-							if(file_exists($file_path)) 
-				          		unlink(Yii::getPathOfAlias('webroot') . detailMenu::file_url . $k);
-						}
-					} 
-					if($files = uploadMultifile($model,'list_file_attach', detailMenu::file_url))
-						$model->list_file_attach = implode(",", $files);				
-		        } else {
-		        	$model->list_file_attach = $old_file;
-		        }
-		        
+        }
+
+        if($sfile){
+          foreach ($array_file as $k){
+            if($k!=""){
+              $file_path = Yii::getPathOfAlias('webroot') . detailMenu::file_url . $k;
+              if($file_path)
+                unlink(Yii::getPathOfAlias('webroot') . detailMenu::file_url . $k);
+            }
+          }
+          foreach ($sfile as $i=>$file){
+            $formatName=$file;
+            $ffile[$i]=$formatName;
+          }
+
+          $model->list_file_attach = implode(',', $ffile);
+        } else {
+          $model->list_file_attach = $old_file;
+        }
+
+
+        $model->menu_id= $menu_id;
 				if($model->save())
-					$this->redirect(array('view','id'=>$model->id));
+          if($image_path) {
+            $model->image_path->saveAs(Yii::getPathOfAlias('webroot') . detailMenu::S_THUMBNAIL . $model->image_path->name);
+          }
+
+          if($sfile != '')
+          {
+            uploadMultifile($model,'list_file_attach',detailMenu::file_url);
+          }
+        $this->redirect(array('view','id'=>$model->id));
 			}
 		}
 
@@ -225,13 +234,13 @@ class DetailMenuController extends Controller
 	/**
 	 * Lists all models.
 	 */
-	public function actionIndex()
-	{
-		$dataProvider=new CActiveDataProvider('detailMenu');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
-	}
+//	public function actionIndex()
+//	{
+//		$dataProvider=new CActiveDataProvider('detailMenu');
+//		$this->render('index',array(
+//			'dataProvider'=>$dataProvider,
+//		));
+//	}
 
 	/**
 	 * Manages all models.

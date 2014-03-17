@@ -21,8 +21,8 @@
 	<?php echo CHtml::encode($data->caption); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('detial')); ?>:</b>
-	<?php echo CHtml::encode($data->detial); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('detail')); ?>:</b>
+	<?php echo CHtml::encode($data->detail); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('title_eng')); ?>:</b>

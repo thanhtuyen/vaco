@@ -46,9 +46,12 @@ $('.search-form form').submit(function(){
 	    array('name' => 'menu_id',
 	          'value'=> '$data->Menu->menu_name',
 	    ),
+
 		'title',
-    	'title_eng',
-		'caption',
+    'create_date',
+    array('name' => 'create_user',
+          'value'=> '$data->User->username',
+    ),
 		//'detail',
 		/*
 		'caption_eng',
