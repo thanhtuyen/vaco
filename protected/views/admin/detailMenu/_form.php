@@ -8,7 +8,7 @@ Yii::import('ext.ckeditor.CKEditor');
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
   'id'=>'detail-menu-form',
   'type'=>'horizontal',
-  'enableAjaxValidation'=>true,
+  'enableAjaxValidation'=>false,
   'htmlOptions' => array('enctype' => 'multipart/form-data'),
 )); ?>
 
@@ -19,25 +19,16 @@ Yii::import('ext.ckeditor.CKEditor');
 
   <div class="control-group">
     <?php echo $form->labelEx($model,'menu_id', array('class'=> "control-label")); ?>
-    <?php
-//    if($model->isNewRecord){
-//      $parents = detailMenu::getListMenu();
-//    } else{
-//      $parent = detailMenu::getListMenu();
-//      $arrmenu = array( );
-//      $arrmenu[$model->menu_id] = $model->Menu->menu_name;
-////      print_r($arrmenu);
-////      print_r($parent);
-////      die;
-//      $parents = array_push($arrmenu, $parent);
-//    }
-    $parents = detailMenu::getListMenu();
-    ?>
-    <?php // = array_merge(array(0 => 'Root'), $parent);
-    //$list_cate = array(0 => 'Root') + $parent;
-    ?>
     <div class="controls">
-      <?php echo $form->dropDownList($model,'menu_id',$parents ,array('class'=>'span3','maxlength'=>255)); ?>
+    <?php
+    $parents = detailMenu::getListMenu($model->menu_id);
+    if($model->isNewRecord){
+      echo $form->dropDownList($model,'menu_id',$parents ,array('class'=>'span3','maxlength'=>255));
+    } else{
+      echo $form->dropDownList($model,'menu_id',$parents ,array('class'=>'span3','maxlength'=>255, 'disabled'=> true));
+    }
+
+    ?>
     </div>
 
   </div>
@@ -51,7 +42,7 @@ Yii::import('ext.ckeditor.CKEditor');
     <div class="controls">
       <?php
       $model->setAttribute(CHtml::decode($model->detail), 'detail');
-      echo $form->textArea($model, 'detail', array('id'=>'editor1')); ?>
+      echo $form->textArea($model, 'detail', array('id'=>'editor1', 'style' => 'height:1000px;')); ?>
       <?php echo $form->error($model,'detail'); ?>
     </div>
   </div>
@@ -90,7 +81,6 @@ Yii::import('ext.ckeditor.CKEditor');
 <h5>ENGLISH</h5>
   	<?php echo $form->textFieldRow($model,'title_eng',array('class'=>'span3','maxlength'=>255)); ?>
   	<?php echo $form->textFieldRow($model,'caption_eng',array('class'=>'span3','maxlength'=>255)); ?>
-  	<?php echo $form->textFieldRow($model,'detail_eng',array('class'=>'span3','maxlength'=>255)); ?>
   	<div class="control-group">
 	    <?php echo $form->labelEx($model,'detail_eng', array('class'=> "control-label")); ?>
 	    <div class="controls">

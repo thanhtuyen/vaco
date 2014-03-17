@@ -63,8 +63,8 @@ class detailMenu extends CActiveRecord
             'allowEmpty' => true, 'on' => 'create, update' ),
 
 			array('list_file_attach', 'file',
-//			'types'=>'doc, pdf, docx',
-//          'mimeTypes'=>array('application/pdf','application/docx','application/xls','application/doc', 'application/msword', 'text/plain', 'application/vnd.ms-excel', 'application/vnd.oasis.opendocument.text', 'application/vnd.oasis.opendocument.spreadsheet'),
+        //'types'=>'doc, pdf, docx',
+            'mimeTypes'=>array('application/pdf','application/xls', 'application/msword', 'text/plain', 'application/vnd.ms-excel', 'application/vnd.oasis.opendocument.text', 'application/vnd.oasis.opendocument.spreadsheet'),
             'maxSize'=>1024*1024*10,
             //'wrongType'=>getMessage('wrongTypeFile'),
             'tooLarge'=>getMessage('tooLarge','',array('number'=>10)),
@@ -151,16 +151,19 @@ class detailMenu extends CActiveRecord
     $arrDetailMenu = array();
     foreach ($detailmenus as $detailmenu)
     {
-      $arrDetailMenu[] = $detailmenu->menu_id;
+      $arrDetailMenu[$detailmenu->menu_id] = $detailmenu->menu_id;
     }
 
     return $arrDetailMenu;
   }
 
-    public function getListMenu()
+    public function getListMenu($id = '')
   {
     $menu_type = Menu::NOT_LIST;
     $listMenuId = detailMenu::getListMenuIdInDetail();
+    if($id){
+      unset($listMenuId[$id]);
+    }
     $listMenu = Yii::app()->db->createCommand()
       ->select('*')
       ->from('menu')
