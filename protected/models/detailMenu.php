@@ -151,16 +151,19 @@ class detailMenu extends CActiveRecord
     $arrDetailMenu = array();
     foreach ($detailmenus as $detailmenu)
     {
-      $arrDetailMenu[] = $detailmenu->menu_id;
+      $arrDetailMenu[$detailmenu->menu_id] = $detailmenu->menu_id;
     }
 
     return $arrDetailMenu;
   }
 
-    public function getListMenu()
+    public function getListMenu($id = '')
   {
     $menu_type = Menu::NOT_LIST;
     $listMenuId = detailMenu::getListMenuIdInDetail();
+    if($id){
+      unset($listMenuId[$id]);
+    }
     $listMenu = Yii::app()->db->createCommand()
       ->select('*')
       ->from('menu')
