@@ -71,6 +71,7 @@ class User extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
       'detailMenu'=> array(self::HAS_MANY, 'detailMenu', 'create_user'),
+      'Menu'=> array(self::HAS_MANY, 'Menu', 'create_user_id'),
 		);
 	}
 

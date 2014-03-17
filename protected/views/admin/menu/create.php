@@ -15,6 +15,6 @@ $this->menu=array(
 
 <h1><?php echo str_replace("###TITLE###", 'Menu', Constants::$listTitleForm['form_create']); ?></h1>
 
-<!-- <div class="create_user"> -->
+ <div class="create_user">
   <?php echo $this->renderPartial('_form', array('model'=>$model, 'list_menu_type' => $list_menu_type)); ?>
-<!-- </div> -->
+ </div>

@@ -30,11 +30,13 @@ $this->breadcrumbs=array(
 		'type'  => 'raw',
 		'value' => ($model->parent_menu_id == 0) ? $model->getParentName($model->parent_menu_id) : CHtml::link($model->getParentName($model->parent_menu_id),
         	array('view', 'id'=>$model->parent_menu_id))),
-    	'menu_name',
+    'menu_name',
 		'menu_name_eng',
-		'menu_type',
+    array('name' => 'menu_type',
+      'value' => $model->getNameMenuType($model->menu_type),
+    ),
 		array('name' => 'create_user_id',
-			'value' => $user['username']
+			'value' => $model->User->username,
 		),
 		array('name' => 'create_date',
         	'value' => $model->create_date? $model->create_date:''

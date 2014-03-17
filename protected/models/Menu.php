@@ -16,7 +16,7 @@
  */
 class Menu extends CActiveRecord
 {
-  	const LIST_MENU = 1;
+  const LIST_MENU = 1;
 	const NOT_LIST = 2;
 	const TYPE_IMAGE = 3;
 	/**
@@ -66,6 +66,7 @@ class Menu extends CActiveRecord
       		'detailMenu' => array(self::HAS_ONE, 'detaiMenu', 'menu_id'),
       		'parent' => array(self::BELONGS_TO, 'Menu', 'parent_menu_id'),
 			'news' => array(self::HAS_MANY, 'news', 'menu_id'),
+      'User' => array(self::BELONGS_TO, 'User', 'create_user_id'),
 			'detailMenuImage' => array(self::HAS_MANY, 'detailmenuimage', 'menu_id'),
 		);
 	}
@@ -175,5 +176,10 @@ class Menu extends CActiveRecord
     if($model===null)
       throw new CHttpException(404,'The requested page does not exist.');
     return $model->menu_name;
+  }
+
+  public function getNameMenuType($type){
+    $list_menu_type  =$this->getListMenuType();
+    return $list_menu_type[$type];
   }
 }

@@ -60,7 +60,10 @@ if(app()->user->hasFlash('error')){
 	    ),
 		'menu_name',
 		'menu_name_eng',
-		'menu_type',
+    array('name'=> 'menu_type',
+      'type' => 'raw',
+      'value'=>  '$data->getNameMenuType($data->menu_type)',
+    ),
 		'create_date',
 		/*
 		'create_user_id',
