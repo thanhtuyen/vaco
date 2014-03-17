@@ -61,9 +61,10 @@ class DetailMenuController extends Controller
 		$this->pageTitle = Constants::$listModule['detail_menu']['header'];
 		
 	    $model = $this->loadModel($id);
-	   // $model->setAttribute('detail', CHtml::decode($model->detail));
+	    $model->setAttribute('detail', CHtml::decode($model->detail));
+
 		$this->render('view',array(
-			'model'=>$this->loadModel($id),
+			'model'=>$model,
 		));
 	}
 
@@ -157,8 +158,8 @@ class DetailMenuController extends Controller
 		{
 			$model->attributes=$_POST['detailMenu'];
 
-      		$model->detail = CHtml::encode($_POST['detailMenu']['detail']);
-			$model->detail_eng = CHtml::encode($_POST['detailMenu']['detail_eng']);
+      		//$model->detail = CHtml::encode($_POST['detailMenu']['detail']);
+			//$model->detail_eng = CHtml::encode($_POST['detailMenu']['detail_eng']);
 			$model->image_path = CUploadedFile::getInstance($model,'image_path');
 			
 			$model->list_file_attach = CUploadedFile::getInstances($model,'list_file_attach'); 

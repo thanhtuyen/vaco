@@ -16,27 +16,33 @@ $this->breadcrumbs=array(
 //);
 ?>
 
-<h1><?php echo str_replace("###TITLE###", 'Chi Tiết Menu', Constants::$listTitleForm['form_view']) .' ' . $model->id; ?></h1>
+<h1><?php echo str_replace("###TITLE###", 'Menu', Constants::$listTitleForm['form_view']) .' ' . $model->id; ?></h1>
 
-<div class="view_user">
+<div class="view_detail_menu">
 	<div style="text-align:right"><?php echo CHtml::link(CHtml::image(Yii::app()->request->baseUrl.'/images/thumbnails/bedit.png',"bCreate",array("class"=>"icon_edit")), Yii::app()->createUrl('/detailmenu/update/'.$model->id)) ;?></div>
 <?php
-$detail = CHtml::decode($model->detail);
+//print_r($model->detail);
+//$detail = CHtml::decode($model->detail);
 $this->widget('bootstrap.widgets.TbDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
     array('name' => 'menu_id',
       	'value' => $model->Menu->menu_name),
     'title',
+    'caption',
+    array('name' => 'detail',
+      'type' => 'raw',
+      'value'=> $model->detail),
+      'image_path',
+      'list_file_attach',
+    array('label' => 'ENGLISH', 'value' => ''),
     'title_eng',
-	'caption',
     'caption_eng',
-    'image_path',
-//    array('name' => 'detail',
-//          'value'=> $model->detail),
-//    'detail_eng',
 
-	'list_file_attach',
+    array('name' => 'detail_eng',
+      'type' => 'raw',
+      'value'=> $model->detail_eng),
+
     array('name' => 'create_date',
       'value' => $model->create_date? $model->create_date:""),
 
@@ -45,46 +51,8 @@ $this->widget('bootstrap.widgets.TbDetailView', array(
 
   ),
 )); ?>
-  <table class="detail-view table table-striped table-condensed" id="yw0">
-    <tr class="odd">
-      <th>
-        Chi tiết
-      </th>
-      <td>
-        <?php echo CHtml::decode($model->detail);?>
-      </td>
-    </tr>
-    <tr class="odd">
-      <th>Detail Eng</th>
-      <td>
-        <?php echo CHtml::decode($model->detail_eng);?>
-      </td>
-    </tr>
 
-  </table>
-  <div >Chi tiết</div>
+
 
   <?php //echo CHtml::decode($model->detail_eng);?>
 </div>
-
-<style>
-  .detail-view_special {
-    text-align:right;
-    width:160px;
-    font-weight:bold;
-    background-color:#FFFFFF !important;
-    border-top-style:none !important;
-    color:#999999 !important;
-    padding-right:20px !important;
-    margin-top: 0px !important;
-  }
-
-  .table {
-    margin-bottom: 5px !important;
-    }
-  .detail-view_special_content{
-    background-color:#FFFFFF !important;
-    border-top-style:none !important;
-    float: left;
-  }
-</style>

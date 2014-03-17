@@ -90,7 +90,6 @@ Yii::import('ext.ckeditor.CKEditor');
 <h5>ENGLISH</h5>
   	<?php echo $form->textFieldRow($model,'title_eng',array('class'=>'span3','maxlength'=>255)); ?>
   	<?php echo $form->textFieldRow($model,'caption_eng',array('class'=>'span3','maxlength'=>255)); ?>
-  	<?php echo $form->textFieldRow($model,'detail_eng',array('class'=>'span3','maxlength'=>255)); ?>
   	<div class="control-group">
 	    <?php echo $form->labelEx($model,'detail_eng', array('class'=> "control-label")); ?>
 	    <div class="controls">

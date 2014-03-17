@@ -82,3 +82,11 @@ h1, h5 {
     color: #0066FF !important;
     font-weight: bolder;
 }
+.view_detail_menu {
+  width: 100%;
+  margin-left: 120px !important;
+  margin-right: 20px !important;
+  border:1px solid #999999;
+  border-radius:15px;
+  margin-top: 10px;
+}
