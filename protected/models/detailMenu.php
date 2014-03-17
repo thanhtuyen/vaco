@@ -64,7 +64,7 @@ class detailMenu extends CActiveRecord
 
 			array('list_file_attach', 'file',
         //'types'=>'doc, pdf, docx',
-//            'mimeTypes'=>array('application/pdf','application/docx','application/xls','application/doc', 'application/msword', 'text/plain', 'application/vnd.ms-excel', 'application/vnd.oasis.opendocument.text', 'application/vnd.oasis.opendocument.spreadsheet'),
+            'mimeTypes'=>array('application/pdf','application/xls', 'application/msword', 'text/plain', 'application/vnd.ms-excel', 'application/vnd.oasis.opendocument.text', 'application/vnd.oasis.opendocument.spreadsheet'),
             'maxSize'=>1024*1024*10,
             //'wrongType'=>getMessage('wrongTypeFile'),
             'tooLarge'=>getMessage('tooLarge','',array('number'=>10)),

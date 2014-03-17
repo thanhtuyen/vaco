@@ -8,7 +8,7 @@ Yii::import('ext.ckeditor.CKEditor');
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
   'id'=>'detail-menu-form',
   'type'=>'horizontal',
-  'enableAjaxValidation'=>true,
+  'enableAjaxValidation'=>false,
   'htmlOptions' => array('enctype' => 'multipart/form-data'),
 )); ?>
 

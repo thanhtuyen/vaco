@@ -84,45 +84,43 @@ class DetailMenuController extends Controller
 		if(isset($_POST['detailMenu']))
 		{
 	      $model->attributes=Clean($_POST['detailMenu']);
-	//      $model->setAttributes(array('content_article'=>$_FILES['detailMenu']['name']['image_path'],
-	//       ));
-	      $model->detail = CHtml::encode($_POST['detailMenu']['detail']);
+
 	      $model->setScenario('create');
 	      if ($model->validate()) {	
-	        //save image_path
-//	        $image_path = CUploadedFile::getInstance($model, 'image_path');
-//	        if (is_object($image_path) && get_class($image_path)==='CUploadedFile')
-//	        {
-//	          $model->image_path = $image_path;
-//	        }
-//
-//	        if (is_object($model->image_path)) {
-//	          $model->image_path->saveAs(Yii::getPathOfAlias('webroot'). detailMenu::S_THUMBNAIL.$model->image_path->name);
-//	        }
-//          $model->image_path = CUploadedFile::getInstanceByName('image_path');
-          $image_path = CUploadedFile::getInstance($model, 'image_path');
-         // print_r($image_path);die;
-         // $oldImage = $this->image;
-          if ($model->image_path != null)
-          {
-            $model->image_path = $image_path;
-            $filename = 'profile_image_' . $this->id . '_' . time() . '.' . $model->image_path->extensionName;
-            $model->image_path->saveAs(Yii::getPathOfAlias('webroot'). detailMenu::S_THUMBNAIL.$filename);
+
+        //save image_path
+        $image_path = CUploadedFile::getInstance($model, 'image_path');
+        if (is_object($image_path) && get_class($image_path)==='CUploadedFile')
+        {
+          $model->image_path = $image_path;
+        }
+
+        //save list_attach_file
+          $sfile=CUploadedFile::getInstances($model, 'list_file_attach');
+
+        if($sfile){
+          foreach ($sfile as $i=>$file){
+            $formatName=$file;
+            $ffile[$i]=$formatName;
           }
+          $model->list_file_attach = implode(',', $ffile);
+        }
 
-	        //save list file attach
+        $model->create_date = getDatetime();
+        $model->create_user = app()->user->id;
+        $model->del_flg = 0;
+        if($model->save(true,array('menu_id','title','caption','detail','title_eng','caption_eng','detail_eng','image_path','list_file_attach','create_date','create_user','del_flg','feature_flg')))
 
-	        if($filez=uploadMultifile($model,'list_file_attach',detailMenu::S_THUMBNAIL))
-	        {
-	          $model->list_file_attach=implode(",", $filez);
-	        }
-	        $model->create_date = getDatetime();
-	        $model->create_user = app()->user->id;
-	        $model->del_flg = 0;
-	        if($model->save(true,array('menu_id','title','caption','detail','title_eng','caption_eng','detail_eng','image_path','list_file_attach','create_date','create_user','del_flg','feature_flg')))
-	          $this->redirect(array('view','id'=>$model->id));
+          if (is_object($model->image_path)) {
+          $model->image_path->saveAs(Yii::getPathOfAlias('webroot'). detailMenu::S_THUMBNAIL.$model->image_path->name);
+        }
+
+        if($filez=uploadMultifile($model,'list_file_attach',detailMenu::file_url))
+        {
+          $model->list_file_attach=implode(",", $filez);
+        }
+          $this->redirect(array('view','id'=>$model->id));
 	      }
-
     }
 
 		$this->render('create',array(
