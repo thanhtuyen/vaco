@@ -29,16 +29,20 @@ $this->menu=array(
 	      		'value' => $model->image_path ? $model->image_path : ''
 			),
 			array('name' => 'title',
-	      		'value' => CHtml::decode($model->title)
+				'type' => 'raw',
+	      		'value' => CHtml::encode($model->title)
 			),
 			array('name' => 'caption',
-	      		'value' => CHtml::decode($model->caption)
+				'type' => 'raw',
+	      		'value' => CHtml::encode($model->caption)
 			),
 			array('name' => 'title_eng',
-	      		'value' => CHtml::decode($model->title_eng)
+				'type' => 'raw',
+	      		'value' => CHtml::encode($model->title_eng)
 			),
 			array('name' => 'caption_eng',
-	      		'value' => CHtml::decode($model->caption_eng)
+				'type' => 'raw',
+	      		'value' => CHtml::encode($model->caption_eng)
 			),
 			array('name' => 'create_user_id',
 	      		'value' => $user['username']

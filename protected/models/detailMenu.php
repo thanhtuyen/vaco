@@ -63,7 +63,7 @@ class detailMenu extends CActiveRecord
             'allowEmpty' => true, 'on' => 'create, update' ),
 
 			array('list_file_attach', 'file',
-        //'types'=>'doc, pdf, docx',
+        	//'types'=>'doc, pdf, docx',
             'mimeTypes'=>array('application/pdf','application/xls', 'application/msword', 'text/plain', 'application/vnd.ms-excel', 'application/vnd.oasis.opendocument.text', 'application/vnd.oasis.opendocument.spreadsheet'),
             'maxSize'=>1024*1024*10,
             //'wrongType'=>getMessage('wrongTypeFile'),
