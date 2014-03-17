@@ -47,6 +47,7 @@ $this->menu=array(
 	      		'value' => CHtml::decode($model->caption)
 			),
 			array('name' => 'detail',
+            'type' => 'raw',
 	      		'value' => CHtml::decode($model->detail)
 			),
 			array('name' => 'title_eng',
@@ -56,6 +57,7 @@ $this->menu=array(
 	      		'value' => CHtml::decode($model->caption_eng)
 			),
 			array('name' => 'detail_eng',
+            'type' => 'raw',
 	      		'value' => CHtml::decode($model->detail_eng)
 			),	
 			array('name' => 'thumb_image_path',
