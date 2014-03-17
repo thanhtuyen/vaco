@@ -40,7 +40,7 @@ if(app()->user->hasFlash('error')){
 ?>
 <h1><?php echo Constants::$listModule['menu']['title']?></h1>
 
-<?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>
+<?php //echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>
 <div class="search-form" style="display:none">
 <?php $this->renderPartial('_search',array(
 	'model'=>$model,
