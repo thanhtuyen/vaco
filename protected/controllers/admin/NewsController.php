@@ -89,30 +89,30 @@ class NewsController extends Controller
 					//$model->menu_id = $menu_id;	 
 					$model->detail = CHtml::encode($_POST['News']['detail']);
 					$model->detail_eng = CHtml::encode($_POST['News']['detail_eng']);
-          $model->create_date = getDatetime();
-          $model->create_user_id = app()->user->getState('roles') == 'admin' ? User::ADMIN : User::USER;
-          $model->del_flg = 0;
+			        $model->create_date = getDatetime();
+			        $model->create_user_id = app()->user->getState('roles') == 'admin' ? User::ADMIN : User::USER;
+			        $model->del_flg = 0;
 	
 		      		// upload image
 					$model->thumb_image_path = CUploadedFile::getInstance($model,'thumb_image_path'); 
 					if (is_object($model->thumb_image_path)) 	
 			          	$model->thumb_image_path->saveAs(Yii::getPathOfAlias('webroot') . News::image_url . $model->thumb_image_path);
-            //save list_attach_file
-            $sfile=CUploadedFile::getInstances($model, 'listfile_attach');
-
-            if($sfile){
-              foreach ($sfile as $i=>$file){
-                $formatName=$file;
-                $ffile[$i]=$formatName;
-              }
-              $model->list_file_attach = implode(',', $ffile);
-            }
+		            //save list_attach_file
+		            $sfile=CUploadedFile::getInstances($model, 'listfile_attach');
+		
+		            if($sfile){
+		              foreach ($sfile as $i=>$file){
+		                $formatName=$file;
+		                $ffile[$i]=$formatName;
+		              }
+		              $model->list_file_attach = implode(',', $ffile);
+		            }
 
 					$model->setIsNewRecord(true);	
 					$model->save(true,array('thumb_image_path','listfile_attach','menu_id','title','caption','detail','title_eng','caption_eng','detail_eng','create_user_id','create_date','feature_flag','is_public','del_flg'));
-            // upload file
-          if($files = uploadMultifile($model,'listfile_attach', News::file_url))
-            $model->listfile_attach = implode(",", $files);
+		            // upload file
+					if($files = uploadMultifile($model,'listfile_attach', News::file_url))
+		            $model->listfile_attach = implode(",", $files);
 					// Insert keyword
 					if(isset($_POST['Keyword'])){
 						$modelKeyword->attributes = Clean($_POST['Keyword']);

@@ -69,7 +69,7 @@ class News extends CActiveRecord
 			array('listfile_attach', 'file',
         		//'types'=>'doc, pdf, docx, xls',
             	//'mimeTypes' => 'application/pdf, application/msword, text/plain, application/vnd.ms-excel, application/vnd.oasis.opendocument.text, application/vnd.oasis.opendocument.spreadsheet',
-				    'mimeTypes'=>array('application/pdf', 'application/msword', 'text/plain', 'application/vnd.ms-excel', 'application/vnd.oasis.opendocument.text', 'application/vnd.oasis.opendocument.spreadsheet'),
+				'mimeTypes'=>array('application/pdf', 'application/msword', 'text/plain', 'application/vnd.ms-excel', 'application/vnd.oasis.opendocument.text', 'application/vnd.oasis.opendocument.spreadsheet'),
         		'maxSize'=>1024 * 1024 * 10,
 //        		'wrongType'=>getMessage('wrongTypeFile'),
         		'tooLarge'=>getMessage('tooLarge','',array('number'=>10)),
