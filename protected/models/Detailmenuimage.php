@@ -53,15 +53,25 @@ class Detailmenuimage extends CActiveRecord
 			array('id, menu_id, caption, caption_eng, create_date, create_user, image_path, update_date, del_flg, public_flg, feature_flg', 'safe', 'on'=>'search'),
 		
 			array('image_path','file',
-				'types'=>'jpg, jpeg, png, gif',
-				//'mimeTypes'=>array('image/gif, image/jpeg, image/jpg, image/png'),
+				//'types'=>'jpg, jpeg, png, gif',
+				'mimeTypes'=>array('image/gif', 'image/jpeg', 'image/jpg', 'image/png'),
 				'maxSize'=>1024*1024*2, // 2MB
-				'wrongType'=>getMessage('wrongTypeImage'),
+				//'wrongType'=>getMessage('wrongTypeImage'),
 				'tooLarge'=>getMessage('tooLarge','',array('number'=>2)),			
 				'message'=>getMessage('required', $this->getAttributeLabel('image_path')),
 				'allowEmpty' => false,
 				'on'=> 'create',
 			),
+      array('image_path','file',
+        //'types'=>'jpg, jpeg, png, gif',
+        'mimeTypes'=>array('image/gif', 'image/jpeg', 'image/jpg', 'image/png'),
+        'maxSize'=>1024*1024*2, // 2MB
+        //'wrongType'=>getMessage('wrongTypeImage'),
+        'tooLarge'=>getMessage('tooLarge','',array('number'=>2)),
+        'message'=>getMessage('required', $this->getAttributeLabel('image_path')),
+        'allowEmpty' => true,
+        'on'=> 'update',
+      ),
 		);
 	}
 
@@ -73,7 +83,8 @@ class Detailmenuimage extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'menu' => array(self::BELONGS_TO, 'menu', 'menu_id'),
+      'Menu' => array(self::BELONGS_TO, 'Menu', 'menu_id'),
+      'User' => array(self::BELONGS_TO, 'User', 'create_user'),
 		);
 	}
 

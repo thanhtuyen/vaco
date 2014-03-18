@@ -58,8 +58,8 @@ class detailMenu extends CActiveRecord
             'mimeTypes'=>array('image/gif','image/jpeg', 'image/jpg', 'image/png'),
             'maxSize' => 1024 * 1024 * 2,
             'wrongType'=>getMessage('wrongTypeImage'),
-			'tooLarge'=>getMessage('tooLarge','',array('number'=>2)),			
-			'message'=>getMessage('required', $this->getAttributeLabel('image_path')),
+            'tooLarge'=>getMessage('tooLarge','',array('number'=>2)),
+            'message'=>getMessage('required', $this->getAttributeLabel('image_path')),
             'allowEmpty' => true, 'on' => 'create, update' ),
 
 			array('list_file_attach', 'file',

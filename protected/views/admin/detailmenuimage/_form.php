@@ -32,7 +32,7 @@
 		<div class="controls"><br>
 			<?php 
 				if($model->isNewRecord != '1')
-					echo CHtml::image(Yii::app()->request->baseUrl . News::image_url . $model->image_path,"",array("maxwidth"=>800));
+					echo CHtml::image(Yii::app()->request->baseUrl . News::image_url . $model->image_path,"",array("class"=>'show_image_update'));
 			?>	
 		</div>	
 	</div>	
@@ -65,7 +65,7 @@
 	        //'buttonType'=>'link',
 	        'label'=>Constants::$listLabelButton['cancel'],
 	        'htmlOptions'=>array('style'=>'margin-left: 10px;','name'=>'bCancel','id'=> 'bCancel'),
-	        'url'=>'../../detailmenuimage/index',
+	        'url'=>'../../detailmenuimage/admin',
 	      ));
 	    } 
 	    ?>

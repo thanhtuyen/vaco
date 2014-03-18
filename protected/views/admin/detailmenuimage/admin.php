@@ -45,7 +45,7 @@ $('.search-form form').submit(function(){
 		'columns'=>array(
 			'id',
 			array('name' => 'menu_id',
-		          'value'=> '$data->menu->menu_name',
+		          'value'=> '$data->Menu->menu_name',
 		    ),			
 			'image_path',
 			'caption',
