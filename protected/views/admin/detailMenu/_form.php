@@ -41,7 +41,7 @@ Yii::import('ext.ckeditor.CKEditor');
     <?php echo $form->labelEx($model,'detail', array('class'=> "control-label")); ?>
     <div class="controls">
       <?php
-      $model->setAttribute(CHtml::decode($model->detail), 'detail');
+
       echo $form->textArea($model, 'detail', array('id'=>'editor1', 'style' => 'height:1000px;')); ?>
       <?php echo $form->error($model,'detail'); ?>
     </div>
@@ -90,7 +90,7 @@ Yii::import('ext.ckeditor.CKEditor');
 	    <?php echo $form->labelEx($model,'detail_eng', array('class'=> "control-label")); ?>
 	    <div class="controls">
 	      <?php
-	      $model->setAttribute(CHtml::decode($model->detail_eng), 'detail_eng');
+
 	      echo $form->textArea($model, 'detail_eng', array('id'=>'editor2')); ?>
 	      <?php echo $form->error($model,'detail_eng'); ?>
 	    </div>

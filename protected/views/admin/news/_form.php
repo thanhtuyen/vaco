@@ -18,18 +18,8 @@
 	<div class="space5">  
 		<div class="control-group">
 		<?php 
-			//if($model->isNewRecord != '1')
-				echo $form->dropDownListRow($model,'menu_id', Menu::listCategory(0, Menu::LIST_MENU), array('prompt'=>'Chọn menu ...')); 
-			/*else {
-				echo $form->labelEx($model,'menu_id',array('class'=>'control-label'));?>
-				<div class="controls">
-					<?php 
-					$list_menu = Menu::listCategory();		
-					$htmlOptions = array('size' => '5', 'style'=>'width:270px;', 'prompt'=>'Giữ phím CTRL để chọn nhiều menu.', 'multiple' => 'multiple', 'options' => ''); 
-	
-			        echo $form->ListBox($model,'menu_id', $list_menu, $htmlOptions); ?>
-		    	</div>
-			<?php }*/ ?>
+				echo $form->dropDownListRow($model,'menu_id', Menu::listCategory(0, Menu::LIST_MENU), array('prompt'=>'Chọn menu ...'));
+			 ?>
 		</div>
 	
 		<?php echo $form->textFieldRow($model,'title',array('class'=>'span3','maxlength'=>255)); ?>
@@ -42,7 +32,6 @@
 			<?php echo $form->labelEx($model,'detail', array('class'=> "control-label")); ?>
 			<div class="controls">
 				<?php
-        $model->setAttribute(CHtml::decode($model->detail), 'detail');
         echo $form->textArea($model, 'detail', array('id'=>'editor1')); ?>
         <?php echo $form->error($model,'detail'); ?>
 			</div>
@@ -59,7 +48,7 @@
 			<?php echo $form->labelEx($model,'detail_eng', array('class'=> "control-label")); ?>
 			<div class="controls">
 				<?php
-        $model->setAttribute(CHtml::decode($model->detail_eng), 'detail_eng');
+
         echo $form->textArea($model, 'detail_eng', array('id'=>'editor2')); ?>
 				<?php echo $form->error($model,'detail_eng'); ?>
 			</div>
@@ -82,7 +71,7 @@
 			<div class="controls"><br>
 				<?php 
 					if($model->isNewRecord != '1')
-						echo CHtml::image(Yii::app()->request->baseUrl . News::image_url . $model->thumb_image_path,"",array("maxwidth"=>100));
+						echo CHtml::image(Yii::app()->request->baseUrl . News::image_url . $model->thumb_image_path,"",array("class"=>'show_image_update'));
 				?>	
 			</div>	
 		</div>	
@@ -130,7 +119,7 @@
 		        //'buttonType'=>'link',
 		        'label'=>Constants::$listLabelButton['cancel'],
 		        'htmlOptions'=>array('style'=>'margin-left: 10px;','name'=>'bCancel','id'=> 'bCancel'),
-		        'url'=>'../../news/index',
+		        'url'=>'../../news/admin',
 		      ));
 		    } 
 		    ?>

@@ -68,7 +68,7 @@ $this->menu=array(
 			),	
 			array('name' => 'thumb_image_path',
             'type' => 'raw',
-	      		'value' => CHtml::image(Yii::app()->request->baseUrl.News::image_url . $model->thumb_image_path,"",array("maxwidth"=>100)),
+	      		'value' => CHtml::image(Yii::app()->request->baseUrl.News::image_url . $model->thumb_image_path,"",array("class"=>'show_image')),
 			),
 			array('name' => 'list_file_attach',
 	      		'value' => $model->list_file_attach ? $model->list_file_attach : ''
