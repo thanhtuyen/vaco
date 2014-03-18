@@ -25,9 +25,9 @@
     array(
       'class'=>'bootstrap.widgets.TbMenu',
       'items'=>array(
-        array('label'=>'Home', 'url'=>'#', 'active'=>true),
-        array('label'=>'Link', 'url'=>'#'),
-        array('label'=>'Link', 'url'=>'#'),
+        array('label'=>'Home', 'url'=>'', 'active'=>true),
+        array('label'=>'menu', 'url'=>array('/menu/admin')),
+        array('label'=>'detailmenu', 'url'=>array('/detailMenu/admin')),
         array('label'=>'Dropdown', 'url'=>'#', 'items'=>array(
           array('label'=>'Action', 'url'=>'#'),
           array('label'=>'Another action', 'url'=>'#'),
@@ -58,7 +58,14 @@
 )); ?>
 
 <div class="container" id="page">
-
+  <div>
+    <?php
+    $url =Yii::app()->request->requestUri;
+    $controller = Yii::app()->controller->id ;
+    $action = Yii::app()->controller->action->id;?>
+    <span id="vi"> <?php echo CHtml::link('viet name', array('..'.$url.'?_lang=vi'));?></span>
+    <span id="en"> <?php echo CHtml::link('english',  array('..'.$url.'?_lang=en'));?></span>
+  </div>
   <?php if(isset($this->breadcrumbs)):?>
     <?php $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
 			'links'=>$this->breadcrumbs,
@@ -79,3 +86,10 @@
 
 </body>
 </html>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#vi').click(function(){
+      $.get('agreement=' + ( this.checked ? 1 : 0 ) });
+  })
+  });
+</script>
