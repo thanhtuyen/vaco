@@ -48,13 +48,18 @@ class MenuController extends Controller
   {
     parent::init();
     $app = Yii::app();
+    //echo $_GET['_lang'];die;
     if (isset($_GET['_lang']))
-    {
+    {echo 1;
       $app->language = $_GET['_lang'];
       $app->session['_lang'] = $app->language;
     }
     else if (isset($app->session['_lang']))
-    {
+    {echo 2;
+      $app->language = $app->session['_lang'];
+    } else {
+      echo 3;
+      $app->session['_lang'] = 'vi';
       $app->language = $app->session['_lang'];
     }
 
