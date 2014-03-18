@@ -6,7 +6,7 @@ class MenuController extends Controller
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/column2';
+	public $layout='//layouts/column1';
 
 	/**
 	 * @return array action filters
@@ -39,11 +39,26 @@ class MenuController extends Controller
 				'actions'=>array('admin','delete'),
 				'users'=>array('admin'),
 			),
-			array('deny',  // deny all users
+			array('allow',  // deny all users
 				'users'=>array('*'),
 			),
 		);
 	}
+  function init()
+  {
+    parent::init();
+    $app = Yii::app();
+    if (isset($_GET['_lang']))
+    {
+      $app->language = $_GET['_lang'];
+      $app->session['_lang'] = $app->language;
+    }
+    else if (isset($app->session['_lang']))
+    {
+      $app->language = $app->session['_lang'];
+    }
+
+  }
 
 	/**
 	 * Displays a particular model.
@@ -51,8 +66,9 @@ class MenuController extends Controller
 	 */
 	public function actionView($id)
 	{
+    $currentLang = Yii::app()->language;
 		$this->render('view',array(
-			'model'=>$this->loadModel($id),
+			'model'=>$this->loadModel($id),'currentLang' => $currentLang
 		));
 	}
 

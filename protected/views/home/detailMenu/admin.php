@@ -26,8 +26,15 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Manage Detail Menus</h1>
 
+<h1>Manage Detail Menus</h1>
+<?php
+echo Yii::t('strings','the quick brown fox jumped over the lazy dog');
+
+echo Yii::t('strings','you have {count} new emails', array('{count}'=>5));
+
+echo Yii::t('strings','n==1#one book|n>1#many books', array(2));
+?>
 <p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
 or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
@@ -67,3 +74,6 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		),
 	),
 )); ?>
+<script type="text/javascript">
+
+</script>

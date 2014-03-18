@@ -17,7 +17,14 @@ $this->menu=array(
 ?>
 
 <h1>View Menu #<?php echo $model->id; ?></h1>
+<?php
 
+if($currentLang = 'vi'):
+echo "aaa0";
+else:
+echo "bbbb0";
+endif;
+?>
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(

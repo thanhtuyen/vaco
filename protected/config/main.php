@@ -18,7 +18,7 @@ return array(
 	'preload'=>array('log, bootstrap, ckeditor'),
 //  Aplly Theme
   'theme'=>'bootstrap',
-
+  'sourceLanguage'=>'vi',
 	// autoloading model and component classes
 	'import'=>array(
 		'application.models.*',
