@@ -65,9 +65,9 @@ class Menu extends CActiveRecord
 		return array(
       		'detailMenu' => array(self::HAS_ONE, 'detaiMenu', 'menu_id'),
       		'parent' => array(self::BELONGS_TO, 'Menu', 'parent_menu_id'),
-          'news' => array(self::HAS_MANY, 'news', 'menu_id'),
-          'User' => array(self::BELONGS_TO, 'User', 'create_user_id'),
-          'detailMenuImage' => array(self::HAS_MANY, 'detailmenuimage', 'menu_id'),
+			'news' => array(self::HAS_MANY, 'news', 'menu_id'),
+			'User' => array(self::BELONGS_TO, 'User', 'create_user_id'),
+			'detailMenuImage' => array(self::HAS_MANY, 'detailmenuimage', 'menu_id'),
 		);
 	}
 
@@ -82,8 +82,8 @@ class Menu extends CActiveRecord
 			'menu_name' => 'Tên Menu',
 			'menu_name_eng' => 'Menu Name',
 			'menu_type' => 'Loại menu',
-			'create_date' => 'Create Date',
-			'create_user_id' => 'Create User',
+			'create_date' => 'Ngày tạo',
+			'create_user_id' => 'User tạo dữ liệu',
 			'update_date' => 'Update Date',
 			'del_flg' => 'Del Flg',
 		);

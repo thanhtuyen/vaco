@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 18, 2014 at 03:25 PM
+-- Generation Time: Mar 18, 2014 at 03:37 PM
 -- Server version: 5.5.24-log
 -- PHP Version: 5.3.13
 
@@ -186,7 +186,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `update_date` datetime DEFAULT NULL,
   `del_flg` tinyint(4) NOT NULL,
   PRIMARY KEY (`userid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `user`
@@ -195,7 +195,8 @@ CREATE TABLE IF NOT EXISTS `user` (
 INSERT INTO `user` (`userid`, `username`, `userpass`, `user_fullname`, `user_mobile`, `user_address`, `user_role`, `create_date`, `create_user`, `update_date`, `del_flg`) VALUES
 (1, 'admin', '61bd60c60d9fb60cc8fc7767669d40a1', 'admin', '', '', 1, NULL, NULL, '2014-03-09 15:47:47', 0),
 (2, 'thanhtuyen', 'fcea920f7412b5da7be0cf42b8c93759', 'nguyen thanh tuyen', '0989280619', 'quang ngai 4545', 0, '2014-03-18 00:31:33', 1, '2014-03-18 00:32:40', 0),
-(3, 't', '224cf2b695a5e8ecaecfb9015161fa4b', '1234567', '', '', 0, '2014-03-18 00:39:50', 1, '2014-03-18 00:43:42', 0);
+(3, 't', '224cf2b695a5e8ecaecfb9015161fa4b', '1234567', '', '', 0, '2014-03-18 00:39:50', 1, '2014-03-18 00:43:42', 0),
+(4, 'tamem', '14e1b600b1fd579f47433b88e8d85291', 'NguyenThiNgocTamEm', '0984028003', 'Tiền Giang', 0, '2014-03-18 15:34:43', 1, NULL, 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

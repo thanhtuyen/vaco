@@ -91,8 +91,8 @@ class Imageslide extends CActiveRecord
 			'caption' => 'Chú thích',
 			'title_eng' => 'Title',
 			'caption_eng' => 'Caption',
-			'create_date' => 'Create Date',
-			'create_user_id' => 'Create User',
+			'create_date' => 'Ngày tạo',
+			'create_user_id' => 'User tạo dữ liệu',
 			'update_date' => 'Update Date',
 			'del_flg' => 'Del Flg',
 		);
