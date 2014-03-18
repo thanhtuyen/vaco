@@ -82,11 +82,7 @@ class NewsController extends Controller
 			//$post_value = $_POST['News'];
       		$model->setScenario('create');
       		if ($model->validate()) {
-				//$list_menu_id = Clean($_POST['News']['menu_id']); 
-				//foreach ($list_menu_id as $l_menu_id=>$menu_id){
-					//$model=new News;
-	      			//$model->attributes=$post_value;				
-					//$model->menu_id = $menu_id;	 
+
 					$model->detail = CHtml::encode($_POST['News']['detail']);
 					$model->detail_eng = CHtml::encode($_POST['News']['detail_eng']);
           $model->create_date = getDatetime();
@@ -150,7 +146,8 @@ class NewsController extends Controller
 		// init model
 		$modelKeyword = Keyword::model()->findByPk($id); 
 		$model = $this->loadModel($id);
-
+    $model->setAttribute('detail', CHtml::decode($model->detail));
+    $model->setAttribute('detail_eng', CHtml::decode($model->detail_eng));
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
@@ -161,8 +158,6 @@ class NewsController extends Controller
 		{
       $model->setScenario('update');
 			$model->attributes = $_POST['News'];
-			$model->detail = CHtml::encode($_POST['News']['detail']);
-			$model->detail_eng = CHtml::encode($_POST['News']['detail_eng']);
 
       //save thumb_image_path
       $image_path = CUploadedFile::getInstance($model, 'thumb_image_path');
@@ -179,7 +174,8 @@ class NewsController extends Controller
 			$model->update_date = getDatetime(); 
 			//$model->create_user_id = app()->user->getState('roles') == 'admin' ? User::ADMIN : User::USER;
 			if ($model->validate()) {
-
+        $model->detail = CHtml::encode($_POST['News']['detail']);
+        $model->detail_eng = CHtml::encode($_POST['News']['detail_eng']);
         // upload image
         if (is_object($image_path) && get_class($image_path)==='CUploadedFile')
         {

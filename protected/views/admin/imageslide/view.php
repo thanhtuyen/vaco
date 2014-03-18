@@ -25,9 +25,7 @@ $this->menu=array(
 	$this->widget('bootstrap.widgets.TbDetailView', array(
 		'data'=>$model,
 		'attributes'=>array(
-			array('name' => 'image_path',
-	      		'value' => $model->image_path ? $model->image_path : ''
-			),
+
 			array('name' => 'title',
 				'type' => 'raw',
 	      		'value' => CHtml::encode($model->title)
@@ -42,8 +40,13 @@ $this->menu=array(
 			),
 			array('name' => 'caption_eng',
 				'type' => 'raw',
-	      		'value' => CHtml::encode($model->caption_eng)
+        'value' => CHtml::encode($model->caption_eng)
 			),
+
+      array('name' => 'image_path',
+        'type' => 'raw',
+        'value' => CHtml::image(Yii::app()->request->baseUrl.Imageslide::image_url . $model->image_path,"",array("class"=>'show_image')),
+      ),
 			array('name' => 'create_user_id',
 	      		'value' => $user['username']
 			),

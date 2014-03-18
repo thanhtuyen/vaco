@@ -23,9 +23,9 @@ Yii::import('ext.ckeditor.CKEditor');
     <?php
     $parents = detailMenu::getListMenu($model->menu_id);
     if($model->isNewRecord){
-      echo $form->dropDownList($model,'menu_id',$parents ,array('class'=>'span3','maxlength'=>255));
+      echo $form->dropDownList($model,'menu_id',$parents ,array( 'prompt'=>'Chọn menu ...'));
     } else{
-      echo $form->dropDownList($model,'menu_id',$parents ,array('class'=>'span3','maxlength'=>255, 'disabled'=> true));
+      echo $form->dropDownList($model,'menu_id',$parents ,array('disabled'=> true));
     }
 
     ?>
@@ -33,15 +33,14 @@ Yii::import('ext.ckeditor.CKEditor');
 
   </div>
 
-  <?php echo $form->textFieldRow($model,'title',array('class'=>'span3','maxlength'=>255)); ?>
+  <?php echo $form->textFieldRow($model,'title',array('class'=>'span4','maxlength'=>255)); ?>
+  <?php echo $form->textAreaRow($model,'caption',array('rows'=>3, 'cols'=>50, 'class'=>'span4')); ?>
 
-  <?php echo $form->textFieldRow($model,'caption',array('class'=>'span3','maxlength'=>255)); ?>
-  
   <div class="control-group">
     <?php echo $form->labelEx($model,'detail', array('class'=> "control-label")); ?>
     <div class="controls">
       <?php
-      $model->setAttribute(CHtml::decode($model->detail), 'detail');
+
       echo $form->textArea($model, 'detail', array('id'=>'editor1', 'style' => 'height:1000px;')); ?>
       <?php echo $form->error($model,'detail'); ?>
     </div>
@@ -57,7 +56,7 @@ Yii::import('ext.ckeditor.CKEditor');
   <div class="controls"><br>
     <?php
     if($model->isNewRecord != '1')
-      echo CHtml::image(Yii::app()->request->baseUrl . detailMenu::S_THUMBNAIL . $model->image_path,"",array("maxwidth"=>100));
+      echo CHtml::image(Yii::app()->request->baseUrl . detailMenu::S_THUMBNAIL . $model->image_path,"",array("class"=>'show_image_update'));
     ?>
   </div>
   <div class="control-group">
@@ -84,13 +83,13 @@ Yii::import('ext.ckeditor.CKEditor');
   <script src="<?php echo Yii::app()->baseUrl.'/ckeditor/ckeditor.js'; ?>"></script>
   
 <h5>ENGLISH</h5>
-  	<?php echo $form->textFieldRow($model,'title_eng',array('class'=>'span3','maxlength'=>255)); ?>
-  	<?php echo $form->textFieldRow($model,'caption_eng',array('class'=>'span3','maxlength'=>255)); ?>
+  	<?php echo $form->textFieldRow($model,'title_eng',array('class'=>'span4','maxlength'=>255)); ?>
+    <?php echo $form->textAreaRow($model,'caption_eng',array('rows'=>3, 'cols'=>50, 'class'=>'span4')); ?>
   	<div class="control-group">
 	    <?php echo $form->labelEx($model,'detail_eng', array('class'=> "control-label")); ?>
 	    <div class="controls">
 	      <?php
-	      $model->setAttribute(CHtml::decode($model->detail_eng), 'detail');
+
 	      echo $form->textArea($model, 'detail_eng', array('id'=>'editor2')); ?>
 	      <?php echo $form->error($model,'detail_eng'); ?>
 	    </div>

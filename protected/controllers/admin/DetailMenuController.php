@@ -59,6 +59,7 @@ class DetailMenuController extends Controller
 		
 	    $model = $this->loadModel($id);
 	    $model->setAttribute('detail', CHtml::decode($model->detail));
+	    $model->setAttribute('detail_eng', CHtml::decode($model->detail_eng));
 
 		$this->render('view',array(
 			'model'=>$model,
@@ -84,8 +85,9 @@ class DetailMenuController extends Controller
 	      $model->attributes=Clean($_POST['detailMenu']);
 
 	      $model->setScenario('create');
-	      if ($model->validate()) {	
-
+	      if ($model->validate()) {
+        $model->detail = CHtml::encode($_POST['detailMenu']['detail']);
+        $model->detail_eng = CHtml::encode($_POST['detailMenu']['detail_eng']);
         //save image_path
         $image_path = CUploadedFile::getInstance($model, 'image_path');
         if (is_object($image_path) && get_class($image_path)==='CUploadedFile')
@@ -136,7 +138,8 @@ class DetailMenuController extends Controller
 		$this->pageTitle = Constants::$listModule['detail_menu']['header'];
 		
 		$model=$this->loadModel($id);
-
+    $model->setAttribute('detail', CHtml::decode($model->detail));
+    $model->setAttribute('detail_eng', CHtml::decode($model->detail_eng));
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 		
@@ -147,9 +150,6 @@ class DetailMenuController extends Controller
 		if(isset($_POST['detailMenu']))
 		{
 			$model->attributes=$_POST['detailMenu'];
-
-      $model->detail = CHtml::encode($_POST['detailMenu']['detail']);
-			$model->detail_eng = CHtml::encode($_POST['detailMenu']['detail_eng']);
       $image_path = CUploadedFile::getInstance($model, 'image_path');
 
       $sfile = CUploadedFile::getInstances($model,'list_file_attach');
@@ -162,7 +162,9 @@ class DetailMenuController extends Controller
       }
 			$model->update_date = getDatetime(); 
 			
-			if ($model->validate()) { 
+			if ($model->validate()) {
+        $model->detail = CHtml::encode($_POST['detailMenu']['detail']);
+        $model->detail_eng = CHtml::encode($_POST['detailMenu']['detail_eng']);
 			// upload image
         if (is_object($image_path) && get_class($image_path)==='CUploadedFile')
         {

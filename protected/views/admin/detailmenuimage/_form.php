@@ -32,16 +32,16 @@
 		<div class="controls"><br>
 			<?php 
 				if($model->isNewRecord != '1')
-					echo CHtml::image(Yii::app()->request->baseUrl . News::image_url . $model->image_path,"",array("maxwidth"=>800));
+					echo CHtml::image(Yii::app()->request->baseUrl . News::image_url . $model->image_path,"",array("class"=>'show_image_update'));
 			?>	
 		</div>	
 	</div>	
 
-	<?php echo $form->textAreaRow($model,'caption',array('rows'=>1, 'cols'=>50, 'class'=>'span4')); ?>
+	<?php echo $form->textAreaRow($model,'caption',array('rows'=>3, 'cols'=>50, 'class'=>'span4')); ?>
 	
 <h5>ENGLISH</h5>
 
-	<?php echo $form->textAreaRow($model,'caption_eng',array('rows'=>1, 'cols'=>50, 'class'=>'span4')); ?>
+	<?php echo $form->textAreaRow($model,'caption_eng',array('rows'=>3, 'cols'=>50, 'class'=>'span4')); ?>
 	
 	<?php echo $form->radioButtonListRow($model,'public_flg',Constants::$arrayIsPublic,array('class'=>'span1')); ?>
 	<?php echo $form->radioButtonListRow($model,'feature_flg',Constants::$arrayFeature_flag,array('class'=>'span1')); ?>
@@ -65,7 +65,7 @@
 	        //'buttonType'=>'link',
 	        'label'=>Constants::$listLabelButton['cancel'],
 	        'htmlOptions'=>array('style'=>'margin-left: 10px;','name'=>'bCancel','id'=> 'bCancel'),
-	        'url'=>'../../detailmenuimage/index',
+	        'url'=>'../../detailmenuimage/admin',
 	      ));
 	    } 
 	    ?>

@@ -26,23 +26,20 @@ class DetailmenuimageController extends Controller
 	 */
 	public function accessRules()
 	{
-		return array(
-			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
-				'users'=>array('*'),
-			),
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
-				'users'=>array('@'),
-			),
-			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
-			),
-			array('deny',  // deny all users
-				'users'=>array('*'),
-			),
-		);
+    if(app()->user->getState('roles') =="admin") {
+
+      $arr =array('index','create', 'update', 'view', 'admin', 'delete');   /* give all access to admin */
+    } else {
+
+      $arr = array('view', 'admin', 'index');    /*  no access to other user */
+    }
+
+    return array(array('allow',
+      'actions'=>$arr,
+      'users'=>array('@'),),
+      array('deny',
+        'users'=>array('*'),),
+    );
 	}
 
 	/**
@@ -71,25 +68,26 @@ class DetailmenuimageController extends Controller
 		$model->feature_flg = 1; // set default feature_flg
 
 		// Uncomment the following line if AJAX validation is needed
-		$this->performAjaxValidation($model);
+		//$this->performAjaxValidation($model);
 
 		if(isset($_POST['Detailmenuimage']))
 		{
 			$model->setScenario('create');
 			$model->attributes=$_POST['Detailmenuimage'];
-			
+      //save image_path
+      $image_path = CUploadedFile::getInstance($model, 'image_path');
+      if (is_object($image_path) && get_class($image_path)==='CUploadedFile')
+      {
+        $model->image_path = $image_path;
+      }
 			if ($model->validate()) {
 				$model->create_date = getDatetime();
 	      		$model->create_user = app()->user->getState('roles') == 'admin' ? User::ADMIN : User::USER;
 	      		$model->del_flg = 0;
-	      		
-	      		// upload image
-				$model->image_path = CUploadedFile::getInstance($model,'image_path'); 
-				if (is_object($model->image_path)) 	
-		          	$model->image_path->saveAs(Yii::getPathOfAlias('webroot') . Detailmenuimage::image_url . $model->image_path);
-					
-	      		
+
 				if($model->save(true,array('menu_id','image_path','caption','caption_eng','create_user','del_flg','public_flg','feature_flg','create_date','update_date')))
+          if (is_object($model->image_path))
+            $model->image_path->saveAs(Yii::getPathOfAlias('webroot') . Detailmenuimage::image_url . $model->image_path->name);
 					$this->redirect(array('view','id'=>$model->id));
 			}
 		}
@@ -116,25 +114,29 @@ class DetailmenuimageController extends Controller
 		if(isset($_POST['Detailmenuimage']))
 		{
 			$model->attributes=$_POST['Detailmenuimage'];
-			
-			$model->image_path = CUploadedFile::getInstance($model,'image_path');
+
+      $image_path = CUploadedFile::getInstance($model, 'image_path');
 			$model->update_date = getDatetime();
 			if ($model->validate()) {
-				// upload image
-		        $image_path = CUploadedFile::getInstance($model, 'image_path');
-		        if (is_object($image_path) && get_class($image_path)==='CUploadedFile')
-		        	$model->image_path = $image_path;
-		
-		        if (is_object($model->image_path)) { 
-		        	$image_path = Yii::getPathOfAlias('webroot') . Detailmenuimage::image_url . $old_image_path;
-					if($old_image_path && file_exists($image_path)) 
-		          		unlink(Yii::getPathOfAlias('webroot') . Detailmenuimage::image_url . $old_image_path);
-		
-		          	$model->image_path->saveAs(Yii::getPathOfAlias('webroot') . Detailmenuimage::image_url . $model->image_path);
-		        } else { 
-					$model->image_path = $old_image_path;
-		        }
+        // upload image
+        if (is_object($image_path) && get_class($image_path)==='CUploadedFile')
+        {
+          if(is_object($image_path)) {
+            if($old_image_path != '') {
+              unlink(Yii::getPathOfAlias('webroot') . Detailmenuimage::image_url . $old_image_path);
+            }
+
+            $model->image_path = $image_path;
+          } else {
+            $model->image_path = $old_image_path;
+          }
+
+        }
+
 				if($model->save())
+          if($image_path) {
+            $model->image_path->saveAs(Yii::getPathOfAlias('webroot') . Detailmenuimage::image_url . $model->image_path->name);
+          }
 					$this->redirect(array('view','id'=>$model->id));
 			}
 		}
@@ -163,24 +165,24 @@ class DetailmenuimageController extends Controller
 	/**
 	 * Lists all models.
 	 */
-	public function actionIndex()
-	{
-		$this->pageTitle = Constants::$listModule['detail_menu_image']['header'];
-		
-		$model=new Detailmenuimage('search');
-		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Detailmenuimage']))
-			$model->attributes=$_GET['Detailmenuimage'];
-
-		$this->render('admin',array(
-			'model'=>$model,
-		));
-		
-		/*$dataProvider=new CActiveDataProvider('Detailmenuimage');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));*/
-	}
+//	public function actionIndex()
+//	{
+//		$this->pageTitle = Constants::$listModule['detail_menu_image']['header'];
+//
+//		$model=new Detailmenuimage('search');
+//		$model->unsetAttributes();  // clear any default values
+//		if(isset($_GET['Detailmenuimage']))
+//			$model->attributes=$_GET['Detailmenuimage'];
+//
+//		$this->render('admin',array(
+//			'model'=>$model,
+//		));
+//
+//		/*$dataProvider=new CActiveDataProvider('Detailmenuimage');
+//		$this->render('index',array(
+//			'dataProvider'=>$dataProvider,
+//		));*/
+//	}
 
 	/**
 	 * Manages all models.

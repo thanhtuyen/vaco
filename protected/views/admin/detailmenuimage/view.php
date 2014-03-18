@@ -20,41 +20,31 @@ $this->menu=array(
 
 <div class="view_user">
 	<div style="text-align:right"><?php echo CHtml::link(CHtml::image(Yii::app()->request->baseUrl.'/images/thumbnails/bedit.png',"bCreate",array("class"=>"icon_edit")), Yii::app()->createUrl('/detailmenuimage/update/'.$model->id)) ;?></div>
-	<?php 
-	$user = User::model()->findByPk($model->create_user);
-	$this->widget('zii.widgets.CDetailView', array(
-		'data'=>$model,
-		'attributes'=>array(
-			array('name' => 'menu_id',
-				'type' => 'raw',
-	      		'value' => CHtml::encode($model->menu->menu_name)
-			),
-			array('name' => 'caption',
-				'type' => 'raw',
-	      		'value' => CHtml::encode($model->caption)
-			),
-			array('name' => 'caption_eng',
-				'type' => 'raw',
-	      		'value' => CHtml::encode($model->caption_eng)
-			),
-			array('name' => 'image_path',
-	      		'value' => $model->image_path ? $model->image_path : ''
-			),
-			array('name' => 'create_user',
-	      		'value' => $user['username']
-			),
-			array('name' => 'create_date',
-	        	'value' => $model->create_date? $model->create_date:''
-			),
-			array('name' => 'update_date',
-	        	'value' => $model->update_date? $model->update_date:''
-	      	),
-			array('name' => 'public_flg',
-	      		'value' => Constants::$arrayIsPublic[$model->public_flg]
-			),
-			array('name' => 'feature_flg',
-	      		'value' => Constants::$arrayFeature_flag[$model->feature_flg]
-			),
-		),
-	)); ?>
+	<?php
+  $this->widget('bootstrap.widgets.TbDetailView', array(
+    'data'=>$model,
+    'attributes'=>array(
+      array('name' => 'menu_id',
+        'value' => $model->Menu->menu_name),
+      'caption',
+
+      array('name' => 'image_path',
+        'type' => 'raw',
+        'value' => CHtml::image(Yii::app()->request->baseUrl.Detailmenuimage::image_url . $model->image_path,"",array("class"=>'show_image')),
+      ),
+
+      array('label' => 'ENGLISH', 'value' => ''),
+
+      'caption_eng',
+      array('name' => 'create_date',
+        'value' => $model->create_date? $model->create_date:""),
+
+      array('name' => 'update_date',
+        'value' => $model->update_date? $model->update_date:''),
+      array('name' => 'create_user',
+        'value'=> $model->User->username,
+      ),
+    ),
+  )); ?>
+
 </div>
