@@ -22,9 +22,9 @@
 			 ?>
 		</div>
 	
-		<?php echo $form->textFieldRow($model,'title',array('class'=>'span3','maxlength'=>255)); ?>
+		<?php echo $form->textFieldRow($model,'title',array('class'=>'span4','maxlength'=>255)); ?>
 	
-		<?php echo $form->textAreaRow($model,'caption',array('rows'=>1, 'cols'=>50, 'class'=>'span4')); ?>
+		<?php echo $form->textAreaRow($model,'caption',array('rows'=>3, 'cols'=>50, 'class'=>'span4')); ?>
 	
 		<?php //echo $form->textAreaRow($model,'detail',array('rows'=>10, 'cols'=>50, 'class'=>'span4')); ?>		
 		<script src="<?php echo Yii::app()->baseUrl.'/ckeditor/ckeditor.js'; ?>"></script>
@@ -39,9 +39,9 @@
 		<script type="text/javascript">CKEDITOR.replace('editor1');</script>
 		
 <h5>ENGLISH</h5>
-		<?php echo $form->textFieldRow($model,'title_eng',array('size'=>45,'maxlength'=>45)); ?>
+		<?php echo $form->textFieldRow($model,'title_eng',array('class'=>'span4','maxlength'=>45)); ?>
 	
-		<?php echo $form->textAreaRow($model,'caption_eng',array('rows'=>1, 'cols'=>50, 'class'=>'span4')); ?>
+		<?php echo $form->textAreaRow($model,'caption_eng',array('rows'=>3, 'cols'=>50, 'class'=>'span4')); ?>
 	
 		<?php //echo $form->textAreaRow($model,'detail_eng',array('rows'=>10, 'cols'=>50, 'class'=>'span4')); ?>		
 		<div class="control-group">

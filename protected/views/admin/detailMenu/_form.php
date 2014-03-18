@@ -33,10 +33,9 @@ Yii::import('ext.ckeditor.CKEditor');
 
   </div>
 
-  <?php echo $form->textFieldRow($model,'title',array('class'=>'span3','maxlength'=>255)); ?>
+  <?php echo $form->textFieldRow($model,'title',array('class'=>'span4','maxlength'=>255)); ?>
+  <?php echo $form->textAreaRow($model,'caption',array('rows'=>3, 'cols'=>50, 'class'=>'span4')); ?>
 
-  <?php echo $form->textFieldRow($model,'caption',array('class'=>'span3','maxlength'=>255)); ?>
-  
   <div class="control-group">
     <?php echo $form->labelEx($model,'detail', array('class'=> "control-label")); ?>
     <div class="controls">
@@ -84,8 +83,8 @@ Yii::import('ext.ckeditor.CKEditor');
   <script src="<?php echo Yii::app()->baseUrl.'/ckeditor/ckeditor.js'; ?>"></script>
   
 <h5>ENGLISH</h5>
-  	<?php echo $form->textFieldRow($model,'title_eng',array('class'=>'span3','maxlength'=>255)); ?>
-  	<?php echo $form->textFieldRow($model,'caption_eng',array('class'=>'span3','maxlength'=>255)); ?>
+  	<?php echo $form->textFieldRow($model,'title_eng',array('class'=>'span4','maxlength'=>255)); ?>
+    <?php echo $form->textAreaRow($model,'caption_eng',array('rows'=>3, 'cols'=>50, 'class'=>'span4')); ?>
   	<div class="control-group">
 	    <?php echo $form->labelEx($model,'detail_eng', array('class'=> "control-label")); ?>
 	    <div class="controls">

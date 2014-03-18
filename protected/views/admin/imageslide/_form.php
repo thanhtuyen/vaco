@@ -16,7 +16,7 @@
 	<?php echo $form->errorSummary($model); ?>
 
 <div class="space5">  
-		<?php echo $form->textFieldRow($model,'title',array('class'=>'span3','maxlength'=>255)); ?>
+		<?php echo $form->textFieldRow($model,'title',array('class'=>'span4','maxlength'=>255)); ?>
     <div class="control-group">
       <?php echo $form->labelEx($model,'image_path', array('class'=> "control-label")); ?>
         <div class="controls">
@@ -36,11 +36,11 @@
       </div>
     </div>
   
-  <?php echo $form->textFieldRow($model,'caption',array('class'=>'span3','maxlength'=>255)); ?>
+  <?php echo $form->textAreaRow($model,'caption',array('rows'=>3, 'cols'=>50, 'class'=>'span4')); ?>
   <h5>ENGLISH</h5>
-  <?php echo $form->textFieldRow($model,'title_eng',array('class'=>'span3','maxlength'=>255)); ?>
+  <?php echo $form->textFieldRow($model,'title_eng',array('class'=>'span4','maxlength'=>255)); ?>
 
-  <?php echo $form->textFieldRow($model,'caption_eng',array('class'=>'span3','maxlength'=>255)); ?>
+  <?php echo $form->textAreaRow($model,'caption_eng',array('rows'=>3, 'cols'=>50, 'class'=>'span4')); ?>
 
 	<div class="form-actions">
     <?php $this->widget('bootstrap.widgets.TbButton', array(
