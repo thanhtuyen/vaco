@@ -23,9 +23,9 @@ Yii::import('ext.ckeditor.CKEditor');
     <?php
     $parents = detailMenu::getListMenu($model->menu_id);
     if($model->isNewRecord){
-      echo $form->dropDownList($model,'menu_id',$parents ,array('class'=>'span3','maxlength'=>255));
+      echo $form->dropDownList($model,'menu_id',$parents ,array( 'prompt'=>'Chọn menu ...'));
     } else{
-      echo $form->dropDownList($model,'menu_id',$parents ,array('class'=>'span3','maxlength'=>255, 'disabled'=> true));
+      echo $form->dropDownList($model,'menu_id',$parents ,array('disabled'=> true));
     }
 
     ?>

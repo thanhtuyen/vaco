@@ -148,7 +148,8 @@ class detailMenu extends CActiveRecord
 
   public function getListMenuIdInDetail()
   {
-    $detailmenus = self::model()->findAll();
+    $del_flg = 0;
+    $detailmenus = self::model()->findAllByAttributes(array('del_flg'=>$del_flg));
     $arrDetailMenu = array();
     foreach ($detailmenus as $detailmenu)
     {
