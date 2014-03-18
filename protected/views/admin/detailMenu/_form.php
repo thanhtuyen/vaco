@@ -57,7 +57,7 @@ Yii::import('ext.ckeditor.CKEditor');
   <div class="controls"><br>
     <?php
     if($model->isNewRecord != '1')
-      echo CHtml::image(Yii::app()->request->baseUrl . detailMenu::S_THUMBNAIL . $model->image_path,"",array("maxwidth"=>100));
+      echo CHtml::image(Yii::app()->request->baseUrl . detailMenu::S_THUMBNAIL . $model->image_path,"",array("class"=>'show_image_update'));
     ?>
   </div>
   <div class="control-group">
@@ -90,7 +90,7 @@ Yii::import('ext.ckeditor.CKEditor');
 	    <?php echo $form->labelEx($model,'detail_eng', array('class'=> "control-label")); ?>
 	    <div class="controls">
 	      <?php
-	      $model->setAttribute(CHtml::decode($model->detail_eng), 'detail');
+	      $model->setAttribute(CHtml::decode($model->detail_eng), 'detail_eng');
 	      echo $form->textArea($model, 'detail_eng', array('id'=>'editor2')); ?>
 	      <?php echo $form->error($model,'detail_eng'); ?>
 	    </div>
