@@ -26,23 +26,20 @@ class ImageslideController extends Controller
 	 */
 	public function accessRules()
 	{
-		return array(
-			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
-				'users'=>array('*'),
-			),
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
-				'users'=>array('@'),
-			),
-			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
-			),
-			array('deny',  // deny all users
-				'users'=>array('*'),
-			),
-		);
+    if(app()->user->getState('roles') =="admin") {
+
+      $arr =array('index','create', 'update', 'view', 'admin', 'delete');   /* give all access to admin */
+    } else {
+
+      $arr = array('view', 'admin', 'index');    /*  no access to other user */
+    }
+
+    return array(array('allow',
+      'actions'=>$arr,
+      'users'=>array('@'),),
+      array('deny',
+        'users'=>array('*'),),
+    );
 	}
 
 	/**
@@ -65,9 +62,7 @@ class ImageslideController extends Controller
 	public function actionCreate()
 	{ 
 		$this->pageTitle = Constants::$listModule['image_slide']['header'];
-		
 		$model=new Imageslide;
-
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
@@ -76,19 +71,24 @@ class ImageslideController extends Controller
 			$model->setScenario('create');
 			$model->attributes = $_POST['Imageslide'];  
 			// upload image
-			$model->image_path = CUploadedFile::getInstance($model,'image_path'); 
-			if (is_object($model->image_path)) 	
-	          	$model->image_path->saveAs(Yii::getPathOfAlias('webroot') . Imageslide::image_url . $model->image_path);
-
+      $image_path = CUploadedFile::getInstance($model,'image_path');
+      if (is_object($image_path) && get_class($image_path)==='CUploadedFile')
+      {
+        $model->image_path = $image_path;
+      }
+      $model->setScenario('create');
 			if ($model->validate()) { 
-				//$model->setScenario('create');
-		        
-	      		$model->create_date = getDatetime();
-	      		$model->create_user_id = app()->user->getState('roles') == 'admin' ? User::ADMIN : User::USER;
-	      		$model->del_flg = 0; 
+
+        $model->create_date = getDatetime();
+        $model->create_user_id = app()->user->getState('roles') == 'admin' ? User::ADMIN : User::USER;
+        $model->del_flg = 0;
 	      		
-	      		$model->setIsNewRecord(true);	
+        $model->setIsNewRecord(true);
 				$model->save(true,array('image_path','title','title_eng','caption','caption_eng','create_date','create_user_id','del_flg'));
+        if (is_object($model->image_path)) {
+          $model->image_path->saveAs(Yii::getPathOfAlias('webroot') . Imageslide::image_url . $model->image_path->name);
+        }
+
 				$this->redirect(array('view','id'=>$model->id));
 			}
 		}
@@ -115,27 +115,30 @@ class ImageslideController extends Controller
 		$old_image_path = $model->image_path;  
 		if(isset($_POST['Imageslide']))
 		{  
-			$model->attributes = Clean($_POST['Imageslide']); 
-			$model->image_path = CUploadedFile::getInstance($model,'image_path'); 
+			$model->attributes = Clean($_POST['Imageslide']);
+      $image_path = CUploadedFile::getInstance($model,'image_path');
 			$model->update_date = getDatetime(); 
 			//$model->create_user_id = app()->user->getState('roles') == 'admin' ? User::ADMIN : User::USER;
 			if ($model->validate()) { 
 				//check value image exists
-		        $image_path = CUploadedFile::getInstance($model, 'image_path');
-		        if (is_object($image_path) && get_class($image_path)==='CUploadedFile')
-		        	$model->image_path = $image_path;
-		
-		        if (is_object($model->image_path)) { 
-		        	$image_path = Yii::getPathOfAlias('webroot') . Imageslide::image_url . $old_image_path;
-					if($old_image_path && file_exists($image_path)) 
-		          		unlink(Yii::getPathOfAlias('webroot') . Imageslide::image_url . $old_image_path);
-		
-		          	$model->image_path->saveAs(Yii::getPathOfAlias('webroot') . Imageslide::image_url . $model->image_path);
-		        } else { 
-		          $model->image_path = $old_image_path;
-		        }
-				
+        if (is_object($image_path) && get_class($image_path)==='CUploadedFile')
+        {
+          if(is_object($image_path)) {
+            if($old_image_path != '') {
+              unlink(Yii::getPathOfAlias('webroot') . Imageslide::image_url . $old_image_path);
+            }
+
+            $model->image_path = $image_path;
+          } else {
+            $model->image_path = $old_image_path;
+          }
+
+        }
+
 				if($model->save())
+          if($image_path) {
+            $model->image_path->saveAs(Yii::getPathOfAlias('webroot') . Imageslide::image_url . $model->image_path->name);
+          }
 					$this->redirect(array('view','id'=>$model->id));
 			}
 		}

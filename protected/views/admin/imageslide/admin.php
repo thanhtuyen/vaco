@@ -28,7 +28,7 @@ $('.search-form form').submit(function(){
 
 <h1><?php echo Constants::$listModule['image_slide']['title']?></h1>
 
-<?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>
+<?php //echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>
 <div class="search-form" style="display:none">
 <?php $this->renderPartial('_search',array(
 	'model'=>$model,
@@ -46,12 +46,15 @@ $('.search-form form').submit(function(){
 			'id',
 			'image_path',
 			'title',
-			'caption',
-			'title_eng',
-			'caption_eng',
-			/*
+			//'caption',
+			//'title_eng',
+			//'caption_eng',
+
 			'create_date',
-			'create_user_id',
+      array(	'name' => 'create_user_id',
+        'value'=> '$data->User->username',
+      ),
+      /*
 			'update_date',
 			'del_flg',
 			'imageslidecol',
