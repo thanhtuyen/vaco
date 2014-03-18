@@ -54,7 +54,7 @@ class Detailmenuimage extends CActiveRecord
 		
 			array('image_path','file',
 				'types'=>'jpg, jpeg, png, gif',
-				//'mimeTypes'=>array('image/gif, image/jpeg, image/jpg, image/png'),
+				//'mimeTypes'=>array('image/gif', 'image/jpeg', 'image/jpg', 'image/png'),
 				'maxSize'=>1024*1024*2, // 2MB
 				'wrongType'=>getMessage('wrongTypeImage'),
 				'tooLarge'=>getMessage('tooLarge','',array('number'=>2)),			
