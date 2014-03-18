@@ -51,7 +51,7 @@ class Constants {
 		'unique'			=> '###TITLE### không được phép trùng',
 		'numerical'			=> 'Nhập ký tự số',
 		'wrongTypeImage'	=> 'Tải hình ảnh với định dạng jpg, gif, png',
-		'wrongTypeFile'		=> 'Tải tập tin với định dạng doc, pdf, docx',
+		'wrongTypeFile'		=> 'Tải tập tin với định dạng doc, pdf, docx, xls',
 		'tooLarge'			=> 'Tải tập tin không quá ###NUMBER###MB',
 	);
 	

@@ -56,22 +56,12 @@ class Detailmenuimage extends CActiveRecord
 				//'types'=>'jpg, jpeg, png, gif',
 				'mimeTypes'=>array('image/gif', 'image/jpeg', 'image/jpg', 'image/png'),
 				'maxSize'=>1024*1024*2, // 2MB
-				//'wrongType'=>getMessage('wrongTypeImage'),
+				'wrongMimeType'=>getMessage('wrongTypeImage'),
 				'tooLarge'=>getMessage('tooLarge','',array('number'=>2)),			
 				'message'=>getMessage('required', $this->getAttributeLabel('image_path')),
 				'allowEmpty' => false,
 				'on'=> 'create',
 			),
-      array('image_path','file',
-        //'types'=>'jpg, jpeg, png, gif',
-        'mimeTypes'=>array('image/gif', 'image/jpeg', 'image/jpg', 'image/png'),
-        'maxSize'=>1024*1024*2, // 2MB
-        //'wrongType'=>getMessage('wrongTypeImage'),
-        'tooLarge'=>getMessage('tooLarge','',array('number'=>2)),
-        'message'=>getMessage('required', $this->getAttributeLabel('image_path')),
-        'allowEmpty' => true,
-        'on'=> 'update',
-      ),
 		);
 	}
 
@@ -99,8 +89,8 @@ class Detailmenuimage extends CActiveRecord
 			'caption' => 'Chú thích',
 			'caption_eng' => 'Caption',
 			'image_path' => 'Hình Ảnh',
-			'create_date' => 'Create Date',
-			'create_user' => 'Create User',
+			'create_date' => 'Ngày tạo',
+			'create_user' => 'User tạo dữ liệu',
 			'update_date' => 'Update Date',
 			'del_flg' => 'Del Flg',
 			'public_flg' => 'Công khai',

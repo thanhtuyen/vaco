@@ -91,8 +91,8 @@ class User extends CActiveRecord
 			'user_mobile' => 'Điện thoại',
 			'user_address' => 'Địa chỉ',
 			'user_role' => 'Quyền',
-			'create_date' => 'Create Date',
-			'create_user' => 'Create User',
+			'create_date' => 'Ngày tạo',
+			'create_user' => 'User tạo dữ liệu',
 			'update_date' => 'Update Date',
 		);
 	}
