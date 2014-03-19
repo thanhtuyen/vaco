@@ -182,4 +182,30 @@ class Menu extends CActiveRecord
     $list_menu_type  =$this->getListMenuType();
     return $list_menu_type[$type];
   }
+ 	/*
+ 	 * FRONT
+ 	 */
+	/*
+	 * Get list parent menu 
+	 */
+	public function getListParentMenuSortPriority ($parent_id = 0) {				
+		$menu_list = self::model()->findAll(array(
+						'condition' => 'parent_menu_id = :parent_menu_id AND del_flg = :del_flg AND priority != :priority',
+						'order' => 'priority ASC, create_date ASC',
+						'params' => array(':parent_menu_id' => $parent_id,
+											':del_flg' => 0,
+											':priority' => 0)
+				));	 
+		/*$menu_list = array();	
+		foreach ($parent_menu_list as $pm_list=>$v){ 
+			$sub_menu_list = self::model()->findAll(array(
+						'condition' => 'parent_menu_id = :parent_menu_id AND del_flg = :del_flg',
+						'order' => 'priority ASC, create_date DESC',
+						'params' => array(':parent_menu_id' => $v->id,
+											':del_flg' => 0)
+				));	
+			$menu_list[$v->id] = $sub_menu_list;
+		}*/											
+		return $menu_list;
+	}
 }
