@@ -153,7 +153,30 @@
 	<!-- END MAIN MENU  -->
 </div><!-- page -->
 
-	<!-- breadcrumbs -->
+<div>
+    <?php
+    $url =Yii::app()->request->requestUri;
+    $controller = Yii::app()->controller->id ;
+    $action = Yii::app()->controller->action->id;
+echo Yii::app()->language;
+    if($_GET['_lang']){
+      if($_GET['_lang'] == 'en'){
+        echo "<span id='vi'>".CHtml::link('viet name', array($controller.'/'.$action.'?_lang=vi'))."</span>";
+      } else {
+        echo  "<span id='vi'>".CHtml::link('viet name', array('..'.$url))."</span>";
+      }
+
+      echo  "<span id='en'>".CHtml::link('english', array('..'.$url))."</span>";
+    }else{
+      echo "<span id='vi'>".CHtml::link('viet name', array('..'.$url.'?_lang=vi'))."</span>";
+      echo  "<span id='en'>".CHtml::link('english', array('..'.$url.'?_lang=en'))."</span>";
+    }
+    ?>
+
+
+  </div>
+
+  <!-- breadcrumbs -->
   <!--<?php if(isset($this->breadcrumbs)):?>
     <?php $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
 			'links'=>$this->breadcrumbs,
@@ -178,14 +201,10 @@
 </div>
 <!-- END FOOTER -->
 
-
-
 </body>
 </html>
-<script type="text/javascript">
-  $(document).ready(function() {
-    $('#vi').click(function(){
-      $.get('agreement=' + ( this.checked ? 1 : 0 ) });
-  })
-  });
-</script>
+<style>
+  #vi{
+    padding-right: 10px;
+  }
+</style>
