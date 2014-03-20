@@ -8,17 +8,58 @@
   <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/styles.css" />
 
   <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/common.css" />
+  
+  <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/template.css" />
+  <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/bootstrap-responsive.css" />
+  <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/template-ie.css" />
+  <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/jstyle.css" />
+  <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/home.css" />
+  <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/gioithieu.css" />
+  <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/tintuc.css" />
+  <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/dichvu.css" />
+  
+  <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/mootools-core.js" type="text/javascript"></script>
+  <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery_002.js" type="text/javascript"></script>  
+  <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/menu.js" type="text/javascript"></script>
+  <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/script_002.js" type="text/javascript"></script>
+  <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jscript.js" type="text/javascript"></script>
 
   <title><?php echo CHtml::encode($this->pageTitle); ?></title>
 
   <?php Yii::app()->bootstrap->register(); ?>
+  
+  <!-- META FOR IOS & HANDHELD -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="HandheldFriendly" content="true">
+	<meta name="apple-mobile-web-app-capable" content="YES">
+	<!-- //META FOR IOS & HANDHELD -->
+	<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+	<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<!-- For IE6-8 support of media query -->
+	<!--[if lt IE 9]>
+	<script type="text/javascript" src="js/respond.min.js"></script>
+	<![endif]-->
+	<!-- You can add Google Analytics here-->
+	
+	<!--[if IE 8]>
+	<style type="text/css">
+	.container
+	{
+	width:1188px;
+	}
+	</style>
+	<![endif]--> 
+
 </head>
 
 <body>
 
-<?php $this->widget('bootstrap.widgets.TbNavbar', array(
+<!--<?php $this->widget('bootstrap.widgets.TbNavbar', array(
   'type'=>'inverse', // null or 'inverse'
- // 'brand'=>'Project name',
+  'brand'=>'Project name',
   'brandUrl'=>'#',
   'collapse'=>true, // requires bootstrap-responsive.css
   'items'=>array(
@@ -55,34 +96,93 @@
       ),
     ),
   ),
-)); ?>
+)); ?>-->
+
 
 <div class="container" id="page">
-  <div id="language-selector" style="float:right; margin:5px;">
-    <?php
-    $this->widget('application.components.widgets.LanguageSelector');
-    ?>
-  </div>
-  <div>
+	<div class="logo">
+		<a href="#"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/front/logo.png" alt="logovaco"></a>
+	</div>
+	<div class="langsear">
+    <div  id="language-selector" >
+      <?php
+      $this->widget('application.components.widgets.LanguageSelector');
+      ?>
+    </div>
+<!--		--><?php
+//	    $url =Yii::app()->request->requestUri;
+//	    $controller = Yii::app()->controller->id ;
+//	    $action = Yii::app()->controller->action->id;?>
+<!--		<div class="language">-->
+<!--			<div class="english">  |  --><?php //echo CHtml::link('Enghlish',  array('..'.$url.'?_lang=en'));?><!--</div>-->
+<!--			<div class="vietnam actlang">--><?php //echo CHtml::link('Tiếng Việt', array('..'.$url.'?_lang=vi'));?><!--</div>-->
+<!--		</div>-->
 
-  </div>
-  <?php if(isset($this->breadcrumbs)):?>
+		<div class="t_search">
+			<div class="sear_input"><input name="" type="text" value="Tìm Kiếm"></div>
+			<div class="btn_search"><a href="#"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/front/btn_search.png" alt="logovaco"></a></div>
+		</div>   
+	</div>
+	
+	<!-- BEGIN MAIN MENU -->
+	<nav id="t3-mainnav" class="wrap t3-mainnav ">
+		<div class="navbar container">
+			<div class="nav-collapse collapse">
+				<div class="t3-megamenu">
+					<ul class="nav">   
+						<?php 
+//							$parent_menu = Menu::getListParentMenuSortPriority(0);
+//							foreach ($parent_menu as $pm){
+//								$sub_menu = Menu::getListParentMenuSortPriority($pm->id);
+//								if($sub_menu != array()){
+//									echo '<li class="dropdown">';
+//										echo '<a href="#">'.$pm->menu_name.'</a>';
+//											echo '<div class="nav-child dropdown-menu">';
+//												echo '<ul class="mega-nav">';
+//														foreach ($sub_menu as $sm){
+//															echo '<li><a href="#">'.$sm->menu_name.'</a></li>';
+//														}
+//												echo '</ul>';
+//											echo '</div>';
+//									echo '</li>';
+//								} else {
+//									echo '<li class="active"><a href="#">'.$pm->menu_name.'</a></li>';
+//								}
+//							}
+						?> 
+					</ul>
+				</div>
+			</div>
+		</div>
+	</nav>
+	<!-- END MAIN MENU  -->
+</div><!-- page -->
+
+
+  <!-- breadcrumbs -->
+  <!--<?php if(isset($this->breadcrumbs)):?>
     <?php $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
 			'links'=>$this->breadcrumbs,
-		)); ?><!-- breadcrumbs -->
-  <?php endif?>
+		)); ?>
+  <?php endif?>-->
 
   <?php echo $content; ?>
 
   <div class="clear"></div>
-
-  <div id="footer">
-    Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
-    All Rights Reserved.<br/>
-    <?php echo Yii::powered(); ?>
-  </div><!-- footer -->
-
-</div><!-- page -->
+  
+<!-- BEGIN FOOTER -->
+<div class="container">
+	<div class="footer">
+    	<div class="copyyright">&copy; <?php echo date('Y'); ?> Bản quyền thuộc về Công ty TNHH Kiểm toán VACO</div>
+        <div class="mxh">
+        	<div class="facebook"><a href="#"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/front/facebook.png"></a></div>
+            <div class="tew"><a href="#"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/front/tew.png"></a></div>
+            <div class="you"><a href="#"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/front/you.png"></a></div>
+            <div class="top"><a href="#"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/front/top.png"></a></div>
+        </div>
+    </div>
+</div>
+<!-- END FOOTER -->
 
 </body>
 </html>

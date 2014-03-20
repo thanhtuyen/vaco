@@ -49,22 +49,18 @@ float:left;
 width:58%;
 margin-top:10px;
 }
-.language
+#language-selector
 {
 float:right;
 
 width:100%;
 }
-.vietnam
+#language-select
 {
 float:right;
 
 }
-.english
-{
-float:right;
 
-}
 .actlang,
 .actlang a
 {
