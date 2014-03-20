@@ -2,6 +2,10 @@
 return CMap::mergeArray(
   require(dirname(__FILE__) . '/main.php'),
   array(
+    // preloading 'log' component
+    'preload'=>array('log, bootstrap, ckeditor'),
+//  Aplly Theme
+    'theme'=>'bootstrap',
     'defaultController' => 'user/admin',
     'name'     => '',
     'language' => 'vi',

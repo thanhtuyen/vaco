@@ -14,10 +14,7 @@ return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'',
 
-	// preloading 'log' component
-	'preload'=>array('log, bootstrap, ckeditor'),
-//  Aplly Theme
-  'theme'=>'bootstrap',
+  'preload'=>array('log, ckeditor'),
  // 'sourceLanguage'=>'vi',
 	// autoloading model and component classes
 	'import'=>array(

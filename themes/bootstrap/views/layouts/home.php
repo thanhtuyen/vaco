@@ -157,8 +157,4 @@
 
 </body>
 </html>
-<style>
-  #vi{
-    padding-right: 10px;
-  }
-</style>
+
