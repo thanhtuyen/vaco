@@ -72,8 +72,12 @@ class MenuController extends Controller
 	public function actionView($id)
 	{
     $currentLang = Yii::app()->language;
+    $model = $this->loadModel($id);
+    if($currentLang == 'en') {
+      $model->setAttribute('menu_name', $model->menu_name_eng);
+    }
 		$this->render('view',array(
-			'model'=>$this->loadModel($id),'currentLang' => $currentLang
+			'model'=>$model,'currentLang' => $currentLang
 		));
 	}
 

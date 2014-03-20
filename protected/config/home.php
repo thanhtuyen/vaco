@@ -6,7 +6,7 @@ return CMap::mergeArray(
     // (for example, url rules).
    // 'name'       => 'vaco.vn',
     'sourceLanguage'=>'vi',
-    'defaultController' => 'memu/index',
+    //'defaultController' => 'memu/index',
     //'language' => 'en',
     'components' => array(
       // uncomment the following to enable URLs in path-format
