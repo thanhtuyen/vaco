@@ -105,20 +105,20 @@
 								$parent_menu = Menu::getListParentMenuSortPriority(0);
 								foreach ($parent_menu as $pm){
 									$sub_menu = Menu::getListParentMenuSortPriority($pm->id);
-									if($sub_menu != array()){
-										echo '<li class="dropdown">';
-											echo '<a href="#">'.$pm->menu_name.'</a>';
-												echo '<div class="nav-child dropdown-menu">';
-													echo '<ul class="mega-nav">';
-															foreach ($sub_menu as $sm){
-																echo '<li><a href="#">'.$sm->menu_name.'</a></li>';
-															}
-													echo '</ul>';
-												echo '</div>';
-										echo '</li>';
-									} else {
-										echo '<li><a href="#">'.$pm->menu_name.'</a></li>';
-									}
+									if($sub_menu != array()){ ?>
+										<li class="dropdown">
+											<a href="#"><?php echo $pm->menu_name; ?></a>
+												<div class="nav-child dropdown-menu">
+													<ul class="mega-nav">
+														<?php foreach ($sub_menu as $sm) : ?>
+															<li><a href="#"><?php echo $sm->menu_name; ?></a></li>
+														<?php endforeach; ?>
+													</ul>
+												</div>
+										</li>
+								<?php } else { ?>
+										<li><a href="../../home"><?php echo $pm->menu_name; ?></a></li>
+								<?php }
 								}
 							?> 
 						</ul>
