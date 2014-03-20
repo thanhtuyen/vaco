@@ -73,6 +73,11 @@ return array(
 		// uncomment the following to use a MySQL database
 
 		'db'=>array(
+			/*'connectionString' => 'mysql:host=mysql-server02;dbname=tanbqvinhthang',
+			'emulatePrepare' => true,
+			'username' => 'tanbqvith',
+			'password' => 'Vith2013',
+			'charset' => 'utf8',*/
 			'connectionString' => 'mysql:host=localhost;dbname=mydb',
 			'emulatePrepare' => true,
 			'username' => 'root',
