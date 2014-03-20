@@ -107,7 +107,7 @@ margin-left:10px;
 }
 .t3-megamenu .mega-nav > li a:hover,
 .t3-megamenu .dropdown-menu .mega-nav > li a:hover {
-    color: #0668d5;
+    color: red;
     font-style: normal;
 }
 .t3-megamenu .mega-nav > li a,
