@@ -17,7 +17,7 @@ $this->menu=array(
 ?>
 
 <h1>View detailMenu #<?php echo $model->id; ?></h1>
-
+<?php echo Yii::app()->language;?>
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(

@@ -18,7 +18,7 @@
 
 <?php $this->widget('bootstrap.widgets.TbNavbar', array(
   'type'=>'inverse', // null or 'inverse'
-  'brand'=>'Project name',
+ // 'brand'=>'Project name',
   'brandUrl'=>'#',
   'collapse'=>true, // requires bootstrap-responsive.css
   'items'=>array(
@@ -58,26 +58,12 @@
 )); ?>
 
 <div class="container" id="page">
-  <div>
+  <div  id="language-selector" style="float:right; margin:5px;">
     <?php
-    $url =Yii::app()->request->requestUri;
-    $controller = Yii::app()->controller->id ;
-    $action = Yii::app()->controller->action->id;
-echo Yii::app()->language;
-    if($_GET['_lang']){
-      if($_GET['_lang'] == 'en'){
-        echo "<span id='vi'>".CHtml::link('viet name', array($controller.'/'.$action.'?_lang=vi'))."</span>";
-      } else {
-        echo  "<span id='vi'>".CHtml::link('viet name', array('..'.$url))."</span>";
-      }
-
-      echo  "<span id='en'>".CHtml::link('english', array('..'.$url))."</span>";
-    }else{
-      echo "<span id='vi'>".CHtml::link('viet name', array('..'.$url.'?_lang=vi'))."</span>";
-      echo  "<span id='en'>".CHtml::link('english', array('..'.$url.'?_lang=en'))."</span>";
-    }
+    $this->widget('application.components.widgets.LanguageSelector');
     ?>
-
+  </div>
+  <div>
 
   </div>
   <?php if(isset($this->breadcrumbs)):?>

@@ -14,5 +14,5 @@ $this->menu=array(
 ?>
 
 <h1>Create detailMenu</h1>
-
+<?php echo Yii::app()->language;?>
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

@@ -27,9 +27,9 @@ $('.search-form form').submit(function(){
 ?>
 
 
-<h1>Manage Detail Menus</h1>
+<h1>Manage Detail Menus</h1><?php echo Yii::app()->language;?>
 <?php
-echo Yii::t('strings','the quick brown fox jumped over the lazy dog');
+echo Yii::t('strings','chào mừng đến với website');
 
 echo Yii::t('strings','you have {count} new emails', array('{count}'=>5));
 

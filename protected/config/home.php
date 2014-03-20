@@ -5,19 +5,27 @@ return CMap::mergeArray(
     // Put front-end settings there
     // (for example, url rules).
    // 'name'       => 'vaco.vn',
-    'defaultController' => 'memu/admin',
-    //'language' => 'vi',
+    'sourceLanguage'=>'vi',
+    'defaultController' => 'memu/index',
+    //'language' => 'en',
     'components' => array(
       // uncomment the following to enable URLs in path-format
-      'urlManager' => array(
-        'urlFormat' => 'path',
-        'rules'     => array(
-          '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
-          '<lang:\w+>/<controller:\w+>/<id:\d+>'=>'<controller>/view',
-          '<lang:\w+>/<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
-          '<lang:\w+>/<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+      'urlManager'=>array(
+        'class'=>'application.components.UrlManager',
+        'urlFormat'=>'path',
+        'showScriptName'=>false,
+        'caseSensitive'=>false,
+        'rules'=>array(
+          '<language:(vi|en)>/' => 'site/index',
+          '<language:(vi|en)>/<action:(contact|login|logout)>/*' => 'site/<action>',
+          '<language:(vi|en)>/<controller:\w+>/<id:\d+>'=>'<controller>/view',
+          '<language:(vi|en)>/<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
+          '<language:(vi|en)>/<controller:\w+>/<action:\w+>/*'=>'<controller>/<action>',
         ),
       ),
+    ),
+    'params'=>array(
+      'languages'=>array('en'=>'English', 'vi' => "Việt Nam"),
     ),
   )
 );
