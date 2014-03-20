@@ -58,7 +58,7 @@
 )); ?>
 
 <div class="container" id="page">
-  <div  id="language-selector" style="float:right; margin:5px;">
+  <div id="language-selector" style="float:right; margin:5px;">
     <?php
     $this->widget('application.components.widgets.LanguageSelector');
     ?>
