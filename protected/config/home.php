@@ -16,6 +16,8 @@ return CMap::mergeArray(
         'showScriptName'=>false,
         'caseSensitive'=>false,
         'rules'=>array(
+
+          '<language:(vi|en)>/blog/' => 'detailMenu/admin',
           '<language:(vi|en)>/' => 'site/index',
           '<language:(vi|en)>/<action:(contact|login|logout)>/*' => 'site/<action>',
           '<language:(vi|en)>/<controller:\w+>/<id:\d+>'=>'<controller>/view',
