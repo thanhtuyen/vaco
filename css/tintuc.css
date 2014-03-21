@@ -44,11 +44,11 @@ width:12px;
 height:7px;
 padding:5px;
 border:1px solid #ebebeb;
-background:url(../images/first.png) no-repeat center;
+background:url(../images/front/first.png) no-repeat center;
 }
 .first:hover
 {
-background:url(../images/first_hover.png) no-repeat center;
+background:url(../images/front/first_hover.png) no-repeat center;
 }
 .last
 {
@@ -57,12 +57,12 @@ width:12px;
 height:7px;
 padding:5px;
 border:1px solid #ebebeb;
-background:url(../images/last.png) no-repeat center;
+background:url(../images/front/last.png) no-repeat center;
 margin-left:5px;
 }
 .last:hover
 {
-background:url(../images/last_hover.png) no-repeat center;
+background:url(../images/front/last_hover.png) no-repeat center;
 }
 .pagesub
 {
@@ -76,13 +76,13 @@ float:left;
 padding:5px;
 border:1px solid #ebebeb;
 margin-left:5px;
-background:url(../images/pre.png) no-repeat center;
+background:url(../images/front/pre.png) no-repeat center;
 width:6px;
 height:7px;
 }
 .pre:hover
 {
-background:url(../images/pre_hover.png) no-repeat center;
+background:url(../images/front/pre_hover.png) no-repeat center;
 }
 .nex
 {
@@ -90,13 +90,13 @@ float:left;
 padding:5px;
 border:1px solid #ebebeb;
 margin-left:5px;
-background:url(../images/nex.png) no-repeat center;
+background:url(../images/front/nex.png) no-repeat center;
 width:6px;
 height:7px;
 }
 .nex:hover
 {
-background:url(../images/nex_hover.png) no-repeat center;
+background:url(../images/front/nex_hover.png) no-repeat center;
 }
 .numpage 
 {
@@ -157,11 +157,11 @@ margin-bottom:5px;
 }
 .li_news
 {
-background:url(../images/li.png) no-repeat 0 6px;
+background:url(../images/front/li.png) no-repeat 0 6px;
 padding-left:10px;
 font-size:110%;
 }
 .li_news:hover
 {
-background:url(../images/li_hover.png) no-repeat 0 6px;
+background:url(../images/front/li_hover.png) no-repeat 0 6px;
 }

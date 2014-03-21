@@ -55,7 +55,7 @@ class News extends CActiveRecord
 			array('title','required','message'=>getMessage('required', $this->getAttributeLabel('title'))),
 			array('title_eng','required','message'=>getMessage('required', $this->getAttributeLabel('title_eng'))),
 			array('create_user_id, feature_flag, is_public, del_flg', 'numerical', 'integerOnly'=>true),
-			array('title, title_eng', 'length', 'max'=>45),
+			//array('title, title_eng', 'length', 'max'=>45),
 			array('caption, detail, caption_eng, detail_eng, create_date, update_date', 'safe'),
 			
 			//array('thumb_image_path', 'unsafe'),
@@ -154,4 +154,15 @@ class News extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+  /*
+  * get data for front end
+  */
+
+  public function getListNews($menu_id){
+    $listData = News::model()->findAllByAttributes(array('del_flg' => 0, 'menu_id' => $menu_id));
+
+    return $listData;
+
+  }
 }

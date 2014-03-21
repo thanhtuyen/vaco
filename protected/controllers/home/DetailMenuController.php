@@ -18,22 +18,11 @@ class DetailMenuController extends HomeController
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
-	public function actionCreate()
+	public function actionlist()
 	{
-		$model=new detailMenu;
 
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		$this->render('list',array(
 
-		if(isset($_POST['detailMenu']))
-		{
-			$model->attributes=$_POST['detailMenu'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
-		}
-
-		$this->render('create',array(
-			'model'=>$model,
 		));
 	}
 

@@ -6,9 +6,9 @@
   <meta name="language" content="en" />
 
   <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/styles.css" />
-<!---->
+
   <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/common.css" />
-<!---->
+
   <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/bootstrap.css" />
   <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/template.css" />
   <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/bootstrap-responsive.css" />
@@ -80,14 +80,6 @@
       $this->widget('application.components.widgets.LanguageSelector');
       ?>
     </div>
-    <!--		--><?php
-    //	    $url =Yii::app()->request->requestUri;
-    //	    $controller = Yii::app()->controller->id ;
-    //	    $action = Yii::app()->controller->action->id;?>
-    <!--		<div class="language">-->
-    <!--			<div class="english">Â Â |Â  --><?php //echo CHtml::link('Enghlish',  array('..'.$url.'?_lang=en'));?><!--</div>-->
-    <!--			<div class="vietnam actlang">--><?php //echo CHtml::link('Tiếng Việt', array('..'.$url.'?_lang=vi'));?><!--</div>-->
-    <!--		</div>-->
 
     <div class="t_search">
       <div class="sear_input"><input name="" type="text" value="Tìm Kiếm"></div>
@@ -102,22 +94,28 @@
         <div class="t3-megamenu">
           <ul class="nav">
             <?php
-            $parent_menu = Menu::getListParentMenuSortPriority(0);
+            $parent_menu = HomeController::getListParentMenuSortPriority(0);
             foreach ($parent_menu as $pm){
-              $sub_menu = Menu::getListParentMenuSortPriority($pm->id);
+              $sub_menu = HomeController::getListParentMenuSortPriority($pm->id);
               if($sub_menu != array()){
                 echo '<li class="dropdown">';
                 echo '<a href="#">'.$pm->menu_name.'</a>';
                 echo '<div class="nav-child dropdown-menu">';
                 echo '<ul class="mega-nav">';
                 foreach ($sub_menu as $sm){
-                  echo '<li><a href="#">'.$sm->menu_name.'</a></li>';
+                  $type = Menu::getTypeMenu($sm->id);
+                  if($type == '2') {
+                    echo '<li>'.CHtml::link($sm->menu_name, Yii::app()->urlManager->createUrl('/news/list', array('id' => $sm->id))).'</li>';
+                  } else if($type == '3') {
+                    echo '<li>'.CHtml::link($sm->menu_name, Yii::app()->urlManager->createUrl('/detaimenuimage/list', array('id' => $sm->id))).'</li>';
+                  }
+
                 }
                 echo '</ul>';
                 echo '</div>';
                 echo '</li>';
               } else {
-                echo '<li><a href="#">'.$pm->menu_name.'</a></li>';
+                echo '<li>'.CHtml::link($pm->menu_name, Yii::app()->urlManager->createUrl('/detailmenu/list', array('id' => $pm->id))).'</li>';
               }
             }
             ?>
@@ -131,11 +129,19 @@
 
 
 <!-- breadcrumbs -->
-<!--<?php if(isset($this->breadcrumbs)):?>
-    <?php $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
-			'links'=>$this->breadcrumbs,
-		)); ?>
-  <?php endif?>-->
+<div class="container">
+  <!-- BEGIN BREAK -->
+  <div class="container">
+    <div class="bg_break">
+      <?php if(isset($this->breadcrumbs)):?>
+      <?php $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
+        'links'=>$this->breadcrumbs,
+      )); ?>
+    </div>
+  </div>
+  <!-- END BREAK -->
+
+  <?php endif?>
 
 <?php echo $content; ?>
 
