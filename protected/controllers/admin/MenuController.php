@@ -1,47 +1,7 @@
 <?php
 
-class MenuController extends Controller
+class MenuController extends AdminController
 {
-	/**
-	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
-	 * using two-column layout. See 'protected/views/layouts/column2.php'.
-	 */
-	public $layout='//layouts/column2';
-
-	/**
-	 * @return array action filters
-	 */
-	public function filters()
-	{
-		return array(
-			'accessControl', // perform access control for CRUD operations
-			'postOnly + delete', // we only allow deletion via POST request
-		);
-	}
-
-  /**
-   * Specifies the access control rules.
-   * This method is used by the 'accessControl' filter.
-   * @return array access control rules
-   */
-  public function accessRules()
-  {
-    if(app()->user->getState('roles') =="admin") {
-
-      $arr =array('index','create', 'update', 'view', 'admin', 'delete');   /* give all access to admin */
-    } else {
-
-      $arr = array('view', 'admin', 'index');    /*  no access to other user */
-    }
-
-    return array(array('allow',
-      'actions'=>$arr,
-      'users'=>array('@'),),
-      array('deny',
-        'users'=>array('*'),),
-    );
-
-  }
 
   /*
      *  init CSS and Javascript file
