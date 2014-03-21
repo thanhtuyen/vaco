@@ -220,19 +220,19 @@ a.thumbnail:hover {
   clear: both;
 }
 .t3-sidebar-1 {
-  background: url(../images/lines.png) repeat-y left top;
+  background: url(../images/front/lines.png) repeat-y left top;
 }
 .t3-sidebar-2 {
-  background: url(../images/lines.png) repeat-y right top;
+  background: url(../images/front/lines.png) repeat-y right top;
 }
 .home-page .t3-sidebar-1 {
-  background: url(../images/lines.png) repeat-y right top;
+  background: url(../images/front/lines.png) repeat-y right top;
 }
 .home-page .t3-sidebar-2 {
-  background: url(../images/lines.png) repeat-y left top;
+  background: url(../images/front/lines.png) repeat-y left top;
 }
 .main-right .t3-sidebar-1 {
-  background: url(../images/lines.png) repeat-y right top;
+  background: url(../images/front/lines.png) repeat-y right top;
 }
 .no-sidebar .t3-navhelper {
   margin-right: 0;
@@ -1326,7 +1326,7 @@ ul.latestnews li {
   width: 70%;
   line-height: 1;
   padding: 15px 25px 15px 40px;
-  background: url(../images/writtencircle.png) 0 0 no-repeat;
+  background: url(../images/front/writtencircle.png) 0 0 no-repeat;
   min-height: 66px;
   margin: 0 0 12px 0;
 }
@@ -1351,7 +1351,7 @@ ul.latestnews li {
   color: #ee5c24;
 }
 .t3-module.dark ul li a {
-  background: url(../images/bullet.png) no-repeat left center;
+  background: url(../images/front/bullet.png) no-repeat left center;
   color: #666;
   padding: 2px 0 2px 17px;
 }
@@ -1381,7 +1381,7 @@ ul.latestnews li {
   font-family: Arial, Verdana, Helvetica, sans-serif;
   color: #ee5c24;
   font-size: 24px;
-  background: url(../images/hwritten-line.png) 20px 100% no-repeat;
+  background: url(../images/front/hwritten-line.png) 20px 100% no-repeat;
   padding-bottom: 25px;
   padding-top: 20px;
   text-transform: none;
@@ -1420,7 +1420,7 @@ ul.latestnews li {
 }
 .t3-module.color .nspNext,
 .t3-module.color .nspPrev {
-/*  background: #e03436 url('../images/nsp_interface.png') no-repeat -30px -30px;*/
+/*  background: #e03436 url('../images/front/nsp_interface.png') no-repeat -30px -30px;*/
 }
 .t3-module.color .nspPrev {
 /*  background-position: 0 -30px;*/
@@ -1608,12 +1608,12 @@ ul.category-module li h5 {
   padding: 0 10px 25px 0;
   font-family: Arial, Verdana, Helvetica, sans-serif;
   font-size: 14px;
-  background: url(../images/hwritten-line.png) 100% 100% no-repeat;
+  background: url(../images/front/hwritten-line.png) 100% 100% no-repeat;
   color: #ee5c24;
 }
 .module-testimonial .nspArt p.nspText {
   padding: 0 0 20px 40px;
-  background: url(../images/start-quote.png) 0 0 no-repeat;
+  background: url(../images/front/start-quote.png) 0 0 no-repeat;
   font: italic 14px/26px Georgia, "Times New Roman", Times, serif;
 }
 .portfolio img.nspImage:hover,
@@ -1687,7 +1687,7 @@ ul.category-module li h5 {
   border-top: none;
 }
 .t3-module.call-us {
-  background: url(../images/world-map.png) 25px 0 no-repeat;
+  background: url(../images/front/world-map.png) 25px 0 no-repeat;
   padding-top: 96px;
   padding-left: 65px;
 }
@@ -1699,7 +1699,7 @@ ul.category-module li h5 {
   font-family: Arial, Verdana, Helvetica, sans-serif;
   color: #ee5c24;
   font-size: 28px;
-  background: url(../images/hwritten-line.png) 10px 100% no-repeat;
+  background: url(../images/front/hwritten-line.png) 10px 100% no-repeat;
   padding-bottom: 20px;
   display: block;
 }
@@ -2100,7 +2100,7 @@ ul.the-icons {
   display: inline-block;
 }
 .logo-image a {
-  background-image: url("../images/logo.png");
+  background-image: url("../images/front/logo.png");
   background-repeat: no-repeat;
   width: 184px;
   height: 82px;
@@ -2256,7 +2256,7 @@ ul.the-icons {
 .t3-footer .module-title {
   box-shadow: none;
 /*  border-bottom: 2px solid #ff9933;*/
-    background: #f8f7f6 url(../images/lineheader.jpg) bottom left no-repeat;
+    background: #f8f7f6 url(../images/front/lineheader.jpg) bottom left no-repeat;
   color: #f26422;
   font-weight: bold;
   margin: 0;
@@ -2270,7 +2270,7 @@ ul.the-icons {
     margin-left: 5px;
 }
 #back-to-top {
-  background: url(../images/back-to-top.png) no-repeat left bottom;
+  background: url(../images/front/back-to-top.png) no-repeat left bottom;
   cursor: pointer;
   display: block;
   font-size: 0;
