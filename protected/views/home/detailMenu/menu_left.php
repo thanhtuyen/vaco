@@ -1,5 +1,5 @@
 <!-- BEGIN LEFT MENU -->
-
+<?php ?>
   <div class="tit_menuleft"><span class="text_title_lm"><a href="#">Tin Tức</a></span></div>
   <div class="leftmenu">
     <div class="tx_leftmenu" id="lm_active"><a href="#">Tin thời sự</a></div>

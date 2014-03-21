@@ -148,5 +148,17 @@ class Imageslide extends CActiveRecord
 		));
 	}
 	
+	/*
+	 * FRONT
+	 */
+	public function getImageSlideList () {
+		$image_slide_list = self::model()->findAll(array(
+			'condition' => 'del_flg = :del_flg',
+	      	'order' => 'create_date DESC',
+	      	'params' => array(	':del_flg' => 0)
+	    ));
+	   return $image_slide_list; 
+	}
+	
 	
 }

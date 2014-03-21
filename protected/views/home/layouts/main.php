@@ -93,31 +93,42 @@
       <div class="nav-collapse collapse">
         <div class="t3-megamenu">
           <ul class="nav">
-            <?php
-            $parent_menu = HomeController::getListParentMenuSortPriority(0);
+            <?php	
+            $parent_menu = HomeController::getListParentMenuSortPriority(0);            
             foreach ($parent_menu as $pm){
               $sub_menu = HomeController::getListParentMenuSortPriority($pm->id);
               if($sub_menu != array()){
-                echo '<li class="dropdown">';
-                echo '<a href="#">'.$pm->menu_name.'</a>';
+                echo '<li class="dropdown" id="'.$pm->id.'">'; 
+                
+                if(Yii::app()->language == "en")
+                	echo '<a href="#">'.$pm->menu_name_eng.'</a>';
+                else 
+                	echo '<a href="#">'.$pm->menu_name.'</a>';
+                	
                 echo '<div class="nav-child dropdown-menu">';
                 echo '<ul class="mega-nav">';
                 foreach ($sub_menu as $sm){
                   $type = Menu::getTypeMenu($sm->id);
                   if($type == '2') {
-                    echo '<li>'.CHtml::link($sm->menu_name, Yii::app()->urlManager->createUrl('/news/list', array('id' => $sm->id))).'</li>';
+					echo '<li>'.CHtml::link((Yii::app()->language == "en") ? $sm->menu_name_eng : $sm->menu_name, Yii::app()->urlManager->createUrl('/news/list', array('id' => $sm->id))).'</li>';
                   } else if($type == '3') {
-                    echo '<li>'.CHtml::link($sm->menu_name, Yii::app()->urlManager->createUrl('/detaimenuimage/list', array('id' => $sm->id))).'</li>';
-                  }
-
+                    echo '<li>'.CHtml::link((Yii::app()->language == "en") ? $sm->menu_name_eng : $sm->menu_name, Yii::app()->urlManager->createUrl('/detailmenuimage/list', array('id' => $sm->id))).'</li>';
+                  }	
                 }
                 echo '</ul>';
                 echo '</div>';
                 echo '</li>';
               } else {
-                echo '<li>'.CHtml::link($pm->menu_name, Yii::app()->urlManager->createUrl('/detailmenu/list', array('id' => $pm->id))).'</li>';
-              }
-            }
+              	if($pm->priority == '1') // home page
+              		echo '<li id="home_page">'.CHtml::link((Yii::app()->language == "en") ? $pm->menu_name_eng : $pm->menu_name, Yii::app()->urlManager->createUrl('/site/index')).'</li>'; 
+              	else if ($pm->priority == '3') // recruitment page
+              		echo '<li id="'.$pm->id.'">'.CHtml::link((Yii::app()->language == "en") ? $pm->menu_name_eng : $pm->menu_name, Yii::app()->urlManager->createUrl('/recruitment/list', array('id' => $pm->id))).'</li>';
+              	else if ($pm->priority == '4') // contact page
+              		echo '<li id="'.$pm->id.'">'.CHtml::link((Yii::app()->language == "en") ? $pm->menu_name_eng : $pm->menu_name, Yii::app()->urlManager->createUrl('/contact/list', array('id' => $pm->id))).'</li>';
+              	else
+                	echo '<li id="'.$pm->id.'">'.CHtml::link((Yii::app()->language == "en") ? $pm->menu_name_eng : $pm->menu_name, Yii::app()->urlManager->createUrl('/detailmenu/list', array('id' => $pm->id))).'</li>';
+              }           
+			}
             ?>
           </ul>
         </div>
@@ -127,21 +138,20 @@
   <!-- END MAIN MENU  -->
 </div><!-- page -->
 
-
 <!-- breadcrumbs -->
-<div class="container">
-  <!-- BEGIN BREAK -->
-  <div class="container">
-    <div class="bg_break">
-      <?php if(isset($this->breadcrumbs)):?>
-      <?php $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
-        'links'=>$this->breadcrumbs,
-      )); ?>
-    </div>
-  </div>
-  <!-- END BREAK -->
-
-  <?php endif?>
+<?php if($this->breadcrumbs != array()):?>
+	<div class="container">
+	  <!-- BEGIN BREAK -->
+	  <div class="container">
+	    <div class="bg_break">
+	      <?php $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
+	        'links'=>$this->breadcrumbs,
+	      )); ?>
+	    </div>
+	  </div>
+	</div>
+<?php endif?>
+<!-- END BREAK -->  
 
 <?php echo $content; ?>
 

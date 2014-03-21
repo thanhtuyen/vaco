@@ -4,7 +4,7 @@ return CMap::mergeArray(
   array(
     // Put front-end settings there
     // (for example, url rules).
-   // 'name'       => 'vaco.vn',
+   // 'name' => 'vaco.vn',
     'sourceLanguage'=>'vi',
     //'defaultController' => 'memu/index',
     //'language' => 'en',

@@ -76,6 +76,15 @@ class Constants {
 	 * Define size required for upload image
 	 */
 	public static $text_require_image = 'Kích thước hình ảnh không vượt quá 800px.';
+	
+	/*
+	 * Define list priority of menu
+	 * 
+	 */
+	public static $list_priority = array(	'1'	 	=> 'Trang chủ',
+											'2' 	=> 'Tin tức',
+											'3' 	=> 'Liên hệ',
+											'4' 	=> 'Tuyển Dụng');
 
 }
 ?>

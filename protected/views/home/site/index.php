@@ -4,7 +4,58 @@
 $this->pageTitle=Yii::app()->name;
 ?>
 
-<h1>Welcome to <i><?php echo CHtml::encode(Yii::app()->name); ?></i></h1>
+<!-- BEGIN SLIDE SHOW -->
+<?php 
+$language = Yii::app()->language;
+$image_slide_list = Imageslide::model()->getImageSlideList(); 
+?>
+<section class="wrap slider">
+    <div class="container">
+        <div id="lofass223" class="lof-ass">
+			<div class="lofass-container  lof-css3">
+				<!-- BEGIN CONTENT SLIDE SHOW --> 
+				<div class="lof-main-wapper">	
+					<?php foreach ($image_slide_list as $imgList) { ?>
+						<div class="lof-main-item ">
+						<?php echo CHtml::image(Yii::app()->request->baseUrl . Imageslide::image_url . $imgList->image_path); ?>
+						<div class="lof-description">
+							<h4><a href="#"><?php echo ($language == "en") ? $imgList->title_eng : $imgList->title ?></a></h4>
+							<p><?php echo ($language == "en") ? $imgList->caption_eng : $imgList->caption; ?></p>
+						 </div>
+					</div> 
+					<?php } ?>			
+				</div>	
+				<!-- END CONTENT SLIDE SHOW -->			
+				<!-- BEGIN NAVIGATOR -->
+                <div class="lof-buttons-control">
+                  <a href="#" onClick="return false;" class="lof-previous">Previous</a>
+                  <a href="#" class="lof-next" onClick="return false;">Next</a>
+                </div>
+				<!-- END NAVIGATOR -->                      
+			</div>		
+		</div> 		
+	</div>
+</section> 
+<script type="text/javascript">
+		var _lofmain =  $('lofass223'); 
+		var object = new LofArticleSlideshow( _lofmain,
+		{ 
+		fxObject:{
+		transition:Fx.Transitions.Expo.easeIn,  
+		duration:500                    },
+		startItem:0,
+		interval:5000,
+		direction :'opacity', 
+		navItemHeight:85,
+		navItemWidth:315,
+		navItemsDisplay:4,
+		navPos:'0',
+		autoStart:1,
+		descOpacity:1                  } );
+		object.registerButtonsControl( 'click', {next:_lofmain.getElement('.lof-next'),
+		previous:_lofmain.getElement('.lof-previous')} );
+</script>                                 
+<!-- END SLIDE SHOW -->
 
 <p>Congratulations! You have successfully created your Yii application.</p>
 
