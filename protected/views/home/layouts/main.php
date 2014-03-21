@@ -27,7 +27,7 @@
 
   <title><?php echo CHtml::encode($this->pageTitle); ?></title>
 
-  <?php Yii::app()->bootstrap->register(); ?>
+  <?php //Yii::app()->bootstrap->register(); ?>
 
   <!-- META FOR IOS & HANDHELD -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
