@@ -165,4 +165,16 @@ class News extends CActiveRecord
     return $listData;
 
   }
+  
+	/*
+  	 * Get menu from HOME
+  	 */
+  	public function getMenuForHome($menu_type=1, $is_public=0, $feature_flag=2) {
+  		$sql = "SELECT menu.* FROM news, menu WHERE news.menu_id = menu.id AND news.del_flg = 0 AND is_public = :is_public AND feature_flag = :feature_flag AND menu.del_flg = 0 AND menu.menu_type = :menu_type GROUP BY menu.id ORDER BY menu.priority ASC";
+  		$list_news = Menu::model()->findAllBySql($sql, array(':is_public'=>$is_public,
+  															':feature_flag'=>$feature_flag,
+  															':menu_type'=>$menu_type)); 
+  		return $list_news;
+  	}
+  	
 }

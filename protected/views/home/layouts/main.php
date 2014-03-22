@@ -94,8 +94,8 @@
         <div class="t3-megamenu">
           <ul class="nav">
             <?php	
-            $parent_menu = HomeController::getListParentMenuSortPriority(0);            
-            foreach ($parent_menu as $pm){
+            $parent_menu = HomeController::getListParentMenuSortPriority(0);           
+            foreach ($parent_menu as $pm){  
               $sub_menu = HomeController::getListParentMenuSortPriority($pm->id);
               if($sub_menu != array()){
                 echo '<li class="dropdown" id="'.$pm->id.'">'; 
@@ -107,7 +107,7 @@
                 	
                 echo '<div class="nav-child dropdown-menu">';
                 echo '<ul class="mega-nav">';
-                foreach ($sub_menu as $sm){
+                foreach ($sub_menu as $sm){ 
                   $type = Menu::getTypeMenu($sm->id);
                   if($type == '2') {
 					echo '<li>'.CHtml::link((Yii::app()->language == "en") ? $sm->menu_name_eng : $sm->menu_name, Yii::app()->urlManager->createUrl('/news/list', array('id' => $sm->id))).'</li>';

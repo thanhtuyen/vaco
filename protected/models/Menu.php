@@ -195,5 +195,7 @@ class Menu extends CActiveRecord
     $menu = self::model()->findByPk($id);
     return $menu->menu_type;
   }
+	
+  	
 
 }
