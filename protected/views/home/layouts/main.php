@@ -17,13 +17,14 @@
   <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/home.css" />
   <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/gioithieu.css" />
   <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/tintuc.css" />
-  <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/dichvu.css" />
+  <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/dichvu.css" /> 
 
   <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/mootools-core.js" type="text/javascript"></script>
   <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery_002.js" type="text/javascript"></script>
   <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/menu.js" type="text/javascript"></script>
   <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/script_002.js" type="text/javascript"></script>
   <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jscript.js" type="text/javascript"></script>
+  <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery-1.11.0.min.js" type="text/javascript"></script>
 
   <title><?php echo CHtml::encode($this->pageTitle); ?></title>
 
@@ -78,18 +79,19 @@
       <div class="nav-collapse collapse">
         <div class="t3-megamenu">
           <ul class="nav">
-          <?php
-			if (isset($_GET['id']))
-          		$id = $_GET['id']; 
-          ?>
-          <script type="text/javascript">
-			//alert('here');
-          </script>
+	          <?php
+				if (isset($_GET['id']))
+	          		$id = $_GET['id']; 
+	          	else 
+	          		$id = '';
+	          ?>
+          
             <?php	
-            $parent_menu = HomeController::getListParentMenuSortPriority(0); 
-            
-          	//$array_parent_id =           
+            $array_parent_id = array();
+            $array_sub_id = array();
+            $parent_menu = HomeController::getListParentMenuSortPriority(0);        
             foreach ($parent_menu as $pm){  
+            	$array_parent_id[] = $pm->id;
               $sub_menu = HomeController::getListParentMenuSortPriority($pm->id); 
               if($sub_menu != array()){
                 echo '<li class="dropdown" id="'.$pm->id.'">'; 
@@ -102,6 +104,7 @@
                 echo '<div class="nav-child dropdown-menu">';
                 echo '<ul class="mega-nav">';
                 foreach ($sub_menu as $sm){ 
+                	$array_sub_id[] = $sm->id;
                   $type = Menu::getTypeMenu($sm->id);
                   if($type == '2') {
 					echo '<li>'.CHtml::link((Yii::app()->language == "en") ? $sm->menu_name_eng : $sm->menu_name, Yii::app()->urlManager->createUrl('/news/list', array('id' => $sm->id))).'</li>';
@@ -124,8 +127,25 @@
               	else
                 	echo '<li id="'.$pm->id.'">'.CHtml::link((Yii::app()->language == "en") ? $pm->menu_name_eng : $pm->menu_name, Yii::app()->urlManager->createUrl('/detailmenu/list', array('id' => $pm->id))).'</li>';
               }           
-			}
+			} 
+			
+			// active menu
+			if(in_array($id, $array_parent_id) || in_array($id, $array_sub_id)){ 
+				$parent_current_id = Menu::model()->getParentId($id);
             ?>
+            	<script type="text/javascript">
+	            	$( document ).ready(function() { 
+						$('#'+<?php echo $id;?>).addClass('active'); 
+						$('#'+<?php echo $parent_current_id;?>).addClass('active'); 
+	        		});
+		        </script>
+            <?php } else { ?>
+            	<script type="text/javascript">
+            		$( document ).ready(function() {
+						$('#home_page').addClass('active');
+            		});
+		        </script>
+            <?php } ?>
           </ul>
         </div>
       </div>
