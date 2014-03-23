@@ -142,7 +142,7 @@
 	        		});
 		        </script>
             <?php 
-				} else {  var_dump($id. 'ddd' . $parent_current_id);
+				} else { 
 			?>
 				<script type="text/javascript">
 	            	$( document ).ready(function() {  
