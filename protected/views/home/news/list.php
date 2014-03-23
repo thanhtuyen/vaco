@@ -8,12 +8,13 @@ $this->breadcrumbs=array(
   <div class="gt_coltwo">
     <div class="tit_blue"><?php echo $menu_name;?></div>
     <?php
+    $language = Yii::app()->language;
     if (!empty($items)) {
       foreach ($items as $item) {
         echo'<div class="bonews">';
-        echo '<div class="tit_news">'.$item->title.'</div>';
-        echo '<div class="depc">'.substr(CHtml::decode($item->detail),1,1000).'</div>';
-        echo '<div class="readmore">Xem tiếp</div>';
+        echo '<div class="tit_news">'.(Yii::app()->language == "en") ? $item->title_eng : $item->title.'</div>';
+        echo '<div class="depc">'.(Yii::app()->language == "en") ? CHtml::decode(substr($item->detail_eng,10,1000)) : CHtml::decode(substr($item->detail,10,1000)).'</div>';
+        echo '<div class="readmore">'.CHtml::link((Yii::app()->language == "en") ? 'Read more...' : 'Xem tiếp', Yii::app()->urlManager->createUrl('/news/view', array("id"=>$item->id))).'</div>';
         echo '</div>';
       }
     }
@@ -27,23 +28,6 @@ $this->breadcrumbs=array(
       ));
       ?>
     </div>
-<!--    <div class="pagesub">-->
-<!--      <a href="#"><span class="first"></span></a>-->
-<!--      <a href="#"><span class="pre"></span></a>-->
-<!--      <a href="#"><span class="numpage">1</span></a>-->
-<!--      <a href="#"><span class="numpage">2</span></a>-->
-<!--      <a href="#"><span class="numpage">3</span></a>-->
-<!--      <a href="#"><span class="numpage">4</span></a>-->
-<!--      <a href="#"><span class="numpage">5</span></a>-->
-<!--      <a href="#"><span class="numpage">6</span></a>-->
-<!--      <a href="#"><span class="numpage">7</span></a>-->
-<!--      <a href="#"><span class="numpage">8</span></a>-->
-<!--      <a href="#"><span class="numpage">9</span></a>-->
-<!--      <a href="#"><span class="numpage">10</span></a>-->
-<!--      <a href="#"><span class="nex"></span></a>-->
-<!--      <a href="#"><span class="last"></span></a>-->
-<!--    </div>-->
-
   </div>
   <!-- END CONTENT -->
   <!-- BEGIN RIGHT COLUM -->
