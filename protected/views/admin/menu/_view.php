@@ -24,6 +24,10 @@
 	<b><?php echo CHtml::encode($data->getAttributeLabel('menu_type')); ?>:</b>
 	<?php echo CHtml::encode($data->menu_type); ?>
 	<br />
+	
+	<b><?php echo CHtml::encode($data->getAttributeLabel('priority')); ?>:</b>
+	<?php echo CHtml::encode($data->priority); ?>
+	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('create_date')); ?>:</b>
 	<?php echo CHtml::encode($data->create_date); ?>

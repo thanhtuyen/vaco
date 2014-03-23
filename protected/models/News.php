@@ -160,7 +160,8 @@ class News extends CActiveRecord
   */
 
   public function getListNews($menu_id){
-    $listData = News::model()->findAllByAttributes(array('del_flg' => 0, 'menu_id' => $menu_id));
+    $listData = News::model()->findAllByAttributes(array('del_flg' => 0, 'menu_id' => $menu_id),
+    												array('order' => 'create_date DESC'));
 
     return $listData;
 

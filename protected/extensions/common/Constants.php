@@ -3,10 +3,15 @@ define('ROOT_PATH', str_replace('/protected', '', Yii::app()->basePath));
 
 
 class Constants {
-	public static $arrayIsPublic = array('0'=>'Công khai',
-								'1'=>'Không công khai');
-	public static $arrayFeature_flag = array('1'=>'Bên phải',
-								'2'=>'Bên trái',);
+	public static $arrayIsPublic = array(	'0'=>'Công khai',
+											'1'=>'Không công khai');
+	public static $arrayFeature_flag = array(	'1'=>'Bên phải',
+												'2'=>'Trung tâm',
+												'3'=>'Bên trái');
+	public static $arrayPriority = array(	'1'=>'Một',
+											'2'=>'Hai',
+											'3'=>'Ba',
+											'4'=>'Bốn');
 	/*
 	 * List module menu
 	 */	 

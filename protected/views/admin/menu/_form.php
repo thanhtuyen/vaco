@@ -33,6 +33,9 @@
 <!--  --><?php //echo $form->textFieldRow($model,'menu_type',array('class'=>'span3','maxlength'=>255)); ?>
 
   <?php echo $form->dropDownListRow($model,'menu_type', $list_menu_type,array('class'=>'span3','maxlength'=>255, 'prompt'=>'Chọn loại menu ...')) ?>
+  
+  <?php echo $form->radioButtonListRow($model,'priority',Constants::$arrayPriority,array('class'=>'span1')); ?>
+  
   <div class="form-actions">
     <?php $this->widget('bootstrap.widgets.TbButton', array(
       'buttonType'=>'submit',

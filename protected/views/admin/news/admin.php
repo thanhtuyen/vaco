@@ -49,7 +49,7 @@ $('.search-form form').submit(function(){
 		    ),
 			'title',
 			//'caption',
-      'create_date',
+      		'create_date',
 		    array(	'name' => 'create_user_id',
 		          	'value'=> '$data->User->username',
 		    ),

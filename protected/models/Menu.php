@@ -46,12 +46,12 @@ class Menu extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('menu_type','required','message'=>getMessage('required', $this->getAttributeLabel('menu_type'))),
-			array('id, parent_menu_id, menu_type, create_user_id, del_flg', 'numerical', 'integerOnly'=>true),
+			array('id, parent_menu_id, menu_type, priority, create_user_id, del_flg', 'numerical', 'integerOnly'=>true),
 			array('menu_name, menu_name_eng', 'length', 'max'=>45),
 			array('create_date, update_date', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, parent_menu_id, menu_name, menu_name_eng, menu_type, create_date, create_user_id, update_date, del_flg', 'safe', 'on'=>'search'),
+			array('id, parent_menu_id, menu_name, menu_name_eng, menu_type, priority, create_date, create_user_id, update_date, del_flg', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -82,6 +82,7 @@ class Menu extends CActiveRecord
 			'menu_name' => 'Tên Menu',
 			'menu_name_eng' => 'Menu Name',
 			'menu_type' => 'Loại menu',
+			'priority'	=> 'Độ ưu tiên hiển thị',
 			'create_date' => 'Ngày tạo',
 			'create_user_id' => 'User tạo dữ liệu',
 			'update_date' => 'Update Date',

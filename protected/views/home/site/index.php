@@ -59,7 +59,7 @@ $image_slide_list = Imageslide::model()->getImageSlideList();
 
 <!-- BEGIN CONTENT -->	
 	<!-- News left -->
-	<?php $list_menu_left = News::model()->getMenuForHome(Menu::LIST_MENU, 0, 2);  ?>
+	<?php $list_menu_left = News::model()->getMenuForHome(Menu::LIST_MENU, 0, 3);  ?>
 	<div class="container"><div class="mt1"></div>
     	<div class="colone">
     		<?php foreach ($list_menu_left as $lm_left){ ?>
@@ -75,17 +75,39 @@ $image_slide_list = Imageslide::model()->getImageSlideList();
             <?php } ?>
         </div>
         
+        <!-- News center -->
+		<?php $list_menu_center = News::model()->getMenuForHome(Menu::LIST_MENU, 0, 2);  ?>
         <div class="coltwo">
-        	<div class="tittle"><h3>Giới thiệu Vaco</h3><span class="unline"></span></div>
-            <div class="bocontentgt">
-            	<p>Công ty TNHH Kiểm toán VACO (VACO) là một trong những hãng kiểm toán hàng đầu tại Việt Nam cung cấp dịch vụ chuyên ngành kiểm toán, tư vấn tài chính, kế toán, thuế, đào tạo và quản lý nguồn nhân lực cho tất cả các khách hàng thuộc mọi thành phần kinh tế hoạt động tại Việt Nam.</p>
-                <p>Với đội ngũ nhân viên chuyên nghiệp được đào tạo có hệ thống tại các trường Đại học danh tiếng trong và ngoài nước, có trình độ chuyên môn sâu và kinh nghiệm thực tiễn phong phú trong các lĩnh vực chuyên ngành, đồng thời am hiểu sâu sắc hệ thống pháp luật hiện hành về Kiểm toán, kế toán, tài chính, thuế, đầu tư tại Việt Nam, cũng như nắm vững các chuẩn mực nghề nghiệp của Việt Nam và quốc tế.</p>
-                <div class="imggt"><img src="images/front/imggt.jpg"></div>
-                <div class="readmore"><a href="#"><a href="#"><?php echo ($language=="en") ? 'See more' : 'Xem tiếp'; ?></a></div>
-            </div>
-            <div class="newsother">
-            	<a href="#"><span class="arrow"><img src="images/front/arrow.png"></span><span class="newsoth">Các tin bài viết về Vaco</span></a>
-            </div>
+        	<?php foreach ($list_menu_center as $lm_center){ ?>
+	        	<div class="tittle"><h3><?php echo ($language=="en") ? $lm_center->menu_name_eng : $lm_center->menu_name; ?></h3><span class="unline"></span></div>
+	            <?php  
+	            	$list_news_center = News::model()->getListNews($lm_center->id); 
+	            	foreach ($list_news_center as $ln_center){ ?>
+			            <div class="bocontentgt">
+			            	<p><?php echo ($language=="en") ? $ln_center->caption_eng : $ln_center->caption; ?></p>
+			            	
+			            	<?php if($ln_center->thumb_image_path != ''):?>
+				                <div class="imggt">
+				                	<?php echo CHtml::image(Yii::app()->request->baseUrl . News::image_url . $ln_center->thumb_image_path,""); ?>
+				                </div>
+			                <?php endif; ?>
+			                
+			                <div class="readmore"><a href="#"><a href="#"><?php echo ($language=="en") ? 'See more' : 'Xem tiếp'; ?></a></div>
+			            </div>
+	            <?php } ?>
+	        <?php } ?>
+	        
+	        <?php 
+	        	$num_news_center = count($list_menu_center); 
+	        	if($num_news_center > 0){
+	        ?>
+	            <div class="newsother">
+	            	<a href="#">
+		            	<span class="arrow"><?php echo CHtml::image(Yii::app()->request->baseUrl . 'images/front/arrow.png',""); ?></span>
+		            	<span class="newsoth">Các tin bài viết về Vaco</span>
+	            	</a>
+	            </div>
+            <?php } ?>
         </div>
         
         <!-- News right -->

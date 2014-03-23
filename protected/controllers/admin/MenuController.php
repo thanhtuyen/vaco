@@ -32,6 +32,7 @@ class MenuController extends AdminController
 	{
 		$this->pageTitle = Constants::$listModule['menu']['header'];
 		$model=new Menu;
+		$model->priority = 2; // set default priority
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
