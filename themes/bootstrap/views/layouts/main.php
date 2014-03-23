@@ -23,6 +23,10 @@
             'items'=>array(
                 array('label'=>'Admin', 'url'=>array('/user/admin') ),
                 array('label'=>'Menu', 'url'=>array('/menu/admin')),
+                array('label'=>'ImageSlide', 'url'=>array('/ImageSlide/admin')),
+//                array('label'=>'Detail Menu', 'url'=>array('/DetailMenu/admin')),
+//                array('label'=>'News', 'url'=>array('/news/admin')),
+//                array('label'=>'Menu Image', 'url'=>array('/detailmenuimage/admin')),
                 array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
                 array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
             ),
