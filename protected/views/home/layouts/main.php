@@ -52,21 +52,6 @@
     }
   </style>
   <![endif]-->
-
-  <style type="text/css">
-
-    textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"],
-    input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"],
-    input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"],
-    .uneditable-input {
-      border: 0px;
-      box-shadow: 0;
-    }
-    #page {
-      padding-top:0;
-    }
-  </style>
-
 </head>
 
 <body>
@@ -93,10 +78,19 @@
       <div class="nav-collapse collapse">
         <div class="t3-megamenu">
           <ul class="nav">
+          <?php
+			if (isset($_GET['id']))
+          		$id = $_GET['id']; 
+          ?>
+          <script type="text/javascript">
+			//alert('here');
+          </script>
             <?php	
-            $parent_menu = HomeController::getListParentMenuSortPriority(0);           
+            $parent_menu = HomeController::getListParentMenuSortPriority(0); 
+            
+          	//$array_parent_id =           
             foreach ($parent_menu as $pm){  
-              $sub_menu = HomeController::getListParentMenuSortPriority($pm->id);
+              $sub_menu = HomeController::getListParentMenuSortPriority($pm->id); 
               if($sub_menu != array()){
                 echo '<li class="dropdown" id="'.$pm->id.'">'; 
                 
@@ -113,7 +107,9 @@
 					echo '<li>'.CHtml::link((Yii::app()->language == "en") ? $sm->menu_name_eng : $sm->menu_name, Yii::app()->urlManager->createUrl('/news/list', array('id' => $sm->id))).'</li>';
                   } else if($type == '3') {
                     echo '<li>'.CHtml::link((Yii::app()->language == "en") ? $sm->menu_name_eng : $sm->menu_name, Yii::app()->urlManager->createUrl('/detailmenuimage/list', array('id' => $sm->id))).'</li>';
-                  }	
+                  }	else {
+                  	echo '<li>'.CHtml::link((Yii::app()->language == "en") ? $sm->menu_name_eng : $sm->menu_name, Yii::app()->urlManager->createUrl('/detailmenuimage/list', array('id' => $sm->id))).'</li>';
+                  }
                 }
                 echo '</ul>';
                 echo '</div>';

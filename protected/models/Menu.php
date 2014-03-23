@@ -16,7 +16,7 @@
  */
 class Menu extends CActiveRecord
 {
-  const LIST_MENU = 1;
+  	const LIST_MENU = 1;
 	const NOT_LIST = 2;
 	const TYPE_IMAGE = 3;
 	/**
