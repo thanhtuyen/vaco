@@ -31,7 +31,7 @@ class NewsController extends AdminController
 		// init model
 		$modelKeyword = new Keyword();		
 		$model= new News; 
-		$model->is_public = 0; // set default is_public
+		$model->is_public = 1; // set default is_public
 		$model->feature_flag = 1; // set default feature_flag
 		
 		// Uncomment the following line if AJAX validation is needed

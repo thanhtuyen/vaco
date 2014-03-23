@@ -71,8 +71,40 @@ if(app()->user->hasFlash('error')){
 		'del_flg',
 		*/
     array(
-      'class'=>'bootstrap.widgets.TbButtonColumn',
-      'htmlOptions'=>array('style'=>'width: 50px'),
+      'class'=>'CButtonColumn',
+      'template'=>' {view} {update} {delete} {view_news} {view_detail_menu} {view_detail_image}',
+      'header'=>'Actions',
+      'buttons'=>array(
+        'view' => array(
+          'imageUrl'=>Yii::app()->request->baseUrl.'/images/thumbnails/view.png',
+          'url'=>'Yii::app()->createUrl("menu/view",array("id"=>$data->id))',
+        ),
+        'update' => array(
+          'imageUrl'=>Yii::app()->request->baseUrl.'/images/thumbnails/ico_edit.png',
+          'url'=>'Yii::app()->createUrl("menu/update",array("id"=>$data->id))',
+        ),
+        'delete' => array(
+          'imageUrl'=>Yii::app()->request->baseUrl.'/images/thumbnails/delete.png',
+          'url'=>'Yii::app()->createUrl("menu/delete",array("id"=>$data->id))',
+        )
+      ,'view_news' => array(
+          'imageUrl'=>Yii::app()->request->baseUrl.'/images/thumbnails/icon_news.png',
+          'url'=>'Yii::app()->createUrl("news/admin",array("id"=>$data->id))',
+          'visible'=>'$data->menu_type == 1',
+        ),
+        'view_detail_menu' => array(
+          'imageUrl'=>Yii::app()->request->baseUrl.'/images/thumbnails/icon_news.png',
+          'url'=>'Yii::app()->createUrl("detailmenu/admin",array("id"=>$data->id))',
+          'visible'=>'$data->menu_type == 2',
+        ),
+        'view_detail_image' => array(
+          'imageUrl'=>Yii::app()->request->baseUrl.'/images/thumbnails/icon_news.png',
+          'url'=>'Yii::app()->createUrl("detailmenuimage/admin",array("id"=>$data->id))',
+          'visible'=>'$data->menu_type == 3',
+        ),
+
+      ),
+      'htmlOptions'=>array('width'=>100,'align'=>'center'),
     ),
 	),
 )); ?>
