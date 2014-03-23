@@ -19,7 +19,7 @@ $this->breadcrumbs=array(
 <h1><?php echo str_replace("###TITLE###", 'Menu', Constants::$listTitleForm['form_view']) .' ' . $model->id; ?></h1>
 
 <div class="view_user">
-  <div style="text-align:  right"><?php echo CHtml::link(CHtml::image(Yii::app()->request->baseUrl.'/images/thumbnails/ql-users.gif'), Yii::app()->createUrl('/menu/update/'.$model->id)) ;?></div>
+  <div style="text-align:right"><?php echo CHtml::link(CHtml::image(Yii::app()->request->baseUrl.'/images/thumbnails/bedit.png',"bCreate",array("class"=>"icon_edit")), Yii::app()->createUrl('/menu/update/'.$model->id)) ;?></div>
 <?php
 	$user = User::model()->findByPk($model->create_user_id); 
 	$this->widget('bootstrap.widgets.TbDetailView', array(
