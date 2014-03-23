@@ -20,7 +20,6 @@ class DetailMenuController extends HomeController
 	 */
 	public function actionlist()
 	{
-
 		$this->render('list',array(
 
 		));

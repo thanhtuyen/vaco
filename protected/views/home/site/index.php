@@ -127,7 +127,7 @@ $image_slide_list = Imageslide::model()->getImageSlideList();
                 </ul>
             </div>
             <div class="tittle"><h3>Video clip</h3><span class="unline"></span></div>
-            <div class="video"><img src="images/front/video.jpg" width="100%"></div>
+            <div class="video"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/front/video.jpg" width="100%"></div>
         </div>
     </div>
 <!-- END CONTENT -->
