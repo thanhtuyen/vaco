@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 23, 2014 at 10:52 PM
+-- Generation Time: Mar 23, 2014 at 11:11 PM
 -- Server version: 5.1.41
 -- PHP Version: 5.3.1
 
@@ -138,7 +138,7 @@ CREATE TABLE IF NOT EXISTS `menu` (
   `menu_name` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `menu_name_eng` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `menu_type` tinyint(4) NOT NULL,
-  `priority` tinyint(1) NOT NULL,
+  `priority` tinyint(4) NOT NULL DEFAULT '2',
   `create_date` datetime DEFAULT NULL,
   `create_user_id` int(11) DEFAULT NULL,
   `update_date` datetime DEFAULT NULL,
