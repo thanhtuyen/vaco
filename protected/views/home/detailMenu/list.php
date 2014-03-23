@@ -3,6 +3,7 @@ $this->breadcrumbs=array(
   'Tin tức'=>array('index'),
   'tin thời sự'=> array('admin'),
 );?>
+<div class="container">
   <!-- BEGIN LEFT MENU -->
   <div class="gt_colone">
     <div class="tit_menuleft"><span class="text_title_lm"><a href="#">Tin Tức</a></span></div>

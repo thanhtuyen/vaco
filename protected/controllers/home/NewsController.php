@@ -19,7 +19,7 @@ class NewsController extends HomeController
     $count = News::model()->count($criteria);
     $pages = new CPagination($count);
     //results per page
-    $pages->pageSize = 1;
+    $pages->pageSize = 10;
     $pages->applyLimit($criteria);
     $items = News::model()->findAll($criteria);
 

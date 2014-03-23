@@ -3,7 +3,7 @@ $this->breadcrumbs=array(
   'Tin tức'=>array('index'),
   $menu_name,
 );?>
-
+<div class="container">
   <!-- BEGIN LEFT MENU -->
   <div class="gt_colone">
     <?php require 'menu_left.php' ;?>
@@ -16,7 +16,7 @@ $this->breadcrumbs=array(
       foreach ($items as $item) {
         echo'<div class="bonews">';
         echo '<div class="tit_news">'.$item->title.'</div>';
-        echo '<div class="depc">'.CHtml::decode($item->detail).'</div>';
+        echo '<div class="depc">'.substr(CHtml::decode($item->detail),1,1000).'</div>';
         echo '<div class="readmore">Xem tiếp</div>';
         echo '</div>';
       }
@@ -65,7 +65,7 @@ $this->breadcrumbs=array(
   <!-- END RIGHT COLUM -->
 
 </div>
-</body>
+
 <script type="text/javascript">
   var _lofmain =  $('lofass223');
   var object = new LofArticleSlideshow( _lofmain,
@@ -85,4 +85,3 @@ $this->breadcrumbs=array(
   object.registerButtonsControl( 'click', {next:_lofmain.getElement('.lof-next'),
     previous:_lofmain.getElement('.lof-previous')} );
 </script>
-</html>

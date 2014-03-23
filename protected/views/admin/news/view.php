@@ -45,7 +45,6 @@ $this->menu=array(
 				'type' => 'raw',
 	      		'value' => CHtml::encode($model->title)
 			),
-			'caption',
 			array('name' => 'caption',
 				'type' => 'raw',
 	      		'value' => CHtml::encode($model->caption)

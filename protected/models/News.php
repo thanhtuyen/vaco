@@ -176,5 +176,5 @@ class News extends CActiveRecord
   															':menu_type'=>$menu_type)); 
   		return $list_news;
   	}
-  	
+
 }
