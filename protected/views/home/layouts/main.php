@@ -80,10 +80,9 @@
         <div class="t3-megamenu">
           <ul class="nav">
 	          <?php
+	          	$id = '';
 				if (isset($_GET['id']))
-	          		$id = $_GET['id']; 
-	          	else 
-	          		$id = '';
+	          		$id = $_GET['id']; 	          		
 	          ?>
           
             <?php	
@@ -105,43 +104,58 @@
                 echo '<ul class="mega-nav">';
                 foreach ($sub_menu as $sm){ 
                 	$array_sub_id[] = $sm->id;
-                  $type = Menu::getTypeMenu($sm->id);
-                  if($type == '2') {
-					echo '<li>'.CHtml::link((Yii::app()->language == "en") ? $sm->menu_name_eng : $sm->menu_name, Yii::app()->urlManager->createUrl('/news/list', array('id' => $sm->id))).'</li>';
-                  } else if($type == '3') {
+                  $type_sub_menu = Menu::getTypeMenu($sm->id);
+                  if($type_sub_menu == '2') {
+					echo '<li>'.CHtml::link((Yii::app()->language == "en") ? $sm->menu_name_eng : $sm->menu_name, Yii::app()->urlManager->createUrl('/detailmenu/list', array('id' => $sm->id))).'</li>';
+                  } else if($type_sub_menu == '3') {
                     echo '<li>'.CHtml::link((Yii::app()->language == "en") ? $sm->menu_name_eng : $sm->menu_name, Yii::app()->urlManager->createUrl('/detailmenuimage/list', array('id' => $sm->id))).'</li>';
                   }	else {
-                  	echo '<li>'.CHtml::link((Yii::app()->language == "en") ? $sm->menu_name_eng : $sm->menu_name, Yii::app()->urlManager->createUrl('/detailmenuimage/list', array('id' => $sm->id))).'</li>';
+                  	echo '<li>'.CHtml::link((Yii::app()->language == "en") ? $sm->menu_name_eng : $sm->menu_name, Yii::app()->urlManager->createUrl('/news/list', array('id' => $sm->id))).'</li>';
                   }
                 }
                 echo '</ul>';
                 echo '</div>';
                 echo '</li>';
               } else {
+              	$type_menu = Menu::getTypeMenu($pm->id);
               	if($pm->priority == '1') // home page
               		echo '<li id="home_page">'.CHtml::link((Yii::app()->language == "en") ? $pm->menu_name_eng : $pm->menu_name, Yii::app()->urlManager->createUrl('/site/index')).'</li>'; 
-              	else if ($pm->priority == '3') // recruitment page
-              		echo '<li id="'.$pm->id.'">'.CHtml::link((Yii::app()->language == "en") ? $pm->menu_name_eng : $pm->menu_name, Yii::app()->urlManager->createUrl('/recruitment/list', array('id' => $pm->id))).'</li>';
-              	else if ($pm->priority == '4') // contact page
-              		echo '<li id="'.$pm->id.'">'.CHtml::link((Yii::app()->language == "en") ? $pm->menu_name_eng : $pm->menu_name, Yii::app()->urlManager->createUrl('/contact/list', array('id' => $pm->id))).'</li>';
-              	else
-                	echo '<li id="'.$pm->id.'">'.CHtml::link((Yii::app()->language == "en") ? $pm->menu_name_eng : $pm->menu_name, Yii::app()->urlManager->createUrl('/detailmenu/list', array('id' => $pm->id))).'</li>';
+              	else { 
+              		if ($type_menu == '2')
+	              		echo '<li id="'.$pm->id.'">'.CHtml::link((Yii::app()->language == "en") ? $pm->menu_name_eng : $pm->menu_name, Yii::app()->urlManager->createUrl('/detailmenu/list', array('id' => $pm->id))).'</li>';
+	              	else if ($type_menu == '3') 
+	              		echo '<li id="'.$pm->id.'">'.CHtml::link((Yii::app()->language == "en") ? $pm->menu_name_eng : $pm->menu_name, Yii::app()->urlManager->createUrl('/detailmenuimage/list', array('id' => $pm->id))).'</li>';
+	              	else
+	                	echo '<li id="'.$pm->id.'">'.CHtml::link((Yii::app()->language == "en") ? $pm->menu_name_eng : $pm->menu_name, Yii::app()->urlManager->createUrl('/news/list', array('id' => $pm->id))).'</li>';
+              	}
               }           
 			} 
 			
 			// active menu
 			if(in_array($id, $array_parent_id) || in_array($id, $array_sub_id)){ 
-				$parent_current_id = Menu::model()->getParentId($id);
+				$parent_current_id = Menu::model()->getMenuInfoId($id)->parent_menu_id;
+				if($parent_current_id == 0){
             ?>
             	<script type="text/javascript">
-	            	$( document ).ready(function() { 
+	            	$( document ).ready(function() {  
 						$('#'+<?php echo $id;?>).addClass('active'); 
+	        		});
+		        </script>
+            <?php 
+				} else {  var_dump($id. 'ddd' . $parent_current_id);
+			?>
+				<script type="text/javascript">
+	            	$( document ).ready(function() {  
+						$('#'+<?php echo $id;?>).addClass('lm_active');
 						$('#'+<?php echo $parent_current_id;?>).addClass('active'); 
 	        		});
 		        </script>
-            <?php } else { ?>
+			<?php
+				} 
+			} else { 
+			?>
             	<script type="text/javascript">
-            		$( document ).ready(function() {
+            		$( document ).ready(function() { 
 						$('#home_page').addClass('active');
             		});
 		        </script>
@@ -154,7 +168,7 @@
   <!-- END MAIN MENU  -->
 </div><!-- page -->
 
-<!-- breadcrumbs -->
+<!-- BEGIN BREAK -->
 <?php if($this->breadcrumbs != array()):?>
 	<div class="container">
 	  <!-- BEGIN BREAK -->
@@ -167,7 +181,15 @@
 	  </div>
 	</div>
 <?php endif?>
-<!-- END BREAK -->  
+<!-- END BREAK --> 
+
+<!-- BEGIN LEFT MENU -->
+<?php 
+	if($id != ''): 	
+		require 'menu_left.php' ;
+	endif; 
+?>
+<!-- END LEFT MENU -->
 
 <?php echo $content; ?>
 

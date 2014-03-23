@@ -3,21 +3,7 @@ $this->breadcrumbs=array(
   'Tin tức'=>array('index'),
   'tin thời sự'=> array('admin'),
 );?>
-  <!-- BEGIN LEFT MENU -->
-  <div class="gt_colone">
-    <div class="tit_menuleft"><span class="text_title_lm"><a href="#">Tin Tức</a></span></div>
-    <div class="leftmenu">
-      <div class="tx_leftmenu" id="lm_active"><a href="#">Tin thời sự</a></div>
-      <div class="tx_leftmenu"><a href="#">Tin VACO</a></div>
-      <div class="tx_leftmenu"><a href="#">Thông cáo báo chí</a></div>
-      <div class="tx_leftmenu"><a href="#">Quy định mới</a></div>
-    </div>
 
-    <div class="vacoprofile">
-      <div class="tit_profile"><a href="#">VACO Profile</a></div>
-      <div class="img_profile"><a href="#"><img src="images/img_profile.png" width="100%"></a></div>
-    </div>
-  </div>
   <!-- BEGIN CONTENT -->
   <div class="gt_coltwo">
     <div class="tit_blue">Tin Thời Sự</div>
@@ -76,6 +62,7 @@ $this->breadcrumbs=array(
 
   </div>
   <!-- END CONTENT -->
+  
   <!-- BEGIN RIGHT COLUM -->
   <div class="gt_colthree">
     <div class="tit_add">Văn phòng đại diện</div>
@@ -86,41 +73,8 @@ $this->breadcrumbs=array(
       <strong>Chi nhánh Hải Phòng:</strong><br />Số 499 Quán Toan, Quận Hồng Bàng, TP Hải Phòng<br />Điện thoại: 031. 3534655<br />Fax: 031. 3534 316
     </div>
     <div class="tit_video">Video Clip</div>
-    <div class="video"><img src="images/video.jpg" width="100%"></div>
+    <div class="video"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/front/video.jpg" width="100%"></div>
   </div>
-  <!-- END RIGHT COLUM -->
-  <!-- BEGIN FOOTER -->
-  <div class="container">
-    <div class="footer">
-      <div class="copyyright">© 2014 Bản quyền thuộc về Công ty TNHH Kiểm toán VACO</div>
-      <div class="mxh">
-        <div class="facebook"><a href="#"><img src="images/facebook.png"></a></div>
-        <div class="tew"><a href="#"><img src="images/tew.png"></a></div>
-        <div class="you"><a href="#"><img src="images/you.png"></a></div>
-        <div class="top"><a href="#"><img src="images/top.png"></a></div>
-      </div>
-    </div>
-  </div>
-  <!-- END FOOTER -->
-</div>
+
 </body>
-<script type="text/javascript">
-  var _lofmain =  $('lofass223');
-  var object = new LofArticleSlideshow( _lofmain,
-    {
-      fxObject:{
-        transition:Fx.Transitions.Expo.easeIn,
-        duration:500                    },
-      startItem:0,
-      interval:5000,
-      direction :'opacity',
-      navItemHeight:85,
-      navItemWidth:315,
-      navItemsDisplay:4,
-      navPos:'0',
-      autoStart:1,
-      descOpacity:1                  } );
-  object.registerButtonsControl( 'click', {next:_lofmain.getElement('.lof-next'),
-    previous:_lofmain.getElement('.lof-previous')} );
-</script>
 </html>

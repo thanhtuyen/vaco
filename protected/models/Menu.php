@@ -197,11 +197,11 @@ class Menu extends CActiveRecord
   }
   
   /*
-   * get parent of sub menu
+   * get info of sub menu
    */
-  public function getParentId ($sub_id){
-  	$parent_menu = self::model()->find('id=:id', array(':id' => $sub_id)); 
-  	return $parent_menu->parent_menu_id;
+  public function getMenuInfoId ($id){
+  	$menu_info = self::model()->find('id=:id AND del_flg = 0', array(':id' => $id)); 
+  	return $menu_info;
   }
 	
   	
