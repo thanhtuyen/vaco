@@ -46,7 +46,7 @@ class Detailmenuimage extends CActiveRecord
 		return array(
 			array('menu_id','required','message'=>getMessage('required', $this->getAttributeLabel('menu_id'))),
 			array('menu_id, create_user, del_flg, public_flg, feature_flg', 'numerical', 'integerOnly'=>true),
-			array('caption, caption_eng', 'length', 'max'=>45),
+//			array('caption, caption_eng', 'length', 'max'=>45),
 			array('create_date, update_date', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.

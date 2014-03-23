@@ -52,7 +52,7 @@ class detailMenu extends CActiveRecord
 		return array(
 			array('menu_id','required','message'=>getMessage('required', $this->getAttributeLabel('menu_id'))),
 			array('id, menu_id, create_user, del_flg', 'numerical', 'integerOnly'=>true),
-			array('title, title_eng', 'length', 'max'=>45),
+//			array('title, title_eng', 'length', 'max'=>45),
       		array('image_path', 'file',
             //'types' => 'gif, jpg, png',
             'mimeTypes'=>array('image/gif','image/jpeg', 'image/jpg', 'image/png'),

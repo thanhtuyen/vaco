@@ -59,7 +59,7 @@ class Imageslide extends CActiveRecord
 				'on'=> 'create',
 				'message'=>getMessage('required', $this->getAttributeLabel('image_path')),
 			),
-			array('title, caption, title_eng, caption_eng', 'length', 'max'=>45),
+//			array('title, caption, title_eng, caption_eng', 'length', 'max'=>45),
 			array('create_date, update_date', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
