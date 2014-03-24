@@ -7,9 +7,11 @@
  * @property integer $id
  * @property integer $menu_id
  * @property string $title
+ * @property string $description
  * @property string $caption
  * @property string $detail
  * @property string $title_eng
+ * @property string $description_eng
  * @property string $caption_eng
  * @property string $detail_eng
  * @property string $thumb_image_path
@@ -56,7 +58,7 @@ class News extends CActiveRecord
 			array('title_eng','required','message'=>getMessage('required', $this->getAttributeLabel('title_eng'))),
 			array('create_user_id, feature_flag, is_public, del_flg', 'numerical', 'integerOnly'=>true),
 			//array('title, title_eng', 'length', 'max'=>45),
-			array('caption, detail, caption_eng, detail_eng, create_date, update_date', 'safe'),
+			array('caption, detail, description, caption_eng, detail_eng, description_eng, create_date, update_date', 'safe'),
 			
 			//array('thumb_image_path', 'unsafe'),
 			array('thumb_image_path', 'file',
@@ -79,7 +81,7 @@ class News extends CActiveRecord
       
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, menu_id, title, caption, detail, title_eng, caption_eng, detail_eng, thumb_image_path, list_file_attach, create_user_id, create_date, feature_flag, update_date, is_public, del_flg', 'safe', 'on'=>'search'),
+			array('id, menu_id, title, description, caption, detail, title_eng, description_eng, caption_eng, detail_eng, thumb_image_path, list_file_attach, create_user_id, create_date, feature_flag, update_date, is_public, del_flg', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -105,9 +107,11 @@ class News extends CActiveRecord
 			'id' => 'ID',
 			'menu_id' => 'Menu',
 			'title' => 'Tiêu đề',
+			'description' => 'Tóm tắt',
 			'caption' => 'Chú thích',
 			'detail' => 'Nội dung',
 			'title_eng' => 'Title',
+			'description_eng' => 'Description',
 			'caption_eng' => 'Caption',
 			'detail_eng' => 'Content',
 			'thumb_image_path' => 'Hình ảnh',

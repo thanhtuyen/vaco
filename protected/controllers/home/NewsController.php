@@ -38,33 +38,19 @@ class NewsController extends HomeController
 	 */
 	public function actionView($id)
 	{
+    $model = $this->loadModel($id);
+    $listNews = News::model()->getListNews($model->menu_id);
 		$this->render('view',array(
-			'model'=>$this->loadModel($id),
+			'model'=>$model,'listNews' => $listNews
 		));
 	}
 
-	/**
-	 * Creates a new model.
-	 * If creation is successful, the browser will be redirected to the 'view' page.
-	 */
-	public function actionCreate()
-	{
-		$model=new News;
 
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-
-		if(isset($_POST['News']))
-		{
-			$model->attributes=$_POST['News'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
-		}
-
-		$this->render('create',array(
-			'model'=>$model,
-		));
-	}
+  public function actionPrint($id)
+  {
+    $model = $this->loadModel($id);
+    $this->renderPartial('print', array('model' => $model));
+  }
 
 	/**
 	 * Updates a particular model.

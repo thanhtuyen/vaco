@@ -76,5 +76,4 @@ class HomeController extends CController
     }*/
     return $menu_list;
   }
-
 }

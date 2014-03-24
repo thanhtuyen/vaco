@@ -23,7 +23,7 @@
 		</div>
 	
 		<?php echo $form->textFieldRow($model,'title',array('class'=>'span4','maxlength'=>255)); ?>
-	
+    <?php echo $form->textAreaRow($model,'description',array('rows'=>5, 'cols'=>60, 'class'=>'span5')); ?>
 		<?php echo $form->textAreaRow($model,'caption',array('rows'=>3, 'cols'=>50, 'class'=>'span4')); ?>
 	
 		<?php //echo $form->textAreaRow($model,'detail',array('rows'=>10, 'cols'=>50, 'class'=>'span4')); ?>		
@@ -40,7 +40,7 @@
 		
 <h5>ENGLISH</h5>
 		<?php echo $form->textFieldRow($model,'title_eng',array('class'=>'span4','maxlength'=>45)); ?>
-	
+    <?php echo $form->textAreaRow($model,'description_eng',array('rows'=>5, 'cols'=>60, 'class'=>'span5')); ?>
 		<?php echo $form->textAreaRow($model,'caption_eng',array('rows'=>3, 'cols'=>50, 'class'=>'span4')); ?>
 	
 		<?php //echo $form->textAreaRow($model,'detail_eng',array('rows'=>10, 'cols'=>50, 'class'=>'span4')); ?>		
