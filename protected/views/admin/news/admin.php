@@ -44,9 +44,6 @@ $('.search-form form').submit(function(){
 		//'filter'=>$model,
 		'columns'=>array(
 			'id',
-			array('name' => 'menu_id',
-		          'value'=> '$data->menu->menu_name',
-		    ),
 			'title',
 			//'caption',
       		'create_date',

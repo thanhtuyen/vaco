@@ -34,12 +34,13 @@ $this->menu=array(
 	<div style="text-align:right"><?php echo CHtml::link(CHtml::image(Yii::app()->request->baseUrl.'/images/thumbnails/bedit.png',"bCreate",array("class"=>"icon_edit")), Yii::app()->createUrl('/news/update/'.$model->id)) ;?></div>
 	<?php 
 	$user = User::model()->findByPk($model->create_user_id);
+	$menu = Menu::model()->findByPk($model->menu_id);
 	$this->widget('bootstrap.widgets.TbDetailView', array(
 		'data'=>$model,
 		'attributes'=>array(
 			array('name' => 'menu_id',
 				'type' => 'raw',
-	      		'value' => CHtml::decode($model->menu->menu_name)
+	      		'value' => $menu['menu_name']
 			),
 			array('name' => 'title',
 				'type' => 'raw',

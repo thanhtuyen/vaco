@@ -96,17 +96,17 @@ if(app()->user->hasFlash('error')){
         )
       ,'view_news' => array(
           'imageUrl'=>Yii::app()->request->baseUrl.'/images/thumbnails/icon_news.png',
-          'url'=>'Yii::app()->createUrl("news/admin",array("id"=>$data->id))',
+          'url'=>'Yii::app()->createUrl("news/admin",array("menu_id"=>$data->id))',
           'visible'=>'$data->menu_type == 1',
         ),
         'view_detail_menu' => array(
           'imageUrl'=>Yii::app()->request->baseUrl.'/images/thumbnails/icon_news.png',
-          'url'=>'Yii::app()->createUrl("detailmenu/admin",array("id"=>$data->id))',
+          'url'=>'Yii::app()->createUrl("detailmenu/admin",array("menu_id"=>$data->id))',
           'visible'=>'$data->menu_type == 2',
         ),
         'view_detail_image' => array(
           'imageUrl'=>Yii::app()->request->baseUrl.'/images/thumbnails/icon_news.png',
-          'url'=>'Yii::app()->createUrl("detailmenuimage/admin",array("id"=>$data->id))',
+          'url'=>'Yii::app()->createUrl("detailmenuimage/admin",array("menu_id"=>$data->id))',
           'visible'=>'$data->menu_type == 3',
         ),
 

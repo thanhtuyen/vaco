@@ -106,11 +106,11 @@ class Detailmenuimage extends CActiveRecord
 	{
 		// Warning: Please modify the following code to remove attributes that
 		// should not be searched.
-
+    $menu_id = $_GET['menu_id'];
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('menu_id',$this->menu_id);
+		$criteria->compare('menu_id',$menu_id);
 		$criteria->compare('image_path',$this->image_path,true);
 		$criteria->compare('caption',$this->caption,true);
 		$criteria->compare('caption_eng',$this->caption_eng,true);

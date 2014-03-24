@@ -44,9 +44,6 @@ $('.search-form form').submit(function(){
 		//'filter'=>$model,
 		'columns'=>array(
 			'id',
-			array('name' => 'menu_id',
-		          'value'=> '$data->Menu->menu_name',
-		    ),			
 			'image_path',
 			'caption',
 		    array('name' => 'public_flg',

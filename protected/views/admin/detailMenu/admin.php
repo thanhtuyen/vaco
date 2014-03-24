@@ -43,10 +43,6 @@ $('.search-form form').submit(function(){
 	//'filter'=>$model,
 	'columns'=>array(
 		'id',
-	    array('name' => 'menu_id',
-	          'value'=> '$data->Menu->menu_name',
-	    ),
-
 		'title',
     'create_date',
     array('name' => 'create_user',
