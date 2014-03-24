@@ -40,6 +40,16 @@ class HomeController extends CController
       Yii::app()->language = Yii::app()->user->getState('language');
     else if(isset(Yii::app()->request->cookies['language']))
       Yii::app()->language = Yii::app()->request->cookies['language']->value;
+      
+  	$id = '';
+	if (isset($_GET['id']))
+		$id = $_GET['id']; 	
+	if($id != ''){
+    	$info = Menu::model()->getMenuInfoId($id);
+    	$this->pageTitle = (Yii::app()->language == "en") ? $info->menu_name_eng : $info->menu_name;       
+	} else {
+   		$this->pageTitle = 	(Yii::app()->language == "en") ? 'HOME' : 'Trang Chủ';     	
+	}
   }
   public function createMultilanguageReturnUrl($lang='en'){
     if (count($_GET)>0){
