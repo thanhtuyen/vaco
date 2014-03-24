@@ -39,18 +39,18 @@ $this->menu=array(
 		'attributes'=>array(
 			array('name' => 'menu_id',
 				'type' => 'raw',
-	      		'value' => CHtml::encode($model->menu->menu_name)
+	      		'value' => CHtml::decode($model->menu->menu_name)
 			),
 			array('name' => 'title',
 				'type' => 'raw',
-	      		'value' => CHtml::encode($model->title)
+	      		'value' => CHtml::decode($model->title)
 			),
       array('name' => 'description',
         'type' => 'raw',
         'value'=> $model->description),
 			array('name' => 'caption',
 				'type' => 'raw',
-	      		'value' => CHtml::encode($model->caption)
+	      		'value' => CHtml::decode($model->caption)
 			),
 			array('name' => 'detail',
             	'type' => 'raw',
@@ -58,14 +58,14 @@ $this->menu=array(
 			),
 			array('name' => 'title_eng',
 				'type' => 'raw',
-	      		'value' => CHtml::encode($model->title_eng)
+	      		'value' => CHtml::decode($model->title_eng)
 			),
       array('name' => 'description_eng',
         'type' => 'raw',
         'value'=> $model->description_eng),
 			array('name' => 'caption_eng',
 				'type' => 'raw',
-	      		'value' => CHtml::encode($model->caption_eng)
+	      		'value' => CHtml::decode($model->caption_eng)
 			),
 			array('name' => 'detail_eng',
             	'type' => 'raw',
@@ -100,11 +100,11 @@ $this->menu=array(
 		'attributes'=>array(
 			array('name' => 'keyword',
 	      		'type' => 'raw',
-	      		'value' => CHtml::encode($modelKeyword->keyword)
+	      		'value' => CHtml::decode($modelKeyword->keyword)
 			),
 			array('name' => 'keyword_eng',
 	      		'type' => 'raw',
-	      		'value' => CHtml::encode($modelKeyword->keyword_eng)
+	      		'value' => CHtml::decode($modelKeyword->keyword_eng)
 			),
 		),
 	)); ?>

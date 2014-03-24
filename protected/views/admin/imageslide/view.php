@@ -28,19 +28,19 @@ $this->menu=array(
 
 			array('name' => 'title',
 				'type' => 'raw',
-	      		'value' => CHtml::encode($model->title)
+	      		'value' => CHtml::decode($model->title)
 			),
 			array('name' => 'caption',
 				'type' => 'raw',
-	      		'value' => CHtml::encode($model->caption)
+	      		'value' => CHtml::decode($model->caption)
 			),
 			array('name' => 'title_eng',
 				'type' => 'raw',
-	      		'value' => CHtml::encode($model->title_eng)
+	      		'value' => CHtml::decode($model->title_eng)
 			),
 			array('name' => 'caption_eng',
 				'type' => 'raw',
-        'value' => CHtml::encode($model->caption_eng)
+        'value' => CHtml::decode($model->caption_eng)
 			),
 
       array('name' => 'image_path',
