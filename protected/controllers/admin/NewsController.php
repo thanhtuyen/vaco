@@ -68,7 +68,7 @@ class NewsController extends AdminController
             }
 
 					$model->setIsNewRecord(true);	
-					$model->save(true,array('thumb_image_path','list_file_attach','menu_id','title','caption','detail','title_eng','caption_eng','detail_eng','create_user_id','create_date','feature_flag','is_public','del_flg'));
+					$model->save(true,array('thumb_image_path','list_file_attach','menu_id','title','description', 'caption','detail','title_eng', 'description_eng','caption_eng','detail_eng','create_user_id','create_date','feature_flag','is_public','del_flg'));
             // upload file
           if($sfile){
             uploadMultifile($model,'list_file_attach', News::file_url);

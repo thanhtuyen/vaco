@@ -18,9 +18,9 @@ class DetailMenuController extends AdminController
 	{
 		$this->pageTitle = Constants::$listModule['detail_menu']['header'];
 		
-	    $model = $this->loadModel($id);
-	    $model->setAttribute('detail', CHtml::decode($model->detail));
-	    $model->setAttribute('detail_eng', CHtml::decode($model->detail_eng));
+	  $model = $this->loadModel($id);
+    $model->setAttribute('detail', CHtml::decode($model->detail));
+    $model->setAttribute('detail_eng', CHtml::decode($model->detail_eng));
 
 		$this->render('view',array(
 			'model'=>$model,
@@ -70,7 +70,7 @@ class DetailMenuController extends AdminController
         $model->create_date = getDatetime();
         $model->create_user = app()->user->id;
         $model->del_flg = 0;
-        if($model->save(true,array('menu_id','title','caption','detail','title_eng','caption_eng','detail_eng','image_path','list_file_attach','create_date','create_user','del_flg','feature_flg')))
+        if($model->save(true,array('menu_id','title','description','caption','detail','title_eng','description_eng','caption_eng','detail_eng','image_path','list_file_attach','create_date','create_user','del_flg','feature_flg')))
 
           if (is_object($model->image_path)) {
           $model->image_path->saveAs(Yii::getPathOfAlias('webroot'). detailMenu::S_THUMBNAIL.$model->image_path->name);

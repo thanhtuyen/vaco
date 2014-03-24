@@ -7,9 +7,11 @@
  * @property integer $id
  * @property integer $menu_id
  * @property string $title
+ * @property string $description
  * @property string $caption
  * @property string $detail
  * @property string $title_eng
+ * @property string $description_eng
  * @property string $caption_eng
  * @property string $detail_eng
  * @property string $image_path
@@ -71,7 +73,7 @@ class detailMenu extends CActiveRecord
             'maxFiles' => 5,
             'allowEmpty'=>true ),
 
-			array('caption, detail, caption_eng, detail_eng, create_date, update_date', 'safe'),
+			array('caption, detail,description, caption_eng, detail_eng, description_eng, create_date, update_date', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, menu_id, title, caption, detail, title_eng, caption_eng, detail_eng, image_path, list_file_attach, create_date, create_user, update_date, del_flg', 'safe', 'on'=>'search'),
@@ -100,9 +102,11 @@ class detailMenu extends CActiveRecord
 			'id' => 'ID',
 			'menu_id' => 'Menu',
 			'title' => 'Tiêu đề',
+      'description' => 'Tóm tắt',
 			'caption' => 'Chú thích',
 			'detail' => 'Chi tiết',
 			'title_eng' => 'Title',
+			'description_eng' => 'Description',
 			'caption_eng' => 'Caption',
 			'detail_eng' => 'Detail',
 			'image_path' => 'Hình ảnh',

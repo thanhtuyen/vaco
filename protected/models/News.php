@@ -58,7 +58,7 @@ class News extends CActiveRecord
 			array('title_eng','required','message'=>getMessage('required', $this->getAttributeLabel('title_eng'))),
 			array('create_user_id, feature_flag, is_public, del_flg', 'numerical', 'integerOnly'=>true),
 			//array('title, title_eng', 'length', 'max'=>45),
-			array('caption, detail, caption_eng, detail_eng, create_date, update_date', 'safe'),
+			array('caption, detail, description, caption_eng, detail_eng, description_eng, create_date, update_date', 'safe'),
 			
 			//array('thumb_image_path', 'unsafe'),
 			array('thumb_image_path', 'file',
