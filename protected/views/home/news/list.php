@@ -12,8 +12,13 @@ $this->breadcrumbs=array(
     if (!empty($items)) {
       foreach ($items as $item) {
         echo'<div class="bonews">';
-        echo '<div class="tit_news">'.(Yii::app()->language == "en") ? $item->title_eng : $item->title.'</div>';
-        echo '<div class="depc">'.(Yii::app()->language == "en") ? CHtml::decode(substr($item->detail_eng,10,1000)) : CHtml::decode(substr($item->detail,10,1000)).'</div>';
+        if(Yii::app()->language == "en"){
+          echo '<div class="tit_news">'.$item->title_eng.'</div>';
+          echo '<div class="depc">'. CHtml::decode(substr($item->detail_eng,10,1000)).'</div>';
+        } else {
+          echo '<div class="tit_news">'.$item->title.'</div>';
+          echo '<div class="depc">'. CHtml::decode(substr($item->detail,10,1000)).'</div>';
+        }
         echo '<div class="readmore">'.CHtml::link((Yii::app()->language == "en") ? 'Read more...' : 'Xem tiếp', Yii::app()->urlManager->createUrl('/news/view', array("id"=>$item->id))).'</div>';
         echo '</div>';
       }
