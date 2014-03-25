@@ -107,7 +107,7 @@
                 	$array_sub_id[] = $sm->id;
                   $type_sub_menu = Menu::getTypeMenu($sm->id);
                   if($type_sub_menu == '2') {
-					echo '<li>'.CHtml::link((Yii::app()->language == "en") ? $sm->menu_name_eng : $sm->menu_name, Yii::app()->urlManager->createUrl('/detailmenu/list', array('id' => $sm->id))).'</li>';
+					echo '<li>'.CHtml::link((Yii::app()->language == "en") ? $sm->menu_name_eng : $sm->menu_name, Yii::app()->urlManager->createUrl('/detailMenu/list', array('id' => $sm->id))).'</li>';
                   } else if($type_sub_menu == '3') {
                     echo '<li>'.CHtml::link((Yii::app()->language == "en") ? $sm->menu_name_eng : $sm->menu_name, Yii::app()->urlManager->createUrl('/detailmenuimage/list', array('id' => $sm->id))).'</li>';
                   }	else {
@@ -123,7 +123,7 @@
               		echo '<li id="home_page">'.CHtml::link((Yii::app()->language == "en") ? $pm->menu_name_eng : $pm->menu_name, Yii::app()->urlManager->createUrl('/site/index')).'</li>'; 
               	else { 
               		if ($type_menu == '2')
-	              		echo '<li id="'.$pm->id.'">'.CHtml::link((Yii::app()->language == "en") ? $pm->menu_name_eng : $pm->menu_name, Yii::app()->urlManager->createUrl('/detailmenu/list', array('id' => $pm->id))).'</li>';
+	              		echo '<li id="'.$pm->id.'">'.CHtml::link((Yii::app()->language == "en") ? $pm->menu_name_eng : $pm->menu_name, Yii::app()->urlManager->createUrl('/detailMenu/list', array('id' => $pm->id))).'</li>';
 	              	else if ($type_menu == '3') 
 	              		echo '<li id="'.$pm->id.'">'.CHtml::link((Yii::app()->language == "en") ? $pm->menu_name_eng : $pm->menu_name, Yii::app()->urlManager->createUrl('/detailmenuimage/list', array('id' => $pm->id))).'</li>';
 	              	else
