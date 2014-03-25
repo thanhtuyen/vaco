@@ -9,10 +9,10 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List detailMenu', 'url'=>array('index')),
-	array('label'=>'Create detailMenu', 'url'=>array('create')),
-	array('label'=>'View detailMenu', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage detailMenu', 'url'=>array('admin')),
+	array('label'=>'List detailmenu', 'url'=>array('index')),
+	array('label'=>'Create detailmenu', 'url'=>array('create')),
+	array('label'=>'View detailmenu', 'url'=>array('view', 'id'=>$model->id)),
+	array('label'=>'Manage detailmenu', 'url'=>array('admin')),
 );
 ?>
 

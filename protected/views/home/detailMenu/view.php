@@ -8,11 +8,11 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List detailMenu', 'url'=>array('index')),
-	array('label'=>'Create detailMenu', 'url'=>array('create')),
-	array('label'=>'Update detailMenu', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Delete detailMenu', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage detailMenu', 'url'=>array('admin')),
+	array('label'=>'List detailmenu', 'url'=>array('index')),
+	array('label'=>'Create detailmenu', 'url'=>array('create')),
+	array('label'=>'Update detailmenu', 'url'=>array('update', 'id'=>$model->id)),
+	array('label'=>'Delete detailmenu', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
+	array('label'=>'Manage detailmenu', 'url'=>array('admin')),
 );
 ?>
 

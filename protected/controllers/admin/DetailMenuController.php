@@ -1,6 +1,6 @@
 <?php
 
-class DetailMenuController extends AdminController
+class DetailmenuController extends AdminController
 {
   /*
        *  init CSS and Javascript file
@@ -41,14 +41,14 @@ class DetailMenuController extends AdminController
 		// Uncomment the following line if AJAX validation is needed
 		//$this->performAjaxValidation($model);
 
-		if(isset($_POST['detailMenu']))
+		if(isset($_POST['detailmenu']))
 		{
-	      $model->attributes=Clean($_POST['detailMenu']);
+	      $model->attributes=Clean($_POST['detailmenu']);
 
 	      $model->setScenario('create');
 	      if ($model->validate()) {
-        $model->detail = CHtml::encode($_POST['detailMenu']['detail']);
-        $model->detail_eng = CHtml::encode($_POST['detailMenu']['detail_eng']);
+        $model->detail = CHtml::encode($_POST['detailmenu']['detail']);
+        $model->detail_eng = CHtml::encode($_POST['detailmenu']['detail_eng']);
         //save image_path
         $image_path = CUploadedFile::getInstance($model, 'image_path');
         if (is_object($image_path) && get_class($image_path)==='CUploadedFile')
@@ -108,9 +108,9 @@ class DetailMenuController extends AdminController
 		$old_file = $model->list_file_attach;
     $menu_id = $model->menu_id;
 		$array_file = explode(',',$model->list_file_attach);  
-		if(isset($_POST['detailMenu']))
+		if(isset($_POST['detailmenu']))
 		{
-			$model->attributes=$_POST['detailMenu'];
+			$model->attributes=$_POST['detailmenu'];
       $image_path = CUploadedFile::getInstance($model, 'image_path');
 
       $sfile = CUploadedFile::getInstances($model,'list_file_attach');
@@ -124,8 +124,8 @@ class DetailMenuController extends AdminController
 			$model->update_date = getDatetime(); 
 			
 			if ($model->validate()) {
-        $model->detail = CHtml::encode($_POST['detailMenu']['detail']);
-        $model->detail_eng = CHtml::encode($_POST['detailMenu']['detail_eng']);
+        $model->detail = CHtml::encode($_POST['detailmenu']['detail']);
+        $model->detail_eng = CHtml::encode($_POST['detailmenu']['detail_eng']);
 			// upload image
         if (is_object($image_path) && get_class($image_path)==='CUploadedFile')
         {
@@ -199,7 +199,7 @@ class DetailMenuController extends AdminController
 	 */
 //	public function actionIndex()
 //	{
-//		$dataProvider=new CActiveDataProvider('detailMenu');
+//		$dataProvider=new CActiveDataProvider('detailmenu');
 //		$this->render('index',array(
 //			'dataProvider'=>$dataProvider,
 //		));
@@ -212,8 +212,8 @@ class DetailMenuController extends AdminController
 	{
 		$model=new detailMenu('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['detailMenu']))
-			$model->attributes=$_GET['detailMenu'];
+		if(isset($_GET['detailmenu']))
+			$model->attributes=$_GET['detailmenu'];
 
 		$this->render('admin',array(
 			'model'=>$model,

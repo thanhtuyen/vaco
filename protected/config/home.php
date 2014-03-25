@@ -17,9 +17,10 @@ return CMap::mergeArray(
         'caseSensitive'=>false,
         'rules'=>array(
 
-          '<language:(vi|en)>/blog/' => 'detailMenu/admin',
+          '<language:(vi|en)>/blog/' => 'detailmenu/admin',
           '<language:(vi|en)>/' => 'site/index',
           '<language:(vi|en)>/tintuc'=>'news/list',
+          '<language:(vi|en)>/tintucchitiet'=>'detailmenu/list',
           '<language:(vi|en)>/<action:(contact|login|logout)>/*' => 'site/<action>',
           '<language:(vi|en)>/<controller:\w+>/<id:\d+>'=>'<controller>/view',
           '<language:(vi|en)>/<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',

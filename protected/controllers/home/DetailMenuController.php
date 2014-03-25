@@ -1,6 +1,6 @@
 <?php
 
-class DetailMenuController extends HomeController
+class DetailmenuController extends HomeController
 {
 
 	/**
@@ -37,9 +37,9 @@ class DetailMenuController extends HomeController
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['detailMenu']))
+		if(isset($_POST['detailmenu']))
 		{
-			$model->attributes=$_POST['detailMenu'];
+			$model->attributes=$_POST['detailmenu'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -68,7 +68,7 @@ class DetailMenuController extends HomeController
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('detailMenu');
+		$dataProvider=new CActiveDataProvider('detailmenu');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -81,8 +81,8 @@ class DetailMenuController extends HomeController
 	{
 		$model=new detailMenu('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['detailMenu']))
-			$model->attributes=$_GET['detailMenu'];
+		if(isset($_GET['detailmenu']))
+			$model->attributes=$_GET['detailmenu'];
 
 		$this->render('admin',array(
 			'model'=>$model,

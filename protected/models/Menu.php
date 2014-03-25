@@ -63,7 +63,7 @@ class Menu extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-      		'detailMenu' => array(self::HAS_ONE, 'detaiMenu', 'menu_id'),
+      		'detailmenu' => array(self::HAS_ONE, 'detaiMenu', 'menu_id'),
       		'parent' => array(self::BELONGS_TO, 'Menu', 'parent_menu_id'),
 			'news' => array(self::HAS_MANY, 'news', 'menu_id'),
 			'User' => array(self::BELONGS_TO, 'User', 'create_user_id'),
