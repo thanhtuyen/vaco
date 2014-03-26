@@ -69,8 +69,12 @@
     </div>
 
     <div class="t_search">
+<!--      <form class="srchbox" method="get" action="/--><?php //echo Yii::app()->language;?><!--/news/search">-->
+<!--        <div class="sear_input"><input class="pattn" type="text" onfocus="RepTxt(this);" value="Nhập nội dung tìm kiếm" name="q"></div>-->
+<!--        <div class="btn_search"><img src="--><?php //echo Yii::app()->request->baseUrl; ?><!--/images/front/btn_search.png" alt="logovaco"></div>-->
+<!--      </form>-->
       <div class="sear_input"><input name="" type="text" value="Tìm Kiếm"></div>
-      <div class="btn_search"><a href="#"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/front/btn_search.png" alt="logovaco"></a></div>
+      <div class="btn_search"><a href="<?php echo Yii::app()->urlManager->createUrl('/search/index'); ?>"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/front/btn_search.png" alt="logovaco"></a></div>
     </div>
   </div>
 
