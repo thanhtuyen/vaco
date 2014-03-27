@@ -1,9 +1,4 @@
 <!-- BEGIN LEFT MENU -->
-<?php
-	$id = '';
-	if (isset($_GET['id']))
-		$id = $_GET['id']; 	          		
-?>
 <?php 
 	$current_menu_info = Menu::model()->getMenuInfoId($id);
 	if($current_menu_info->parent_menu_id != 0){ // list sub menu with together parent_id
@@ -19,7 +14,14 @@
   <div class="leftmenu">
   	<?php 
 	  	foreach ($list_menu_left as $lm_left) { 
-	  		echo '<div class="tx_leftmenu" id='.$lm_left->id.'>'.CHtml::link((Yii::app()->language == "en") ? $lm_left->menu_name_eng : $lm_left->menu_name, Yii::app()->urlManager->createUrl('#')).'</div>';
+	  		$type_sub_menu = Menu::getTypeMenu($lm_left->id);
+	  		if($type_sub_menu == '2') {
+				echo '<div class="tx_leftmenu" id='.$lm_left->id.'>' . CHtml::link((Yii::app()->language == "en") ? $lm_left->menu_name_eng : $lm_left->menu_name, HomeController::getUrl('Detailmenu/list', $lm_left->id, (Yii::app()->language == "en") ? $lm_left->menu_name_eng : $lm_left->menu_name)) . '</div>';
+			} else if($type_sub_menu == '3') {
+                echo '<div class="tx_leftmenu" id='.$lm_left->id.'>' . CHtml::link((Yii::app()->language == "en") ? $lm_left->menu_name_eng : $lm_left->menu_name, HomeController::getUrlMenuImage('Detailmenuimage/list', $lm_left->id, (Yii::app()->language == "en") ? $lm_left->menu_name_eng : $lm_left->menu_name)) . '</div>';
+ 	        }	else {
+                echo '<div class="tx_leftmenu" id='.$lm_left->id.'>' . CHtml::link((Yii::app()->language == "en") ? $lm_left->menu_name_eng : $lm_left->menu_name, HomeController::getUrlNews('News/list', $lm_left->id, (Yii::app()->language == "en") ? $lm_left->menu_name_eng : $lm_left->menu_name)) . '</div>';
+            }
 	  	}
   	?>
   </div>
