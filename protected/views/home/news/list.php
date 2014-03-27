@@ -15,10 +15,10 @@ $this->breadcrumbs=array(
         echo'<div class="bonews">';
         if(Yii::app()->language == "en"){
           echo '<div class="tit_news">'.CHtml::decode($item->title_eng).'</div>';
-          echo '<div class="depc">'.CHtml::decode($item->description_eng).'</div>';
+          echo '<div class="depc">'.CHtml::decode($item->caption_eng).'</div>';
         } else {
           echo '<div class="tit_news">'.CHtml::decode($item->title).'</div>';
-          echo '<div class="depc">'.CHtml::decode($item->description).'</div>';
+          echo '<div class="depc">'.CHtml::decode($item->caption).'</div>';
         }
         echo '<div class="readmore">'.CHtml::link((Yii::app()->language == "en") ? 'Read more...' : 'Xem tiếp', Yii::app()->urlManager->createUrl('/news/view', array("id"=>$item->id))).'</div>';
         echo '</div>';

@@ -73,8 +73,15 @@
 <!--        <div class="sear_input"><input class="pattn" type="text" onfocus="RepTxt(this);" value="Nhập nội dung tìm kiếm" name="q"></div>-->
 <!--        <div class="btn_search"><img src="--><?php //echo Yii::app()->request->baseUrl; ?><!--/images/front/btn_search.png" alt="logovaco"></div>-->
 <!--      </form>-->
-      <div class="sear_input"><input name="" type="text" value="Tìm Kiếm"></div>
-      <div class="btn_search"><a href="<?php echo Yii::app()->urlManager->createUrl('/search/index'); ?>"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/front/btn_search.png" alt="logovaco"></a></div>
+      <form id="search-form_013837943323146086010:ppcggvatkxe" action="search">
+       <input value="013837943323146086010:ppcggvatkxe" name="cx" type="hidden"/>
+        <input value="FORID:11" name="cof" type="hidden"/>
+<!--        <div class="sear_input"><input id="q" name="" type="text" value="Tìm Kiếm"></div>-->
+<!--        <div class="btn_search"><a href="--><?php //echo Yii::app()->urlManager->createUrl('/search/index'); ?><!--"><img src="--><?php //echo Yii::app()->request->baseUrl; ?><!--/images/front/btn_search.png" alt="logovaco"></a></div>-->
+        <div class="sear_input"><input id="q" style="width:150px;" name="q" size="70" type="text" /></div>
+        <div class="btn_search"><input  name="sa" type="image" src='<?php echo Yii::app()->request->baseUrl; ?>/images/front/btn_search.png' alt='logovaco' /> </div>
+      </form>
+
     </div>
   </div>
 

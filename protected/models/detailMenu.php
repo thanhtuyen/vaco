@@ -7,11 +7,9 @@
  * @property integer $id
  * @property integer $menu_id
  * @property string $title
- * @property string $description
  * @property string $caption
  * @property string $detail
  * @property string $title_eng
- * @property string $description_eng
  * @property string $caption_eng
  * @property string $detail_eng
  * @property string $image_path
@@ -22,14 +20,14 @@
  * @property integer $del_flg
  * @property integer $feature_flg
  */
-class detailMenu extends CActiveRecord
+class Detailmenu extends CActiveRecord
 {
   const S_THUMBNAIL = '/images/detailmenu/';
   const file_url = '/uploadfile/detailmenu/';
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return detailMenu the static model class
+	 * @return Detailmenu the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -53,6 +51,12 @@ class detailMenu extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('menu_id','required','message'=>getMessage('required', $this->getAttributeLabel('menu_id'))),
+      array('title','required','message'=>getMessage('required', $this->getAttributeLabel('title'))),
+      array('title_eng','required','message'=>getMessage('required', $this->getAttributeLabel('title_eng'))),
+      array('caption','required','message'=>getMessage('required', $this->getAttributeLabel('caption'))),
+      array('caption_eng','required','message'=>getMessage('required', $this->getAttributeLabel('caption_eng'))),
+      array('detail','required','message'=>getMessage('required', $this->getAttributeLabel('detail'))),
+      array('detail_eng','required','message'=>getMessage('required', $this->getAttributeLabel('detail_eng'))),
 			array('id, menu_id, create_user, del_flg', 'numerical', 'integerOnly'=>true),
 //			array('title, title_eng', 'length', 'max'=>45),
       		array('image_path', 'file',
@@ -102,11 +106,9 @@ class detailMenu extends CActiveRecord
 			'id' => 'ID',
 			'menu_id' => 'Menu',
 			'title' => 'Tiêu đề',
-      'description' => 'Tóm tắt',
-			'caption' => 'Chú thích',
+			'caption' => 'Tóm tắt',
 			'detail' => 'Chi tiết',
 			'title_eng' => 'Title',
-			'description_eng' => 'Description',
 			'caption_eng' => 'Caption',
 			'detail_eng' => 'Detail',
 			'image_path' => 'Hình ảnh',
