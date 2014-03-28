@@ -102,12 +102,24 @@ return array(
 				*/
 			),
 		),
+    'mail' => array(
+      'transportType' => 'smtp', // change to 'php' when running in real domain.
+      'logging' => true,
+      'dryRun' => false,
+      'transportOptions' => array(
+        'host' => 'smtp.gmail.com',
+        'username' => 'noreply.ems.project@gmail.com',
+        'password' => 'pw-intern-2013',
+        'port' => '465',
+        'encryption' => 'ssl',
+      )
+    ),
 	),
 
 	// application-level parameters that can be accessed
 	// using Yii::app()->params['paramName']
 	'params'=>array(
 		// this is used in contact page
-		'adminEmail'=>'webmaster@example.com',
+		'adminEmail'=>'thituyen24@gmail.com',
 	),
 );

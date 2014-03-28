@@ -159,11 +159,12 @@
                 foreach ($sub_menu as $sm){
                   $array_sub_id[] = $sm->id;
                   $type_sub_menu = Menu::getTypeMenu($sm->id);
-                  if($type_sub_menu == '2') {
+                  $model = Menu::model()->findByPK($sm->id);
+                  if($model->menu_type == '2' && $model->parent_menu_id == 0) {
                     echo '<li>' . CHtml::link((Yii::app()->language == "en") ? $sm->menu_name_eng : $sm->menu_name, HomeController::getUrl('Detailmenu/list', $sm->id, (Yii::app()->language == "en") ? $sm->menu_name_eng : $sm->menu_name)) . '</li>';
-                  } else if($type_sub_menu == '3') {
+                  } else if($model->menu_type == '3' && $model->parent_menu_id == 0) {
                     echo '<li>' . CHtml::link((Yii::app()->language == "en") ? $sm->menu_name_eng : $sm->menu_name, HomeController::getUrlMenuImage('Detailmenuimage/list', $sm->id, (Yii::app()->language == "en") ? $sm->menu_name_eng : $sm->menu_name)) . '</li>';
-                  }	else {
+                  }	else if($model->menu_type == '2' && $model->parent_menu_id != 0) {
                     echo '<li>' . CHtml::link((Yii::app()->language == "en") ? $sm->menu_name_eng : $sm->menu_name, HomeController::getUrlNews('News/list', $sm->id, (Yii::app()->language == "en") ? $sm->menu_name_eng : $sm->menu_name)) . '</li>';
                   }
                 }
@@ -171,15 +172,19 @@
                 echo '</div>';
                 echo '</li>';
               } else {
-                $type_menu = Menu::getTypeMenu($pm->id);
+                $model = Menu::model()->findByPK($sm->id);
                 if($pm->priority == '1') // home page
                 echo '<li id="home_page">'.CHtml::link((Yii::app()->language == "en") ? $pm->menu_name_eng : $pm->menu_name, Yii::app()->urlManager->createUrl('/site/index')).'</li>';
+                else if($pm->priority == '4')
+                echo '<li id="home_page">'.CHtml::link((Yii::app()->language == "en") ? $pm->menu_name_eng : $pm->menu_name, Yii::app()->urlManager->createUrl('/site/contact')).'</li>';
                 else {
-                  if ($type_menu == '2')
+                  if ($model->menu_type == '2' && $model->parent_menu_id == 0)
                     echo '<li id="'.$pm->id.'">' . CHtml::link((Yii::app()->language == "en") ? $pm->menu_name_eng : $pm->menu_name, HomeController::getUrl('Detailmenu/list', $pm->id, (Yii::app()->language == "en") ? $pm->menu_name_eng : $pm->menu_name)) . '</li>';
-                  else if ($type_menu == '3')
+                  else if ($model->menu_type == '2' && $model->parent_menu_id == 0 && $model->priority == '4')
+                    echo '<li id="home_page">'.CHtml::link((Yii::app()->language == "en") ? $pm->menu_name_eng : $pm->menu_name, Yii::app()->urlManager->createUrl('/site/contact')).'</li>';
+                  else if ($model->menu_type == '3' && $model->parent_menu_id == 0)
                     echo '<li id="'.$pm->id.'">' . CHtml::link((Yii::app()->language == "en") ? $pm->menu_name_eng : $pm->menu_name, HomeController::getUrlMenuImage('Detailmenuimage/list', $pm->id, (Yii::app()->language == "en") ? $pm->menu_name_eng : $pm->menu_name)) . '</li>';
-                  else
+                  else if($model->menu_type == '2' && $model->parent_menu_id != 0)
                     echo '<li id="'.$pm->id.'">' . CHtml::link((Yii::app()->language == "en") ? $pm->menu_name_eng : $pm->menu_name, HomeController::getUrlNews('News/list', $pm->id, (Yii::app()->language == "en") ? $pm->menu_name_eng : $pm->menu_name)) . '</li>';
                 }
               }

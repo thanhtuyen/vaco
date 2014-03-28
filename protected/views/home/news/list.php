@@ -1,6 +1,6 @@
 <?php
 $this->breadcrumbs=array(
-  'Tin tức'=>array('index'),
+  //'Tin tức'=>array('index'),
   $menu_name,
 );?>
 <?php $language = Yii::app()->language;?>

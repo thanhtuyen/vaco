@@ -2,15 +2,14 @@
 /* @var $this NewsController */
 /* @var $model News */
 if(Yii::app()->language == "en"){
-  $news = $model->menu->menu_name_eng;
+  $news = $model->Menu->menu_name_eng;
   $title = $model->title_eng;
 } else{
-  $news = $model->menu->menu_name;
+  $news = $model->Menu->menu_name;
   $title = $model->title;
 }
 $this->breadcrumbs=array(
-  $news=>array('list'),
-  $news=>array('list'),
+  $news=>array(HomeController::getUrlNews('News/list', $model->menu_id, (Yii::app()->language == "en") ? $model->Menu->menu_name_eng : $model->Menu->menu_name)),
   $title,
 );
 ?>

@@ -16,16 +16,17 @@ return CMap::mergeArray(
         'showScriptName'=>false, // hiden index.php
         'caseSensitive'=>false,
         'rules'=>array(
-          /*'<language:(vi|en)>/' => 'site/index',
+          '<language:(vi|en)>/' => 'site/index',
+          '<language:(vi|en)>/lien-he' => 'site/contact',
           '<language:(vi|en)>/<id:\d+>/<title:.*?>' => array('Detailmenu/list', 'urlSuffix' => '/', 'caseSensitive' => false),
           '<language:(vi|en)>/<id:\d+>/<name:.*?>' => array('News/list', 'urlSuffix' => '/', 'caseSensitive' => false),
           '<language:(vi|en)>/<id:\d+>/<nameimage:.*?>' => array('Detailmenuimage/list', 'urlSuffix' => '/', 'caseSensitive' => false),
           '<language:(vi|en)>/<controller:\w+>/<id:\d+>'=>'<controller>/view',
           '<language:(vi|en)>/<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
-          '<language:(vi|en)>/<controller:\w+>/<action:\w+>'=>'<controller>/<action>',*/
+          '<language:(vi|en)>/<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 
 
-          '<language:(vi|en)>/<id:\d+>/<name:.*?>' => array('News/list', 'urlSuffix' => '/', 'caseSensitive' => false),
+          /*'<language:(vi|en)>/<id:\d+>/<name:.*?>' => array('News/list', 'urlSuffix' => '/', 'caseSensitive' => false),
           '<language:(vi|en)>/<id:\d+>/<nameimage:.*?>' => array('Detailmenuimage/list', 'urlSuffix' => '/', 'caseSensitive' => false),
           //'<language:(vi|en)>/blog/' => 'detailMenu/admin',
           '<language:(vi|en)>/' => 'site/index',
@@ -38,7 +39,7 @@ return CMap::mergeArray(
           '<language:(vi|en)>/<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
           '<language:(vi|en)>/<controller:\w+>/<action:\w+>/*'=>'<controller>/<action>',
 
-          //'model/<id:\d+>-<name>.html'=>'model/view', // e.g. model/1-model+name.html
+          //'model/<id:\d+>-<name>.html'=>'model/view', // e.g. model/1-model+name.html*/
         ),
       ),
     ),
