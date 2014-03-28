@@ -1,0 +1,18 @@
+.gsc-input-box{
+  height: 70%;
+}
+.gsib_a{
+  height: 100%;
+}
+#gsc-i-id{
+  background-color: red;
+}
+.gt_colsearch
+{
+  width:72%;
+  float:left;
+  margin-left:2%;
+  margin-right:2%;
+  background-color:#fff;
+  padding-bottom:10px;
+}
