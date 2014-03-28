@@ -172,7 +172,7 @@
                 echo '</div>';
                 echo '</li>';
               } else {
-                $model = Menu::model()->findByPK($sm->id);
+                $model = Menu::model()->findByPK($pm->id);
                 if($pm->priority == '1') // home page
                 echo '<li id="home_page">'.CHtml::link((Yii::app()->language == "en") ? $pm->menu_name_eng : $pm->menu_name, Yii::app()->urlManager->createUrl('/site/index')).'</li>';
                 else if($pm->priority == '4')

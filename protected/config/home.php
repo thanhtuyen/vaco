@@ -18,7 +18,7 @@ return CMap::mergeArray(
         'rules'=>array(
           '<language:(vi|en)>/' => 'site/index',
           '<language:(vi|en)>/lien-he' => 'site/contact',
-          '<language:(vi|en)>/<id:\d+>/<title:.*?>' => array('Detailmenu/list', 'urlSuffix' => '/', 'caseSensitive' => false),
+          /*'<language:(vi|en)>/<id:\d+>/<title:.*?>' => array('Detailmenu/list', 'urlSuffix' => '/', 'caseSensitive' => false),*/
           '<language:(vi|en)>/<id:\d+>/<name:.*?>' => array('News/list', 'urlSuffix' => '/', 'caseSensitive' => false),
           '<language:(vi|en)>/<id:\d+>/<nameimage:.*?>' => array('Detailmenuimage/list', 'urlSuffix' => '/', 'caseSensitive' => false),
           '<language:(vi|en)>/<controller:\w+>/<id:\d+>'=>'<controller>/view',

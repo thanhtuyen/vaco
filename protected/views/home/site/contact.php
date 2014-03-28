@@ -1,9 +1,5 @@
 <!-- BEGIN LEFT MENU -->
-<?php
-  require '/../layouts/menu_left.php' ;
-
-?>
-
+<?php echo $this->renderPartial('/layouts/menu_left'); ?>
 <!-- END LEFT MENU -->
 <?php
 /* @var $this SiteController */
@@ -81,8 +77,5 @@ $this->breadcrumbs=array(
 </div>
 
 <!-- BEGIN RIGHT MENU -->
-<?php
-require '/../layouts/menu_right.php' ;
-
-?>
+<?php echo $this->renderPartial('/layouts/menu_right'); ?>
 <!-- END RIGHT MENU -->
