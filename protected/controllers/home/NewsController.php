@@ -11,7 +11,12 @@ class NewsController extends HomeController
   {
     $id = $_GET['id'];
     $menu = Menu::getMenuName($id);
-    $menu_name = $menu->menu_name; 
+    if(Yii::app()->language == "en"){
+      $menu_name = $menu->menu_name_eng;
+    } else{
+      $menu_name = $menu->menu_name;
+    }
+
     $criteria = new CDbCriteria();
     $criteria->condition = 'del_flg=0 AND menu_id=' .$id;
     $criteria->order     = 'id DESC';

@@ -40,16 +40,17 @@ class HomeController extends CController
       Yii::app()->language = Yii::app()->user->getState('language');
     else if(isset(Yii::app()->request->cookies['language']))
       Yii::app()->language = Yii::app()->request->cookies['language']->value;
-      
-  	$id = '';
-	if (isset($_GET['id']))
-		$id = $_GET['id']; 	
-	if($id != ''){
-    	$info = Menu::model()->getMenuInfoId($id);
-    	$this->pageTitle = (Yii::app()->language == "en") ? $info->menu_name_eng : $info->menu_name;       
-	} else {
-   		$this->pageTitle = 	(Yii::app()->language == "en") ? 'HOME' : 'Trang Chủ';     	
-	}
+
+    // Set page title
+    $id = '';
+    if (isset($_GET['id']))
+      $id = $_GET['id'];
+    if($id != ''){
+      $info = Menu::model()->getMenuInfoId($id);
+      $this->pageTitle = (Yii::app()->language == "en") ? $info->menu_name_eng : $info->menu_name;
+    } else {
+      $this->pageTitle = 	(Yii::app()->language == "en") ? 'HOME' : 'Trang Chủ';
+    }
   }
   public function createMultilanguageReturnUrl($lang='en'){
     if (count($_GET)>0){
@@ -66,7 +67,7 @@ class HomeController extends CController
   /*
    * Get list parent menu
    */
-  public function getListParentMenuSortPriority ($parent_id = 0) { 
+  public function getListParentMenuSortPriority ($parent_id = 0) {
     $menu_list = Menu::model()->findAll(array(
       'condition' => 'parent_menu_id = :parent_menu_id AND del_flg = :del_flg AND priority != :priority',
       'order' => 'priority ASC, create_date ASC',
@@ -86,4 +87,33 @@ class HomeController extends CController
     }*/
     return $menu_list;
   }
+
+  /*
+   * Basic SEO
+   */
+  public function getUrl($action,$id, $title)
+  {
+    return Yii::app()->createUrl($action, array(
+      'id' => $id,
+      'title' => $title,
+      //'lang' => Yii::app()->language,
+    ));
+  }
+  public function getUrlNews($action,$id, $name)
+  {
+    return Yii::app()->createUrl($action, array(
+      'id' => $id,
+      'name' => $name,
+      //'lang' => Yii::app()->language,
+    ));
+  }
+  public function getUrlMenuImage($action,$id, $nameimage)
+  {
+    return Yii::app()->createUrl($action, array(
+      'id' => $id,
+      'nameimage' => $nameimage,
+      //'lang' => Yii::app()->language,
+    ));
+  }
+
 }

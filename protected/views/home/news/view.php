@@ -1,10 +1,17 @@
 <?php
 /* @var $this NewsController */
 /* @var $model News */
-
+if(Yii::app()->language == "en"){
+  $news = $model->menu->menu_name_eng;
+  $title = $model->title_eng;
+} else{
+  $news = $model->menu->menu_name;
+  $title = $model->title;
+}
 $this->breadcrumbs=array(
-  'News'=>array('index'),
-  $model->title,
+  $news=>array('list'),
+  $news=>array('list'),
+  $title,
 );
 ?>
 

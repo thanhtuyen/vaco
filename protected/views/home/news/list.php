@@ -3,12 +3,11 @@ $this->breadcrumbs=array(
   'Tin tức'=>array('index'),
   $menu_name,
 );?>
-
+<?php $language = Yii::app()->language;?>
   <!-- BEGIN CONTENT -->
   <div class="gt_coltwo">
     <div class="tit_blue"><?php echo $menu_name;?></div>
     <?php
-    $language = Yii::app()->language;
     if (!empty($items)) {
       foreach ($items as $item) {
 
