@@ -1,0 +1,189 @@
+/* CSS Document */
+/*------------clearfix-------------*/
+
+.clearfix:after {
+	content: ".";
+	display: block;
+	clear: both;
+	height: 0;
+	visibility: hidden;
+}
+.clearfix { display: inline-block; }
+/* exlude MacIE5 \*/
+* html .clearfix { height: 1% }
+.clearfix {display:block;}
+/* end MacIE5 */
+.bg_break
+{
+background-color:#fcfcfc;
+width:100%;
+height:37px;
+float:left;
+}
+.text_under a
+{
+float:left;
+color:#666666;
+text-decoration:underline;
+font-size:100%;
+margin-left:15px;
+padding-right:20px;
+margin-top:12px;
+background:url(../images/front/linecheo.png) no-repeat  center right;
+}
+.text_under a:hover
+{
+color:#2c75d8;
+}
+.text_nomal a:hover
+{
+color:#2c75d8;
+}
+.text_nomal a
+{
+float:left;
+color:#666666;
+font-size:11px;
+margin-left:15px;
+padding-right:20px;
+margin-top:12px;
+}
+.colall
+{
+
+float:left;
+
+}
+.gt_colone
+{
+width:17%;
+float:left;
+background-color:#fff;
+
+}
+.gt_coltwo
+{
+width:55%;
+float:left;
+margin-left:2%;
+margin-right:2%;
+background-color:#fff;
+padding-bottom:10px;
+}
+.gt_colthree
+{
+width:24%;
+float:left;
+background-color:#f8f8f8;
+padding-bottom:20px;
+}
+.tit_menuleft
+{
+background-color:#f8f7f6;
+float:left;
+width:100%;
+}
+.text_title_lm a
+{
+margin-top:10px;
+margin-left:15px;
+float:left;
+font-size:150%;
+color:#222222;
+margin-bottom:8px;
+}
+.text_title_lm a:hover
+{
+color:#222222;
+}
+.tx_leftmenu a
+{
+margin-top:8px;
+float:left;
+font-size:100%;
+width:95%;
+border-bottom:1px solid #eee;
+padding-bottom:5px;
+padding-left:5%;
+font-weight:bold;
+color:#694f40;
+}
+.tx_leftmenu a:hover
+{
+color:#2c75d8;
+}
+.lm_active a
+{
+color:#2c75d8;
+}
+.vacoprofile
+{
+width:100%;
+background-color:#f8f7f6;
+float:left;
+padding-bottom:12px;
+}
+.tit_profile a
+{
+font-size:140%;
+margin-top:10px;
+margin-left:15px;
+margin-bottom:10px;
+float:left; 
+color:#222222;
+}
+.tit_profile a:hover
+{
+color:#222222;
+}
+.img_profile
+{
+margin-left:5%;
+width:90%;
+}
+.tit_blue
+{
+text-transform:uppercase;
+font-size:180%;
+color:#0468d8;
+font-family: Times New Roman, Times, serif;
+
+font-weight:bold;
+margin-top:8px;
+margin-bottom:5px;
+}
+.img_content
+{
+width:100%;
+}
+.tx_content
+{
+text-align:justify;
+font-size:105%;
+}
+.tit_add
+{
+margin-top:10px;
+margin-left:12px;
+font-size:150%;
+color:#222;
+}
+.address
+{
+font-size:110%;
+margin-top:5px;
+margin-left:12px;
+}
+.tit_video
+{
+margin-top:20px;
+margin-left:12px;
+font-size:150%;
+color:#222;
+}
+.video
+{
+margin-top:20px;
+width:90%;
+margin-left:5%;
+}
