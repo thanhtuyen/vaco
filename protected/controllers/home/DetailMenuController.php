@@ -8,9 +8,10 @@ class DetailmenuController extends HomeController
 	 * @param integer $id the ID of the model to be displayed
 	 */
 	public function actionView($id)
-	{
+	{ 
+		$model = Detailmenu::model()->getDetailMenu($id);
 		$this->render('view',array(
-			'model'=>$this->loadModel($id),
+			'model'=>$model,
 		));
 	}
 
@@ -98,7 +99,7 @@ class DetailmenuController extends HomeController
 	 */
 	public function loadModel($id)
 	{
-		$model=detailMenu::model()->findByPk($id);
+		$model=Detailmenu::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;

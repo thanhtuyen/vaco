@@ -1,3 +1,11 @@
+<!-- BEGIN LEFT MENU -->
+<?php 	
+	$id = '';
+	if (isset($_GET['id']))
+		$id = $_GET['id'];
+	echo $this->renderPartial('/layouts/menu_left', array('id' => $id)); 
+?>
+<!-- END LEFT MENU -->
 <?php
 /**
  * Created by JetBrains PhpStorm.

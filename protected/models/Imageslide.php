@@ -60,7 +60,7 @@ class Imageslide extends CActiveRecord
 				'message'=>getMessage('required', $this->getAttributeLabel('image_path')),
 			),
 //			array('title, caption, title_eng, caption_eng', 'length', 'max'=>45),
-			array('create_date, update_date', 'safe'),
+			array('caption, caption_eng,create_date, update_date', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, image_path, title, caption, title_eng, caption_eng, create_date, create_user_id, update_date, del_flg', 'safe', 'on'=>'search'),
@@ -88,7 +88,7 @@ class Imageslide extends CActiveRecord
 			'id' => 'ID',
 			'image_path' => 'Hình ảnh',
 			'title' => 'Tiêu đề',
-			'caption' => 'Chú thích',
+			'caption' => 'Tóm tắt',
 			'title_eng' => 'Title',
 			'caption_eng' => 'Caption',
 			'create_date' => 'Ngày tạo',

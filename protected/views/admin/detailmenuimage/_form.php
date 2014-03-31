@@ -29,6 +29,7 @@
 				<?php //echo $form->error($model,'thumb_image_path'); ?>
 			</span>	
 		</div>
+		</div>
 		<div class="controls"><br>
 			<?php 
 				if($model->isNewRecord != '1')

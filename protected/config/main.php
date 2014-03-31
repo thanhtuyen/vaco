@@ -25,6 +25,7 @@ return array(
 		'ext.common.*',
 		'ext.EchMultiSelect.*',
 		'ext.ckeditor.*',
+		'ext.yii-mail.*',
 	),
 
 	'modules'=>array(
@@ -70,16 +71,16 @@ return array(
 		// uncomment the following to use a MySQL database
 
 		'db'=>array(
-			/*'connectionString' => 'mysql:host=mysql-server02;dbname=tanbqvinhthang',
+			'connectionString' => 'mysql:host=mysql-server02;dbname=tanbqvinhthang',
 			'emulatePrepare' => true,
 			'username' => 'tanbqvith',
 			'password' => 'Vith2013',
-			'charset' => 'utf8',*/
-			'connectionString' => 'mysql:host=localhost;dbname=mydb',
+			'charset' => 'utf8',
+			/*'connectionString' => 'mysql:host=localhost;dbname=tanbqvinhthang',
 			'emulatePrepare' => true,
 			'username' => 'root',
 			'password' => '',
-			'charset' => 'utf8',
+			'charset' => 'utf8',*/
 		),
 
 		'errorHandler'=>array(
@@ -92,7 +93,7 @@ return array(
 				array(
 					'class'=>'CFileLogRoute',
 					'levels'=>'error, warning',
-          'categories'=>'system.*',
+					'categories'=>'system.*',
 				),
 				// uncomment the following to show log messages on web pages
 				/*
@@ -102,24 +103,17 @@ return array(
 				*/
 			),
 		),
-    'mail' => array(
-      'transportType' => 'smtp', // change to 'php' when running in real domain.
-      'logging' => true,
-      'dryRun' => false,
-      'transportOptions' => array(
-        'host' => 'smtp.gmail.com',
-        'username' => 'noreply.ems.project@gmail.com',
-        'password' => 'pw-intern-2013',
-        'port' => '465',
-        'encryption' => 'ssl',
-      )
-    ),
 	),
 
 	// application-level parameters that can be accessed
 	// using Yii::app()->params['paramName']
 	'params'=>array(
 		// this is used in contact page
+		//'adminEmail'=>'webmaster@example.com',
 		'adminEmail'=>'thituyen24@gmail.com',
+	    'adminName' => 'Vaco System',
+	    'dateFormat' => 'MMM dd, yyyy [hh:mm]',
+	    'shortDateFormat' => 'MMM dd, yyyy',
+	    'pageSize' => '10',
 	),
 );

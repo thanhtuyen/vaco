@@ -4,8 +4,8 @@
 <head>
   <?php
   $id = '';
-  if (isset($_GET['id']))
-    $id = $_GET['id'];
+  if (isset($_GET['id_menu']))
+    $id = $_GET['id_menu'];
 
   /*$menu_info = Menu::model()->getMenuInfoId($id);
   if($menu_info != '')
@@ -53,7 +53,7 @@
   <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/menu.js" type="text/javascript"></script>
   <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/script_002.js" type="text/javascript"></script>
   <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jscript.js" type="text/javascript"></script>
-  <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery-1.11.0.min.js" type="text/javascript"></script>
+  <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.min.js" type="text/javascript"></script>
 
   <?php //Yii::app()->bootstrap->register(); ?>
 
@@ -79,16 +79,7 @@
       width:1188px;
     }
   </style>
-  <![endif]-->
-
-  <!-- AUDIO -->
-  <script src="https://www.google.com/jsapi"></script>
-  <script type="text/javascript">
-    google.load("language", "1");
-  </script>
-  <!-- <script src="<?php //echo Yii::app()->request->baseUrl; ?>/js/build/jquery.js"></script> -->
-  <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/build/mediaelement-and-player.min.js"></script>
-  <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/js/build/mediaelementplayer.min.css" />
+  <![endif]--> 
 
   <script type="text/javascript">
     var _gaq = _gaq || [];
@@ -144,81 +135,94 @@
             $array_sub_id = array();
             $parent_menu = HomeController::getListParentMenuSortPriority(0);
             foreach ($parent_menu as $pm){
-              $array_parent_id[] = $pm->id;
-              $sub_menu = HomeController::getListParentMenuSortPriority($pm->id);
-              if($sub_menu != array()){
-                echo '<li class="dropdown" id="'.$pm->id.'">';
-
-                if(Yii::app()->language == "en")
-                  echo '<a href="#">'.$pm->menu_name_eng.'</a>';
-                else
-                  echo '<a href="#">'.$pm->menu_name.'</a>';
-
-                echo '<div class="nav-child dropdown-menu">';
-                echo '<ul class="mega-nav">';
-                foreach ($sub_menu as $sm){
-                  $array_sub_id[] = $sm->id;
-                  $type_sub_menu = Menu::getTypeMenu($sm->id);
-                  $model = Menu::model()->findByPK($sm->id);
-                  if($model->menu_type == '2' && $model->parent_menu_id == 0) {
-                    echo '<li>' . CHtml::link((Yii::app()->language == "en") ? $sm->menu_name_eng : $sm->menu_name, HomeController::getUrl('Detailmenu/list', $sm->id, (Yii::app()->language == "en") ? $sm->menu_name_eng : $sm->menu_name)) . '</li>';
-                  } else if($model->menu_type == '3' && $model->parent_menu_id == 0) {
-                    echo '<li>' . CHtml::link((Yii::app()->language == "en") ? $sm->menu_name_eng : $sm->menu_name, HomeController::getUrlMenuImage('Detailmenuimage/list', $sm->id, (Yii::app()->language == "en") ? $sm->menu_name_eng : $sm->menu_name)) . '</li>';
-                  }	else if($model->menu_type == '2' && $model->parent_menu_id != 0) {
-                    echo '<li>' . CHtml::link((Yii::app()->language == "en") ? $sm->menu_name_eng : $sm->menu_name, HomeController::getUrlNews('News/list', $sm->id, (Yii::app()->language == "en") ? $sm->menu_name_eng : $sm->menu_name)) . '</li>';
-                  }
-                }
-                echo '</ul>';
-                echo '</div>';
-                echo '</li>';
-              } else {
-                $model = Menu::model()->findByPK($pm->id);
-                if($pm->priority == '1') // home page
-                echo '<li id="home_page">'.CHtml::link((Yii::app()->language == "en") ? $pm->menu_name_eng : $pm->menu_name, Yii::app()->urlManager->createUrl('/site/index')).'</li>';
-                else if($pm->priority == '4')
-                echo '<li id="home_page">'.CHtml::link((Yii::app()->language == "en") ? $pm->menu_name_eng : $pm->menu_name, Yii::app()->urlManager->createUrl('/site/contact')).'</li>';
-                else {
-                  if ($model->menu_type == '2' && $model->parent_menu_id == 0)
-                    echo '<li id="'.$pm->id.'">' . CHtml::link((Yii::app()->language == "en") ? $pm->menu_name_eng : $pm->menu_name, HomeController::getUrl('Detailmenu/list', $pm->id, (Yii::app()->language == "en") ? $pm->menu_name_eng : $pm->menu_name)) . '</li>';
-                  else if ($model->menu_type == '2' && $model->parent_menu_id == 0 && $model->priority == '4')
-                    echo '<li id="home_page">'.CHtml::link((Yii::app()->language == "en") ? $pm->menu_name_eng : $pm->menu_name, Yii::app()->urlManager->createUrl('/site/contact')).'</li>';
-                  else if ($model->menu_type == '3' && $model->parent_menu_id == 0)
-                    echo '<li id="'.$pm->id.'">' . CHtml::link((Yii::app()->language == "en") ? $pm->menu_name_eng : $pm->menu_name, HomeController::getUrlMenuImage('Detailmenuimage/list', $pm->id, (Yii::app()->language == "en") ? $pm->menu_name_eng : $pm->menu_name)) . '</li>';
-                  else if($model->menu_type == '2' && $model->parent_menu_id != 0)
-                    echo '<li id="'.$pm->id.'">' . CHtml::link((Yii::app()->language == "en") ? $pm->menu_name_eng : $pm->menu_name, HomeController::getUrlNews('News/list', $pm->id, (Yii::app()->language == "en") ? $pm->menu_name_eng : $pm->menu_name)) . '</li>';
-                }
-              }
+              	$array_parent_id[] = $pm->id;
+              	$type_menu = Menu::getTypeMenu($pm->id);
+				if($pm->priority == '1' && $type_menu == Menu::NOT_LIST){ // home page
+                	echo '<li id="home_page">'.CHtml::link((Yii::app()->language == "en") ? $pm->menu_name_eng : $pm->menu_name, Yii::app()->urlManager->createUrl('/site/index')).'</li>';
+				} else if($pm->priority == '4' && $type_menu == Menu::NOT_LIST){ // contract
+                	echo '<li id="'.$pm->id.'">'.CHtml::link((Yii::app()->language == "en") ? $pm->menu_name_eng : $pm->menu_name, Yii::app()->urlManager->createUrl('/site/contact', array('id'=>$pm->id,'name'=>(Yii::app()->language == "en") ? $pm->menu_name_eng : $pm->menu_name))).'</li>';
+            	} else {
+                  	if ($type_menu == Menu::NOT_LIST){
+                    	echo '<li id="'.$pm->id.'">' . CHtml::link((Yii::app()->language == "en") ? $pm->menu_name_eng : $pm->menu_name, Detailmenu::model()->getUrl($pm->id, (Yii::app()->language == "en") ? $pm->menu_name_eng : $pm->menu_name)) . '</li>';
+                  	} else if ($type_menu == Menu::TYPE_IMAGE){ 
+                  		$sub_detailmenuimage = HomeController::getListParentMenuSortPriority($pm->id);
+                  		if($sub_detailmenuimage != array()){
+                  			echo '<li class="dropdown" id="'.$pm->id.'">';
+			                if(Yii::app()->language == "en")
+			                	echo '<a href="#">'.$pm->menu_name_eng.'</a>';
+			                else
+			                  	echo '<a href="#">'.$pm->menu_name.'</a>';
+			
+			                echo '<div class="nav-child dropdown-menu">';
+			                echo '<ul class="mega-nav">';
+			                foreach ($sub_detailmenuimage as $sm){
+			                	$array_sub_id[] = $sm->id;
+			                    echo '<li>' . CHtml::link((Yii::app()->language == "en") ? $sm->menu_name_eng : $sm->menu_name, Detailmenuimage::model()->getUrl($sm->id, (Yii::app()->language == "en") ? $sm->menu_name_eng : $sm->menu_name)) . '</li>';
+			                }
+			                echo '</ul>';
+			                echo '</div>';
+			                echo '</li>';
+                  		} else {
+                    		echo '<li id="'.$pm->id.'">' . CHtml::link((Yii::app()->language == "en") ? $pm->menu_name_eng : $pm->menu_name, Detailmenuimage::model()->getUrl($pm->id, (Yii::app()->language == "en") ? $pm->menu_name_eng : $pm->menu_name)) . '</li>';
+                  		}
+                  	} else if($type_menu == Menu::LIST_MENU){
+                  		$sub_news = HomeController::getListParentMenuSortPriority($pm->id);
+                  		if($sub_news != array()){
+                  			echo '<li class="dropdown" id="'.$pm->id.'">';
+			                if(Yii::app()->language == "en")
+			                	echo '<a href="#">'.$pm->menu_name_eng.'</a>';
+			                else
+			                  	echo '<a href="#">'.$pm->menu_name.'</a>';
+			
+			                echo '<div class="nav-child dropdown-menu">';
+			                echo '<ul class="mega-nav">';
+			                foreach ($sub_news as $sm){
+			                	$array_sub_id[] = $sm->id;
+			                    echo '<li>' . CHtml::link((Yii::app()->language == "en") ? $sm->menu_name_eng : $sm->menu_name, News::model()->getUrl($sm->id, (Yii::app()->language == "en") ? $sm->menu_name_eng : $sm->menu_name)) . '</li>';
+			                }
+			                echo '</ul>';
+			                echo '</div>';
+			                echo '</li>';
+                  		} else {
+                    		echo '<li id="'.$pm->id.'">' . CHtml::link((Yii::app()->language == "en") ? $pm->menu_name_eng : $pm->menu_name, News::model()->getUrl($pm->id, (Yii::app()->language == "en") ? $pm->menu_name_eng : $pm->menu_name)) . '</li>';
+                  		}
+                  	} 
+				}
             }
 
-            // active menu
-            if(in_array($id, $array_parent_id) || in_array($id, $array_sub_id)){
-              $parent_current_id = Menu::model()->getMenuInfoId($id)->parent_menu_id;
-            if($parent_current_id == 0){
-              ?>
-              <script type="text/javascript">
-                $( document ).ready(function() {
-                  $('#'+<?php echo $id;?>).addClass('active');
-                });
-              </script>
-            <?php
-            } else {
-            ?>
-              <script type="text/javascript">
-                $( document ).ready(function() {
-                  $('#'+<?php echo $id;?>).addClass('lm_active');
-                  $('#'+<?php echo $parent_current_id;?>).addClass('active');
-                });
-              </script>
-            <?php
-            }
-            } else {
-            ?>
-              <script type="text/javascript">
-                $( document ).ready(function() {
-                  $('#home_page').addClass('active');
-                });
-              </script>
-            <?php } ?>
+            // ACTIVE MENU
+            if (isset($_GET['id'])){ // id of items
+            	// in view
+            } else { // id of menu
+	            if(in_array($id, $array_parent_id) || in_array($id, $array_sub_id)){
+	              $parent_current_id = Menu::model()->getMenuInfoId($id)->parent_menu_id;
+		            if($parent_current_id == 0){
+		              ?>
+		              <script type="text/javascript">
+		                $( document ).ready(function() {
+		                	$('#'+<?php echo $id;?>).addClass('active');
+		                });
+		              </script>
+		            <?php
+		            } else {
+		            ?>
+		              <script type="text/javascript">
+		                $( document ).ready(function() {
+		                	$('#'+<?php echo $id;?>).addClass('lm_active');
+		                	$('#'+<?php echo $parent_current_id;?>).addClass('active');
+		                });
+		              </script>
+	            <?php
+	            	}
+	            } else {
+	            ?>
+	              <script type="text/javascript">
+	              	$(document).ready(function(){ 
+	              		$('#home_page').addClass("active");
+	                });
+	              </script>
+	            <?php } ?>
+	       	<?php } ?>
           </ul>
         </div>
       </div>
@@ -244,9 +248,9 @@
 <div class="container">
   <!-- BEGIN LEFT MENU -->
   <?php
-  if($id != ''):
+  /*if($id != ''):
     require 'menu_left.php' ;
-  endif;
+  endif;*/
   ?>
   <!-- END LEFT MENU -->
 
@@ -259,9 +263,9 @@
   <div class="footer">
     <div class="copyyright">&copy; <?php echo date('Y'); ?> Bản quyền thuộc về Công ty TNHH Kiểm Toán VACO</div>
     <div class="mxh">
-      <div class="facebook"><a href="#"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/front/facebook.png"></a></div>
-      <div class="tew"><a href="#"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/front/tew.png"></a></div>
-      <div class="you"><a href="#"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/front/you.png"></a></div>
+      <div class="facebook"><a href="https://www.facebook.com/"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/front/facebook.png"></a></div>
+      <div class="tew"><a href="https://twitter.com/"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/front/tew.png"></a></div>
+      <div class="you"><a href="http://www.youtube.com/"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/front/you.png"></a></div>
       <div class="top"><a href="#"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/front/top.png"></a></div>
     </div>
   </div>

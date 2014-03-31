@@ -119,6 +119,17 @@ class Detailmenu extends CActiveRecord
       'feature_flg' => 'Vị trí hiển thị',
 		);
 	}
+	
+ 	/**
+	* @return string the URL that shows the detail of the post
+	*/
+	public function getUrl($id, $name)
+	{
+		return Yii::app()->createAbsoluteUrl('Detailmenu/View', array(
+		'id'=>$id,
+		'name'=>$name,
+		));
+	}
 
   /**
    * Retrieves a list of models based on the current search/filter conditions.
@@ -187,4 +198,17 @@ class Detailmenu extends CActiveRecord
 
     return $arrayListMenu;
   }
+  
+	/*
+  	* get data for front end
+  	*/
+
+  	public function getDetailMenu($menu_id){
+    	$listData = self::model()->findByAttributes(array('del_flg' => 0, 'menu_id' => $menu_id),
+    												array('order' => 'create_date DESC'));
+
+    	return $listData;
+
+  	}
+  
 }

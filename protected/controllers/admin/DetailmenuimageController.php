@@ -45,7 +45,7 @@ class DetailmenuimageController extends AdminController
 				$model->create_date = getDatetime();
 	      		$model->create_user = app()->user->getState('roles') == 'admin' ? User::ADMIN : User::USER;
 	      		$model->del_flg = 0;
-
+            $model->feature_flg = $_POST['Detailmenuimage']['feature_flg'];
 				if($model->save(true,array('menu_id','image_path','caption','caption_eng','create_user','del_flg','public_flg','feature_flg','create_date','update_date')))
           if (is_object($model->image_path))
             $model->image_path->saveAs(Yii::getPathOfAlias('webroot') . Detailmenuimage::image_url . $model->image_path->name);
@@ -78,6 +78,7 @@ class DetailmenuimageController extends AdminController
 
       $image_path = CUploadedFile::getInstance($model, 'image_path');
 			$model->update_date = getDatetime();
+      $model->feature_flg = $_POST['Detailmenuimage']['feature_flg'];
 			if ($model->validate()) {
         // upload image
         if (is_object($image_path) && get_class($image_path)==='CUploadedFile')

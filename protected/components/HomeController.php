@@ -25,7 +25,7 @@ class HomeController extends CController
     // If there is a post-request, redirect the application to the provided url of the selected language
     if(isset($_POST['language'])) {
       $lang = $_POST['language'];
-      $MultilangReturnUrl = $_POST[$lang];
+      $MultilangReturnUrl = $_POST[$lang]; var_dump($MultilangReturnUrl);
       $this->redirect($MultilangReturnUrl);
     }
     // Set the application language if provided by GET, session or cookie
@@ -42,15 +42,29 @@ class HomeController extends CController
       Yii::app()->language = Yii::app()->request->cookies['language']->value;
 
     // Set page title
-    $id = '';
+    /*$id = '';        
     if (isset($_GET['id']))
       $id = $_GET['id'];
-    if($id != ''){
+    ///
+     $new_id = '';
+     if (isset($_GET['id_detail']))
+      $new_id = $_GET['id_detail'];
+      
+    if($id != '' && $new_id != ''){ // list or image menu
+    	$type_menu = Menu::model()->getTypeMenu($id);
+    	if($type_menu == Menu::LIST_MENU){
+			$info = News::model()->getNews($new_id);
+			$this->pageTitle = (Yii::app()->language == "en") ? $info->title_eng : $info->title;
+    	} else if($type_menu == Menu::TYPE_IMAGE){
+			$info = Detailmenuimage::model()->getDetailMenuImage($new_id);
+			$this->pageTitle = (Yii::app()->language == "en") ? 'Image' : 'Hình Ảnh';
+    	}///
+    } else if($id != ''){
       $info = Menu::model()->getMenuInfoId($id);
       $this->pageTitle = (Yii::app()->language == "en") ? $info->menu_name_eng : $info->menu_name;
     } else {
       $this->pageTitle = 	(Yii::app()->language == "en") ? 'HOME' : 'Trang Chủ';
-    }
+    }*/
   }
   public function createMultilanguageReturnUrl($lang='en'){
     if (count($_GET)>0){
@@ -86,34 +100,6 @@ class HomeController extends CController
       $menu_list[$v->id] = $sub_menu_list;
     }*/
     return $menu_list;
-  }
-
-  /*
-   * Basic SEO
-   */
-  public function getUrl($action,$id, $title)
-  {
-    return Yii::app()->createUrl($action, array(
-      'id' => $id,
-      'title' => $title,
-      //'lang' => Yii::app()->language,
-    ));
-  }
-  public function getUrlNews($action,$id, $name)
-  {
-    return Yii::app()->createUrl($action, array(
-      'id' => $id,
-      'name' => $name,
-      //'lang' => Yii::app()->language,
-    ));
-  }
-  public function getUrlMenuImage($action,$id, $nameimage)
-  {
-    return Yii::app()->createUrl($action, array(
-      'id' => $id,
-      'nameimage' => $nameimage,
-      //'lang' => Yii::app()->language,
-    ));
   }
 
 }

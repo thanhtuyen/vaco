@@ -1,0 +1,1 @@
+<?php exit('view here');?>

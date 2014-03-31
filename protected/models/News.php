@@ -119,11 +119,30 @@ class News extends CActiveRecord
 			'list_file_attach' => 'Tập tin',
 			'create_user_id' => 'User tạo dữ liệu',
 			'create_date' => 'Ngày tạo',
-			'feature_flag' => 'Vị trí hiển thị',
-			'update_date' => 'Update Date',
+			'feature_flag' => '',
+			'update_date' => 'Ngày chỉnh sửa',
 			'is_public' => 'Công khai',
 			'del_flg' => 'Del Flg',
 		);
+	}
+	
+	 /**
+	* @return string the URL that shows the detail of the post
+	*/
+	public function getUrl($id, $name, $name_detail='')
+	{ 
+		if($name_detail != ''){ 
+			return Yii::app()->createAbsoluteUrl('News/View', array(
+			'id'=>$id,
+			'name'=>$name,
+			'name_detail'=>$name_detail
+			));
+		} else {
+			return Yii::app()->createAbsoluteUrl('News/list', array(
+			'id_menu'=>$id,
+			'name'=>$name,
+			));
+		}
 	}
 
 	/**
@@ -164,7 +183,11 @@ class News extends CActiveRecord
   * get data for front end
   */
 
-  public function getListNews($menu_id){
+  public function getListNews($menu_id, $flag_home=false){
+  	if($flag_home)
+  		$listData = News::model()->findAllByAttributes(array('del_flg' => 0, 'menu_id' => $menu_id, 'is_public' => 0),
+    												array('order' => 'create_date DESC'));
+    else
     $listData = News::model()->findAllByAttributes(array('del_flg' => 0, 'menu_id' => $menu_id),
     												array('order' => 'create_date DESC'));
 
@@ -173,22 +196,30 @@ class News extends CActiveRecord
   }
   
 	/*
+	  * get data news
+	  */
+	
+	  public function getNews($news_id){
+	    $news_Data = self::model()->findByAttributes(array('del_flg' => 0, 'id' => $news_id));	
+	    return $news_Data;	
+	  }
+  
+	/*
   	 * Get menu from HOME
   	 */
   	public function getMenuForHome($menu_type=1, $is_public=0, $feature_flag=2) {
-  		if($menu_type == Menu::LIST_MENU){
-	  		$sql = "SELECT menu.* FROM news, menu WHERE news.menu_id = menu.id AND news.del_flg = 0 AND is_public = :is_public AND feature_flag = :feature_flag AND menu.del_flg = 0 AND menu.menu_type = :menu_type GROUP BY menu.id ORDER BY menu.priority ASC";
+  		if($menu_type == Menu::LIST_MENU){ // get sub menu is list
+	  		$sql = "SELECT menu.* FROM news, menu WHERE news.menu_id = menu.id AND news.del_flg = 0 AND is_public = :is_public AND feature_flag = :feature_flag AND menu.del_flg = 0 AND menu.menu_type = :menu_type AND menu.parent_menu_id != 0 GROUP BY menu.id ORDER BY menu.priority ASC";
 	  		$list_news = Menu::model()->findAllBySql($sql, array(':is_public'=>$is_public,
 	  															':feature_flag'=>$feature_flag,
 	  															':menu_type'=>$menu_type)); 
-  		} else if($menu_type == Menu::NOT_LIST){
-  			$sql = "SELECT menu.* FROM detailmenu dm, menu WHERE dm.menu_id = menu.id AND dm.del_flg = 0 AND is_public = :is_public AND feature_flag = :feature_flag AND menu.del_flg = 0 AND menu.menu_type = :menu_type GROUP BY menu.id ORDER BY menu.priority ASC";
-	  		$list_news = Menu::model()->findAllBySql($sql, array(':is_public'=>$is_public,
-	  															':feature_flag'=>$feature_flag,
+  		} /*else if($menu_type == Menu::NOT_LIST){ // get sub menu is single
+  			$sql = "SELECT menu.* FROM detailmenu dm, menu WHERE dm.menu_id = menu.id AND dm.del_flg = 0 AND feature_flg = :feature_flag AND menu.del_flg = 0 AND menu.menu_type = :menu_type AND menu.parent_menu_id != 0 GROUP BY menu.id ORDER BY menu.priority ASC";
+	  		$list_news = Menu::model()->findAllBySql($sql, array(':feature_flag'=>$feature_flag,
 	  															':menu_type'=>$menu_type)); 
-  		} else if($menu_type == Menu::TYPE_IMAGE){
-  			$sql = "SELECT menu.* FROM detailmenuimage dmi, menu WHERE dmi.menu_id = menu.id AND dmi.del_flg = 0 AND is_public = :is_public AND feature_flag = :feature_flag AND menu.del_flg = 0 AND menu.menu_type = :menu_type GROUP BY menu.id ORDER BY menu.priority ASC";
-	  		$list_news = Menu::model()->findAllBySql($sql, array(':is_public'=>$is_public,
+  		}*/ else if($menu_type == Menu::TYPE_IMAGE){
+  			$sql = "SELECT menu.* FROM detailmenuimage dmi, menu WHERE dmi.menu_id = menu.id AND dmi.del_flg = 0 AND public_flg = :public_flg AND feature_flag = :feature_flag AND menu.del_flg = 0 AND menu.menu_type = :menu_type GROUP BY menu.id ORDER BY menu.priority ASC";
+	  		$list_news = Menu::model()->findAllBySql($sql, array(':public_flg'=>$is_public,
 	  															':feature_flag'=>$feature_flag,
 	  															':menu_type'=>$menu_type)); 
   		}

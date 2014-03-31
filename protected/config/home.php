@@ -16,14 +16,20 @@ return CMap::mergeArray(
         'showScriptName'=>false, // hiden index.php
         'caseSensitive'=>false,
         'rules'=>array(
-          '<language:(vi|en)>/' => 'site/index',
-          '<language:(vi|en)>/lien-he' => 'site/contact',
-          /*'<language:(vi|en)>/<id:\d+>/<title:.*?>' => array('Detailmenu/list', 'urlSuffix' => '/', 'caseSensitive' => false),*/
-          '<language:(vi|en)>/<id:\d+>/<name:.*?>' => array('News/list', 'urlSuffix' => '/', 'caseSensitive' => false),
-          '<language:(vi|en)>/<id:\d+>/<nameimage:.*?>' => array('Detailmenuimage/list', 'urlSuffix' => '/', 'caseSensitive' => false),
-          '<language:(vi|en)>/<controller:\w+>/<id:\d+>'=>'<controller>/view',
-          '<language:(vi|en)>/<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
-          '<language:(vi|en)>/<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+          	'<language:(vi|en)>/' => 'site/index',
+          	'<language:(vi|en)>/<id:\d+>/<name:.*?>' => array('site/contact'),
+  
+  			'<language:(vi|en)>/Detailmenu/<id:\d+>/<name:.*?>' => array('Detailmenu/View', 'urlSuffix' => '/', 'caseSensitive' => false),
+  
+          	'<language:(vi|en)>/News/<id_menu:\d+>/<name:.*?>' => array('News/list', 'urlSuffix' => '/', 'caseSensitive' => false),
+  			'<language:(vi|en)>/ItemNews/<id:\d+>/<name:.*?>/<name_detail:.*?>' => array('News/View', 'urlSuffix' => '/', 'caseSensitive' => false),
+  
+          	'<language:(vi|en)>/Detailmenuimage/<id_menu:\d+>/<name:.*?>' => array('Detailmenuimage/list', 'urlSuffix' => '/', 'caseSensitive' => false),
+  			'<language:(vi|en)>/ItemDetailmenuimage/<id:\d+>/<name:.*+>/<name_detail:.*?>' => array('Detailmenuimage/view', 'urlSuffix' => '/', 'caseSensitive' => false),
+          	
+          	'<language:(vi|en)>/<controller:\w+>/<id:\d+>'=>'<controller>/view',
+          	'<language:(vi|en)>/<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
+          	'<language:(vi|en)>/<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 
 
           /*'<language:(vi|en)>/<id:\d+>/<name:.*?>' => array('News/list', 'urlSuffix' => '/', 'caseSensitive' => false),
@@ -40,7 +46,21 @@ return CMap::mergeArray(
           '<language:(vi|en)>/<controller:\w+>/<action:\w+>/*'=>'<controller>/<action>',
 
           //'model/<id:\d+>-<name>.html'=>'model/view', // e.g. model/1-model+name.html*/
+        	),
         ),
+		'mail' => array(
+        'class' => 'ext.yii-mail.YiiMail',
+        'transportType' => 'smtp', // change to 'php' when running in real domain.
+        'viewPath' => 'application.views.mail',
+        'logging' => true,
+        'dryRun' => false,
+        'transportOptions' => array(
+          'host' => 'smtp.gmail.com',
+          'username' => 'tuyen.developer@gmail.com',
+          'password' => 'vantuongyeudau0608',
+          'port' => '465',
+          'encryption' => 'ssl',
+        )
       ),
     ),
     'params'=>array(

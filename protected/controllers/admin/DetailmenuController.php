@@ -56,7 +56,7 @@ class DetailmenuController extends AdminController
           }
           $model->list_file_attach = implode(',', $ffile);
         }
-
+        $model->feature_flg = $_POST['Detailmenu']['feature_flg'];
         $model->create_date = getDatetime();
         $model->create_user = app()->user->id;
         $model->del_flg = 0;
@@ -112,7 +112,7 @@ class DetailmenuController extends AdminController
         $model->list_file_attach = implode(',', $ffile);
       }
       $model->update_date = getDatetime();
-
+      $model->feature_flg = $_POST['Detailmenu']['feature_flg'];
       if ($model->validate()) {
         $model->detail = CHtml::encode($_POST['Detailmenu']['detail']);
         $model->detail_eng = CHtml::encode($_POST['Detailmenu']['detail_eng']);
@@ -148,8 +148,6 @@ class DetailmenuController extends AdminController
         } else {
           $model->list_file_attach = $old_file;
         }
-
-
         $model->menu_id= $menu_id;
         if($model->save())
           if($image_path) {

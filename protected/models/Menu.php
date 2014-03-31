@@ -45,7 +45,7 @@ class Menu extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('menu_type','required','message'=>getMessage('required', $this->getAttributeLabel('menu_type'))),
+			array('parent_menu_id','required','message'=>getMessage('required', $this->getAttributeLabel('parent_menu_id'))),
 			array('id, parent_menu_id, menu_type, priority, create_user_id, del_flg', 'numerical', 'integerOnly'=>true),
 			array('menu_name, menu_name_eng', 'length', 'max'=>45),
 			array('create_date, update_date', 'safe'),
@@ -63,11 +63,12 @@ class Menu extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-      		'detailmenu' => array(self::HAS_ONE, 'detaiMenu', 'menu_id'),
+      		'detailmenu' => array(self::HAS_ONE, 'Detaimenu', 'menu_id'),
       		'parent' => array(self::BELONGS_TO, 'Menu', 'parent_menu_id'),
+          	'menu_child'=> array(self::HAS_MANY, 'Menu', 'parent_menu_id', 'order'=> 'id ASC'),
 			'news' => array(self::HAS_MANY, 'news', 'menu_id'),
 			'User' => array(self::BELONGS_TO, 'User', 'create_user_id'),
-			'detailMenuImage' => array(self::HAS_MANY, 'detailmenuimage', 'menu_id'),
+			'detailMenuImage' => array(self::HAS_MANY, 'Detailmenuimage', 'menu_id'),
 		);
 	}
 

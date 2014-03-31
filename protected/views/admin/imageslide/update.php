@@ -3,7 +3,7 @@
 /* @var $model Imageslide */
 
 $this->breadcrumbs=array(
-	'Imageslides'=>array('index'),
+	'Imageslides'=>array('admin'),
 	$model->title=>array('view','id'=>$model->id),
 	'Update',
 );

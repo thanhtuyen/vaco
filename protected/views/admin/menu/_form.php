@@ -32,7 +32,7 @@
 
 <!--  --><?php //echo $form->textFieldRow($model,'menu_type',array('class'=>'span3','maxlength'=>255)); ?>
 
-  <?php echo $form->dropDownListRow($model,'menu_type', $list_menu_type,array('class'=>'span3','maxlength'=>255, 'prompt'=>'Chọn loại menu ...')) ?>
+<!--  --><?php echo $form->dropDownListRow($model,'menu_type', $list_menu_type,array('class'=>'span3','maxlength'=>255, 'prompt'=>'Chọn loại menu ...')) ?>
   
   <?php echo $form->radioButtonListRow($model,'priority',Constants::$arrayPriority,array('class'=>'span1')); ?>
   
@@ -62,3 +62,15 @@
 </div>
 <?php $this->endWidget(); ?>
 
+<script language="javascript">
+  $(document).ready(function() {
+    $("#Menu_parent_menu_id").change(function(){
+      if($(this).val() == 0) {
+        $('#Menu_menu_type').removeAttr('disabled', 'disabled');
+      } else {
+        $('#Menu_menu_type').attr('disabled', 'disabled');
+      }
+    });
+    $('#Menu_parent_menu_id').trigger('change');
+  });
+</script>

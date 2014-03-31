@@ -79,7 +79,7 @@ if(app()->user->hasFlash('error')){
 		*/
     array(
       'class'=>'CButtonColumn',
-      'template'=>' {view} {update} {delete} {view_news} {view_detail_menu} {view_detail_image}',
+      'template'=>' {view} {update} {delete}',
       'header'=>'Actions',
       'buttons'=>array(
         'view' => array(
@@ -94,7 +94,15 @@ if(app()->user->hasFlash('error')){
           'imageUrl'=>Yii::app()->request->baseUrl.'/images/thumbnails/delete.png',
           'url'=>'Yii::app()->createUrl("menu/delete",array("id"=>$data->id))',
         )
-      ,'view_news' => array(
+      ),
+      'htmlOptions'=>array('width'=>100,'align'=>'center'),
+    ),
+    array(
+      'class'=>'CButtonColumn',
+      'template'=>' {view_news} {view_detail_menu} {view_detail_image}',
+      'header'=>'Actions',
+      'buttons'=>array(
+      'view_news' => array(
           'imageUrl'=>Yii::app()->request->baseUrl.'/images/thumbnails/icon_news.png',
           'url'=>'Yii::app()->createUrl("news/admin",array("menu_id"=>$data->id))',
           'visible'=>'$data->menu_type == 1 || ($data->menu_type == 2 && $data->parent_menu_id != 0)',
@@ -111,7 +119,7 @@ if(app()->user->hasFlash('error')){
         ),
 
       ),
-      'htmlOptions'=>array('width'=>100,'align'=>'center'),
+      'htmlOptions'=>array('width'=>10,'align'=>'center'),
     ),
 	),
 )); ?>

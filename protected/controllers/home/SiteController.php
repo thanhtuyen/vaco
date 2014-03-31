@@ -32,28 +32,33 @@ class SiteController extends HomeController
 	/**
 	 * Displays the contact page
 	 */
-	public function actionContact()
-	{
-		$model=new ContactForm;
-		if(isset($_POST['ContactForm']))
-		{
-			$model->attributes=$_POST['ContactForm'];
-			if($model->validate())
-			{
-				$name='=?UTF-8?B?'.base64_encode($model->name).'?=';
-				$subject='=?UTF-8?B?'.base64_encode($model->subject).'?=';
-				$headers="From: $name <{$model->email}>\r\n".
-					"Reply-To: {$model->email}\r\n".
-					"MIME-Version: 1.0\r\n".
-					"Content-type: text/plain; charset=UTF-8";
+  public function actionContact()
+  {
+    $model=new ContactForm;
+    if(isset($_POST['ContactForm']))
+    {
+      $model->attributes=$_POST['ContactForm'];
+      if($model->validate())
+      {
+        $email = app()->params['adminEmail'];
+        $email_user = $model->email;
+        $copy = $_POST['ContactForm']['copy'];
+        if($copy == 1){
+          $cc = $email_user;
+        } else {
+          $cc = '';
+        }
 
-				mail(Yii::app()->params['adminEmail'],$subject,$model->body,$headers);
-				Yii::app()->user->setFlash('contact','Thank you for contacting us. We will respond to you as soon as possible.');
-				$this->refresh();
-			}
-		}
-		$this->render('contact',array('model'=>$model));
-	}
+        MailTransport::sendMail($email_user, $email, $model->subject,
+          CController::renderPartial('emailwelcome',array('name'=> $model->name, 'subject'=> $model->subject, 'content'=> $model->body,),true,false),
+           $cc
+        );
+        Yii::app()->user->setFlash('contact','Thank you for contacting us. We will respond to you as soon as possible.');
+        $this->refresh();
+      }
+    }
+    $this->render('contact',array('model'=>$model));
+  }
 
 	/**
 	 * Displays the login page

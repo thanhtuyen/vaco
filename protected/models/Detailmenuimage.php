@@ -97,6 +97,25 @@ class Detailmenuimage extends CActiveRecord
 			'feature_flg' => 'Vị trí hiển thị',
 		);
 	}
+	
+ 	/**
+	* @return string the URL that shows the detail of the post
+	*/
+	public function getUrl($id, $name, $name_detail='')
+	{
+		if($name_detail != ''){
+			return Yii::app()->createAbsoluteUrl('Detailmenuimage/view', array(
+			'id'=>$id,
+			'name'=>$name,
+			'name_detail'=>$name_detail
+			));
+		} else {
+			return Yii::app()->createAbsoluteUrl('Detailmenuimage/list', array(
+			'id_menu'=>$id,
+			'name'=>$name,
+			));
+		}
+	}
 
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
@@ -126,4 +145,14 @@ class Detailmenuimage extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+	
+	/*
+	 * FRONT
+	  * get data news
+	  */
+	
+	  public function getDetailMenuImage($detail_menu_image_id){
+	    $detail_menu_image_Data = self::model()->findByAttributes(array('del_flg' => 0, 'id' => $detail_menu_image_id));	
+	    return $detail_menu_image_Data;	
+	  }
 }

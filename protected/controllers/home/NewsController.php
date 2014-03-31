@@ -9,8 +9,8 @@ class NewsController extends HomeController
    */
   public function actionlist()
   {
-    $id = $_GET['id'];
-    $menu = Menu::getMenuName($id);
+    $id = $_GET['id_menu'];
+    $menu = Menu::getMenuName($id); 
     if(Yii::app()->language == "en"){
       $menu_name = $menu->menu_name_eng;
     } else{
@@ -44,7 +44,7 @@ class NewsController extends HomeController
 	public function actionView($id)
 	{
     $model = $this->loadModel($id);
-    $listNews = News::model()->getListNews($model->menu_id);
+    $listNews = News::model()->getListNews($model->id);
 		$this->render('view',array(
 			'model'=>$model,'listNews' => $listNews
 		));

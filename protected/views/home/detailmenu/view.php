@@ -1,15 +1,19 @@
+<?php echo $this->renderPartial('/layouts/menu_left', array('id' => $model->menu_id)); ?>
 <?php
 /* @var $this NewsController */
 /* @var $model News */
+$model_menu = Menu::model()->findByPk($model->menu_id); 
 if(Yii::app()->language == "en"){
-  $news = $model->Menu->menu_name_eng;
+  $news = $model_menu['menu_name_eng'];
+  $menu_eng = $news;
   $title = $model->title_eng;
 } else{
-  $news = $model->Menu->menu_name;
+  $news = $model_menu['menu_name'];
+  $menu_name = $news;
   $title = $model->title;
 }
 $this->breadcrumbs=array(
-  $news=>array(HomeController::getUrlNews('News/list', $model->menu_id, (Yii::app()->language == "en") ? $model->Menu->menu_name_eng : $model->Menu->menu_name)),
+  $news=>array(Detailmenu::model()->getUrl($model->menu_id, (Yii::app()->language == "en") ? $menu_eng : $menu_name)),
   $title,
 );
 ?>
@@ -28,14 +32,11 @@ $this->breadcrumbs=array(
     <a href="#"><img src="/images/front/fb.png"></a> 
     <a href="#"><img src="/images/front/tw.png"></a>  
     <a href="#"><img src="/images/front/gc.png"></a>  
-    <a href="<?php echo Yii::app()->urlManager->createUrl('/news/admin')?>" onclick="window.open(this.href,'win2','width=400,height=350,menubar=yes,resizable=yes'); return false;"><img src="/images/front/em.png"></a>  
-    <a onclick="window.open(this.href,'win2','status=no,toolbar=no,scrollbars=yes,titlebar=no,menubar=no,resizable=yes,width=640,height=480,directories=no,location=no'); return false;" title="In" href="<?php echo Yii::app()->urlManager->createUrl('/news/print', array("id"=>$model->id))?>"><img src="/images/front/pr.png"></a></div>
+    <!-- <a href="<?php echo Yii::app()->urlManager->createUrl('/news/admin')?>" onclick="window.open(this.href,'win2','width=400,height=350,menubar=yes,resizable=yes'); return false;"><img src="/images/front/em.png"></a>  
+    <a onclick="window.open(this.href,'win2','status=no,toolbar=no,scrollbars=yes,titlebar=no,menubar=no,resizable=yes,width=640,height=480,directories=no,location=no'); return false;" title="In" href="<?php echo Yii::app()->urlManager->createUrl('/news/print', array("id"=>$model->id))?>"><img src="/images/front/pr.png"></a>-->
+  </div>
 
   <div class="conten_news">
-    <!--    <div class="text_bold">-->
-    <!--      Mặc cho tình hình kinh tế ảm đạm đến mức nào, giá trị thương hiệu của các nhà bán lẻ hàng đầu thế giới vẫn không ngừng gia tăng. Điều này cho thấy khả năng chống đỡ của họ trước khủng hoảng là không hề nhỏ. Đó là thành quả của những chiến lược thông minh và đặc biệt là những nỗ lực không mệt mỏi.-->
-    <!--    </div>-->
-    <!--    <br />-->
     <div class="news_text_nomal">
       <?php
       if(Yii::app()->language == "en"){
@@ -50,16 +51,7 @@ $this->breadcrumbs=array(
 
 </div>
 <!-- END CONTENT -->
+
 <!-- BEGIN RIGHT COLUM -->
-<div class="gt_colthree">
-  <div class="tit_add">Văn phòng đại diện</div>
-  <div class="address">
-    <strong>Trụ sở chính:</strong><br />Tầng 4, số 168 Đường Láng, Quận Đống Đa, Hà Nội<br />Điện thoại: (84-4) 3 577 0781<br />Fax: +(84-4) 3 577 0787
-  </div>
-  <div class="address">
-    <strong>Chi nhánh Hải Phòng:</strong><br />Số 499 Quán Toan, Quận Hồng Bàng, TP Hải Phòng<br />Điện thoại: 031. 3534655<br />Fax: 031. 3534 316
-  </div>
-  <div class="tit_video">Video Clip</div>
-  <div class="video"><img src="images/video.jpg" width="100%"></div>
-</div>
+<?php echo $this->renderPartial('/site/menu_right_address'); ?>
 <!-- END RIGHT COLUM -->

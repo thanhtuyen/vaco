@@ -1,15 +1,40 @@
+<!-- ACTIVE MENU IN NEWS -->
+<?php 
+	$id = '';
+	  if (isset($_GET['id']))
+	    $id = $_GET['id'];
+	$news_info = News::model()->getNews($id);
+	$sub_menu = Menu::model()->getMenuInfoId($news_info->menu_id); 
+	if($sub_menu != ''){
+		$sub_menu_id = $sub_menu->id;
+		$parent_menu_id = $sub_menu->parent_menu_id;
+?>
+		<script type="text/javascript">
+			$( document ).ready(function() {
+				$('#'+<?php echo $sub_menu_id;?>).addClass('lm_active');
+           		$('#'+<?php echo $parent_menu_id;?>).addClass('active');
+        	});
+ 		</script>
+<?php } ?>
+<!-- BEGIN LEFT MENU -->
+<?php echo $this->renderPartial('/layouts/menu_left', array('id' => $model->menu_id)); ?>
+<!-- END LEFT MENU -->
+<?php $language = Yii::app()->language;?>
 <?php
 /* @var $this NewsController */
 /* @var $model News */
+$model_menu = Menu::model()->findByPk($model->menu_id);
 if(Yii::app()->language == "en"){
-  $news = $model->Menu->menu_name_eng;
+  $news = $model_menu['menu_name_eng'];
+  $menu_name = $news;
   $title = $model->title_eng;
 } else{
-  $news = $model->Menu->menu_name;
+  $news = $model_menu['menu_name'];
+  $menu_name = $news;
   $title = $model->title;
 }
 $this->breadcrumbs=array(
-  $news=>array(HomeController::getUrlNews('News/list', $model->menu_id, (Yii::app()->language == "en") ? $model->Menu->menu_name_eng : $model->Menu->menu_name)),
+  $news=>array(News::model()->getUrl($model->menu_id, $menu_name)),
   $title,
 );
 ?>
@@ -47,24 +72,15 @@ $this->breadcrumbs=array(
 
     </div>
   </div>
-  <div class="tit_lqnews">Tin LIÊn QUAN:</div>
-  <?php foreach($listNews as $news){
-    echo '<div class="li_news">'.CHtml::link((Yii::app()->language == "en") ? $news->title_eng : $news->title, Yii::app()->urlManager->createUrl('/news/view', array("id"=>$news->id))).'</div>';
+  <div class="tit_lqnews">TIN LIÊN QUAN:</div>
+  <?php foreach($listNews as $news){  	
+    echo '<div class="li_news">'.CHtml::link(($language == "en") ? $news->title_eng : $news->title, News::model()->getUrl($news->id, $menu_name, ($language == "en") ? $news->title_eng : $news->title)).'</div>';
   }
   ?>
 
 </div>
 <!-- END CONTENT -->
+
 <!-- BEGIN RIGHT COLUM -->
-<div class="gt_colthree">
-  <div class="tit_add">Văn phòng đại diện</div>
-  <div class="address">
-    <strong>Trụ sở chính:</strong><br />Tầng 4, số 168 Đường Láng, Quận Đống Đa, Hà Nội<br />Điện thoại: (84-4) 3 577 0781<br />Fax: +(84-4) 3 577 0787
-  </div>
-  <div class="address">
-    <strong>Chi nhánh Hải Phòng:</strong><br />Số 499 Quán Toan, Quận Hồng Bàng, TP Hải Phòng<br />Điện thoại: 031. 3534655<br />Fax: 031. 3534 316
-  </div>
-  <div class="tit_video">Video Clip</div>
-  <div class="video"><img src="images/video.jpg" width="100%"></div>
-</div>
+<?php echo $this->renderPartial('/site/menu_right_address'); ?>
 <!-- END RIGHT COLUM -->

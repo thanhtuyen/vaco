@@ -11,6 +11,7 @@ class ContactForm extends CFormModel
 	public $email;
 	public $subject;
 	public $body;
+  public $copy;
 
 	/**
 	 * Declares the validation rules.
@@ -25,5 +26,18 @@ class ContactForm extends CFormModel
 
 		);
 	}
+  /**
+   * @return array customized attribute labels (name=>label)
+   */
+  public function attributeLabels()
+  {
+    return array(
+      'name' => 'Tên của bạn',
+      'email' => 'Email',
+      'subject' => 'Tiêu đề',
+      'body' => 'Nội dung',
+
+    );
+  }
 
 }

@@ -3,7 +3,7 @@
 /* @var $model Detailmenuimage */
 
 $this->breadcrumbs=array(
-	'Detailmenuimages'=>array('index'),
+	'Detailmenuimages'=>array('admin'),
 	$model->id=>array('view','id'=>$model->id),
 	'Update',
 );

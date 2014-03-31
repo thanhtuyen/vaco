@@ -40,7 +40,15 @@ class MenuController extends AdminController
 		if(isset($_POST['Menu']))
 		{
 			$model->attributes=Clean($_POST['Menu']);
-			$model->create_date = getDatetime();
+      $parent_menu_id = $_POST['Menu']['parent_menu_id'];
+      if($parent_menu_id != 0){
+        $model_parent = Menu::model()->findByPk($parent_menu_id);
+        $model->menu_type = $model_parent->menu_type;
+      } else {
+        $model->menu_type = $_POST['Menu']['menu_type'];
+      }
+
+      $model->create_date = getDatetime();
 			$model->create_user_id = app()->user->id;
 			$model->del_flg = 0;
 			if($model->save())
@@ -69,6 +77,14 @@ class MenuController extends AdminController
 		if(isset($_POST['Menu']))
 		{
 			$model->attributes=$_POST['Menu'];
+      $parent_menu_id = $_POST['Menu']['parent_menu_id'];
+      if($parent_menu_id != 0){
+        $model_parent = Menu::model()->findByPk($parent_menu_id);
+        $model->menu_type = $model_parent->menu_type;
+      } else {
+        $model->menu_type = $_POST['Menu']['menu_type'];
+      }
+
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -86,11 +102,27 @@ class MenuController extends AdminController
 	public function actionDelete($id)
 	{
     $model=$this->loadModel($id);
-    deleteRow($model);
+    $model->del_flg = 1;
+    $model_detail_menu = Detailmenu::model()->findByAttributes(array('menu_id'=> $id));
+    if($model_detail_menu){
+      $model_detail_menu->del_flg = 1;
+      $model_detail_menu->save();
+    }
+    $model_news = News::model()->findAllByAttributes(array('menu_id'=> $id));
+    foreach($model_news as $n){
+      deleteRow($n);
+    }
+    $model_image = Detailmenuimage::model()->findAllByAttributes(array('menu_id' => $id));
+    foreach($model_image as $i) {
+      deleteRow($i);
+    }
+
+    $model->save();
+    //deleteRow($model);
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+//		if(!isset($_GET['ajax']))
+//			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 	}
 
 	/**
