@@ -44,7 +44,8 @@ class NewsController extends HomeController
 	public function actionView($id)
 	{
     $model = $this->loadModel($id);
-    $listNews = News::model()->getListNews($model->id);
+    $listNews = News::model()->getListNews($model->menu_id);
+
 		$this->render('view',array(
 			'model'=>$model,'listNews' => $listNews
 		));

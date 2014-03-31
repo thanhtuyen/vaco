@@ -72,12 +72,13 @@ $this->breadcrumbs=array(
 
     </div>
   </div>
+  <?php if(count($listNews)> 1):?>
   <div class="tit_lqnews">TIN LIÊN QUAN:</div>
   <?php foreach($listNews as $news){  	
     echo '<div class="li_news">'.CHtml::link(($language == "en") ? $news->title_eng : $news->title, News::model()->getUrl($news->id, $menu_name, ($language == "en") ? $news->title_eng : $news->title)).'</div>';
   }
   ?>
-
+  <?php endif;?>
 </div>
 <!-- END CONTENT -->
 
