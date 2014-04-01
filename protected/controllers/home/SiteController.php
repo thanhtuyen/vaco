@@ -53,7 +53,7 @@ class SiteController extends HomeController
           CController::renderPartial('emailwelcome',array('name'=> $model->name, 'subject'=> $model->subject, 'content'=> $model->body,),true,false),
            $cc
         );
-        Yii::app()->user->setFlash('contact','Thank you for contacting us. We will respond to you as soon as possible.');
+        Yii::app()->user->setFlash('contact','Cảm ơn bạn đã liên hệ với chúng tôi. Chúng tôi sẽ trả lời bạn càng sớm càng tốt.');
         $this->refresh();
       }
     }

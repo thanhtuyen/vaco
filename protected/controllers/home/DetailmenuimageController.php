@@ -13,9 +13,31 @@ class DetailmenuimageController extends HomeController
    */
   public function actionlist()
   {
-    $this->render('list',array(
+    $id = $_GET['id_menu'];
+    $menu = Menu::getMenuName($id);
+    if(Yii::app()->language == "en"){
+      $menu_name = $menu->menu_name_eng;
+    } else{
+      $menu_name = $menu->menu_name;
+    }
 
+    $criteria = new CDbCriteria();
+    $criteria->condition = 'del_flg=0 AND menu_id=' .$id;
+    $criteria->order     = 'id DESC';
+
+    $count = Detailmenuimage::model()->count($criteria);
+    $pages = new CPagination($count);
+    //results per page
+    $pages->pageSize = 10;
+    $pages->applyLimit($criteria);
+    $items = Detailmenuimage::model()->findAll($criteria);
+
+    $this->render('list', array(
+      'items'    => $items,
+      'pages'    => $pages,
+      'menu_name' => $menu_name
     ));
+
   }
 	// Uncomment the following methods and override them if needed
 	/*

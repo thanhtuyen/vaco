@@ -40,18 +40,21 @@ $this->breadcrumbs=array(
     <br />
     <strong>Gửi thông điệp đến chúng tôi:</strong><br />
     <?php $form=$this->beginWidget('CActiveForm'); ?>
-
+    <?php if(app()->user->hasFlash('contact')){
+      echo '<div class="alert alert-success" style="font-size:17px">'.app()->user->getFlash('contact').'</div>';
+    }?>
 <!--    <p class="note">Fields with <span class="required">*</span> are required.</p>-->
-
+    <div class="error" style="color: red">
     <?php echo $form->errorSummary($model); ?>
+    </div>
     <div class="form_lh">
-      <div class="lh_label">Tên bạn:</div>
+      <div class="lh_label">Tên bạn<span style="color: red"> *</span>:</div>
       <div class="lh_input"><?php echo $form->textField($model,'name'); ?></div>
-      <div class="lh_label">Địa chỉ Email:</div>
+      <div class="lh_label">Địa chỉ Email<span style="color: red"> *</span>:</div>
       <div class="lh_input"><?php echo $form->textField($model,'email'); ?></div>
-      <div class="lh_label">Tiêu đề thông điệp:</div>
+      <div class="lh_label">Tiêu đề thông điệp<span style="color: red"> *</span>:</div>
       <div class="lh_input"><?php echo $form->textField($model,'subject'); ?></div>
-      <div class="lh_label">Nội dung thông điệp:</div>
+      <div class="lh_label">Nội dung thông điệp<span style="color: red"> *</span>:</div>
       <div class="lh_input"><?php echo $form->textArea($model,'body', array('rows'=>5, 'cols'=>60, 'class'=>'span5')); ?></div>
       <div class="lh_checkbox"> <?php echo $form->checkBox($model,'copy'); ?> Gởi một bản copy thông điệp này đến email của bạn</div>
 

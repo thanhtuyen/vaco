@@ -103,6 +103,8 @@ class Detailmenuimage extends CActiveRecord
 	*/
 	public function getUrl($id, $name, $name_detail='')
 	{
+    $name_detail= vn_str_filter($name_detail);
+    $name= vn_str_filter($name);
 		if($name_detail != ''){
 			return Yii::app()->createAbsoluteUrl('Detailmenuimage/view', array(
 			'id'=>$id,

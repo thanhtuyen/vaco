@@ -25,7 +25,7 @@ class HomeController extends CController
     // If there is a post-request, redirect the application to the provided url of the selected language
     if(isset($_POST['language'])) {
       $lang = $_POST['language'];
-      $MultilangReturnUrl = $_POST[$lang]; var_dump($MultilangReturnUrl);
+      $MultilangReturnUrl = $_POST[$lang];
       $this->redirect($MultilangReturnUrl);
     }
     // Set the application language if provided by GET, session or cookie

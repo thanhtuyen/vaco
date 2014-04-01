@@ -125,6 +125,7 @@ class Detailmenu extends CActiveRecord
 	*/
 	public function getUrl($id, $name)
 	{
+    $name= vn_str_filter($name);
 		return Yii::app()->createAbsoluteUrl('Detailmenu/View', array(
 		'id'=>$id,
 		'name'=>$name,
