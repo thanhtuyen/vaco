@@ -50,7 +50,7 @@ class Detailmenu extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-      array('menu_id','required','message'=>getMessage('required', $this->getAttributeLabel('menu_id'))),
+      array('menu_id','required','message'=>getMessage('required', $this->getAttributeLabel('menu_id')), 'on'=>'update'),
       array('title','required','message'=>getMessage('required', $this->getAttributeLabel('title'))),
       array('title_eng','required','message'=>getMessage('required', $this->getAttributeLabel('title_eng'))),
       array('caption','required','message'=>getMessage('required', $this->getAttributeLabel('caption'))),
@@ -125,7 +125,6 @@ class Detailmenu extends CActiveRecord
 	*/
 	public function getUrl($id, $name)
 	{
-    $name= vn_str_filter($name);
 		return Yii::app()->createAbsoluteUrl('Detailmenu/View', array(
 		'id'=>$id,
 		'name'=>$name,

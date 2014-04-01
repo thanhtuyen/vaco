@@ -3,7 +3,7 @@
 /* @var $model Detailmenuimage */
 
 $this->breadcrumbs=array(
-	'Detailmenuimages'=>array('index'),
+	'Menu'=>array('menu/admin'),
 	'Manage',
 );
 
@@ -36,7 +36,7 @@ $('.search-form form').submit(function(){
 </div><!-- search-form -->
 
 <div class="view_admin" >
-	<div style="text-align:right"><?php echo CHtml::link(CHtml::image(Yii::app()->request->baseUrl.'/images/thumbnails/bplus.png',"bCreate",array("class"=>"icon_plus")), Yii::app()->createUrl('/detailmenuimage/create')) ;?></div>
+	<div style="text-align:right"><?php echo CHtml::link(CHtml::image(Yii::app()->request->baseUrl.'/images/thumbnails/bplus.png',"bCreate",array("class"=>"icon_plus")), Yii::app()->createUrl('/detailmenuimage/create?menu_id='.$menu_id)) ;?></div>
 	<?php $this->widget('zii.widgets.grid.CGridView', array(
 		'id'=>'detailmenuimage-grid',
 		'dataProvider'=>$model->search(),

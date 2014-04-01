@@ -3,7 +3,7 @@
 /* @var $model detailMenu */
 
 $this->breadcrumbs=array(
-	'Detail Menus'=>array('admin'),
+	'Menu'=>array('menu/admin'),
 	'Manage',
 );
 
@@ -36,7 +36,13 @@ $('.search-form form').submit(function(){
 </div><!-- search-form -->
 
 <div class="view_admin">
-	<div style="text-align:right"><?php echo CHtml::link(CHtml::image(Yii::app()->request->baseUrl.'/images/thumbnails/bplus.png',"bCreate",array("class"=>"icon_plus")), Yii::app()->createUrl('/detailmenu/create')) ;?></div>
+	<div style="text-align:right">
+	<?php 
+		$detail_menu_record = Detailmenu::model()->getDetailMenu($menu_id);
+		if(count($detail_menu_record) == 0)
+			echo CHtml::link(CHtml::image(Yii::app()->request->baseUrl.'/images/thumbnails/bplus.png',"bCreate",array("class"=>"icon_plus")), Yii::app()->createUrl('/detailmenu/create?menu_id='.$menu_id)) ;
+	?>
+	</div>
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'detail-menu-grid',
 	'dataProvider'=>$model->search(),

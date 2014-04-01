@@ -44,7 +44,7 @@ class Detailmenuimage extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('menu_id','required','message'=>getMessage('required', $this->getAttributeLabel('menu_id'))),
+			array('menu_id','required','message'=>getMessage('required', $this->getAttributeLabel('menu_id')), 'on'=>'update'),
 			array('menu_id, create_user, del_flg, public_flg, feature_flg', 'numerical', 'integerOnly'=>true),
 //			array('caption, caption_eng', 'length', 'max'=>45),
 			array('create_date, update_date', 'safe'),
@@ -103,8 +103,6 @@ class Detailmenuimage extends CActiveRecord
 	*/
 	public function getUrl($id, $name, $name_detail='')
 	{
-    $name_detail= vn_str_filter($name_detail);
-    $name= vn_str_filter($name);
 		if($name_detail != ''){
 			return Yii::app()->createAbsoluteUrl('Detailmenuimage/view', array(
 			'id'=>$id,

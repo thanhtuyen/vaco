@@ -10,12 +10,17 @@ class DetailmenuController extends AdminController
   {
     $this->pageTitle = Constants::$listModule['detail_menu']['header'];
 
-    $model = $this->loadModel($id);
+    $model = $this->loadModel($id); 
+    if(!isset($_GET['menu_id']))
+		$menu_id = $model->menu_id;
+	else
+		$menu_id = $_GET['menu_id'];
     $model->setAttribute('detail', CHtml::decode($model->detail));
     $model->setAttribute('detail_eng', CHtml::decode($model->detail_eng));
 
     $this->render('view',array(
-      'model'=>$model,
+      	'model'=>$model,
+    	'menu_id'=>$menu_id
     ));
   }
   /**
@@ -26,6 +31,11 @@ class DetailmenuController extends AdminController
   {
     $this->pageTitle = Constants::$listModule['detail_menu']['header'];
 
+    if(!isset($_GET['menu_id']))
+		$menu_id = 0;
+	else
+		$menu_id = $_GET['menu_id'];
+			
     $model=new Detailmenu;
     $model->feature_flg = 1; // set default feature_flg
 
@@ -37,6 +47,7 @@ class DetailmenuController extends AdminController
       $model->attributes=Clean($_POST['Detailmenu']);
       $model->setScenario('create');
       if ($model->validate()) {
+		$model->menu_id = $_POST['menu_id'];
         $model->detail = CHtml::encode($_POST['Detailmenu']['detail']);
         $model->detail_eng = CHtml::encode($_POST['Detailmenu']['detail_eng']);
         //save image_path
@@ -75,7 +86,8 @@ class DetailmenuController extends AdminController
     }
 
     $this->render('create',array(
-      'model'=>$model,
+      	'model'=>$model,
+    	'menu_id'=>$menu_id
     ));
   }
 
@@ -163,7 +175,8 @@ class DetailmenuController extends AdminController
     }
 
     $this->render('update',array(
-      'model'=>$model,
+      	'model'=>$model,
+    	'menu_id'=>$model->menu_id
     ));
   }
 
@@ -198,13 +211,19 @@ class DetailmenuController extends AdminController
    */
   public function actionAdmin()
   {
+  	if(!isset($_GET['menu_id']))
+		$menu_id = 0;
+	else
+		$menu_id = $_GET['menu_id'];
+			
     $model=new Detailmenu('search');
     $model->unsetAttributes();  // clear any default values
     if(isset($_GET['Detailmenu']))
       $model->attributes=$_GET['Detailmenu'];
 
     $this->render('admin',array(
-      'model'=>$model,
+      	'model'=>$model,
+    	'menu_id'=>$menu_id
     ));
   }
 

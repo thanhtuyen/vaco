@@ -16,7 +16,17 @@
 
 <div class="space5"> 
 	<div class="control-group">
-		<?php echo $form->dropDownListRow($model,'menu_id', Menu::listCategory(0, Menu::TYPE_IMAGE), array('prompt'=>'Chọn menu ...'));  ?>
+		<?php 
+			if($model->isNewRecord != '1')
+				echo $form->dropDownListRow($model,'menu_id', Menu::listCategory(0, Menu::TYPE_IMAGE), array('disabled'=> true));
+			else {
+				$menu_detail = Menu::model()->findByPk($menu_id); 
+				$parents[$menu_id] = $menu_detail->menu_name;
+				echo $form->labelEx($model,'menu_id', array('class'=> "control-label")); 
+    			echo $form->dropDownList($model,'menu_id',$parents ,array('disabled'=> true));
+    			echo '<input type="hidden" name="menu_id" value="'.$menu_id.'">';
+			}  
+		?>
 	</div>
 	
 	<div class="control-group">
@@ -32,8 +42,8 @@
 		</div>
 		<div class="controls"><br>
 			<?php 
-				if($model->isNewRecord != '1')
-					echo CHtml::image(Yii::app()->request->baseUrl . News::image_url . $model->image_path,"",array("class"=>'show_image_update'));
+				if($model->isNewRecord != '1' && $model->image_path != '')
+					echo CHtml::image(Yii::app()->request->baseUrl . Detailmenuimage::image_url . $model->image_path,"",array("class"=>'show_image_update'));
 			?>	
 		</div>	
 	</div>	

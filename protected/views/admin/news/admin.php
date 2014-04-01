@@ -3,7 +3,7 @@
 /* @var $model News */
 
 $this->breadcrumbs=array(
-	'News'=>array('admin'),
+	'Menu'=>array("menu/admin"),
 	'Manage',
 );
 
@@ -36,7 +36,7 @@ $('.search-form form').submit(function(){
 </div><!-- search-form -->
 
 <div class="view_admin" >
-	<div style="text-align:right"><?php echo CHtml::link(CHtml::image(Yii::app()->request->baseUrl.'/images/thumbnails/bplus.png',"bCreate",array("class"=>"icon_plus")), Yii::app()->createUrl('/news/create')) ;?></div>
+	<div style="text-align:right"><?php echo CHtml::link(CHtml::image(Yii::app()->request->baseUrl.'/images/thumbnails/bplus.png',"bCreate",array("class"=>"icon_plus")), Yii::app()->createUrl('/news/create?menu_id='.$menu_id)) ;?></div>
 	<?php $this->widget('zii.widgets.grid.CGridView', array(
 		'id'=>'news-grid',
 		'dataProvider'=>$model->search(),

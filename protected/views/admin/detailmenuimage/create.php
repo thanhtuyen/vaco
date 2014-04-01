@@ -3,7 +3,7 @@
 /* @var $model Detailmenuimage */
 
 $this->breadcrumbs=array(
-	'Detailmenuimages'=>array('admin'),
+	'Detailmenuimages'=>array('admin?menu_id='.$menu_id),
 	'Create',
 );
 
@@ -16,5 +16,5 @@ $this->menu=array(
 <h1><?php echo str_replace("###TITLE###", 'Chi Tiết Menu Hình Ảnh', Constants::$listTitleForm['form_create']); ?></h1>
 
  <div class="create_user">
-<?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php echo $this->renderPartial('_form', array('model'=>$model, 'menu_id'=>$menu_id)); ?>
  </div>

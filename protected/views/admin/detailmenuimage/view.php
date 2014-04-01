@@ -3,7 +3,7 @@
 /* @var $model Detailmenuimage */
 
 $this->breadcrumbs=array(
-	'Detailmenuimages'=>array('index'),
+	'Detailmenuimages'=>array('admin?menu_id='.$menu_id),
 	$model->id,
 );
 
@@ -19,7 +19,7 @@ $this->menu=array(
 <h1><?php echo str_replace("###TITLE###", 'Menu Hình Ảnh', Constants::$listTitleForm['form_view']) .' ' . $model->id; ?></h1>
 
 <div class="view_user">
-	<div style="text-align:right"><?php echo CHtml::link(CHtml::image(Yii::app()->request->baseUrl.'/images/thumbnails/bedit.png',"bCreate",array("class"=>"icon_edit")), Yii::app()->createUrl('/detailmenuimage/update/'.$model->id)) ;?></div>
+	<div style="text-align:right"><?php echo CHtml::link(CHtml::image(Yii::app()->request->baseUrl.'/images/thumbnails/bedit.png',"bCreate",array("class"=>"icon_edit")), Yii::app()->createUrl('/detailmenuimage/update/'.$model->id.'?menu_id='.$menu_id)) ;?></div>
 	<?php
   $this->widget('bootstrap.widgets.TbDetailView', array(
     'data'=>$model,
@@ -30,7 +30,7 @@ $this->menu=array(
 
       array('name' => 'image_path',
         'type' => 'raw',
-        'value' => CHtml::image(Yii::app()->request->baseUrl.Detailmenuimage::image_url . $model->image_path,"",array("class"=>'show_image')),
+        'value' => $model->image_path != '' ? CHtml::image(Yii::app()->request->baseUrl.Detailmenuimage::image_url . $model->image_path,"",array("class"=>'show_image')) : '',
       ),
 
       array('label' => 'ENGLISH', 'value' => ''),

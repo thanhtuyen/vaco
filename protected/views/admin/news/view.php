@@ -3,7 +3,7 @@
 /* @var $model News */
 
 $this->breadcrumbs=array(
-	'News'=>array('admin'),
+	'News'=>array('admin?menu_id='.$menu_id),
 	$model->title,
 );
 
@@ -16,22 +16,10 @@ $this->menu=array(
 );
 ?>
 
-<?php
-	/*if(app()->news->hasFlash('error')){
-	  echo app()->news->getFlash('error');
-	} elseif(app()->news->hasFlash('warning')){
-	  echo app()->news->getFlash('warning');
-	} elseif(app()->news->hasFlash('info')){
-	  echo app()->news->getFlash('info');
-	} elseif(app()->news->hasFlash('success')){
-	  echo '<div class="alert alert-success">'.app()->news->getFlash('success').'</div>';
-	}*/
-?>
-
 <h1><?php echo str_replace("###TITLE###", 'Tin Tức', Constants::$listTitleForm['form_view']) .' ' . $model->id; ?></h1>
 
 <div class="view_detail_menu">
-	<div style="text-align:right"><?php echo CHtml::link(CHtml::image(Yii::app()->request->baseUrl.'/images/thumbnails/bedit.png',"bCreate",array("class"=>"icon_edit")), Yii::app()->createUrl('/news/update/'.$model->id)) ;?></div>
+	<div style="text-align:right"><?php echo CHtml::link(CHtml::image(Yii::app()->request->baseUrl.'/images/thumbnails/bedit.png',"bCreate",array("class"=>"icon_edit")), Yii::app()->createUrl('/news/update/'.$model->id.'?menu_id='.$menu_id)) ;?></div>
 	<?php 
 	$user = User::model()->findByPk($model->create_user_id);
 	$menu = Menu::model()->findByPk($model->menu_id);
@@ -67,8 +55,8 @@ $this->menu=array(
 	      		'value' => CHtml::decode($model->detail_eng)
 			),	
 			array('name' => 'thumb_image_path',
-            'type' => 'raw',
-	      		'value' => CHtml::image(Yii::app()->request->baseUrl.News::image_url . $model->thumb_image_path,"",array("class"=>'show_image')),
+            	'type' => 'raw',
+	      		'value' => $model->thumb_image_path != '' ? CHtml::image(Yii::app()->request->baseUrl.News::image_url . $model->thumb_image_path,"",array("class"=>'show_image')) : '',
 			),
 			array('name' => 'list_file_attach',
 	      		'value' => $model->list_file_attach ? $model->list_file_attach : ''

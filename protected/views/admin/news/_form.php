@@ -18,8 +18,20 @@
 	<div class="space5">  
 		<div class="control-group">
 		<?php 
+			if($model->isNewRecord != '1')
 				echo $form->dropDownListRow($model,'menu_id', Menu::listCategory(0, Menu::LIST_MENU), array('prompt'=>'Chọn menu ...'));
-			 ?>
+			else {
+				$menu_detail = Menu::model()->findByPk($menu_id); 
+				$parents[$menu_id] = $menu_detail->menu_name;
+				echo $form->labelEx($model,'menu_id', array('class'=> "control-label")); 
+    			echo $form->dropDownList($model,'menu_id',$parents ,array('disabled'=> true));
+    			echo '<input type="hidden" name="menu_id" value="'.$menu_id.'">';
+				/*echo $form->labelEx($model,'menu_id', array('class'=> "control-label")); 
+				$menu_detail = Menu::model()->findByPk($menu_id); 
+				echo '<label for="menu_id">'.$menu_detail->menu_name.'</label>';
+				echo '<input type="hidden" name="menu_id" value="'.$menu_id.'">';*/
+			}	
+		?>
 		</div>
 	
 		<?php echo $form->textFieldRow($model,'title',array('class'=>'span4','maxlength'=>255)); ?>
@@ -68,7 +80,7 @@
 			</div>
 			<div class="controls"><br>
 				<?php 
-					if($model->isNewRecord != '1')
+					if($model->isNewRecord != '1' & $model->thumb_image_path != '')
 						echo CHtml::image(Yii::app()->request->baseUrl . News::image_url . $model->thumb_image_path,"",array("class"=>'show_image_update'));
 				?>	
 			</div>	
@@ -117,7 +129,7 @@
 		        //'buttonType'=>'link',
 		        'label'=>Constants::$listLabelButton['cancel'],
 		        'htmlOptions'=>array('style'=>'margin-left: 10px;','name'=>'bCancel','id'=> 'bCancel'),
-		        'url'=>'../../news/admin',
+		        'url'=>'../../news/admin?menu_id='.$menu_id,
 		      ));
 		    } 
 		    ?>

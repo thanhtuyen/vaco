@@ -11,8 +11,15 @@ class DetailmenuimageController extends AdminController
 	{
 		$this->pageTitle = Constants::$listModule['detail_menu_image']['header'];
 		
+		$model = $this->loadModel($id);
+		if(!isset($_GET['menu_id']))
+			$menu_id = $model->menu_id;
+		else
+			$menu_id = $_GET['menu_id'];
+			
 		$this->render('view',array(
-			'model'=>$this->loadModel($id),
+			'model'=>$model,
+			'menu_id'=>$menu_id
 		));
 	}
 
@@ -23,6 +30,11 @@ class DetailmenuimageController extends AdminController
 	public function actionCreate()
 	{
 		$this->pageTitle = Constants::$listModule['detail_menu_image']['header'];
+		
+		if(!isset($_GET['menu_id']))
+			$menu_id = 0;
+		else
+			$menu_id = $_GET['menu_id'];
 		
 		$model=new Detailmenuimage;
 		$model->public_flg = 0; // set default public_flg
@@ -41,7 +53,10 @@ class DetailmenuimageController extends AdminController
       {
         $model->image_path = $image_path;
       }
-			if ($model->validate()) {
+			if ($model->validate()) { 
+				$model->menu_id = $_POST['menu_id'];
+				$model->caption = $_POST['Detailmenuimage']['caption'];
+				$model->caption_eng = $_POST['Detailmenuimage']['caption_eng'];
 				$model->create_date = getDatetime();
 	      		$model->create_user = app()->user->getState('roles') == 'admin' ? User::ADMIN : User::USER;
 	      		$model->del_flg = 0;
@@ -55,6 +70,7 @@ class DetailmenuimageController extends AdminController
 
 		$this->render('create',array(
 			'model'=>$model,
+			'menu_id'=>$menu_id
 		));
 	}
 
@@ -76,35 +92,38 @@ class DetailmenuimageController extends AdminController
 		{
 			$model->attributes=$_POST['Detailmenuimage'];
 
-      $image_path = CUploadedFile::getInstance($model, 'image_path');
+      		$image_path = CUploadedFile::getInstance($model, 'image_path');
+      		$model->caption = $_POST['Detailmenuimage']['caption'];
+			$model->caption_eng = $_POST['Detailmenuimage']['caption_eng'];
 			$model->update_date = getDatetime();
-      $model->feature_flg = $_POST['Detailmenuimage']['feature_flg'];
+      		$model->feature_flg = $_POST['Detailmenuimage']['feature_flg'];
 			if ($model->validate()) {
-        // upload image
-        if (is_object($image_path) && get_class($image_path)==='CUploadedFile')
-        {
-          if(is_object($image_path)) {
-            if($old_image_path != '') {
-              unlink(Yii::getPathOfAlias('webroot') . Detailmenuimage::image_url . $old_image_path);
-            }
-
-            $model->image_path = $image_path;
-          } else {
-            $model->image_path = $old_image_path;
-          }
-
-        }
+	        // upload image
+	        if (is_object($image_path) && get_class($image_path)==='CUploadedFile')
+	        {
+	          if(is_object($image_path)) {
+	            if($old_image_path != '') {
+	              unlink(Yii::getPathOfAlias('webroot') . Detailmenuimage::image_url . $old_image_path);
+	            }
+	
+	            $model->image_path = $image_path;
+	          } else {
+	            $model->image_path = $old_image_path;
+	          }
+	
+	        }
 
 				if($model->save())
-          if($image_path) {
-            $model->image_path->saveAs(Yii::getPathOfAlias('webroot') . Detailmenuimage::image_url . $model->image_path->name);
-          }
+		          if($image_path) {
+		            $model->image_path->saveAs(Yii::getPathOfAlias('webroot') . Detailmenuimage::image_url . $model->image_path->name);
+		          }
 					$this->redirect(array('view','id'=>$model->id));
 			}
 		}
 
 		$this->render('update',array(
 			'model'=>$model,
+			'menu_id'=>$model->menu_id
 		));
 	}
 
@@ -153,6 +172,11 @@ class DetailmenuimageController extends AdminController
 	{
 		$this->pageTitle = Constants::$listModule['detail_menu_image']['header'];
 		
+		if(!isset($_GET['menu_id']))
+			$menu_id = 0;
+		else
+			$menu_id = $_GET['menu_id'];
+			
 		$model=new Detailmenuimage('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Detailmenuimage']))
@@ -160,6 +184,7 @@ class DetailmenuimageController extends AdminController
 
 		$this->render('admin',array(
 			'model'=>$model,
+			'menu_id'=>$menu_id
 		));
 	}
 

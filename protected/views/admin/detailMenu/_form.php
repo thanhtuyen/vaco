@@ -21,11 +21,15 @@ Yii::import('ext.ckeditor.CKEditor');
     <?php echo $form->labelEx($model,'menu_id', array('class'=> "control-label")); ?>
     <div class="controls">
     <?php
-    $parents = detailMenu::getListMenu($model->menu_id);
     if($model->isNewRecord){
-      echo $form->dropDownList($model,'menu_id',$parents ,array( 'prompt'=>'Chọn menu ...'));
-    } else{
-      echo $form->dropDownList($model,'menu_id',$parents ,array('disabled'=> true));
+    	$menu_detail = Menu::model()->findByPk($menu_id); 
+		$parents[$menu_id] = $menu_detail->menu_name;
+    	echo $form->dropDownList($model,'menu_id',$parents ,array('disabled'=> true));
+    	echo '<input type="hidden" name="menu_id" value="'.$menu_id.'">';
+      //echo $form->dropDownList($model,'menu_id',$parents ,array( 'prompt'=>'Chọn menu ...'));
+    } else{    	
+    	$parents = Detailmenu::getListMenu($model->menu_id);
+      	echo $form->dropDownList($model,'menu_id',$parents ,array('disabled'=> true));
     }
 
     ?>
@@ -56,7 +60,7 @@ Yii::import('ext.ckeditor.CKEditor');
   <div class="controls"><br>
     <?php
     if($model->isNewRecord != '1')
-      echo CHtml::image(Yii::app()->request->baseUrl . detailMenu::S_THUMBNAIL . $model->image_path,"",array("class"=>'show_image_update'));
+      echo $model->image_path != '' ? CHtml::image(Yii::app()->request->baseUrl . detailMenu::S_THUMBNAIL . $model->image_path,"",array("class"=>'show_image_update')) : '';
     ?>
   </div>
   <div class="control-group">
@@ -121,7 +125,7 @@ Yii::import('ext.ckeditor.CKEditor');
 	        //'buttonType'=>'link',
 	        'label'=>Constants::$listLabelButton['cancel'],
 	        'htmlOptions'=>array('style'=>'margin-left: 10px;','name'=>'bCancel','id'=> 'bCancel'),
-	        'url'=>'../../detailmenu/admin',
+	        'url'=>'../../detailmenu/admin?menu_id='.$menu_id,
 	      ));
 	    } 
 	    ?>

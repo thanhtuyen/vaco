@@ -3,8 +3,8 @@
 /* @var $model News */
 
 $this->breadcrumbs=array(
-	'News'=>array('admin'),
-	$model->title=>array('view','id'=>$model->id),
+	'News'=>array('admin?menu_id='.$menu_id),
+	$model->title=>array('view','id'=>$model->id,'menu_id'=>$menu_id),
 	'Update',
 );
 
@@ -19,5 +19,5 @@ $this->menu=array(
 <h1><?php echo str_replace("###TITLE###", 'Imageslide', Constants::$listTitleForm['form_update']) .' ' . $model->id; ?></h1>
 
 <!-- <div class="create_user"> -->
-<?php echo $this->renderPartial('_form', array('model'=>$model, 'modelKeyword'=>$modelKeyword)); ?>
+<?php echo $this->renderPartial('_form', array('model'=>$model, 'modelKeyword'=>$modelKeyword, 'menu_id'=>$menu_id)); ?>
 <!-- </div> -->

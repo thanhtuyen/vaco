@@ -51,7 +51,7 @@ class News extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('menu_id','required','message'=>getMessage('required', $this->getAttributeLabel('menu_id'))),
+			array('menu_id','required','message'=>getMessage('required', $this->getAttributeLabel('menu_id')), 'on'=>'update'),
 			array('title','required','message'=>getMessage('required', $this->getAttributeLabel('title'))),
 			array('title_eng','required','message'=>getMessage('required', $this->getAttributeLabel('title_eng'))),
       array('caption','required','message'=>getMessage('required', $this->getAttributeLabel('caption'))),
@@ -130,10 +130,8 @@ class News extends CActiveRecord
 	* @return string the URL that shows the detail of the post
 	*/
 	public function getUrl($id, $name, $name_detail='')
-	{
-    $name_detail= vn_str_filter($name_detail);
-    $name= vn_str_filter($name);
-		if($name_detail != ''){
+	{ 
+		if($name_detail != ''){ 
 			return Yii::app()->createAbsoluteUrl('News/View', array(
 			'id'=>$id,
 			'name'=>$name,
@@ -227,4 +225,5 @@ class News extends CActiveRecord
   		}
   		return $list_news;
   	}
+
 }
