@@ -52,7 +52,8 @@ class MenuController extends AdminController
 			$model->create_user_id = app()->user->id;
 			$model->del_flg = 0;
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+        $this->redirect(CController::CreateUrl('/menu/admin'));
+				//$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('create',array(
@@ -86,7 +87,8 @@ class MenuController extends AdminController
       }
 
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+				//$this->redirect(array('view','id'=>$model->id));
+      $this->redirect(CController::CreateUrl('/menu/admin'));
 		}
 
 		$this->render('update',array(

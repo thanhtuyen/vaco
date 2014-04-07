@@ -28,12 +28,14 @@ $this->breadcrumbs=array(
     }
 
     ?> </div>
-  <div class="sharesoci">
-    <a href="#"><img src="/images/front/fb.png"></a> 
-    <a href="#"><img src="/images/front/tw.png"></a>  
-    <a href="#"><img src="/images/front/gc.png"></a>  
-    <!-- <a href="<?php echo Yii::app()->urlManager->createUrl('/news/admin')?>" onclick="window.open(this.href,'win2','width=400,height=350,menubar=yes,resizable=yes'); return false;"><img src="/images/front/em.png"></a>  
-    <a onclick="window.open(this.href,'win2','status=no,toolbar=no,scrollbars=yes,titlebar=no,menubar=no,resizable=yes,width=640,height=480,directories=no,location=no'); return false;" title="In" href="<?php echo Yii::app()->urlManager->createUrl('/news/print', array("id"=>$model->id))?>"><img src="/images/front/pr.png"></a>-->
+  <div style="float: right;" class="icon">
+    <div  style="float: left;margin-right: 10px; margin-top: 2px;" class="fb-share-button" data-href="<?php echo $_SERVER['HTTP_HOST'].Yii::app()->request->url ;?>" data-type="icon"></div>
+    <div class="sharesoci">
+      <a href="#"><img style="width: 14px; " src="/images/front/tw.png"></a>  
+      <a href="#"><img  style="width: 20px;" src="/images/front/gc.png"></a>  
+      <!--      <a href="#"><img src="/images/front/em.png"></a>  -->
+      <!--      <a onclick="window.open(this.href,'win2','status=no,toolbar=no,scrollbars=yes,titlebar=no,menubar=no,resizable=yes,width=640,height=480,directories=no,location=no'); return false;" title="In" href="--><?php //echo Yii::app()->urlManager->createUrl('/news/print', array("id"=>$model->id))?><!--"><img src="/images/front/pr.png"></a>-->
+    </div>
   </div>
 
   <div class="conten_news">

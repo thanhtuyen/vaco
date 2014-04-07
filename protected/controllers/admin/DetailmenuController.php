@@ -35,6 +35,11 @@ class DetailmenuController extends AdminController
 		$menu_id = 0;
 	else
 		$menu_id = $_GET['menu_id'];
+		
+	$check_record = Detailmenu::model()->getDetailMenu($menu_id);
+	if(count($check_record) > 0){
+		$this->redirect(array('admin','menu_id'=>$menu_id));
+	}
 			
     $model=new Detailmenu;
     $model->feature_flg = 1; // set default feature_flg
@@ -81,7 +86,8 @@ class DetailmenuController extends AdminController
           uploadMultifile($model,'list_file_attach',Detailmenu::file_url);
         }
 
-        $this->redirect(array('view','id'=>$model->id));
+       // $this->redirect(array('view','id'=>$model->id));
+        $this->redirect(CController::CreateUrl('/detailmenu/admin', array('menu_id' => $model->menu_id)));
       }
     }
 
@@ -170,7 +176,8 @@ class DetailmenuController extends AdminController
         {
           uploadMultifile($model,'list_file_attach',Detailmenu::file_url);
         }
-        $this->redirect(array('view','id'=>$model->id));
+       // $this->redirect(array('view','id'=>$model->id));
+        $this->redirect(CController::CreateUrl('/detailmenu/admin', array('menu_id' => $model->menu_id)));
       }
     }
 
@@ -192,7 +199,7 @@ class DetailmenuController extends AdminController
 
     // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
     if(!isset($_GET['ajax']))
-      $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+      	$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
   }
 
   /**

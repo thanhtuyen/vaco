@@ -28,7 +28,7 @@ class DetailmenuimageController extends HomeController
     $count = Detailmenuimage::model()->count($criteria);
     $pages = new CPagination($count);
     //results per page
-    $pages->pageSize = 10;
+    $pages->pageSize = 16;
     $pages->applyLimit($criteria);
     $items = Detailmenuimage::model()->findAll($criteria);
 
